@@ -1,7 +1,7 @@
 import navBarLogo from './logo-copy.png';
 import navBarAvatar from './avatar-bear.png';
 import Hamburger from '../Hamburger';
-import "./styles.scss";
+import './styles.scss';
 
 function Navbar() {
   return (
