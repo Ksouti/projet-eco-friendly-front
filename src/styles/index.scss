@@ -1,5 +1,6 @@
 @use 'reset';
 @use 'vars';
+@import 'mixins.scss';
 
 body {
   font-family: sans-serif;
