@@ -1,5 +1,4 @@
 import Footer from '../Footer';
-import NotFoundPage from '../NotFoundPage';
 import reactLogo from './logo.png';
 import './styles.css';
 
