@@ -32,4 +32,4 @@ _You can use [nvm](https://github.com/nvm-sh/nvm) to install node with the comma
 
 - with pnpm :
   `pnpm start`
-  s
+ 
