@@ -9,7 +9,7 @@ export default function FormConnexion({ toggleForm }) {
   return (
     <div className="connexion">
       <h5 className="title text-primary">Se connecter</h5>
-      <form autoComplete="off" onSubmit={() => toggleForm()}>
+      <form autoComplete="off" onSubmit={handleSubmit}>
         <Input
           type="email"
           name="email"
