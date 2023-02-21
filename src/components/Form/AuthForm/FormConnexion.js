@@ -32,7 +32,7 @@ export default function FormConnexion({ toggleForm }) {
       </form>
       <p className="link">
         Première fois ?{' '}
-        <Button type="button" color="link-primary" onclick={toggleForm}>
+        <Button type="button" color="link-primary" onclick={() => toggleForm()}>
           S'inscrire
         </Button>
       </p>

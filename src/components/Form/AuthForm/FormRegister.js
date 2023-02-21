@@ -71,7 +71,7 @@ export default function FormRegister({ toggleForm }) {
       </form>
       <p className="link">
         Déjà inscit ?{' '}
-        <Button type="button" color="link-primary" onclick={toggleForm}>
+        <Button type="button" color="link-primary" onclick={() => toggleForm()}>
           Se connecter
         </Button>
       </p>
