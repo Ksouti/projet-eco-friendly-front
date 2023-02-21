@@ -1,0 +1,35 @@
+@use 'sass:color';
+
+$whiteColor: #fff;
+$darkColor: #000;
+$lightColor: #fff9ee;
+$darkGrayColor: #343a40;
+
+$primaryColor: #68c1a6;
+$primaryColorLight: #caf2e6;
+$primaryColorDark: #427968;
+// $primaryColorLight: color.scale($primaryColor, $lightness: 60%);
+// $primaryColorDark: color.scale($primaryColor, $lightness: -60%);
+
+$primaryBorderColor: $primaryColor;
+$primaryColorHover: $primaryColorLight;
+$primaryColorFocus: $primaryColor;
+
+$secondaryColor: #e1b902;
+$secondaryColorLight: #fff2b6;
+$secondaryColorDark: #de8201;
+// $secondaryColorLight: color.scale($secondaryColor, $lightness: 60%);
+// $secondaryColorDark: color.scale($secondaryColor, $lightness: -60%);
+
+$secondaryBorderColor: $secondaryColor;
+$secondaryColorHover: $secondaryColorLight;
+$secondaryColorFocus: $secondaryColor;
+
+$lightTextColor: $lightColor;
+$darkTextColor: $darkGrayColor;
+
+$dangerColor: $secondaryColorDark;
+$dangerColorAlt: color.scale($dangerColor, $lightness: 60%);
+
+$successColor: #96b31e;
+$successColorAlt: color.scale($successColor, $lightness: 60%);

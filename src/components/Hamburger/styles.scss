@@ -1,17 +1,87 @@
+@use 'src/styles/vars';
+
+// .hamburgerMenu {
+//   justify-content: flex-end;
+//   align-items: flex-end;
+// }
+
 .hamburger {
-  width: 2rem;
-  height: 2rem;
+  position: relative;
+  top: 60px;
+
+  box-shadow: 0px 2px 5px 3px #42796821;
+  background-color: #427968;
+  border-radius: 70px;
+  width: 2.5rem;
+  height: 2.5rem;
+
   display: flex;
-  justify-content: space-around;
-  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
 }
 
 .burger {
-  width: 2rem;
-  height: 0.25rem;
+  margin: 2px ;
+  width: 1rem;
+  height: 0.15rem;
   border-radius: 10px;
-  background-color: black;
+  background-color: white;
   transform-origin: 1px;
   transition: all 0.3s linear;
-  
 }
+
+.menuBurger {
+  // visibility: hidden;
+  background-color: white;
+  position: absolute;
+  justify-content: center;
+  top: 110px;
+  // right: 366px;
+  transform: translateX(-50%);
+  left: 50%;
+
+  border-radius: 10px;
+  border: 2px solid #427968;
+  box-shadow: 0px 6px 5px 3px #42796857;
+
+}
+
+.menuBurgerLi {
+  color: #427968;
+  font-weight: 900;
+  font-size: small;
+  text-align: center;
+  padding: 7px 30px 7px 30px;
+}
+
+.homepage {
+    border-bottom: 2px solid #427968;
+    box-shadow: 0px 1px 5px 3px #42796821;
+
+}
+
+.mobility {
+  border-bottom: 2px solid #427968;
+  box-shadow: 0px 1px 5px 3px #42796821;
+
+}
+
+.home {
+  border-bottom: 2px solid #427968;
+  box-shadow: 0px 1px 5px 3px #42796821;
+
+}
+
+.health {
+  border-bottom: 2px solid #427968;
+  box-shadow: 0px 1px 5px 3px #42796821;
+
+}
+
+.menuBurgerLi:hover {
+  background-color: #95b31e7b;
+  color: white;
+}
+
