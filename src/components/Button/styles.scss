@@ -37,6 +37,15 @@
     border-color: var(--btn-hover-border-color);
   }
 
+  &-default {
+    --btn-color: #fff;
+    --btn-bg: #6c757d;
+    --btn-border-color: #6c757d;
+    --btn-hover-color: #fff;
+    --btn-hover-bg: #5c636a;
+    --btn-hover-border-color: #565e64;
+  }
+
   // use the default colors in the vars.scss file if they have been defined.
   &-primary {
     --btn-color: #fff;

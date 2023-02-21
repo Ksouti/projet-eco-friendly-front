@@ -12,8 +12,10 @@ export default function Button({ type = 'button', onclick, color, children }) {
 
 Button.defaultProps = {
   type: 'button',
+  color: 'default',
 };
 
 Button.propTypes = {
   type: PropTypes.string,
+  color: PropTypes.string,
 };
