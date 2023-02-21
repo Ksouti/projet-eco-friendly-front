@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .btn {
   --btn-bg: transparent;
   --btn-padding-x: 0.75rem;
@@ -46,19 +48,31 @@
     --btn-hover-border-color: #565e64;
   }
 
-  // use the default colors in the vars.scss file if they have been defined.
   &-primary {
-    --btn-color: #fff;
-    --btn-bg: #96b31e;
-    --btn-border-color: #96b31e;
-    --btn-hover-color: #fff;
-    --btn-hover-bg: #7e9816;
-    --btn-hover-border-color: #6f8612;
+    background-color: vars.$primaryColor;
+    color: vars.$lightTextColor;
+    border: 1px solid vars.$primaryBorderColor;
+
+    &:hover {
+      color: vars.$lightTextColor;
+      background-color: vars.$primaryColorHover;
+      border-color: vars.$primaryBorderColor;
+    }
   }
 
   // use the default colors in the vars.scss file if they have been defined.
   &-secondary {
-    --btn-color: #fff;
+    background-color: vars.$secondaryColor;
+    color: vars.$lightTextColor;
+    border: 1px solid vars.$secondaryBorderColor;
+
+    &:hover {
+      color: vars.$lightTextColor;
+      background-color: vars.$secondaryColorHover;
+      border-color: vars.$secondaryBorderColor;
+    }
+
+    // --btn-color: #fff;
     --btn-bg: #427968;
     --btn-border-color: #427968;
     --btn-hover-color: #fff;
