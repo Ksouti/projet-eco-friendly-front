@@ -17,8 +17,8 @@ export default function Input({
   const idValue = `input-${name}`;
 
   return (
-    <div className={value.length > 0 ? 'form form-completed' : 'form'}>
-      <label htmlFor={idValue} className={`form-label form-label-${color}`}>
+    <div className={value.length > 0 ? 'field field-completed' : 'field'}>
+      <label htmlFor={idValue} className={`field-label field-label-${color}`}>
         {placeholder}
       </label>
       <input
@@ -28,7 +28,7 @@ export default function Input({
         type={type}
         placeholder={placeholder}
         name={name}
-        className={`form-input form-${color}`}
+        className={`field-input field-${color}`}
       />
     </div>
   );

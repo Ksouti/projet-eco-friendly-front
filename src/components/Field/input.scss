@@ -1,90 +1,93 @@
-.form {
+@use 'src/styles/vars';
+
+.field {
   position: relative;
 
   &-input {
-    --form-bg: #fff;
-    --form-font-size: 1rem;
-    --form-padding-x: 0.75rem;
-    --form-padding-y: 0.375rem;
-    --form-color: inherit;
-    --form-font-weight: 400;
-    --form-border-radius: 0.375rem;
-    --form-border-color: transparent;
-    --form-line-height: 1.5;
-    --form-border-color: #dee2e6;
+    --field-bg: #fff;
+    --field-font-size: 1rem;
+    --field-padding-x: 0.75rem;
+    --field-padding-y: 0.375rem;
+    --field-color: inherit;
+    --field-font-weight: 400;
+    --field-border-radius: 0.375rem;
+    --field-border-color: transparent;
+    --field-line-height: 1.5;
+    --field-border-color: #dee2e6;
 
     display: block;
     width: 100%;
-    padding: var(--form-padding-y) var(--form-padding-x);
-    font-size: var(--form-font-size);
-    font-weight: var(--form-font-weight);
-    line-height: var(--form-line-height);
-    color: var(--form-color);
-    border-radius: var(--form-border-radius);
-    border: 1px solid var(--form-border-color);
+    padding: var(--field-padding-y) var(--field-padding-x);
+    font-size: var(--field-font-size);
+    font-weight: var(--field-font-weight);
+    line-height: var(--field-line-height);
+    color: var(--field-color);
+    border-radius: var(--field-border-radius);
+    border: 1px solid var(--field-border-color);
     background-clip: padding-box;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: var(--form-bg);
+    background-color: var(--field-bg);
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
     &:focus {
-      border-color: var(--form-focus-border-color);
-      & + .form-label {
-        color: var(--form-label-color);
+      border-color: var(--field-focus-border-color);
+
+      & + .field-label {
+        color: var(--field-label-color);
       }
     }
   }
 
+  &-default {
+    --field-focus-border-color: #a8adb1;
+  }
+
+  // use the default colors in the vars.scss file if they have been defined.
+  &-primary {
+    // --field-focus-border-color: vars.$primaryColor;
+    --field-focus-border-color: #68c1a6;
+  }
+
+  // use the default colors in the vars.scss file if they have been defined.
+  &-secondary {
+    // --field-focus-border-color: vars.$secondaryColor;
+    --field-focus-border-color: #e1b902;
+  }
+
   &-label {
-    --form-label-color: inherit;
+    --field-label-color: inherit;
 
     display: none;
     position: absolute;
     top: 0.2rem;
     left: 0.7rem;
-    color: var(--form-label-color);
+    color: var(--field-label-color);
     font-size: 0.7em;
     text-transform: uppercase;
     animation: labelSlideUpAndShow 0.3s ease-in-out;
 
     &-default {
-      --form-label-color: #a8adb1;
+      --field-label-color: #a8adb1;
     }
 
-    // use the default colors in the vars.scss file if they have been defined.
     &-primary {
-      --form-label-color: #6f8612;
+      color: vars.$primaryColor;
     }
 
-    // use the default colors in the vars.scss file if they have been defined.
     &-secondary {
-      --form-label-color: #2f5c4e;
+      color: vars.$secondaryColor;
     }
   }
 
   &-completed {
-    .form-label {
+    .field-label {
       display: block;
     }
-    .form-input {
+    .field-input {
       padding: 1.4em 0.7em 0.4em;
     }
-  }
-
-  &-default {
-    --form-focus-border-color: #a8adb1;
-  }
-
-  // use the default colors in the vars.scss file if they have been defined.
-  &-primary {
-    --form-focus-border-color: #6f8612;
-  }
-
-  // use the default colors in the vars.scss file if they have been defined.
-  &-secondary {
-    --form-focus-border-color: #2f5c4e;
   }
 }
 
