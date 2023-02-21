@@ -1,9 +1,9 @@
-import Input from '../Field/Input';
-import Button from '../Button';
+import Input from '../../Field/Input';
+import Button from '../../Button';
 
 import './styles.scss';
 
-export default function FormRegister() {
+export default function FormRegister({ toggleForm }) {
   let handleSubmit,
     handleChange,
     email,
@@ -71,9 +71,9 @@ export default function FormRegister() {
       </form>
       <p className="link">
         Déjà inscit ?{' '}
-        <span>
-          <a href="">Se connecter</a>
-        </span>
+        <Button type="button" color="link-primary" onclick={toggleForm}>
+          Se connecter
+        </Button>
       </p>
     </div>
   );

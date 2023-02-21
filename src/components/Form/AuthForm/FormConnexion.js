@@ -1,15 +1,15 @@
-import Input from '../Field/Input';
-import Button from '../Button';
+import Input from '../../Field/Input';
+import Button from '../../Button';
 
 import './styles.scss';
 
-export default function FormConnexion() {
+export default function FormConnexion({ toggleForm }) {
   let handleSubmit, handleChange, email, password;
 
   return (
     <div className="connexion">
       <h5 className="title text-primary">Se connecter</h5>
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={() => toggleForm()}>
         <Input
           type="email"
           name="email"
@@ -32,9 +32,9 @@ export default function FormConnexion() {
       </form>
       <p className="link">
         Première fois ?{' '}
-        <span>
-          <a href="">S'inscrire</a>
-        </span>
+        <Button type="button" color="link-primary" onclick={toggleForm}>
+          S'inscrire
+        </Button>
       </p>
     </div>
   );
