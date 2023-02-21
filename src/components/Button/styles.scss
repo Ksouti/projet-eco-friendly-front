@@ -1,0 +1,58 @@
+.btn {
+  --btn-bg: transparent;
+  --btn-padding-x: 0.75rem;
+  --btn-padding-y: 0.375rem;
+  --btn-font-family: inherit;
+  --btn-font-size: 1rem;
+  --btn-font-weight: 400;
+  --btn-line-height: 1.5;
+  --btn-color: inherit;
+  --btn-border-radius: 0.375rem;
+  --btn-border-color: transparent;
+  --btn-hover-border-color: transparent;
+
+  display: inline-block;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-family: var(--btn-font-family);
+  font-size: var(--btn-font-size);
+  font-weight: var(--btn-font-weight);
+  line-height: var(--btn-line-height);
+  color: var(--btn-color);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: 1px solid var(--btn-border-color);
+  border-radius: var(--btn-border-radius);
+  background-color: var(--btn-bg);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+
+  &:hover {
+    color: var(--btn-hover-color);
+    background-color: var(--btn-hover-bg);
+    border-color: var(--btn-hover-border-color);
+  }
+
+  // use the default colors in the vars.scss file if they have been defined.
+  &-primary {
+    --btn-color: #fff;
+    --btn-bg: #96b31e;
+    --btn-border-color: #96b31e;
+    --btn-hover-color: #fff;
+    --btn-hover-bg: #7e9816;
+    --btn-hover-border-color: #6f8612;
+  }
+
+  &-secondary {
+    --btn-color: #fff;
+    --btn-bg: #427968;
+    --btn-border-color: #427968;
+    --btn-hover-color: #fff;
+    --btn-hover-bg: #386b5b;
+    --btn-hover-border-color: #2f5c4e;
+  }
+}
