@@ -1,4 +1,5 @@
 @use 'src/styles/vars';
+@import '../../styles/mixins.scss';
 
 
 .navbar {
@@ -6,20 +7,18 @@
   width: 100%;
   height: 50%;
   justify-content: center;
-  align-content: center;
   border-radius: 0% 0% 10% 10%;
   box-shadow: 0px 10px 5px 3px vars.$shadowColorLighter;
-  // background: rgb(80,192,164);
   background: vars.$backgroundGradient;
-}
-
-img {
-  display: inline-block;
 }
 
 .imgLogo {
   width: 125px;
   height: 125px;
+}
+
+.welcomeMessage {
+  display: none;
 }
 
 .imgAvatar {
@@ -30,29 +29,69 @@ img {
   // box-shadow: 0px 2px 5px 3px vars.$shadowColorLight;
 }
 
-.menu {
+.navigation {
   display: none;
 }
 
-// RESPONSIVE +640px
-
-@media (min-width: 640px) {
+// RESPONSIVE SM +640px =======================================================
+@include screen(sm) {
   .navbar {
+    position: relative;
     display: flex;
-    background-color: red;
+    justify-content: flex-end;
+    height: 30vh;
   }
 
-  .menu {
+  .logoNavbar {
+    position: absolute;
     display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .welcome {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 55px;
+    margin: 5px 10px;
+  }
+
+  .welcomeMessage {
+    display: flex;
+    margin-right: 10px;
   }
 
   .imgAvatar {
-    // position: relative;
-    width: 55px;
-    height: 55px;
-    top: 0px;
-    align-items: flex-end;
+    position: static;
   }
+
+  .navigation {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    width: 100%;
+    height: 30vh;
+  }
+
+  .navButtons {
+    display: flex;
+  }
+
+  .button {
+    background-color: vars.$whiteColor;
+    padding: 10px 30px 10px 30px;
+    margin: 0px 10px 8px 10px;
+    border-radius: 30px;
+
+  }
+
+
+
+
 }
 
-// pour le responsive, comment parti avec les éléments de 0 ??? pour les justify... et top/left... ???????

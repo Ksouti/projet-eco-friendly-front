@@ -1,4 +1,6 @@
 @use 'src/styles/vars';
+@import '../../styles/mixins.scss';
+
 
 // .hamburgerMenu {
 //   justify-content: flex-end;
@@ -86,7 +88,8 @@
   color: vars.$whiteColor;
 }
 
-@media (min-width: 640px) {
+// RESPONSIVE +640px
+@include screen(sm) {
   .hamburgerMenu {
     display: none;
   }

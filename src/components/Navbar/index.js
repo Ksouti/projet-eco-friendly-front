@@ -7,16 +7,21 @@ function Navbar() {
   return (
     <div className="navbar">
       <Hamburger />
-      <img src={navBarLogo} alt="logo" className="imgLogo" />
-      <img src={navBarAvatar} alt="avatar" className="imgAvatar" />
+      <div className="logoNavbar">
+        <img src={navBarLogo} alt="logo" className="imgLogo" />
+      </div>
+      <div className="welcome">
+        <p className="welcomeMessage">Salut Johnny !</p>
+        <img src={navBarAvatar} alt="avatar" className="imgAvatar" />
+      </div>
 
-      <nav>
-        <ul className="menuList">
-          <li className="menu homepageMenu"><a>Accueil</a></li>
-          <li className="menu mobilityMenu"><a>Mobilité</a></li>
-          <li className="menu homeMenu"><a>Maison</a></li>
-          <li className="menu healthMenu"><a>Santé</a></li>
-          <li className="menu energyMenu"><a>Energie</a></li>
+      <nav className="navigation">
+        <ul className="navButtons">
+          <li className="button homepageMenu"><a>Accueil</a></li>
+          <li className="button mobilityMenu"><a>Mobilité</a></li>
+          <li className="button homeMenu"><a>Maison</a></li>
+          <li className="button healthMenu"><a>Santé</a></li>
+          <li className="button energyMenu"><a>Energie</a></li>
         </ul>
       </nav>
 
