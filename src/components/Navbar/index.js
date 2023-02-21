@@ -13,10 +13,10 @@ function Navbar() {
       <nav>
         <ul className="menuList">
           <li className="menu homepageMenu"><a>Accueil</a></li>
-          <li className="menu mobilityMenu">Mobilité</li>
-          <li className="menu homeMenu">Maison</li>
-          <li className="menu healthMenu">Santé</li>
-          <li className="menu energyMenu">Energie</li>
+          <li className="menu mobilityMenu"><a>Mobilité</a></li>
+          <li className="menu homeMenu"><a>Maison</a></li>
+          <li className="menu healthMenu"><a>Santé</a></li>
+          <li className="menu energyMenu"><a>Energie</a></li>
         </ul>
       </nav>
 

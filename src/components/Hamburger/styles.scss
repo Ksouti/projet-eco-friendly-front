@@ -33,7 +33,7 @@
 }
 
 .menuBurger {
-  // display: none;
+  display: none;
 
   background-color: vars.$whiteColor;
   position: absolute;
@@ -86,3 +86,12 @@
   color: vars.$whiteColor;
 }
 
+@media (min-width: 640px) {
+  .hamburgerMenu {
+    display: none;
+  }
+
+  .menu {
+    // display: none;
+  }
+}
