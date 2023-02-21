@@ -21,6 +21,10 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  &-hidden {
+    display: none;
+  }
 }
 
 .btn-close {
