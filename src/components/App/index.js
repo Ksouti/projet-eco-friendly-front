@@ -1,9 +1,22 @@
 import reactLogo from './logo.png';
+import useModal from '../../hook/useModal';
+
+import Modal from '../Modal';
+import AuthForm from '../Form/AuthForm';
+import Button from '../Button';
+
 import './styles.css';
 
 function App() {
+  const { isShowing, toggleModal } = useModal();
+
   return (
     <div className="app">
+      <Modal toggle={toggleModal} isShowing={isShowing}>
+        <AuthForm />
+      </Modal>
+
+      <Button onclick={toggleModal}>Show !</Button>
       <img src={reactLogo} alt="react logo" />
       <h1>Le site Eco-Friendly sera en rendu public dans :</h1>
       <CountDownd />
