@@ -9,8 +9,8 @@
   position: relative;
   top: 60px;
 
-  box-shadow: 0px 2px 5px 3px #42796821;
-  background-color: #427968;
+  box-shadow: 0px 2px 5px 3px vars.$shadowColorLight;
+  background-color: vars.$primaryColorDark;
   border-radius: 70px;
   width: 2.5rem;
   height: 2.5rem;
@@ -27,14 +27,15 @@
   width: 1rem;
   height: 0.15rem;
   border-radius: 10px;
-  background-color: white;
+  background-color: vars.$whiteColor;
   transform-origin: 1px;
   transition: all 0.3s linear;
 }
 
 .menuBurger {
-  // visibility: hidden;
-  background-color: white;
+  // display: none;
+
+  background-color: vars.$whiteColor;
   position: absolute;
   justify-content: center;
   top: 110px;
@@ -43,13 +44,13 @@
   left: 50%;
 
   border-radius: 10px;
-  border: 2px solid #427968;
-  box-shadow: 0px 6px 5px 3px #42796857;
+  border: 2px solid vars.$primaryColorDark;
+  box-shadow: 0px 6px 5px 3px vars.$shadowColorLight;
 
 }
 
 .menuBurgerLi {
-  color: #427968;
+  color: vars.$primaryColorDark;
   font-weight: 900;
   font-size: small;
   text-align: center;
@@ -57,31 +58,31 @@
 }
 
 .homepage {
-    border-bottom: 2px solid #427968;
-    box-shadow: 0px 1px 5px 3px #42796821;
+    border-bottom: 2px solid vars.$primaryColorDark;
+    box-shadow: 0px 1px 5px 3px vars.$shadowColorLight;
 
 }
 
 .mobility {
-  border-bottom: 2px solid #427968;
-  box-shadow: 0px 1px 5px 3px #42796821;
+  border-bottom: 2px solid vars.$primaryColorDark;
+  box-shadow: 0px 1px 5px 3px vars.$shadowColorLight;
 
 }
 
 .home {
-  border-bottom: 2px solid #427968;
-  box-shadow: 0px 1px 5px 3px #42796821;
+  border-bottom: 2px solid vars.$primaryColorDark;
+  box-shadow: 0px 1px 5px 3px vars.$shadowColorLight;
 
 }
 
 .health {
-  border-bottom: 2px solid #427968;
-  box-shadow: 0px 1px 5px 3px #42796821;
+  border-bottom: 2px solid vars.$primaryColorDark;
+  box-shadow: 0px 1px 5px 3px vars.$shadowColorLight;
 
 }
 
 .menuBurgerLi:hover {
-  background-color: #95b31e7b;
-  color: white;
+  background-color: vars.$primaryColorDark;
+  color: vars.$whiteColor;
 }
 
