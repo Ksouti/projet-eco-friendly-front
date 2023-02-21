@@ -60,7 +60,6 @@
     }
   }
 
-  // use the default colors in the vars.scss file if they have been defined.
   &-secondary {
     background-color: vars.$secondaryColor;
     color: vars.$lightTextColor;
@@ -71,12 +70,5 @@
       background-color: vars.$secondaryColorHover;
       border-color: vars.$secondaryBorderColor;
     }
-
-    // --btn-color: #fff;
-    --btn-bg: #427968;
-    --btn-border-color: #427968;
-    --btn-hover-color: #fff;
-    --btn-hover-bg: #386b5b;
-    --btn-hover-border-color: #2f5c4e;
   }
 }
