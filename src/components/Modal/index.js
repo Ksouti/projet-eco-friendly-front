@@ -1,10 +1,10 @@
 import './styles.scss';
 
-export default function Modal({ onClose, open, children }) {
+export default function Modal({ toggle, isShowing, children }) {
   return (
     <div
-      className={open ? 'modal' : 'modal modal-hidden'}
-      onClick={() => onClose()}
+      className={isShowing ? 'modal' : 'modal modal-hidden'}
+      onClick={() => toggle()}
     >
       <div className="modal-content">
         <div className="modal-header">
@@ -12,7 +12,7 @@ export default function Modal({ onClose, open, children }) {
             type="button"
             className="btn-close"
             aria-label="Close"
-            onClick={() => onClose()}
+            onClick={() => toggle()}
           >
             <span aria-hidden="true">&times;</span>
           </button>
