@@ -5,3 +5,11 @@
 body {
   font-family: sans-serif;
 }
+
+.text-primary {
+  color: vars.$textColorPrimary;
+}
+
+.text-secondary {
+  color: vars.$textColorSecondary;
+}
