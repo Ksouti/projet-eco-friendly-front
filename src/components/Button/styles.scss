@@ -56,6 +56,7 @@
     --btn-hover-border-color: #6f8612;
   }
 
+  // use the default colors in the vars.scss file if they have been defined.
   &-secondary {
     --btn-color: #fff;
     --btn-bg: #427968;
