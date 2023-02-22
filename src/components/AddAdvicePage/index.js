@@ -1,9 +1,9 @@
 import './styles.scss';
 
-const EditionPage = () => (
+const AddAdvicePage = () => (
   <div className="edition-container">
     <h1>Page d'édition</h1>
   </div>
 );
 
-export default EditionPage;
+export default AddAdvicePage;
