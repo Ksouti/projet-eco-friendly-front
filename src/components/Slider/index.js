@@ -6,6 +6,17 @@ import Controller from './Controller';
 
 import './styles.scss';
 
+/**
+ * Component to display a list of slides
+ * with the option of being able to add an automatic behavior
+ * use : <Slider classname="slider" delay={2500} slides={datas} automatic/>
+ *
+ * @param {Object}  props           Component properties
+ * @param {array}   props.slides    Datasets to display
+ * @param {number}  props.delay     Represents the display time of a slide
+ * @param {boolean} props.automatic Activate or deactivate the automatic display of slides
+ * @returns
+ */
 export default function Slider({ slides, delay, automatic }) {
   const [current, setCurrent] = useState(0);
   const length = slides.length;
