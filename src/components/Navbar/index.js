@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 import navBarLogo from './logo-copy.png';
 import navBarAvatar from './avatar-bear.png';
 import Hamburger from '../Hamburger';
@@ -17,14 +19,23 @@ function Navbar() {
 
       <nav className="navigation">
         <ul className="navButtons">
-          <li className="button homepageMenu"><a>Accueil</a></li>
-          <li className="button mobilityMenu"><a>Mobilité</a></li>
-          <li className="button homeMenu"><a>Maison</a></li>
-          <li className="button healthMenu"><a>Santé</a></li>
-          <li className="button energyMenu"><a>Energie</a></li>
+          <li className="button homepageMenu">
+            <NavLink to="/">Accueil</NavLink>
+          </li>
+          <li className="button mobilityMenu">
+            <NavLink to="/">Mobilité</NavLink>
+          </li>
+          <li className="button homeMenu">
+            <NavLink to="/">Maison</NavLink>
+          </li>
+          <li className="button healthMenu">
+            <NavLink to="/">Santé</NavLink>
+          </li>
+          <li className="button energyMenu">
+            <NavLink to="/">Energie</NavLink>
+          </li>
         </ul>
       </nav>
-
     </div>
   );
 }
