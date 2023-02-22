@@ -4,6 +4,7 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Homepage from '../Homepage';
 import NotFoundPage from '../NotFoundPage';
+import AddAdvicePage from '../AddAdvicePage';
 
 import './styles.css';
 
@@ -24,6 +25,7 @@ function App() {
         */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <AddAdvicePage />
       <Footer />
     </div>
   );

@@ -1,9 +1,12 @@
 import './styles.scss';
+import RichTextEditor from '../RichTextEditor';
 
-const AddAdvicePage = () => (
-  <div className="edition-container">
-    <h1>Page d'édition</h1>
-  </div>
-);
+function AddAdvicePage() {
+  return (
+    <div className="edit-conseil">
+      <RichTextEditor />
+    </div>
+  );
+}
 
 export default AddAdvicePage;
