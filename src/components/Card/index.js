@@ -9,6 +9,7 @@ import './styles.scss';
 function Card({ format, image }) {
   return (
     <Page>
+      {/* condition pour  fficher la bonne card si il y a une image ?????????????????????????? */}
       <div className="card" data-format={format}>
       {/* condition si il y a une image ou pas */}
         { image &&
