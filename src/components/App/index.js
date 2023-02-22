@@ -1,3 +1,4 @@
+import Footer from '../Footer';
 import reactLogo from './logo.png';
 import './styles.css';
 
