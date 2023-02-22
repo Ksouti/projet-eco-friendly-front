@@ -14,7 +14,11 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <Card />
+      <Card format="horizontal" />
+      {/* <Card format="horizontal" image={false} /> */}
+      {/* <Card image={false} /> */}
+      {/* <Card /> */}
+
       <Routes>
         <Route path="/" element={<Homepage />} />
         {/* <Route path="/categories/:slug" element={<CategoryPage />} />
