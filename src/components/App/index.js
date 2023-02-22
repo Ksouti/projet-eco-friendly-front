@@ -14,9 +14,9 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <Card format="horizontal" />
+      {/* <Card format="horizontal" /> */}
       {/* <Card format="horizontal" image={false} /> */}
-      {/* <Card image={false} /> */}
+      <Card image={false} format="advice"/>
       {/* <Card /> */}
 
       <Routes>
