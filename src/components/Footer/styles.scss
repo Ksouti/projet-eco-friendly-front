@@ -11,29 +11,33 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  padding: 20px;
+  padding: 1rem;
+}
+img {
+  height: 100%;
+  width: 100%;
 }
 .footer-links {
   ul {
     display: flex;
     li {
-      padding-left: 10px;
+      padding-left: 0.6rem;
       a {
-        font-size: 16px;
+        font-size: 0.9rem;
         font-weight: 300;
         color: $primaryColor;
         transition: all 0.3s ease;
         text-decoration: underline;
         &:hover {
           color: $primaryColorDark;
-          padding-left: 8px;
+          padding-left: 0.5rem;
         }
       }
     }
   }
 }
 .footer-copyright {
-  font-size: 16px;
+  font-size: 0.9rem;
   font-weight: 300;
   color: $primaryColor;
 }
@@ -41,7 +45,7 @@
   display: flex;
   justify-content: flex-end;
   a {
-    height: 40px;
-    width: 40px;
+    height: 1.9rem;
+    width: 1.9rem;
   }
 }
