@@ -1,18 +1,20 @@
-import reactLogo from './logo.png';
-import useModal from '../../hook/useModal';
+import { useContext } from 'react';
+import { ModalContext } from '../../context/ModalContext';
 
 import Modal from '../Modal';
 import AuthForm from '../Form/AuthForm';
 import Button from '../Button';
 
+import reactLogo from './logo.png';
+
 import './styles.css';
 
 function App() {
-  const { isShowing, toggleModal } = useModal();
+  const { toggleModal } = useContext(ModalContext);
 
   return (
     <div className="app">
-      <Modal toggle={toggleModal} isShowing={isShowing}>
+      <Modal>
         <AuthForm />
       </Modal>
 
