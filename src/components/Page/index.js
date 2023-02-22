@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-export default function Page({ chilren }) {
+export default function Page({ children }) {
   // ScrollToTop
 
-  return <main className="main">{chilren}</main>;
+  return <main className="main">{children}</main>;
 }
 
-Page.PropTypes = {
+Page.propTypes = {
   children: PropTypes.node.isRequired,
 };
