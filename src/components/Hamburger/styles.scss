@@ -88,7 +88,7 @@
   color: vars.$whiteColor;
 }
 
-// RESPONSIVE +640px
+// RESPONSIVE SM +640px =======================================================
 @include screen(sm) {
   .hamburgerMenu {
     display: none;
