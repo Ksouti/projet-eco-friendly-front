@@ -4,6 +4,7 @@ import { ModalContext } from '../../context/ModalContext';
 import Modal from '../Modal';
 import AuthForm from '../Form/AuthForm';
 import Button from '../Button';
+import Footer from '../Footer';
 
 import reactLogo from './logo.png';
 

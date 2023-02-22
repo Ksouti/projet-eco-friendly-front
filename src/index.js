@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { ModalContextProvider } from './context/ModalContext';
 import App from 'src/components/App';
+import Navbar from 'src/components/Navbar';
 
 const root = createRoot(document.getElementById('root'));
 

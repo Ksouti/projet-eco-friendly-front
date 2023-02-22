@@ -1,0 +1,47 @@
+@import 'src/styles/mixins.scss';
+@import 'src/styles/_vars.scss';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $lightColor;
+  box-shadow: 0 10px 5px 3px #efefea;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+}
+.footer-links {
+  ul {
+    display: flex;
+    li {
+      padding-left: 10px;
+      a {
+        font-size: 16px;
+        font-weight: 300;
+        color: $primaryColor;
+        transition: all 0.3s ease;
+        text-decoration: underline;
+        &:hover {
+          color: $primaryColorDark;
+          padding-left: 8px;
+        }
+      }
+    }
+  }
+}
+.footer-copyright {
+  font-size: 16px;
+  font-weight: 300;
+  color: $primaryColor;
+}
+.footer-logo {
+  display: flex;
+  justify-content: flex-end;
+  a {
+    height: 40px;
+    width: 40px;
+  }
+}
