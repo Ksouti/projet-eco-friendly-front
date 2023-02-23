@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Homepage from '../Homepage';
-import Card from '../Card';
 import NotFoundPage from '../NotFoundPage';
 
 import './styles.css';
@@ -14,12 +13,6 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      {/* <Card format="horizontal" /> */}
-      {/* <Card format="horizontal" image={false} /> */}
-      {/* <Card image={false} format="advice" /> */}
-      {/* // manque une props conseil ou article ! */}
-      <Card />
-
       <Routes>
         <Route path="/" element={<Homepage />} />
         {/* <Route path="/categories/:slug" element={<CategoryPage />} />
