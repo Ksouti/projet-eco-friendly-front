@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import TableRow from './TableRow';
 
+import './table.scss';
+
 export default function Table({ items }) {
   return (
     <table className="table table-striped">
