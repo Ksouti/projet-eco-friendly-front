@@ -20,24 +20,33 @@
     height: 50%;
     overflow: hidden;
 
-    &-article {
+    &-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
 
-  .title-article {
-    margin: 0.8rem 3rem 0rem 0.8rem;
+  .title {
+    margin: 0.7rem 3rem 0.2rem 0.8rem;
     font-size: large;
     font-weight: 700;
     color: vars.$primaryColorDark;
   }
 
-  .summary-article {
-    padding: 0.8rem 2rem 0.8rem 0.8rem;
+  .summary {
+    margin: 0.9rem 2rem 0.8rem 0.8rem;
     font-size: small;
     color: vars.$darkTextColor;
+  }
+
+  .category {
+    font-size: x-small;
+    background-color: vars.$primaryColor;
+    color: vars.$whiteColor;
+    padding: 0.2rem 0.5rem 0.3rem 0.5rem;
+    margin: 0.9rem 2rem 0.8rem 0.8rem;
+    border-radius: 10px;
   }
 
   &:hover {
@@ -45,7 +54,6 @@
   }
 
   // Horizontal card ===========================================================
-
   &[data-format='horizontal'] {
     display: flex;
     width: 70%;
@@ -58,8 +66,8 @@
       height: 100%;
     }
 
-    .summary-article {
-      padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+    .summary {
+      margin: 0.8rem 0.8rem 0.8rem 0.8rem;
       font-size: small;
       color: vars.$darkTextColor;
     }
@@ -69,19 +77,38 @@
     }
   }
 
+  // Advice card ===========================================================
   &[data-format='advice'] {
-    width: 12rem;
+    position: relative;
+    width: 13rem;
     height: 8rem;
     border-radius: 10px;
 
-    .title-article {
+    .title {
+      width: 8rem;
+      max-height: 2rem;
       font-size: small;
     }
 
-    .summary-article {
-      padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+    .category {
+      position: absolute;
+      font-size: xx-small;
+      top: -0.4rem;
+      left: 8.5rem;
+      padding: 0.2rem 0.5rem 0.25rem 0.5rem;
+    }
+
+    .summary {
+      height: 4rem;
+      overflow: hidden;
+
+      margin: 0.8rem 0.8rem 0.5rem 0.8rem;
       font-size: small;
       color: vars.$darkTextColor;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 20px 5px vars.$successColorAlt;
     }
   }
 }

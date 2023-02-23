@@ -15,12 +15,13 @@ function Card({ format, image }) {
         { image &&
           (
           <div className="image">
-            <img src="https://picsum.photos/id/425/640/800" alt="image de l'article - titreArticle" className="image-article" />
+            <img src="https://picsum.photos/id/425/640/800" alt="image de l'article - titreArticle" className="image-img" />
           </div>
           )}
         <div className="informations">
-          <h3 className="title-article">Le titre de l'article</h3>
-          <p className="summary-article">Cheese on toast airedale the big cheese. Danish fontina cheesy grin airedale danish fontina taleggio the big cheese macaroni cheese port-salut. Danish fontina cheesy grin airedale...</p>
+          <h3 className="title">Le titre de l'article</h3>
+          <span className="category">catégorie</span>
+          <p className="summary">Cheese on toast airedale the big cheese. Danish fontina cheesy grin airedale danish fontina taleggio the big cheese macaroni cheese port-salut. Danish fontina cheesy grin airedale...</p>
         </div>
       </div>
     </Page>

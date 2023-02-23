@@ -16,8 +16,9 @@ function App() {
       <Navbar />
       {/* <Card format="horizontal" /> */}
       {/* <Card format="horizontal" image={false} /> */}
-      <Card image={false} format="advice"/>
-      {/* <Card /> */}
+      {/* <Card image={false} format="advice" /> */}
+      {/* // manque une props conseil ou article ! */}
+      <Card />
 
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -30,7 +31,7 @@ function App() {
         */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
