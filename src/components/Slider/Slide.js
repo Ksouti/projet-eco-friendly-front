@@ -7,14 +7,14 @@ export default function Slide({ title, content, slug, picture, tag }) {
     <div className="slide">
       <div className="slide-inner">
         <div className="slide-image">
-          <img src={picture} alt={`Image de l'article ${{ title }}`} />
+          <img src={picture} alt={`Image de ${{ title }}`} />
         </div>
         <div className="slide-body">
           <h5 className="slide-title">{title}</h5>
           <span className="slide-tag">{tag}</span>
           <p className="slide-text">{content}</p>
           <Link to={`/${slug}`} className="slide-link">
-            Consulter l'article
+            En savoir plus
           </Link>
         </div>
       </div>
