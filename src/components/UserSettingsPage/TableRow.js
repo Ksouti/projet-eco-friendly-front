@@ -10,6 +10,7 @@ export default function TableRow({ title, category, slug, id }) {
       <td className="hidden">{category}</td>
       <td>
         <div className="icon-wrapper">
+          {/* Warning, this is a modal confirmation window, only deletes if validated */}
           <Link to={`/conseils/${slug}/editer`} className="icon-inner">
             <img src={pencil} alt="Icone d'un crayon" className="icon-pencil" />
           </Link>
