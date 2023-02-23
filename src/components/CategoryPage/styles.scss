@@ -1,0 +1,24 @@
+@use 'src/styles/vars';
+@import '../../styles/mixins.scss';
+
+.category-page {
+  margin: 2rem 2rem 2rem 2rem;
+
+  &-sentence {
+    color: vars.$primaryColorDark;
+    font-weight: 800;
+    margin-left: 2rem;
+    background-color: red;
+  }
+}
+
+// .articles {
+//   display: flex;
+//   flex-direction: column;
+//   align-content: flex-start;
+
+//   &-list {
+//     flex-wrap: nowrap;
+//     flex-direction: row;
+//   }
+// }
