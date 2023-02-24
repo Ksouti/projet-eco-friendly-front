@@ -1,7 +1,7 @@
 import React from 'react';
 import { Editor, EditorState, getDefaultKeyBinding, RichUtils } from 'draft-js';
 import 'draft-js/dist/Draft.css';
-import './styles.scss'
+import './styles.scss';
 
 class RichTextEditor extends React.Component {
   constructor(props) {
@@ -90,7 +90,7 @@ class RichTextEditor extends React.Component {
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
-            placeholder="Tell a story..."
+            placeholder="Écrit ici !"
             ref="editor"
             spellCheck
           />
