@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Navbar from '../Navbar';
 import Footer from '../Footer';
-import Homepage from '../Homepage';
+import HomePage from '../HomePage';
 import UserSettingsPage from '../UserSettingsPage/index';
 import NotFoundPage from '../NotFoundPage';
 import AddAdvicePage from '../AddAdvicePage';
@@ -28,7 +28,7 @@ function App() {
       </header>
       {isLoaded && (
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/categories/:name" element={<CategoryPage />} />
           <Route path="/articles/:slug" element={<ArticlePage />} />
           <Route path="/conseils/:slug" element={<AdvicePage />} />
