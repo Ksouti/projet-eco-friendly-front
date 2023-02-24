@@ -9,12 +9,14 @@ import user from '../../data/single-user';
 export default function UserSettingsPage() {
   return (
     <Page>
-      <section className="section">
-        <Settings user={user} />
-      </section>
-      <section className="section">
-        <Table items={user.advices} />
-      </section>
+      <div className="settings">
+        <section className="section">
+          <Settings user={user} />
+        </section>
+        <section className="section">
+          <Table items={user.advices} />
+        </section>
+      </div>
     </Page>
   );
 }
