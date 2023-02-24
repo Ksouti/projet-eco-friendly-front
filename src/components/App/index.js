@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import Homepage from '../Homepage';
 import UserSettingsPage from '../UserSettingsPage/index';
 import NotFoundPage from '../NotFoundPage';
+import AddAdvicePage from '../AddAdvicePage';
 
 import './styles.css';
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <AddAdvicePage />
       <Footer />
     </div>
   );
