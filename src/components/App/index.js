@@ -9,6 +9,7 @@ import AddAdvicePage from '../AddAdvicePage';
 import CategoryPage from '../CategoryPage';
 import ArticlePage from '../ArticlePage';
 import AdvicePage from '../AdvicePage';
+import LegalNoticePage from '../LegalNoticePage';
 import Loader from '../Loader';
 
 import './styles.scss';
@@ -37,6 +38,7 @@ function App() {
           />
           <Route path="/conseils/ajouter" element={<AddAdvicePage />} />
           <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} />
+          <Route path="/mentions-legales" element={<LegalNoticePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       )}
