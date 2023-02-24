@@ -19,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/categories" element={<CategoryPage />} />
+        <Route path="/categories" element={<CategoryPage />} />
         {/* <Route path="/categories/:slug" element={<CategoryPage />} /> */}
         {/* <Route path="/articles/:slug" element={<ArticlePage />} /> */}
         {/* <Route path="/conseils/:slug" element={<AdvicePage />} /> */}
