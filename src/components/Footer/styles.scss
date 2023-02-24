@@ -13,11 +13,13 @@
   width: 100%;
   padding: 1rem;
 
-  &-links {
-    ul {
+  .legals {
+    .links {
       display: flex;
-      li {
+
+      .link {
         padding-left: 0.6rem;
+
         a {
           font-size: 0.9rem;
           font-weight: 300;
@@ -33,15 +35,18 @@
     }
   }
 }
-.footer-copyright {
+
+.copyright {
   font-size: 16px;
   font-weight: 300;
   color: $primaryColor;
 }
-.footer-logo {
+
+.social {
   display: flex;
   justify-content: flex-end;
-  a {
+
+  img {
     height: 40px;
     width: 40px;
   }

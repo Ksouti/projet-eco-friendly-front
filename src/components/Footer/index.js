@@ -1,36 +1,37 @@
 import { Link } from 'react-router-dom';
 
-import footerLogoFacebook from './logo_fb.png';
-import footerLogoInstagram from './logo_insta.png';
-import footerLogoTwitter from './logo_twitter.png';
+import facebook from './assets/facebook.png';
+import instagram from './assets/instagram.png';
+import twitter from './assets/twitter.png';
+
 import './styles.scss';
 
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-links">
-        <ul>
-          <li>
+      <div className="legals">
+        <ul className="legals-links">
+          <li className="legals-link">
             <Link to="/">Contact</Link>
           </li>
-          <li>
+          <li className="link">
             <Link to="/">Mentions légales</Link>
           </li>
         </ul>
       </div>
-      <div className="footer-copyright">
-        <p>© EcoFriendly</p>
+      <div className="copyright">
+        <p className="copyright-text">© Eco-Friendly</p>
       </div>
-      <div className="footer-logo">
+      <div className="social">
         {/* Customize external links with to={{ pathname: "https://example.site.com" }} */}
         <Link to="/" target="_blank">
-          <img src={footerLogoTwitter} alt="logoTwitter" />
+          <img src={twitter} alt="Logo de Twitter" />
         </Link>
         <Link to="/" target="_blank">
-          <img src={footerLogoInstagram} alt="logoInstagram" />
+          <img src={instagram} alt="Logo d'Instagram" />
         </Link>
         <Link to="/" target="_blank">
-          <img src={footerLogoFacebook} alt="logoFacebook" />
+          <img src={facebook} alt="Logo de Facebook" />
         </Link>
       </div>
     </footer>
