@@ -1,4 +1,5 @@
-import articles from 'src/data/articles.js';
+import articles from 'src/data/articles';
+import advices from 'src/data/advices';
 import Page from '../Page';
 import Card from '../Card';
 
@@ -16,20 +17,31 @@ function CategoryPage() {
             </div>
             <div className="articles-list">
               {articles.map((article) => (
-                <Card
-                  key={article.id}
-                  picture={article.picture}
-                  title={article.title}
-                  category={article.category}
-                  content={article.content}
-                />
+                <div className="article-card">
+                  <Card
+                    key={article.id}
+                    picture={article.picture}
+                    title={article.title}
+                    category={article.category}
+                    content={article.content}
+                  />
+                </div>
               ))}
             </div>
           </div>
           <div className="advices">
-            <p className="advices-sentence">Suivez vos conseils :</p>
+            <h2 className="advices-sentence">Suivez vos conseils :</h2>
             <div className="advices-list">
-              <Card />
+              {advices.map((advice) => (
+                <div className="advice-card">
+                  <Card
+                    key={advice.id}
+                    title={advice.title}
+                    category={advice.category}
+                    content={advice.content}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
