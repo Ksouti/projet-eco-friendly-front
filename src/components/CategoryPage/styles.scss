@@ -3,22 +3,37 @@
 
 .category-page {
   margin: 2rem 2rem 2rem 2rem;
+}
 
-  &-sentence {
-    color: vars.$primaryColorDark;
-    font-weight: 800;
-    margin-left: 2rem;
-    background-color: red;
+.category-sentence {
+  color: vars.$primaryColorDark;
+  font-size: large;
+  font-weight: 800;
+  margin-left: 2rem;
+  // background-color: red;
+}
+
+.category-element {
+  display: inline-block;
+}
+
+// Element 1 : LES ARTICLES ======================================
+.articles {
+  width: 80%;
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+      margin: 3rem 3rem 0rem 0rem;
+      width: 12rem;
+      height: 18rem;
+    }
   }
 }
 
-// .articles {
-//   display: flex;
-//   flex-direction: column;
-//   align-content: flex-start;
+// Element 1 : LES CONSEILS ======================================
 
-//   &-list {
-//     flex-wrap: nowrap;
-//     flex-direction: row;
-//   }
-// }
+.advices {
+}
