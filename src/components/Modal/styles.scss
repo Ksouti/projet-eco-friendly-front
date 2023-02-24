@@ -1,4 +1,6 @@
 .modal {
+  --content-size: 360px;
+
   position: fixed;
   left: 0;
   top: 0;
@@ -12,9 +14,10 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 380px;
+    width: var(--content-size);
     background-color: #fff;
     padding: 2rem;
+    margin: 0 auto;
   }
 
   &-header {
