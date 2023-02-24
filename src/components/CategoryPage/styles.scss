@@ -2,38 +2,110 @@
 @import '../../styles/mixins.scss';
 
 .category-page {
-  margin: 2rem 2rem 2rem 2rem;
-}
+  .category-sentence {
+    font-size: x-large;
+    font-weight: 700;
+    color: vars.$primaryColorDark;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
 
-.category-sentence {
-  color: vars.$primaryColorDark;
-  font-size: large;
-  font-weight: 800;
-  margin-left: 2rem;
-  // background-color: red;
-}
-
-.category-element {
-  display: inline-block;
-}
-
-// Element 1 : LES ARTICLES ======================================
-.articles {
-  width: 80%;
-
-  &-list {
+  .category-elements {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
 
-    .card {
-      margin: 3rem 3rem 0rem 0rem;
-      width: 12rem;
-      height: 18rem;
+  // Element 1 : Articles
+  .articles {
+    &-top {
+      display: none;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-card {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      width: 15rem;
+      height: 20rem;
     }
   }
-}
 
-// Element 1 : LES CONSEILS ======================================
+  .article-card {
+    .card {
+      width: 20px;
+    }
+  }
 
-.advices {
+  // Element 2 : Advices
+  .advices {
+    border-top: 0.1rem solid vars.$secondaryBorderColor;
+    border-bottom: 0.1rem solid vars.$secondaryBorderColor;
+
+    &-sentence {
+      font-size: large;
+      font-weight: 800;
+      color: vars.$darkColor;
+      margin-top: 1rem;
+    }
+
+    &-list {
+      display: flex;
+      align-items: center;
+      overflow-x: scroll;
+    }
+  }
+
+  .advice-card {
+    margin: 1rem 1rem 2rem 0rem;
+    width: 2rem;
+    height: 8rem;
+  }
+
+  // RESPONSIVE SM + 640px =======================================================
+  // @include screen(sm) {
+  //   .category-page {
+  //     // margin: 2rem 2rem 2rem 2rem;
+  //   }
+
+  //   .category-sentence {
+  //     color: vars.$primaryColorDark;
+  //     font-size: large;
+  //     font-weight: 800;
+  //     // margin-left: 2rem;
+  //     // background-color: red;
+  //   }
+
+  //   .category-element {
+  //     display: inline-block;
+  //     flex-direction: row;
+  //   }
+
+  //   // Element 1 : ARTICLES
+  //   .articles {
+  //     width: 80%;
+
+  //     &-top {
+  //       display: contents;
+  //     }
+
+  //     &-list {
+  //       display: flex;
+  //       flex-wrap: wrap;
+
+  //       .card {
+  //         margin: 3rem 3rem 0rem 0rem;
+  //         width: 12rem;
+  //         height: 18rem;
+  //       }
+  //     }
+  //   }
+
+  // Element 1 : ADVICES
+  // }
 }
