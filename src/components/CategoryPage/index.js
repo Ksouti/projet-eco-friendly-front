@@ -1,9 +1,11 @@
-import articles from 'src/data/articles';
-import advices from 'src/data/advices';
 import Page from '../Page';
 import Card from '../Card';
 
 import './styles.scss';
+
+import article from 'src/data/lastArticle';
+import articles from 'src/data/articles';
+import advices from 'src/data/advices';
 
 function CategoryPage() {
   return (
@@ -28,7 +30,13 @@ function CategoryPage() {
           </div>
           <div className="articles">
             <div className="articles-top">
-              <Card format="horizontal" />
+              <Card
+                picture={article.picture}
+                title={article.title}
+                category={article.category}
+                content={article.content}
+                format="horizontal"
+              />
             </div>
             <div className="articles-list">
               {articles.map((article) => (
