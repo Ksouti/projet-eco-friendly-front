@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import Homepage from '../Homepage';
 import UserSettingsPage from '../UserSettingsPage/index';
 import NotFoundPage from '../NotFoundPage';
+import CategoryPage from '../CategoryPage';
 
 import './styles.css';
 
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/categories" element={<CategoryPage />} />
         {/* <Route path="/categories/:slug" element={<CategoryPage />} /> */}
         {/* <Route path="/articles/:slug" element={<ArticlePage />} /> */}
         {/* <Route path="/conseils/:slug" element={<AdvicePage />} /> */}

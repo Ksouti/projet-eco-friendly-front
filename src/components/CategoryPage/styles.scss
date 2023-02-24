@@ -6,13 +6,13 @@
     font-size: x-large;
     font-weight: 700;
     color: vars.$primaryColorDark;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
   }
 
   .category-elements {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
 
   // Element 1 : Articles
@@ -27,18 +27,13 @@
       justify-content: center;
       align-items: center;
     }
-
-    &-card {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-      width: 15rem;
-      height: 20rem;
-    }
   }
 
   .article-card {
     .card {
-      width: 20px;
+      margin-top: 3rem;
+      width: 12rem;
+      height: 17rem;
     }
   }
 
@@ -62,50 +57,98 @@
   }
 
   .advice-card {
-    margin: 1rem 1rem 2rem 0rem;
-    width: 2rem;
-    height: 8rem;
+    .card {
+      margin: 1rem 1rem 2rem 0rem;
+      width: 10rem;
+      height: 6rem;
+
+      .summary {
+        display: none;
+      }
+    }
   }
 
-  // RESPONSIVE SM + 640px =======================================================
-  // @include screen(sm) {
-  //   .category-page {
-  //     // margin: 2rem 2rem 2rem 2rem;
-  //   }
+  // RESPONSIVE MD +640px =======================================================
+  @include screen(sm) {
+    // Element 1 : Articles
+    .articles {
+      &-list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+      }
 
-  //   .category-sentence {
-  //     color: vars.$primaryColorDark;
-  //     font-size: large;
-  //     font-weight: 800;
-  //     // margin-left: 2rem;
-  //     // background-color: red;
-  //   }
+      .article-card {
+        .card {
+          margin: 3rem 10.5rem;
+        }
+      }
+    }
+  }
 
-  //   .category-element {
-  //     display: inline-block;
-  //     flex-direction: row;
-  //   }
+  // RESPONSIVE LG +1024 =======================================================
+  @include screen(md) {
+    .category-sentence {
+      font-size: x-large;
+    }
 
-  //   // Element 1 : ARTICLES
-  //   .articles {
-  //     width: 80%;
+    .category-elements {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+    }
 
-  //     &-top {
-  //       display: contents;
-  //     }
+    .articles {
+      width: 70%;
 
-  //     &-list {
-  //       display: flex;
-  //       flex-wrap: wrap;
+      // Element 1 : Articles
+      .articles {
+        &-top {
+          display: contents;
+        }
+      }
 
-  //       .card {
-  //         margin: 3rem 3rem 0rem 0rem;
-  //         width: 12rem;
-  //         height: 18rem;
-  //       }
-  //     }
-  //   }
+      .article-card {
+        .card {
+          margin: 3rem 1.5rem;
+        }
+      }
+    }
 
-  // Element 1 : ADVICES
-  // }
+    .advices {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      border: 0.1rem solid vars.$secondaryBorderColor;
+      padding: 0 1rem;
+
+      &-sentence {
+        text-align: center;
+        font-size: large;
+        padding: 0.7rem;
+      }
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .advice-card {
+      display: flex;
+      justify-content: center;
+
+      .card {
+        width: 80%;
+        height: 70%;
+        margin: 1rem 1rem 2rem;
+      }
+
+      .summary {
+        display: contents;
+      }
+    }
+  }
 }
