@@ -7,20 +7,18 @@ import twitter from './assets/twitter.png';
 import './styles.scss';
 
 function Footer() {
+  const date = new Date();
+  const year = date.getFullYear();
+
   return (
     <footer className="footer">
       <div className="legals">
-        <ul className="legals-links">
-          <li className="legals-link">
-            <Link to="/">Contact</Link>
-          </li>
-          <li className="link">
-            <Link to="/">Mentions légales</Link>
-          </li>
-        </ul>
+        <Link to="/">Contact</Link>
+        <Link to="/">Mentions légales</Link>
       </div>
       <div className="copyright">
-        <p className="copyright-text">© Eco-Friendly</p>
+        {/* Dynamically added copyright year */}
+        <p className="copyright-text">Eco-Friendly Copyrigth© {year}</p>
       </div>
       <div className="social">
         {/* Customize external links with to={{ pathname: "https://example.site.com" }} */}
