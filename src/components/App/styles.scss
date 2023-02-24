@@ -1,0 +1,9 @@
+@use 'src/styles/vars';
+@import '../../styles/mixins.scss';
+
+.app {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}

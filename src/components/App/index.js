@@ -11,7 +11,7 @@ import ArticlePage from '../ArticlePage';
 import AdvicePage from '../AdvicePage';
 import Loader from '../Loader';
 
-import './styles.css';
+import './styles.scss';
 
 function App() {
   const isLoaded = true;
