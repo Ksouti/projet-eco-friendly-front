@@ -6,7 +6,7 @@ $breakpoints: (
   2xl: 1536px,
 );
 
-/** Gestion du responsive en fonction des breakpoints
+/** Responsive management according to breakpoints
 * $prefix: sm, md, lg, xl, 2xl
 * usage:
 *   import mixins.scss into the main style file with the command:
