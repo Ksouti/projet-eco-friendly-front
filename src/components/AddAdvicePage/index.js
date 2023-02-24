@@ -1,38 +1,43 @@
 import './styles.scss';
 import RichTextEditor from '../RichTextEditor';
+import Page from '../Page';
+import Input from '../Field/Input';
+import Button from '../Button';
 
 function AddAdvicePage() {
   return (
-    <div className="addAdvicePage">
-      <div className="title1">
-        <h1>Ajouter un conseil</h1>
+    <Page>
+      <div className="add-advice-page">
+        <div className="title">Ajouter un conseil</div>
+        <form>
+          <Input
+            type="text"
+            name="title"
+            color="primary"
+            placeholder="Titre"
+          />
+          <div className="category">
+            <select name="category" id="category">
+              <option value="1">Mobilité</option>
+              <option value="2">Maison</option>
+              <option value="3">Santé</option>
+              <option value="4">Énergie</option>
+            </select>
+          </div>
+          <div className="richTextEditor">
+            <RichTextEditor />
+          </div>
+          <div className="button-wrapper">
+            <Button type="submit" color="primary">
+              Sauvegarder
+            </Button>
+            <Button type="submit">
+              Supprimer
+            </Button>
+          </div>
+        </form>
       </div>
-
-      <div className="title2">
-        <titre htmlFor="title">Titre</titre>
-        <input type="text" id="title" name="title" />
-      </div>
-
-      <div className="category">
-        <form htmlFor="category">Catégorie</form>
-        <select name="category" id="category">
-          <option value="1">Mobilité</option>
-          <option value="2">Maison</option>
-          <option value="3">Santé</option>
-          <option value="3">Énergie</option>
-        </select>
-      </div>
-
-      <div className="richTextEditor">
-        <RichTextEditor />
-      </div>
-
-      <div className="buttons">
-        <button type="button">Supprimer</button>
-        <button type="button">Sauvegarder</button>
-        <button type="button">Publier</button>
-      </div>
-    </div>
+    </Page>
   );
 }
 
