@@ -21,12 +21,11 @@ function App() {
         {/* <Route path="/articles/:slug" element={<ArticlePage />} /> */}
         {/* <Route path="/conseils/:slug" element={<AdvicePage />} /> */}
         <Route path="/utilisateurs" element={<UserSettingsPage />} />
-        {/* Provisional choice to be reviewed as a team
+        {/* Provisional choice to be reviewed as a team */}
         <Route path="/conseils/ajouter" element={<AddAdvicePage />} />
-        <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} /> */}
+        {/* <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} /> */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      <AddAdvicePage />
       <Footer />
     </div>
   );
