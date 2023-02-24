@@ -1,8 +1,14 @@
 import { useContext } from 'react';
 import { ModalContext } from '../../context/ModalContext';
 import Modal from '../Modal';
-
 import Button from '../Button';
+import FormNickname from '../Form/UserSettingsForm/FormNickname';
+import FormEmail from '../Form/UserSettingsForm/FormEmail';
+import FormFullname from '../Form/UserSettingsForm/FormFullname';
+import FormPassword from '../Form/UserSettingsForm/FormPassword';
+import FormDeleteAccount from '../Form/UserSettingsForm/FormDeleteAccount';
+import FormDeleteAdvice from '../Form/UserSettingsForm/FormDeleteAdvice';
+import FormAvatar from '../Form/UserSettingsForm/FormAvatar';
 
 import avatar from './avatar-bear.png';
 
@@ -13,19 +19,19 @@ export default function Settings({ user }) {
 
   return (
     <div className="settings">
-      <Modal>{/* TODO */}</Modal>
+      <Modal>
+        {/* <FormNickname nickname={user.nickname} /> */}
+        {/* <FormEmail email={user.email} /> */}
+        {/* <FormFullname lastname={user.lastname} firstname={user.firstname} /> */}
+        {/* <FormPassword /> */}
+        {/* <FormDeleteAccount /> */}
+        {/* <FormDeleteAdvice /> */}
+        <FormAvatar />
+      </Modal>
 
       <div className="settings-inner">
         <div className="settings-avatar">
-          {user.avatar ? (
-            <img
-              src="https://picsum.photos/id/147/100/100.jpg"
-              alt="Avatar de l'utilisateur"
-              className="avatar"
-            />
-          ) : (
-            <img src={avatar} alt="Avatar par defaut" className="avatar" />
-          )}
+          <img src={user.avatar} alt="Avatar par defaut" className="avatar" />
           {/* Opens a modal window for modifying avatar with 5 default avatars */}
           <Button
             type="button"

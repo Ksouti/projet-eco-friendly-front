@@ -10,12 +10,17 @@
 
   padding-top: var(--padding-top) !important;
 
+  .section {
+    margin-bottom: 1rem;
+  }
+
   &-inner {
     position: relative;
     width: 100%;
     padding: 1rem;
     border: 1px solid #dee2e6;
     border-radius: var(--btn-border-radius);
+    background-color: #fff;
   }
 
   &-avatar {
