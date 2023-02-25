@@ -33,7 +33,7 @@
       .card {
         width: var(--card-width);
         height: var(--card-height);
-        margin: 1rem 0.5rem 2rem;
+        margin: 1rem 0.8rem 2rem;
 
         .summary {
           display: none;
@@ -124,8 +124,29 @@
         margin-top: 1rem;
         .carousel-wrapper {
           display: block;
-          width: calc(3rem + var(--card-width) * 4);
-          margin: 0 auto;
+          align-self: center;
+          width: calc(3rem + var(--card-width) * 4.8);
+          height: calc(1rem + var(--card-height) * 4);
+          margin: 0;
+        }
+      }
+      .controllers {
+        width: calc(3rem + var(--card-width) * 4);
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+
+        .controller {
+          padding: 1.2rem;
+          width: 19rem;
+
+          &:first-child {
+            margin-right: 1rem;
+          }
+
+          &:last-child {
+            margin-left: 1rem;
+          }
         }
       }
     }
