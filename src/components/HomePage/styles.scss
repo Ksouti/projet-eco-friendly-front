@@ -2,7 +2,12 @@
 @import '../../styles/mixins.scss';
 
 .homepage {
+  --card-width: 10rem;
+  --card-height: calc(var(--card-width) * 0.6);
+
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   .advices {
     margin-top: 1rem;
@@ -15,6 +20,7 @@
       font-weight: bold;
       padding: 1rem 0;
     }
+
     .card-wrapper {
       display: flex;
       overflow-x: scroll;
@@ -25,12 +31,16 @@
       }
 
       .card {
-        height: 6rem;
-        margin: 1rem 0 2rem 1rem;
-        width: 10rem;
+        width: var(--card-width);
+        height: var(--card-height);
+        margin: 1rem 0.5rem 2rem;
 
         .summary {
           display: none;
+        }
+
+        &:first-child {
+          margin-left: 0;
         }
 
         &:last-child {
@@ -55,6 +65,11 @@
       .controllers {
         margin: 1rem;
       }
+
+      .controller {
+        margin-bottom: 1rem;
+        padding: 1.2rem;
+      }
     }
   }
 
@@ -67,8 +82,51 @@
   2xl: 1536px
   */
 
-  @include screen(sm) {
+  @include screen(md) {
     .advices {
+      &-title {
+        text-align: center;
+      }
+
+      .card-wrapper {
+        justify-content: center;
+      }
+    }
+
+    .articles {
+      display: flex;
+      justify-content: center;
+
+      .controllers {
+        width: calc(3rem + var(--card-width) * 4);
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @include screen(2xl) {
+    flex-direction: column-reverse;
+    .advices {
+      .card-wrapper {
+        .card {
+          width: calc(var(--card-width) * 2);
+          height: calc(var(--card-height) * 1.5);
+          .summary {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .articles {
+      .carousel {
+        margin-top: 1rem;
+        .carousel-wrapper {
+          display: block;
+          width: calc(3rem + var(--card-width) * 4);
+          margin: 0 auto;
+        }
+      }
     }
   }
 }
