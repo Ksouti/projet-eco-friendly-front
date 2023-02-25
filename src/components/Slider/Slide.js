@@ -7,7 +7,7 @@ export default function Slide({ title, content, slug, picture, tag }) {
     <div className="slide">
       <div className="slide-inner">
         <div className="slide-image">
-          <img src={picture} alt={`Image de ${{ title }}`} />
+          <img src={picture} alt={`${{ title }}`} />
         </div>
         <div className="slide-body">
           <h5 className="slide-title">{title}</h5>

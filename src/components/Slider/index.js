@@ -9,7 +9,7 @@ import './styles.scss';
 /**
  * Component to display a list of slides
  * with the option of being able to add an automatic behavior
- * use : <Slider classname="slider" delay={2500} slides={datas} automatic/>
+ * <Slider delay={2500} slides={datas} automatic/>
  *
  * @param {Object}  props           Component properties
  * @param {array}   props.slides    Datasets to display
@@ -19,7 +19,7 @@ import './styles.scss';
  */
 export default function Slider({ slides, delay, automatic }) {
   const [current, setCurrent] = useState(0);
-  const length = slides.length;
+  const { length } = slides;
 
   const next = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -29,18 +29,14 @@ export default function Slider({ slides, delay, automatic }) {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  if (!Array.isArray(slides) || slides.length <= 0) {
-    return null;
-  }
-
   useEffect(() => {
+    let timer = null;
     if (automatic) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         next();
       }, delay);
-
-      return () => clearTimeout(timer);
     }
+    return () => clearTimeout(timer);
   }, [current]);
 
   return (
@@ -49,7 +45,7 @@ export default function Slider({ slides, delay, automatic }) {
         <div className="carousel-inner">
           {slides.map((slide, index) => (
             <div
-              key={index}
+              key={slide.id}
               className={
                 index === current ? 'carousel-item active' : 'carousel-item'
               }
@@ -59,34 +55,28 @@ export default function Slider({ slides, delay, automatic }) {
                 content={slide.content}
                 slug={slide.slug}
                 picture={slide.picture}
-                tag={slide.category}
+                tag={slide.category.name}
               />
             </div>
           ))}
         </div>
         <button className="carousel-control-prev" type="button" onClick={prev}>
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
+          <span className="carousel-control-prev-icon" aria-hidden="true" />
           <span className="visually-hidden">Previous</span>
         </button>
         <button className="carousel-control-next" type="button" onClick={next}>
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
+          <span className="carousel-control-next-icon" aria-hidden="true" />
           <span className="visually-hidden">Next</span>
         </button>
       </div>
       <div className="controllers">
         {slides.map((slide, index) => (
           <Controller
-            key={index}
+            key={slide.id}
             title={slide.title}
             content={slide.content}
             slug={slide.slug}
-            tag={slide.category}
+            tag={slide.category.name}
             active={index === current}
           />
         ))}
@@ -96,11 +86,22 @@ export default function Slider({ slides, delay, automatic }) {
 }
 
 Slider.propTypes = {
-  slides: PropTypes.array.isRequired,
-  delay: PropTypes.number.isRequired,
+  slides: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      content: PropTypes.string,
+      slug: PropTypes.string,
+      picture: PropTypes.string,
+      tag: PropTypes.shape({
+        name: PropTypes.string,
+      }),
+    }),
+  ).isRequired,
+  delay: PropTypes.number,
   automatic: PropTypes.bool,
 };
 
 Slider.defaultProps = {
+  delay: 2500,
   automatic: false,
 };
