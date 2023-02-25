@@ -63,7 +63,7 @@ export default [
     content:
       'Eveniet sunt quos cumque voluptas impedit alias velit. Aliquam laborum placeat corporis cupiditate beatae. Laboriosam beatae cum molestiae vitae dolores. Sapiente omnis ullam facere amet ea sed mollitia. Qui quas autem consequatur et. Deserunt id nostrum nostrum ut facere. Et nesciunt voluptatum numquam exercitationem est et perferendis facilis.',
     slug: 'Reiciendis-at-qui-rerum-repellat',
-    picture: 'https://picsum.photos/id/97/300/450.jpg',
+    picture: 'https://picsum.photos/id/197/300/450.jpg',
     status: 1,
     created_at: '2022-11-17T12:11:12+01:00',
     updated_at: '2022-12-02T18:45:49+01:00',
@@ -92,7 +92,7 @@ export default [
     content:
       'Omnis corrupti deserunt et aperiam est quisquam cum sed. Illum labore laboriosam quibusdam amet soluta ut expedita. Ut qui corporis magnam cupiditate vel quia. Minima et saepe facilis placeat id rerum. Ut rem quia aut pariatur maxime ad. Vel velit amet porro ipsam earum et iste exercitationem.',
     slug: 'Amet-voluptatem-recusandae-rerum-quibusdam-non-facilis-quia',
-    picture: 'https://picsum.photos/id/148/300/450.jpg',
+    picture: 'https://picsum.photos/id/248/300/450.jpg',
     status: 1,
     created_at: '2022-10-25T09:30:33+02:00',
     updated_at: '2022-07-18T05:18:22+02:00',
