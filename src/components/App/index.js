@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="app">
-      <header>
+      <header className="header">
         <Navbar />
       </header>
       {isLoaded && (
