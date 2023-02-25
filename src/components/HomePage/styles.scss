@@ -2,5 +2,73 @@
 @import '../../styles/mixins.scss';
 
 .homepage {
-  /* todo */
+  position: relative;
+
+  .advices {
+    margin-top: 1rem;
+    border-bottom: 0.1rem solid #e1b902;
+    border-top: 0.1rem solid #e1b902;
+
+    &-title {
+      color: #000;
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding: 1rem 0;
+    }
+    .card-wrapper {
+      display: flex;
+      overflow-x: scroll;
+      width: 100%;
+
+      .card-inner {
+        display: flex;
+      }
+
+      .card {
+        height: 6rem;
+        margin: 1rem 0 2rem 1rem;
+        width: 10rem;
+
+        .summary {
+          display: none;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .articles {
+    position: relative;
+    padding: 1rem 0;
+
+    .carousel {
+      display: flex;
+      margin: 0;
+
+      .carousel-wrapper {
+        display: none;
+      }
+
+      .controllers {
+        margin: 1rem;
+      }
+    }
+  }
+
+  /*
+  breakpoints: 
+  sm: 640px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+  2xl: 1536px
+  */
+
+  @include screen(sm) {
+    .advices {
+    }
+  }
 }

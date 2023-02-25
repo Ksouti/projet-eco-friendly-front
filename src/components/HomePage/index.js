@@ -14,15 +14,17 @@ function HomePage() {
         <section className="advices">
           <h2 className="advices-title">Suivez vos conseils</h2>
           <div className="card-wrapper">
-            {advices.map((advice) => (
-              <Card
-                key={advice.id}
-                title={advice.title}
-                content={advice.content}
-                picture={advice.picture}
-                category={advice.category}
-              />
-            ))}
+            <div className="card-inner">
+              {advices.map((advice) => (
+                <Card
+                  key={advice.id}
+                  title={advice.title}
+                  content={advice.content}
+                  picture={advice.picture}
+                  category={advice.category}
+                />
+              ))}
+            </div>
           </div>
         </section>
         <section className="articles">
