@@ -21,8 +21,6 @@
     margin-bottom: var(--default-margin-bottom);
 
     a {
-      display: none; // Remove to display legal notice links
-
       &:hover {
         color: vars.$primaryColorHover;
       }

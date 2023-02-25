@@ -13,8 +13,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="legals">
-        <Link to="/">Contact</Link>
-        <Link to="/">Mentions légales</Link>
+        <Link to="/mentions-legales">Mentions légales</Link>
       </div>
       <div className="copyright">
         {/* Dynamically added copyright year */}
