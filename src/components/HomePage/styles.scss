@@ -10,7 +10,6 @@
   flex-direction: column;
 
   .advices {
-    margin-top: 1rem;
     border-bottom: 0.1rem solid #e1b902;
     border-top: 0.1rem solid #e1b902;
 
@@ -25,6 +24,7 @@
       display: flex;
       overflow-x: scroll;
       width: 100%;
+      padding: 0 0.625rem;
 
       .card-inner {
         display: flex;
@@ -52,8 +52,6 @@
 
   .articles {
     position: relative;
-    padding: 1rem 0;
-
     .carousel {
       display: flex;
       margin: 0;
@@ -63,26 +61,38 @@
       }
 
       .controllers {
-        margin: 1rem;
+        margin: 1.2rem 0.625rem 0;
       }
 
       .controller {
         margin-bottom: 1rem;
         padding: 1.2rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
 
-  /*
-  breakpoints: 
-  sm: 640px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1280px,
-  2xl: 1536px
-  */
+  /* unused breakpoints sm: 640px */
 
+  /* md: 768px */
   @include screen(md) {
+    .advices {
+      &-title {
+        text-align: center;
+      }
+    }
+
+    .articles {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  /* md: 1024px */
+  @include screen(lg) {
     .advices {
       &-title {
         text-align: center;
@@ -93,59 +103,107 @@
         overflow-x: hidden;
       }
     }
-
-    .articles {
-      display: flex;
-      justify-content: center;
-
-      .controllers {
-        width: calc(3rem + var(--card-width) * 4);
-        margin: 0 auto;
-      }
-    }
   }
 
+  /* unused breakpoints xl: 1280px */
+
+  /* 2xl: 1536px*/
   @include screen(2xl) {
     flex-direction: column-reverse;
-    .advices {
-      .card-wrapper {
-        .card {
-          width: calc(var(--card-width) * 2);
-          height: calc(var(--card-height) * 1.5);
-          .summary {
-            display: block;
-          }
-        }
-      }
-    }
 
     .articles {
       .carousel {
-        margin-top: 1rem;
-        .carousel-wrapper {
-          display: block;
-          align-self: center;
-          width: calc(3rem + var(--card-width) * 4.8);
-          height: calc(1rem + var(--card-height) * 4);
-          margin: 0;
-        }
-      }
-      .controllers {
-        width: calc(3rem + var(--card-width) * 4);
-        margin: 0;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
 
-        .controller {
-          padding: 1.2rem;
-          width: 19rem;
+        .carousel-wrapper {
+          --carrousel-wrapper-heigth: 60%;
 
-          &:first-child {
-            margin-right: 1rem;
+          max-height: var(--carrousel-wrapper-heigth);
+          display: block;
+          margin: 0;
+
+          .carousel-inner {
+            width: 100%;
           }
 
-          &:last-child {
-            margin-left: 1rem;
+          .slide-image {
+            width: 35%;
+          }
+
+          .slide-body {
+            width: 65%;
+
+            .slide-title {
+              margin-bottom: 1rem;
+            }
+            .slide-tag {
+              margin-bottom: 1rem;
+            }
+            .slide-text {
+              margin-bottom: 1rem;
+              line-height: 1.2rem;
+            }
+            .slide-link {
+              align-self: center;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+
+        .controllers {
+          display: flex;
+          height: calc(100% - var(--carrousel-wrapper-heigth));
+
+          .controller {
+            width: 100%;
+            margin: 1rem 0.8rem 2rem;
+            padding: 0.7rem 0.8rem 0.2rem;
+            box-shadow: 0 0 10px 5px rgb(66 121 104 / 19%);
+            color: vars.$primaryColorDark;
+
+            &-body {
+              margin: 0;
+              padding: 0;
+            }
+
+            &-header {
+              flex-direction: column;
+              align-items: flex-start;
+              font-size: 1rem;
+              font-weight: bold;
+            }
+
+            &-tag {
+              padding: 0.3rem 0.5rem;
+              font-size: 0.6rem;
+              background-color: vars.$primaryColor;
+            }
+
+            &-text {
+              color: vars.$darkGrayColor;
+              font-size: small;
+              line-height: 1rem;
+              max-height: 2rem;
+              margin-bottom: 1rem;
+            }
+          }
+        }
+      }
+    }
+
+    .advices {
+      .card-wrapper {
+        .card {
+          width: 100%;
+          height: calc(var(--card-height) * 1.5);
+          overflow: hidden;
+
+          .summary {
+            display: block;
           }
         }
       }
