@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import pencil from './pencil-outline.svg';
 import trash from './trash-outline.svg';
 
-export default function AdvicesRow({ title, category, slug, id }) {
+// eslint-disable-next-line object-curly-newline
+export default function AdvicesRow({ id, title, category, slug }) {
   return (
     <tr>
       <td>{title}</td>
@@ -26,3 +28,10 @@ export default function AdvicesRow({ title, category, slug, id }) {
     </tr>
   );
 }
+
+AdvicesRow.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+};

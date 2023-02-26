@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ModalContext } from '../../../context/ModalContext';
 
 import Modal from '../../Modal';
@@ -117,3 +118,20 @@ export default function Account({ user }) {
     </section>
   );
 }
+
+Account.propTypes = {
+  user: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    nickname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    lastname: PropTypes.string,
+    firstname: PropTypes.string,
+  }),
+};
+
+Account.defaultProps = {
+  user: PropTypes.shape({
+    lastname: '',
+    firstname: '',
+  }),
+};
