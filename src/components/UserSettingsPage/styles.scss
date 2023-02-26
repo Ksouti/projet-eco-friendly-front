@@ -4,23 +4,48 @@
 .settings {
   position: relative;
   width: 100%;
+
   /* sm: 640px */
   @include screen(sm) {
+    .account {
+      --avatar-size: 8rem;
+    }
+    .table {
+      --icon-size: 2rem;
+
+      .hidden {
+        display: table-cell;
+      }
+    }
+
+    /* md: 768px */
+    @include screen(md) {
+      .account {
+        &-inner {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+
+        &-user,
+        &-controllers {
+          align-self: end;
+          justify-self: center;
+        }
+      }
+    }
   }
 
-  /* md: 768px */
-  @include screen(md) {
-  }
+  /* unused breakpoints lg: 1024px */
 
-  /* md: 1024px */
-  @include screen(lg) {
-  }
+  /* unused breakpoints xl: 1280px */
 
-  /* md: 1280px */
-  @include screen(xl) {
-  }
-
-  /* md: 1536px */
+  /* 2xl: 1536px */
   @include screen(2xl) {
+    .account {
+      &-inner {
+        max-width: 75%;
+      }
+    }
   }
 }

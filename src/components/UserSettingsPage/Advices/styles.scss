@@ -22,7 +22,6 @@
 
   &-striped {
     width: 100%;
-    margin-bottom: 1rem;
     color: var(--table-color);
     vertical-align: top;
     border-color: var(--table-border-color);
@@ -127,30 +126,5 @@
 
   .hidden {
     display: none;
-  }
-
-  /* sm: 640px */
-  @include screen(sm) {
-    --icon-size: 2rem;
-
-    .hidden {
-      display: table-cell;
-    }
-  }
-
-  /* md: 768px */
-  @include screen(md) {
-  }
-
-  /* md: 1024px */
-  @include screen(lg) {
-  }
-
-  /* md: 1280px */
-  @include screen(xl) {
-  }
-
-  /* md: 1536px */
-  @include screen(2xl) {
   }
 }

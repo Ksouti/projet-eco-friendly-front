@@ -17,7 +17,7 @@ export default function Account({ user }) {
   const { toggleModal } = useContext(ModalContext);
 
   return (
-    <div className="settings">
+    <section className="account">
       <Modal>
         {/* <FormNickname nickname={user.nickname} /> */}
         {/* <FormEmail email={user.email} /> */}
@@ -28,8 +28,8 @@ export default function Account({ user }) {
         <FormAvatar />
       </Modal>
 
-      <div className="settings-inner">
-        <div className="settings-avatar">
+      <div className="account-inner">
+        <div className="account-avatar">
           <img src={user.avatar} alt="Avatar par defaut" className="avatar" />
           {/* Opens a modal window for modifying avatar with 5 default avatars */}
           <Button
@@ -41,11 +41,11 @@ export default function Account({ user }) {
             Modifier
           </Button>
         </div>
-        <div className="settings-user">
-          <div className="settings-row">
-            <div className="settings-body">
-              <h5 className="settings-title">Pseudo</h5>
-              <p className="settings-text nickname">{user.nickname}</p>
+        <div className="account-user">
+          <div className="account-row">
+            <div className="account-body">
+              <h5 className="account-title">Pseudo</h5>
+              <p className="account-text nickname">{user.nickname}</p>
             </div>
             {/* Opens a modal window for modifying the nickname edit modal */}
             <Button
@@ -57,10 +57,10 @@ export default function Account({ user }) {
               Modifier
             </Button>
           </div>
-          <div className="settings-row">
-            <div className="settings-body">
-              <h5 className="settings-title">Email</h5>
-              <p className="settings-text email">{user.email}</p>
+          <div className="account-row">
+            <div className="account-body">
+              <h5 className="account-title">Email</h5>
+              <p className="account-text email">{user.email}</p>
             </div>
             {/* Opens a modal window for modifying an email edit modal */}
             <Button
@@ -72,10 +72,10 @@ export default function Account({ user }) {
               Modifier
             </Button>
           </div>
-          <div className="settings-row">
-            <div className="settings-body">
-              <h5 className="settings-title">Nom et Prénom</h5>
-              <p className="settings-text fullname">{`${user.lastname} ${user.firstname}`}</p>
+          <div className="account-row">
+            <div className="account-body">
+              <h5 className="account-title">Nom et Prénom</h5>
+              <p className="account-text fullname">{`${user.lastname} ${user.firstname}`}</p>
             </div>
             {/* Opens a modal window for modifying first and last name */}
             <Button
@@ -88,7 +88,7 @@ export default function Account({ user }) {
             </Button>
           </div>
         </div>
-        <div className="settings-controllers">
+        <div className="account-controllers">
           {/* Opens a modal window for modifying password */}
           <Button
             type="button"
@@ -98,7 +98,7 @@ export default function Account({ user }) {
           >
             Changer de mot de passe
           </Button>
-          <div className="settings-warning-zone">
+          <div className="account-warning-zone">
             {/* Opens a modal window for delete user account */}
             <Button
               type="button"
@@ -114,6 +114,6 @@ export default function Account({ user }) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

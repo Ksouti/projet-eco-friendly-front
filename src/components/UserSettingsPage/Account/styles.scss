@@ -2,17 +2,16 @@
 @use 'sass:color';
 @import '../../../styles/mixins.scss';
 
-.settings {
-  --avatar-size: 4.5rem; // Customize avatar size here !
+.account {
+  --avatar-size: 5rem; // Customize avatar size here !
 
   --btn-border-radius: 0.375rem;
-  --padding-top: calc((var(--avatar-size) / 2) + 3rem);
+  --avatar-translate-top: 1rem;
+  --margin-top: calc((var(--avatar-size) / 2) + var(--avatar-translate-top));
 
-  padding-top: var(--padding-top) !important;
+  margin-top: var(--margin-top);
 
-  .section {
-    margin-bottom: 1rem;
-  }
+  margin-bottom: 1rem;
 
   &-inner {
     position: relative;
@@ -27,7 +26,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transform: translate(calc(25%), calc(-50% - 1rem));
+    transform: translate(calc(25%), calc(-50% - var(--avatar-translate-top)));
     border-radius: 50%;
     display: flex;
 
@@ -44,31 +43,31 @@
 
   &-user {
     width: 100%;
-    padding-top: calc(var(--padding-top) / 2) !important;
+    padding-top: calc(var(--margin-top) / 2) !important;
 
-    .settings-row {
+    .account-row {
       width: 100%;
       display: flex;
       justify-content: space-between;
     }
 
-    .settings-body {
+    .account-body {
       width: 100%;
     }
 
-    .settings-title {
+    .account-title {
       font-weight: bold;
       text-transform: uppercase;
       line-height: 1.2rem;
       margin-bottom: 0.325rem;
     }
 
-    .settings-text.nickname,
-    .settings-text.fullname {
+    .account-text.nickname,
+    .account-text.fullname {
       text-transform: capitalize;
     }
 
-    .settings-text.email {
+    .account-text.email {
       text-transform: lowercase;
     }
   }
@@ -78,51 +77,16 @@
     margin-top: 0.125rem;
     border: 1px solid vars.$dangerColor;
     border-radius: var(--btn-border-radius);
-    padding: 0.5rem;
+    padding: 1rem;
     background-color: rgba(vars.$dangerColor, 0.075);
 
     .warning-text  {
+      margin: 1rem 0 0;
       color: vars.$dangerColor;
     }
   }
 
   .btn {
     margin: 0.325rem 0;
-  }
-
-  /* sm: 640px */
-  @include screen(sm) {
-    --avatar-size: 8rem;
-
-    &-inner {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-    }
-
-    &-user,
-    &-controllers {
-      align-self: end;
-      justify-self: center;
-    }
-  }
-
-  /* md: 768px */
-  @include screen(md) {
-  }
-
-  /* md: 1024px */
-  @include screen(lg) {
-  }
-
-  /* md: 1280px */
-  @include screen(xl) {
-    &-inner {
-      max-width: 50%;
-    }
-  }
-
-  /* md: 1536px */
-  @include screen(2xl) {
   }
 }

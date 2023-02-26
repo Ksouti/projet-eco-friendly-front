@@ -10,12 +10,8 @@ export default function UserSettingsPage() {
   return (
     <Page>
       <div className="settings">
-        <section className="account-controller">
-          <Account user={user} />
-        </section>
-        <section className="advices-controller">
-          <Advices items={user.advices} />
-        </section>
+        <Account user={user} />
+        <Advices items={user.advices} />
       </div>
     </Page>
   );
