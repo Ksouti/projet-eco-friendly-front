@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-import TableRow from './TableRow';
+import AdvicesRow from './AdvicesRow';
 
-import './table.scss';
+import './styles.scss';
 
-export default function Table({ items }) {
+export default function Advices({ items }) {
   return (
     <table className="table table-striped">
       <thead>
@@ -18,7 +18,7 @@ export default function Table({ items }) {
       </thead>
       <tbody>
         {items.map((item) => (
-          <TableRow
+          <AdvicesRow
             key={item.id}
             title={item.title}
             category={item.category.name}
@@ -31,6 +31,6 @@ export default function Table({ items }) {
   );
 }
 
-Table.propTypes = {
+Advices.propTypes = {
   items: PropTypes.array.isRequired,
 };

@@ -1,5 +1,5 @@
 @use 'src/styles/vars';
-@import '../../styles/mixins.scss';
+@import '../../../styles/mixins.scss';
 
 .table {
   --table-color: #212529;
@@ -129,11 +129,28 @@
     display: none;
   }
 
+  /* sm: 640px */
   @include screen(sm) {
     --icon-size: 2rem;
 
     .hidden {
       display: table-cell;
     }
+  }
+
+  /* md: 768px */
+  @include screen(md) {
+  }
+
+  /* md: 1024px */
+  @include screen(lg) {
+  }
+
+  /* md: 1280px */
+  @include screen(xl) {
+  }
+
+  /* md: 1536px */
+  @include screen(2xl) {
   }
 }

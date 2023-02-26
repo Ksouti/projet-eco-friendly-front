@@ -1,20 +1,19 @@
 import { useContext } from 'react';
-import { ModalContext } from '../../context/ModalContext';
-import Modal from '../Modal';
-import Button from '../Button';
-import FormNickname from '../Form/UserSettingsForm/FormNickname';
-import FormEmail from '../Form/UserSettingsForm/FormEmail';
-import FormFullname from '../Form/UserSettingsForm/FormFullname';
-import FormPassword from '../Form/UserSettingsForm/FormPassword';
-import FormDeleteAccount from '../Form/UserSettingsForm/FormDeleteAccount';
-import FormDeleteAdvice from '../Form/UserSettingsForm/FormDeleteAdvice';
-import FormAvatar from '../Form/UserSettingsForm/FormAvatar';
+import { ModalContext } from '../../../context/ModalContext';
 
-import avatar from './avatar-bear.png';
+import Modal from '../../Modal';
+import Button from '../../Button';
+// import FormNickname from '../../Form/UserSettingsForm/FormNickname';
+// import FormEmail from '../../Form/UserSettingsForm/FormEmail';
+// import FormFullname from '../../Form/UserSettingsForm/FormFullname';
+// import FormPassword from '../../Form/UserSettingsForm/FormPassword';
+// import FormDeleteAccount from '../../Form/UserSettingsForm/FormDeleteAccount';
+// import FormDeleteAdvice from '../../Form/UserSettingsForm/FormDeleteAdvice';
+import FormAvatar from '../../Form/UserSettingsForm/FormAvatar';
 
-import './settings.scss';
+import './styles.scss';
 
-export default function Settings({ user }) {
+export default function Account({ user }) {
   const { toggleModal } = useContext(ModalContext);
 
   return (

@@ -1,6 +1,6 @@
 import Page from '../Page';
-import Table from './Table';
-import Settings from './Settings';
+import Advices from './Advices';
+import Account from './Account';
 
 import './styles.scss';
 
@@ -10,11 +10,11 @@ export default function UserSettingsPage() {
   return (
     <Page>
       <div className="settings">
-        <section className="section">
-          <Settings user={user} />
+        <section className="account-controller">
+          <Account user={user} />
         </section>
-        <section className="section">
-          <Table items={user.advices} />
+        <section className="advices-controller">
+          <Advices items={user.advices} />
         </section>
       </div>
     </Page>

@@ -1,0 +1,26 @@
+@use 'src/styles/vars';
+@import '../../styles/mixins.scss';
+
+.settings {
+  position: relative;
+  width: 100%;
+  /* sm: 640px */
+  @include screen(sm) {
+  }
+
+  /* md: 768px */
+  @include screen(md) {
+  }
+
+  /* md: 1024px */
+  @include screen(lg) {
+  }
+
+  /* md: 1280px */
+  @include screen(xl) {
+  }
+
+  /* md: 1536px */
+  @include screen(2xl) {
+  }
+}

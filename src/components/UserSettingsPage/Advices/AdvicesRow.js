@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import pencil from './pencil-outline.svg';
 import trash from './trash-outline.svg';
 
-export default function TableRow({ title, category, slug, id }) {
+export default function AdvicesRow({ title, category, slug, id }) {
   return (
     <tr>
       <td>{title}</td>

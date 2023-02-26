@@ -1,6 +1,6 @@
 @use 'src/styles/vars';
 @use 'sass:color';
-@import '../../styles/mixins.scss';
+@import '../../../styles/mixins.scss';
 
 .settings {
   --avatar-size: 4.5rem; // Customize avatar size here !
@@ -90,6 +90,7 @@
     margin: 0.325rem 0;
   }
 
+  /* sm: 640px */
   @include screen(sm) {
     --avatar-size: 8rem;
 
@@ -106,9 +107,22 @@
     }
   }
 
+  /* md: 768px */
+  @include screen(md) {
+  }
+
+  /* md: 1024px */
+  @include screen(lg) {
+  }
+
+  /* md: 1280px */
   @include screen(xl) {
     &-inner {
       max-width: 50%;
     }
+  }
+
+  /* md: 1536px */
+  @include screen(2xl) {
   }
 }
