@@ -8,8 +8,6 @@ import Loader from '../Loader';
 
 import './styles.scss';
 
-// import user from '../../data/single-user';
-
 export default function UserSettingsPage() {
   const isLoaded = useSelector((state) => state.user.isLoaded);
   const isLogged = useSelector((state) => state.user.isLogged);
