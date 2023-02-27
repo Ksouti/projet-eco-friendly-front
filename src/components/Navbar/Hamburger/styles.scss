@@ -83,7 +83,7 @@
 }
 
 // RESPONSIVE MD +1024px =======================================================
-@include screen(lg) {
+@include screen(md) {
   .hamburgerMenu {
     display: none;
   }
