@@ -1,24 +1,26 @@
 import { NavLink } from 'react-router-dom';
 
-import navBarLogo from './logo-copy.png';
-import navBarAvatar from './avatar-bear.png';
-import Hamburger from '../Hamburger';
+import navBarLogo from '../../assets/logos/logo-typo-large.png';
+import navBarAvatar from '../../assets/avatar/avatar-2.png';
+import Hamburger from './Hamburger';
 import './styles.scss';
 
 function Navbar() {
   return (
     <div className="navbar">
-      <Hamburger />
-      <div className="logoNavbar">
-        <img src={navBarLogo} alt="logo" className="imgLogo" />
-      </div>
-      <div className="welcome">
-        <p className="welcomeMessage">Salut Johnny !</p>
-        <img src={navBarAvatar} alt="avatar" className="imgAvatar" />
+      <div className="navbar-top">
+        <Hamburger />
+        <span className="empty"> empty </span>
+        <img src={navBarLogo} alt="logo" className="navbar-logo" />
+
+        <div className="login">
+          <p className="login-message">Salut Johnny !</p>
+          <img src={navBarAvatar} alt="avatar" className="login-avatar" />
+        </div>
       </div>
 
       <nav className="navigation">
-        <ul className="navButtons">
+        <ul className="navigation-buttons">
           <li className="button homepageMenu">
             <NavLink to="/">Accueil</NavLink>
           </li>
