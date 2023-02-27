@@ -3,7 +3,7 @@
 
 .navbar {
   border-radius: 0% 0% 10% 10%;
-  box-shadow: 0px 10px 5px 3px vars.$shadowColorLighter;
+  box-shadow: 0px 10px 5px 3px vars.$shadowColorLight;
   background: vars.$backgroundGradient;
 
   &-top {
@@ -37,13 +37,17 @@
   .navigation {
     display: none;
   }
-}
 
-// RESPONSIVE lg + 1024px =======================================================
-@include screen(lg) {
-  .navbar {
+  // RESPONSIVE lg + 1024px =======================================================
+  @include screen(md) {
     display: flex;
     flex-direction: column;
+
+    // pour fix la navbar au top de l'écran, rajouter margin a la Page
+    // position: fixed;
+    //ou
+    // top: 0;
+    // Ou essayer sticky, mais ne marche pas ??
 
     .navbar-top {
       position: relative;
@@ -79,21 +83,22 @@
         }
       }
     }
+
     .navigation {
-      display: block flex;
+      display: flex;
       justify-content: center;
 
       &-buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
 
         width: 80%;
-        margin: 1.5rem 1rem 1rem;
+        margin: 1rem 1rem 1rem;
 
         .button {
           background-color: vars.$whiteColor;
-          padding: 0.5rem 3.1rem 0.5rem;
-          margin: 0px 10px 8px 10px;
+          padding: 0.35rem 2rem;
+          margin: 0 0.8rem 1rem;
           border-radius: 30px;
           box-shadow: 0px 2px 5px 3px vars.$shadowColorLight;
 
@@ -105,6 +110,22 @@
         .button:hover {
           background-color: vars.$primaryColorDark;
           color: vars.$whiteColor;
+        }
+
+        .active {
+          background-color: vars.$primaryColorDark;
+          color: vars.$whiteColor;
+        }
+      }
+    }
+  }
+
+  // RESPONSIVE lg + 1024px =======================================================
+  @include screen(lg) {
+    .navigation {
+      &-buttons {
+        .button {
+          padding: 0.35rem 3.5rem;
         }
       }
     }
