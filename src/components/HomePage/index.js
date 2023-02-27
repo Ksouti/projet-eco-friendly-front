@@ -1,13 +1,16 @@
+import { useSelector } from 'react-redux';
+
 import Page from '../Page';
 import Slider from '../Slider';
 import Card from '../Card';
 
 import './styles.scss';
 
-import articles from '../../data/lastFourArticles';
 import advices from '../../data/lastFourAdvices';
 
 function HomePage() {
+  const articles = useSelector((state) => state.articles.data);
+
   return (
     <Page>
       <div className="homepage">
