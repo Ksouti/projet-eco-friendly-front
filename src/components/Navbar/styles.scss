@@ -111,6 +111,38 @@
           background-color: vars.$primaryColorDark;
           color: vars.$whiteColor;
         }
+
+        .active {
+          background-color: vars.$primaryColorDark;
+          color: vars.$whiteColor;
+        }
+      }
+    }
+  }
+
+  // RESPONSIVE lg + 1024px =======================================================
+  @include screen(lg) {
+    .navigation {
+      &-buttons {
+        .button {
+          padding: 0.35rem 3.5rem;
+        }
+      }
+
+      .active {
+        background-color: vars.$primaryColorDark;
+        color: vars.$whiteColor;
+      }
+    }
+  }
+
+  // RESPONSIVE lg + 1024px =======================================================
+  @include screen(lg) {
+    .navigation {
+      &-buttons {
+        .button {
+          padding: 0.35rem 3.5rem;
+        }
       }
 
       .active {
