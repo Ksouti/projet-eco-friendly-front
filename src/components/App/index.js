@@ -1,4 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
+import { loadingArticlesData } from '../../actions/articles';
 
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -15,18 +19,19 @@ import Loader from '../Loader';
 import './styles.scss';
 
 function App() {
-  const isLoaded = true;
+  const dispatch = useDispatch();
+  const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
 
-  if (!isLoaded) {
-    return <Loader />;
-  }
+  useEffect(() => {
+    dispatch(loadingArticlesData());
+  }, []);
 
   return (
     <div className="app">
       <header className="header">
         <Navbar />
       </header>
-      {isLoaded && (
+      {articlesIsLoaded ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/categories/:name" element={<CategoryPage />} />
@@ -41,6 +46,8 @@ function App() {
           <Route path="/mentions-legales" element={<LegalNoticePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+      ) : (
+        <Loader />
       )}
       <Footer />
     </div>
