@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import navBarLogo from '../../assets/logos/logo-typo-large.png';
+import navBarLogo from '../../assets/logos/logo-typo-l.png';
 import navBarAvatar from '../../assets/avatar/avatar-2.png';
 import Hamburger from './Hamburger';
 import './styles.scss';
@@ -21,20 +21,30 @@ function Navbar() {
 
       <nav className="navigation">
         <ul className="navigation-buttons">
-          <li className="button homepageMenu">
-            <NavLink to="/">Accueil</NavLink>
+          <li>
+            <NavLink className="button active" to="/">
+              Accueil
+            </NavLink>
           </li>
-          <li className="button mobilityMenu">
-            <NavLink to="/">Mobilité</NavLink>
+          <li>
+            <NavLink className="button" to="/">
+              Mobilité
+            </NavLink>
           </li>
-          <li className="button homeMenu">
-            <NavLink to="/">Maison</NavLink>
+          <li>
+            <NavLink className="button" to="/">
+              Maison
+            </NavLink>
           </li>
-          <li className="button healthMenu">
-            <NavLink to="/">Santé</NavLink>
+          <li>
+            <NavLink className="button" to="/">
+              Santé
+            </NavLink>
           </li>
-          <li className="button energyMenu">
-            <NavLink to="/">Energie</NavLink>
+          <li>
+            <NavLink className="button" to="/">
+              Energie
+            </NavLink>
           </li>
         </ul>
       </nav>
