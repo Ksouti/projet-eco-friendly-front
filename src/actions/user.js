@@ -1,3 +1,9 @@
+export const LOADING_USER_DATA = 'LOADING_USER_DATA';
+
+export const loadingUserData = () => ({
+  type: LOADING_USER_DATA,
+});
+
 export const USER_LOGIN = 'USER_LOGIN';
 
 export const userLogin = () => ({

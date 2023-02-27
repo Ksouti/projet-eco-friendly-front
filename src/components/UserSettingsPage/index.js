@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import Page from '../Page';
 import Advices from './Advices';
 import Account from './Account';
+import Loader from '../Loader';
 
 import './styles.scss';
 
 // import user from '../../data/single-user';
 
 export default function UserSettingsPage() {
+  const isLoaded = useSelector((state) => state.user.isLoaded);
   const isLogged = useSelector((state) => state.user.isLogged);
   const user = useSelector((state) => state.user.data);
 
@@ -20,10 +22,14 @@ export default function UserSettingsPage() {
 
   return (
     <Page>
-      <div className="settings">
-        <Account user={user} />
-        <Advices items={user.advices} />
-      </div>
+      {isLoaded ? (
+        <div className="settings">
+          <Account user={user} />
+          <Advices items={user.advices} />
+        </div>
+      ) : (
+        <Loader />
+      )}
     </Page>
   );
 }
