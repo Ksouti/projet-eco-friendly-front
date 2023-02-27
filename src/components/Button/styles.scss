@@ -8,10 +8,15 @@
   --btn-font-size: 1rem;
   --btn-font-weight: 400;
   --btn-line-height: 1.5;
-  --btn-color: inherit;
   --btn-border-radius: 0.375rem;
   --btn-border-color: transparent;
   --btn-hover-border-color: transparent;
+  --btn-color: #fff;
+  --btn-bg: #6c757d;
+  --btn-border-color: #6c757d;
+  --btn-hover-color: #fff;
+  --btn-hover-bg: #5c636a;
+  --btn-hover-border-color: #565e64;
 
   display: inline-block;
   padding: var(--btn-padding-y) var(--btn-padding-x);
@@ -24,8 +29,6 @@
   text-decoration: none;
   vertical-align: middle;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
   user-select: none;
   border: 1px solid var(--btn-border-color);
   border-radius: var(--btn-border-radius);
@@ -39,15 +42,7 @@
     border-color: var(--btn-hover-border-color);
   }
 
-  &-default {
-    --btn-color: #fff;
-    --btn-bg: #6c757d;
-    --btn-border-color: #6c757d;
-    --btn-hover-color: #fff;
-    --btn-hover-bg: #5c636a;
-    --btn-hover-border-color: #565e64;
-  }
-
+  /* color attribte */
   &-primary {
     color: vars.$lightTextColor;
     background-color: vars.$primaryColor;
@@ -71,7 +66,9 @@
       border-color: vars.$secondaryColorHover;
     }
   }
+  /* end color attribte */
 
+  /* style attribute */
   &-outline-primary {
     color: vars.$textColorPrimary;
     background-color: vars.$whiteColor;
@@ -105,4 +102,19 @@
       color: vars.$primaryColorHover;
     }
   }
+  /* end style attribute */
+
+  /* size attribute */
+  &-lg {
+    padding: calc(var(--btn-padding-y) + 0.125rem)
+      calc(var(--btn-padding-x) + 0.25rem);
+    font-size: calc(var(--btn-font-size + 0.25rem));
+  }
+
+  &-sm {
+    padding: calc(var(--btn-padding-y) - 0.125rem)
+      calc(var(--btn-padding-x) - 0.25rem);
+    font-size: calc(var(--btn-font-size - 0.125rem));
+  }
+  /* end size attribute */
 }
