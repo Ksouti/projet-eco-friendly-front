@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
+import { userLogin } from '../../actions/user';
 import { loadingArticlesData } from '../../actions/articles';
 import { loadingAdvicesData } from '../../actions/advices';
 
@@ -21,10 +22,17 @@ import './styles.scss';
 
 function App() {
   const dispatch = useDispatch();
+
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
 
   useEffect(() => {
+    /**
+     * Force Authentification success for test user the page
+    /* please remove this line when you will have a real user authentification
+    */
+    dispatch(userLogin());
+
     dispatch(loadingArticlesData());
     dispatch(loadingAdvicesData());
   }, []);
