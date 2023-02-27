@@ -6,6 +6,7 @@ export const initialState = {
   token: '',
   isLogged: false,
   data: {},
+  isLoaded: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -13,9 +14,10 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_SUCCESS:
       return {
         ...state,
+        isLogged: true,
         data: action.data,
         token: '',
-        isLogged: true,
+        isLoaded: true,
         email: '',
         password: '',
       };
