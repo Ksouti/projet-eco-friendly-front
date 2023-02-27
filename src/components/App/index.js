@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { loadingArticlesData } from '../../actions/articles';
+import { loadingAdvicesData } from '../../actions/advices';
 
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -21,9 +22,11 @@ import './styles.scss';
 function App() {
   const dispatch = useDispatch();
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
+  const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
 
   useEffect(() => {
     dispatch(loadingArticlesData());
+    dispatch(loadingAdvicesData());
   }, []);
 
   return (
@@ -31,7 +34,7 @@ function App() {
       <header className="header">
         <Navbar />
       </header>
-      {articlesIsLoaded ? (
+      {articlesIsLoaded && advicesIsLoaded ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/categories/:name" element={<CategoryPage />} />
