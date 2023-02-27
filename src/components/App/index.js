@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { userLogin } from '../../actions/user';
 import { loadingArticlesData } from '../../actions/articles';
 import { loadingAdvicesData } from '../../actions/advices';
+import { loadingCategoriesData } from '../../actions/common';
 
 import Navbar from '../Navbar';
 import Footer from '../Footer';
@@ -29,13 +30,14 @@ function App() {
   const modalContent = useSelector((state) => state.common.modalContent);
 
   useEffect(() => {
+    dispatch(loadingCategoriesData());
+    dispatch(loadingArticlesData());
+    dispatch(loadingAdvicesData());
     /**
      * Force Authentification success for test user the page
     /* please remove this line when you will have a real user authentification
     */
     dispatch(userLogin());
-    dispatch(loadingArticlesData());
-    dispatch(loadingAdvicesData());
   }, []);
 
   return (
