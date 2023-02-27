@@ -1,23 +1,26 @@
-import { useContext } from 'react';
-import { ModalContext } from '../../context/ModalContext';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { closeModal } from '../../actions/common';
 
 import './styles.scss';
 
 export default function Modal({ children }) {
-  const { isShowing, toggleModal } = useContext(ModalContext);
+  const dispatch = useDispatch();
+
+  const toggleModal = (e) => {
+    dispatch(closeModal());
+    e.stopPropagation();
+  };
 
   return (
-    <div
-      className={isShowing ? 'modal' : 'modal modal-hidden'}
-      onClick={() => toggleModal()}
-    >
+    <div className="modal" onClick={toggleModal}>
       <div className="modal-content">
         <div className="modal-header">
           <button
             type="button"
             className="btn-close"
             aria-label="Close"
-            onClick={() => toggleModal()}
+            onClick={toggleModal}
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -29,3 +32,7 @@ export default function Modal({ children }) {
     </div>
   );
 }
+
+Modal.propTypes = {
+  children: PropTypes.node.isRequired,
+};

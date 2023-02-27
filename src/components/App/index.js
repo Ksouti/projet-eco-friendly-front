@@ -17,14 +17,16 @@ import ArticlePage from '../ArticlePage';
 import AdvicePage from '../AdvicePage';
 import LegalNoticePage from '../LegalNoticePage';
 import Loader from '../Loader';
+import Modal from '../Modal';
 
 import './styles.scss';
 
 function App() {
   const dispatch = useDispatch();
-
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
+  const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
+  const modalContent = useSelector((state) => state.common.modalContent);
 
   useEffect(() => {
     /**
@@ -32,13 +34,13 @@ function App() {
     /* please remove this line when you will have a real user authentification
     */
     dispatch(userLogin());
-
     dispatch(loadingArticlesData());
     dispatch(loadingAdvicesData());
   }, []);
 
   return (
     <div className="app">
+      {modalIsOpen && <Modal>{modalContent}</Modal>}
       <header className="header">
         <Navbar />
       </header>
