@@ -1,8 +1,8 @@
 import { USER_AUTHENTICATION_SUCCESS, USER_LOGOUT } from '../actions/user';
 
 export const initialState = {
-  email: 'john.doe@mail.fr',
-  password: 'password',
+  email: 'mueller.vesta@bernier.biz',
+  password: '$2y$13$dEOvubTYGdZw8.6TXdHi/um62RPqPkAXyuAAu8fFeH7UyFZiUEdOG',
   token: '',
   isLogged: false,
   data: {},
@@ -13,9 +13,9 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        isLogged: action.isLogged,
         data: action.data,
-        token: action.token,
+        token: '',
+        isLogged: true,
         email: '',
         password: '',
       };
