@@ -1,11 +1,20 @@
+/* eslint-disable react/jsx-curly-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable no-confusing-arrow */
+
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+
+import Hamburger from './Hamburger';
 
 import navBarLogo from '../../assets/logos/logo-typo-l.png';
 import navBarAvatar from '../../assets/avatar/avatar-2.png';
-import Hamburger from './Hamburger';
+
 import './styles.scss';
 
-function Navbar() {
+function Navbar({ categories }) {
+  const activeClassName = 'button active';
+
   return (
     <div className="navbar">
       <div className="navbar-top">
@@ -22,30 +31,27 @@ function Navbar() {
       <nav className="navigation">
         <ul className="navigation-buttons">
           <li>
-            <NavLink className="button active" to="/">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? activeClassName : 'button'
+              }
+              to="/"
+            >
               Accueil
             </NavLink>
           </li>
-          <li>
-            <NavLink className="button" to="/">
-              Mobilité
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="button" to="/">
-              Maison
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="button" to="/">
-              Santé
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="button" to="/">
-              Energie
-            </NavLink>
-          </li>
+          {categories.map((category) => (
+            <li key={category.id}>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? activeClassName : 'button'
+                }
+                to={`/categories/${category.slug}`}
+              >
+                {category.name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>
@@ -53,3 +59,13 @@ function Navbar() {
 }
 
 export default Navbar;
+
+Navbar.propTypes = {
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
