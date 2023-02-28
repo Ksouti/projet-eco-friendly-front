@@ -1,6 +1,7 @@
 /* eslint-disable operator-linebreak */
 /**
- * Loading articles data
+ * @name loadingArticlesData
+ * @description Action creator for loading articles data
  * @returns {object}
  */
 export const LOADING_ARTICLES_DATA = 'LOADING_ARTICLES_DATA';
@@ -10,7 +11,8 @@ export const loadingArticlesData = () => ({
 });
 
 /**
- * Fetch articles data from API
+ * @name loadingLastFourArticles
+ * @description Action creator for loading last four articles data
  * @param {array} data
  * @returns {object}
  */
@@ -44,7 +46,32 @@ export const fetchLastArticleFromApi = (data) => ({
 });
 
 /**
- * Loading last four articles data
+/**
+ * @name loadingLastFourArticles
+ * @description Action creator for loading last four articles data
+ * @returns {object}
+ */
+export const LOADING_LAST_ARTICLE_DATA = 'LOADING_LAST_ARTICLE_DATA';
+
+export const loadingLastArticleData = () => ({
+  type: LOADING_LAST_ARTICLE_DATA,
+});
+
+/**
+ * Fetch last article data from API
+ * @param {array} list
+ * @returns {object}
+ */
+export const FETCH_LAST_ARTICLE_FROM_API = 'FETCH_LAST_ARTICLE_FROM_API';
+
+export const fetchLastArticleFromApi = (lastArticleData) => ({
+  type: FETCH_LAST_ARTICLE_FROM_API,
+  lastArticleData,
+});
+
+/**
+ * @name loadingLastFourArticles
+ * @description Action creator for loading last four articles data
  * @returns {object}
  */
 export const LOADING_LAST_FOUR_ARTICLES = 'LOADING_LAST_FOUR_ARTICLES';
@@ -54,7 +81,8 @@ export const loadingLastFourArticles = () => ({
 });
 
 /**
- * Fetch last four articles data from API
+ * @name fetchLastFourArticlesFromApi
+ * @description Action creator for loading last four articles data
  * @param {array} data
  * @returns {object}
  * */

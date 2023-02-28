@@ -1,6 +1,7 @@
 /* eslint-disable operator-linebreak */
 /**
- * Loading advices data
+ * @name loadingAdvicesData
+ * @description Action creator for loading advices data
  * @returns {object}
  */
 export const LOADING_ADVICES_DATA = 'LOADING_ADVICES_DATA';
@@ -10,7 +11,8 @@ export const loadingAdvicesData = () => ({
 });
 
 /**
- * Fetch advices data from API
+ * @name loadingLastFourAdvices
+ * @description Action creator for loading last four advices data
  * @param {array} data
  * @returns {object}
  */
@@ -21,12 +23,23 @@ export const fetchAdvicesFromApi = (data) => ({
   data,
 });
 
+/**
+ * @name loadingLastFourAdvices
+ * @description Action creator for loading last four advices data
+ * @returns {object}
+ */
 export const LOADING_LAST_FOUR_ADVICES = 'LOADING_LAST_FOUR_ADVICES';
 
 export const loadingLastFourAdvices = () => ({
   type: LOADING_LAST_FOUR_ADVICES,
 });
 
+/**
+ * @name fetchLastFourAdvicesFromApi
+ * @description Action creator for loading last four advices data
+ * @param {array} data
+ * @returns {object}
+ */
 export const FETCH_LAST_FOUR_ADVICES_FROM_API =
   'FETCH_LAST_FOUR_ADVICES_FROM_API';
 
