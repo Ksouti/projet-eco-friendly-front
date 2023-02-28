@@ -3,8 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
-import { userLogin } from '../../actions/user';
-
 import {
   loadingArticlesData,
   loadingLastFourArticles,
