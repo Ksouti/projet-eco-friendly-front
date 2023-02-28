@@ -1,13 +1,16 @@
 /* eslint-disable operator-linebreak */
+/* eslint-disable operator-linebreak */
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import {
   loadingArticlesData,
+  loadingArticlesData,
   loadingLastFourArticles,
 } from '../../actions/articles';
 import {
+  loadingAdvicesData,
   loadingAdvicesData,
   loadingLastFourAdvices,
 } from '../../actions/advices';
@@ -34,6 +37,7 @@ function App() {
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
   const categories = useSelector((state) => state.common.categories);
+
   const lastFourArticlesIsLoaded = useSelector(
     (state) => state.articles.isLoaded,
   );
@@ -52,12 +56,6 @@ function App() {
 
     dispatch(loadingArticlesData());
     dispatch(loadingAdvicesData());
-
-    /**
-     * Force Authentification success for test user the page
-    /* please remove this line when you will have a real user authentification
-    */
-    dispatch(userLogin());
   }, []);
 
   return (
@@ -66,6 +64,10 @@ function App() {
       <header className="header">
         {categories && <Navbar categories={categories} />}
       </header>
+      {articlesIsLoaded &&
+      advicesIsLoaded &&
+      lastFourArticlesIsLoaded &&
+      lastFourAdvicesIsLoaded ? (
       {articlesIsLoaded &&
       advicesIsLoaded &&
       lastFourArticlesIsLoaded &&
