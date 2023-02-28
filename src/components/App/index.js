@@ -26,6 +26,10 @@ function App() {
   const dispatch = useDispatch();
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
+  /* fetch categories data from api & use data with props */
+  // const categoriesIsLoaded = useSelector((state) => state.common.isLoaded);
+  const categories = useSelector((state) => state.common.categories);
+
   const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
   const modalContent = useSelector((state) => state.common.modalContent);
 
@@ -44,7 +48,7 @@ function App() {
     <div className="app">
       {modalIsOpen && <Modal>{modalContent}</Modal>}
       <header className="header">
-        <Navbar />
+        {categories && <Navbar categories={categories} />}
       </header>
       {articlesIsLoaded && advicesIsLoaded ? (
         <Routes>
