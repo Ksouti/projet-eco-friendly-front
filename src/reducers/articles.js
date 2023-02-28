@@ -1,6 +1,7 @@
 import {
   FETCH_ARTICLES_FROM_API,
   FETCH_LAST_ARTICLE_FROM_API,
+  FETCH_LAST_FOUR_ARTICLES_FROM_API,
 } from '../actions/articles';
 
 export const initialState = {
@@ -8,6 +9,7 @@ export const initialState = {
   lastArticleData: {},
   lastArticleDataIsLoaded: false,
   isLoaded: false,
+  lastFourArticles: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -26,6 +28,12 @@ const reducer = (state = initialState, action = {}) => {
         lastArticleDataIsLoaded: true,
       };
 
+    case FETCH_LAST_FOUR_ARTICLES_FROM_API:
+      return {
+        ...state,
+        lastFourArticles: action.data,
+        isLoaded: true,
+      };
     default:
       return state;
   }
