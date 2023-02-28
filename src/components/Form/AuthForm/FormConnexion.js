@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { OnInputChange } from '../../../actions/common';
+import { OnInputChange, closeModal } from '../../../actions/common';
+import { userLogin } from '../../../actions/user';
 
 import Input from '../../Field/Input';
 import Button from '../../Button';
@@ -18,7 +19,17 @@ export default function FormConnexion({ toggleForm }) {
     dispatch(OnInputChange(value, identifier));
   };
 
-  let handleSubmit;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(userLogin());
+    dispatch(closeModal());
+  };
+
+  /* If the user is logged, close the modal */
+  const isLogged = useSelector((state) => state.user.isLogged);
+  if (isLogged) {
+    dispatch(closeModal());
+  }
 
   return (
     <div className="connexion">
