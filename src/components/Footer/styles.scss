@@ -7,9 +7,12 @@
   --default-margin-bottom: 0.4rem;
 
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 0.7rem 2rem;
   font-size: var(--default-font-size);
-  color: vars.$primaryColor;
+  color: vars.$primaryColorDark;
+  background: vars.$backgroundGradientUpsideDown;
+  border-radius: 10% 10% 0% 0%;
+  box-shadow: 0px -5px 10px 3px vars.$shadowColorLight;
 
   display: flex;
   flex-direction: column;

@@ -29,8 +29,8 @@ $secondaryColorHover: $secondaryColorDark;
 $secondaryColorFocus: $secondaryColor;
 
 // OTHER COLOR
-$shadowColorLight: #42796830;
-$shadowColorLighter: #42796815;
+$shadowColorLight: #062a2421;
+$shadowColorLighter: #3c6d5e15;
 
 $lightTextColor: $lightColor;
 $darkTextColor: $darkGrayColor;
@@ -50,4 +50,13 @@ $backgroundGradient: linear-gradient(
   rgba(80, 192, 164, 0.35) 64%,
   rgba(151, 190, 115, 0.35) 82%,
   rgba(253, 187, 45, 0.32) 100%
+);
+
+$backgroundGradientUpsideDown: linear-gradient(
+  193deg,
+  rgba(80, 192, 164, 0.33) 11%,
+  rgba(34, 193, 195, 0.35) 31%,
+  rgba(80, 192, 164, 0.35) 69%,
+  rgba(151, 190, 115, 0.35) 85%,
+  rgba(255, 236, 147, 0.6502976190476191) 100%
 );
