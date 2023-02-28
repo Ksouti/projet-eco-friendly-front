@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -5,11 +6,11 @@ import { useEffect } from 'react';
 import { userLogin } from '../../actions/user';
 
 import {
-  // loadingArticlesData,
+  loadingArticlesData,
   loadingLastFourArticles,
 } from '../../actions/articles';
 import {
-  // loadingAdvicesData,
+  loadingAdvicesData,
   loadingLastFourAdvices,
 } from '../../actions/advices';
 
@@ -41,16 +42,18 @@ function App() {
   const lastFourAdvicesIsLoaded = useSelector(
     (state) => state.advices.isLoaded,
   );
+
   const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
   const modalContent = useSelector((state) => state.common.modalContent);
 
   useEffect(() => {
     dispatch(loadingCategoriesData());
+
     dispatch(loadingLastFourArticles());
     dispatch(loadingLastFourAdvices());
 
-    // dispatch(loadingArticlesData());
-    // dispatch(loadingAdvicesData());
+    dispatch(loadingArticlesData());
+    dispatch(loadingAdvicesData());
 
     /**
      * Force Authentification success for test user the page
