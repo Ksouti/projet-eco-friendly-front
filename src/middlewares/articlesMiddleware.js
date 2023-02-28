@@ -48,6 +48,11 @@ const articlesMiddleware = (store) => (next) => (action) => {
     case LOADING_LAST_FOUR_ARTICLES:
       store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
       break;
+
+    case LOADING_LAST_FOUR_ARTICLES:
+      console.log('Middleware: loading last four articles data'); // dev only
+      store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
+      break;
     default:
   }
   next(action);
