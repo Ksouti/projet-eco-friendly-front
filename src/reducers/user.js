@@ -16,10 +16,10 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_SUCCESS:
       return {
         ...state,
-        isLogged: false,
+        isLogged: true,
         data: action.data,
         token: '',
-        isLoaded: false,
+        isLoaded: true,
         email: '',
         password: '',
       };
