@@ -10,20 +10,21 @@ function AddAdvicePage() {
       <div className="add-advice-page">
         <div className="title">Ajouter un conseil</div>
         <form>
-          <Input
-            type="text"
-            name="title"
-            color="primary"
-            placeholder="Titre"
-          />
           <div className="category">
             <select name="category" id="category">
+              <option value="" disabled selected hidden>Catégories</option>
               <option value="1">Mobilité</option>
               <option value="2">Maison</option>
               <option value="3">Santé</option>
               <option value="4">Énergie</option>
             </select>
           </div>
+          <Input
+            type="text"
+            name="title"
+            color="primary"
+            placeholder="Titre"
+          />
           <div className="richTextEditor">
             <RichTextEditor />
           </div>
