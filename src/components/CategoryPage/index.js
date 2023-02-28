@@ -1,13 +1,29 @@
+import { Navigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { findItemsByCategory } from '../../utils';
+
 import Page from '../Page';
 import Card from '../Card';
 
 import './styles.scss';
 
 import article from 'src/data/lastArticle';
-import articles from 'src/data/articles';
-import advices from 'src/data/advices';
+// import articles from 'src/data/articles';
+// import advices from 'src/data/advices';
 
 function CategoryPage() {
+  const { name } = useParams();
+
+  const advices = useSelector((state) =>
+    findItemsByCategory(state.advices.data, name),
+  );
+
+  const articles = useSelector((state) =>
+    findItemsByCategory(state.articles.data, name),
+  );
+  console.log(articles);
+
   return (
     <Page>
       <div className="category-page">
@@ -17,9 +33,8 @@ function CategoryPage() {
             <h2 className="advices-sentence">Suivez vos conseils</h2>
             <div className="advices-list">
               {advices.map((advice) => (
-                <div className="advice-card">
+                <div key={advice.id} className="advice-card">
                   <Card
-                    key={advice.id}
                     title={advice.title}
                     category={advice.category}
                     content={advice.content}
@@ -40,9 +55,8 @@ function CategoryPage() {
             </div>
             <div className="articles-list">
               {articles.map((article) => (
-                <div className="article-card">
+                <div key={article.id} className="article-card">
                   <Card
-                    key={article.id}
                     picture={article.picture}
                     title={article.title}
                     category={article.category}
