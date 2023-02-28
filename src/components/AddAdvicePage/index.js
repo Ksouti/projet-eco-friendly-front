@@ -28,10 +28,10 @@ function AddAdvicePage() {
             <RichTextEditor />
           </div>
           <div className="button-wrapper">
-            <Button type="submit" color="primary">
+            <Button color="primary">
               Sauvegarder
             </Button>
-            <Button type="submit">
+            <Button outline color="primary">
               Supprimer
             </Button>
           </div>
