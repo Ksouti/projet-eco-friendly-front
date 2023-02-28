@@ -1,10 +1,18 @@
-import { USER_AUTHENTICATION_SUCCESS, USER_LOGOUT } from '../actions/user';
+import {
+  USER_AUTHENTICATION_SUCCESS,
+  USER_LOGOUT,
+  USER_REGISTER_SUCCESS,
+} from '../actions/user';
 
 import { ON_INPUT_CHANGE } from '../actions/common';
 
 export const initialState = {
   email: '',
   password: '',
+  confirmPassword: '',
+  firstname: '',
+  lastname: '',
+  nickname: '',
   token: '',
   isLogged: false,
   data: {},
@@ -34,6 +42,16 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.identifier]: action.value, // [action.identifier] is a computed property name
+      };
+    case USER_REGISTER_SUCCESS:
+      return {
+        ...state,
+        isLogged: true,
+        data: action.data,
+        token: '',
+        isLoaded: true,
+        email: '',
+        password: '',
       };
     default:
       return state;
