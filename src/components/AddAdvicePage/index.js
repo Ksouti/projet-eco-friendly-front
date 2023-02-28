@@ -29,6 +29,9 @@ function AddAdvicePage() {
           </div>
           <div className="button-wrapper">
             <Button color="primary">
+              Publier
+            </Button>
+            <Button>
               Sauvegarder
             </Button>
             <Button outline color="primary">
