@@ -1,5 +1,6 @@
 /**
- * Loading categories data action
+ * @name loadingCategoriesData
+ * @description Action creator for loading categories data
  * @returns {object} : the action
  */
 export const LOADING_CATEGORIES_DATA = 'LOADING_CATEGORIES_DATA';
@@ -9,7 +10,8 @@ export const loadingCategoriesData = () => ({
 });
 
 /**
- * Fetch categories data action
+ * @name fetchCategoriesFromApi
+ * @description Action creator for loading categories data
  * @param {object} data : the data to fetch
  * @returns {object} : the action
  */
@@ -21,8 +23,8 @@ export const fetchCategoriesFromApi = (data) => ({
 });
 
 /**
- * Modal opening  action
- *
+ * @name loadingCategoriesData
+ * @description Action creator for loading categories data
  * @param {ReactNodeLike} modalContent
  * @returns {object} : the action
  */
@@ -34,7 +36,8 @@ export const openModal = (modalContent) => ({
 });
 
 /**
- * Modal closing action
+ * @name closeModal
+ * @description Action creator for closing the modal
  * @returns {object} : the action
  */
 export const CLOSE_MODAL = 'CLOSE_MODAL';
@@ -44,8 +47,8 @@ export const closeModal = () => ({
 });
 
 /**
- * Listen to the change in input type fields
- *
+ * @name onInputChange
+ * @description Action creator for changing the value of an input
  * @param {string} value : the value of the input
  * @param {string} identifier : the name of the input
  * @returns {object} : the action
