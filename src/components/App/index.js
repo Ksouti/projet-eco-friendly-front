@@ -3,8 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { userLogin } from '../../actions/user';
-import { loadingArticlesData } from '../../actions/articles';
-import { loadingAdvicesData } from '../../actions/advices';
+
+import {
+  // loadingArticlesData,
+  loadingLastFourArticles,
+} from '../../actions/articles';
+import {
+  // loadingAdvicesData,
+  loadingLastFourAdvices,
+} from '../../actions/advices';
+
 import { loadingCategoriesData } from '../../actions/common';
 
 import Navbar from '../Navbar';
@@ -26,17 +34,24 @@ function App() {
   const dispatch = useDispatch();
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
-  /* fetch categories data from api & use data with props */
-  // const categoriesIsLoaded = useSelector((state) => state.common.isLoaded);
   const categories = useSelector((state) => state.common.categories);
-
+  const lastFourArticlesIsLoaded = useSelector(
+    (state) => state.articles.isLoaded,
+  );
+  const lastFourAdvicesIsLoaded = useSelector(
+    (state) => state.advices.isLoaded,
+  );
   const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
   const modalContent = useSelector((state) => state.common.modalContent);
 
   useEffect(() => {
     dispatch(loadingCategoriesData());
-    dispatch(loadingArticlesData());
-    dispatch(loadingAdvicesData());
+    dispatch(loadingLastFourArticles());
+    dispatch(loadingLastFourAdvices());
+
+    // dispatch(loadingArticlesData());
+    // dispatch(loadingAdvicesData());
+
     /**
      * Force Authentification success for test user the page
     /* please remove this line when you will have a real user authentification
@@ -50,7 +65,10 @@ function App() {
       <header className="header">
         {categories && <Navbar categories={categories} />}
       </header>
-      {articlesIsLoaded && advicesIsLoaded ? (
+      {articlesIsLoaded &&
+      advicesIsLoaded &&
+      lastFourArticlesIsLoaded &&
+      lastFourAdvicesIsLoaded ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/categories/:name" element={<CategoryPage />} />
