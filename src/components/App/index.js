@@ -6,9 +6,11 @@ import { useState, useEffect } from 'react';
 
 import {
   loadingArticlesData,
+  loadingArticlesData,
   loadingLastFourArticles,
 } from '../../actions/articles';
 import {
+  loadingAdvicesData,
   loadingAdvicesData,
   loadingLastFourAdvices,
 } from '../../actions/advices';
@@ -70,6 +72,10 @@ function App() {
       <header className="header">
         <Navbar categories={categories} />
       </header>
+      {articlesIsLoaded &&
+      advicesIsLoaded &&
+      lastFourArticlesIsLoaded &&
+      lastFourAdvicesIsLoaded ? (
       {articlesIsLoaded &&
       advicesIsLoaded &&
       lastFourArticlesIsLoaded &&
