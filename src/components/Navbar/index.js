@@ -2,10 +2,15 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-confusing-arrow */
 
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { openModal } from '../../actions/common';
+import AuthForm from '../Form/AuthForm';
 
 import Hamburger from './Hamburger';
+import Button from '../Button';
 
 import navBarLogo from '../../assets/logos/logo-typo-l.png';
 import navBarAvatar from '../../assets/avatar/avatar-2.png';
@@ -15,17 +20,15 @@ import './styles.scss';
 function Navbar({ categories }) {
   const activeClassName = 'button active';
 
+  const isLogged = useSelector((state) => state.user.isLogged);
+
   return (
     <div className="navbar">
       <div className="navbar-top">
         <Hamburger />
         <span className="empty"> empty </span>
         <img src={navBarLogo} alt="logo" className="navbar-logo" />
-
-        <div className="login">
-          <p className="login-message">Salut Johnny !</p>
-          <img src={navBarAvatar} alt="avatar" className="login-avatar" />
-        </div>
+        {isLogged ? <UserLogged /> : <UserNotLogged />}
       </div>
 
       <nav className="navigation">
@@ -69,3 +72,28 @@ Navbar.propTypes = {
     }),
   ).isRequired,
 };
+
+function UserNotLogged() {
+  const dispatch = useDispatch();
+
+  return (
+    <div className="login">
+      <Button
+        link
+        color="secondary"
+        onclick={() => dispatch(openModal(<AuthForm />))}
+      >
+        Connexion/Inscription
+      </Button>
+    </div>
+  );
+}
+
+function UserLogged() {
+  return (
+    <div className="login">
+      <p className="login-message">Salut Johnny !</p>
+      <img src={navBarAvatar} alt="avatar" className="login-avatar" />
+    </div>
+  );
+}
