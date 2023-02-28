@@ -111,11 +111,11 @@
           background-color: vars.$primaryColorDark;
           color: vars.$whiteColor;
         }
+      }
 
-        .active {
-          background-color: vars.$primaryColorDark;
-          color: vars.$whiteColor;
-        }
+      .active {
+        background-color: vars.$primaryColorDark;
+        color: vars.$whiteColor;
       }
     }
   }
