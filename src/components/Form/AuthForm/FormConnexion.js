@@ -1,10 +1,24 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import PropTypes from 'prop-types';
+
+import { OnInputChange } from '../../../actions/common';
+
 import Input from '../../Field/Input';
 import Button from '../../Button';
 
 import './styles.scss';
 
 export default function FormConnexion({ toggleForm }) {
-  let handleSubmit, handleChange, email, password;
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+
+  const changeField = (value, identifier) => {
+    dispatch(OnInputChange(value, identifier));
+  };
+
+  let handleSubmit;
 
   return (
     <div className="connexion">
@@ -14,7 +28,7 @@ export default function FormConnexion({ toggleForm }) {
           type="email"
           name="email"
           placeholder="Email"
-          onChange={handleChange}
+          onChange={changeField}
           value={email}
           color="primary"
         />
@@ -22,7 +36,7 @@ export default function FormConnexion({ toggleForm }) {
           type="password"
           name="password"
           placeholder="Mot de passe"
-          onChange={handleChange}
+          onChange={changeField}
           value={password}
           color="primary"
         />
@@ -31,7 +45,7 @@ export default function FormConnexion({ toggleForm }) {
         </Button>
       </form>
       <p className="link">
-        Première fois ?{' '}
+        Première fois ?
         <Button type="button" color="link-primary" onclick={() => toggleForm()}>
           S'inscrire
         </Button>
@@ -39,3 +53,7 @@ export default function FormConnexion({ toggleForm }) {
     </div>
   );
 }
+
+FormConnexion.propTypes = {
+  toggleForm: PropTypes.func.isRequired,
+};
