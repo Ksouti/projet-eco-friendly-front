@@ -1,16 +1,38 @@
+import { useDispatch, useSelector } from 'react-redux';
+
+import PropTypes from 'prop-types';
+
+import { OnInputChange, closeModal } from '../../../actions/common';
+import { userRegister } from '../../../actions/user';
+
 import Input from '../../Field/Input';
 import Button from '../../Button';
 
 import './styles.scss';
 
 export default function FormRegister({ toggleForm }) {
-  let handleSubmit,
-    handleChange,
-    email,
-    password,
-    nickname,
-    lastname,
-    firstname;
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+  const confirmPassword = useSelector((state) => state.user.confirmPassword);
+  const firstname = useSelector((state) => state.user.firstname);
+  const lastname = useSelector((state) => state.user.lastname);
+  const nickname = useSelector((state) => state.user.nickname);
+
+  const changeField = (value, identifier) => {
+    dispatch(OnInputChange(value, identifier));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      console.log('Les mots de passe ne correspondent pas'); // dev only
+      // TODO: afficher un message d'erreur
+      return;
+    }
+    dispatch(userRegister());
+    dispatch(closeModal());
+  };
 
   return (
     <div className="inscription">
@@ -20,7 +42,7 @@ export default function FormRegister({ toggleForm }) {
           type="email"
           name="email"
           placeholder="Email"
-          onChange={handleChange}
+          onChange={changeField}
           value={email}
           color="primary"
         />
@@ -28,23 +50,23 @@ export default function FormRegister({ toggleForm }) {
           type="password"
           name="password"
           placeholder="Mot de passe"
-          onChange={handleChange}
+          onChange={changeField}
           value={password}
           color="primary"
         />
         <Input
           type="password"
-          name="confirme-password"
+          name="confirmPassword"
           placeholder="Confirmation du mot de passe"
-          onChange={handleChange}
-          value={password}
+          onChange={changeField}
+          value={confirmPassword}
           color="primary"
         />
         <Input
           type="text"
           name="nickname"
           placeholder="Pseudo"
-          onChange={handleChange}
+          onChange={changeField}
           value={nickname}
           color="primary"
         />
@@ -53,7 +75,7 @@ export default function FormRegister({ toggleForm }) {
           type="text"
           name="lastname"
           placeholder="Nom de famille"
-          onChange={handleChange}
+          onChange={changeField}
           value={lastname}
           color="primary"
         />
@@ -61,7 +83,7 @@ export default function FormRegister({ toggleForm }) {
           type="text"
           name="firstname"
           placeholder="Prénom"
-          onChange={handleChange}
+          onChange={changeField}
           value={firstname}
           color="primary"
         />
@@ -78,3 +100,7 @@ export default function FormRegister({ toggleForm }) {
     </div>
   );
 }
+
+FormRegister.propTypes = {
+  toggleForm: PropTypes.func.isRequired,
+};
