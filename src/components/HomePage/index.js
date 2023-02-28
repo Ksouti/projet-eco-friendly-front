@@ -6,11 +6,9 @@ import Card from '../Card';
 
 import './styles.scss';
 
-// import advices from '../../data/lastFourAdvices';
-
 function HomePage() {
-  const articles = useSelector((state) => state.articles.data);
-  const advices = useSelector((state) => state.advices.data);
+  const articles = useSelector((state) => state.articles.lastFourArticles);
+  const advices = useSelector((state) => state.advices.lastFourAdvices);
 
   return (
     <Page>
