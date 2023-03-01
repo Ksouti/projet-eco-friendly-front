@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export default {
-  env: 'dev', // dev or prod
+  env: 'prod', // dev or prod
   baseUrl: 'http://vps-79770841.vps.ovh.net',
   apiBaseUrl: 'http://vps-79770841.vps.ovh.net/api',
   socialMedia: [
