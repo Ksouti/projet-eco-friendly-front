@@ -29,7 +29,7 @@ function ArticlePage() {
         <div className="article">
           <div className="article-elements">
             <img
-              src="https://picsum.photos/id/183/300/450.jpg"
+              src="https://picsum.photos/id/2/300/450.jpg"
               alt="titre"
               className="article-elements-img"
             />
@@ -48,12 +48,16 @@ function ArticlePage() {
               excepturi.
             </p>
           </div>
-          <Button />
+          {/* <Button
+            type="button"
+            className="article-button-return"
+            // onClick="" aller à la page catégorie précédente
+          /> */}
         </div>
 
-        <AdvicesCardsList />
+        {/* <AdvicesCardsList /> */}
         {/* without composant AdvicesCardsList :  */}
-        {/* <div className="advices">
+        <div className="advices">
           <h2 className="advices-sentence">Suivez vos conseils</h2>
           <div className="advices-list">
             {advices.map((advice) => (
@@ -66,7 +70,7 @@ function ArticlePage() {
               </div>
             ))}
           </div>
-        </div> */}
+        </div>
       </div>
     </Page>
   );

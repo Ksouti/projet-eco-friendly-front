@@ -81,4 +81,59 @@
       }
     }
   }
+
+  // RESPONSIVE mdr +760 =======================================================
+  @include screen(md) {
+    display: flex;
+
+    // Element 1 : articles
+    .article {
+      &-elements {
+        &-top {
+          border-top: 0.125rem solid vars.$primaryColor;
+          // padding-bottom: 1rem;
+          margin-top: 2rem;
+        }
+        &-text {
+          margin: 1.5rem 5rem;
+        }
+      }
+    }
+
+    // Element 2 : advices
+    .advices {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      border: 0.1rem solid vars.$secondaryBorderColor;
+      padding: 0 1rem;
+      margin: 1rem 0 0 1rem; // added for ArticlePAge
+
+      &-sentence {
+        text-align: center;
+        font-size: large;
+        padding: 0.7rem;
+      }
+
+      &-list {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    .advice-card {
+      display: flex;
+      justify-content: center;
+
+      .card {
+        width: 17rem;
+        height: 9rem;
+        margin: 1rem 1rem 2rem;
+
+        .summary {
+          display: block;
+        }
+      }
+    }
+  }
 }
