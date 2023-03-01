@@ -3,7 +3,6 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useState, useEffect } from 'react';
 
 import { findItemsByCategory } from '../../utils';
 import { loadingLastArticleData } from '../../actions/articles';
@@ -11,8 +10,6 @@ import { loadingLastArticleData } from '../../actions/articles';
 import Page from '../Page';
 import Card from '../Card';
 import Loader from '../Loader';
-
-import config from '../../config';
 
 import config from '../../config';
 
