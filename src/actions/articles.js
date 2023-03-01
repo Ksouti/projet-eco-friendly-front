@@ -35,14 +35,14 @@ export const loadingLastArticleData = () => ({
 
 /**
  * Fetch last article data from API
- * @param {array} list
+ * @param {object} data
  * @returns {object}
  */
 export const FETCH_LAST_ARTICLE_FROM_API = 'FETCH_LAST_ARTICLE_FROM_API';
 
-export const fetchLastArticleFromApi = (lastArticleData) => ({
+export const fetchLastArticleFromApi = (data) => ({
   type: FETCH_LAST_ARTICLE_FROM_API,
-  lastArticleData,
+  data,
 });
 
 /**
