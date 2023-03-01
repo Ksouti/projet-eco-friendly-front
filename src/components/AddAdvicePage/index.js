@@ -1,34 +1,81 @@
-import './styles.scss';
-import RichTextEditor from '../RichTextEditor';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { OnInputChange } from '../../actions/common';
+
 import Page from '../Page';
 import Input from '../Field/Input';
 import Button from '../Button';
 
+import RichTextEditor from '../RichTextEditor';
+
+import config from '../../config';
+
+import './styles.scss';
+
 function AddAdvicePage() {
+  const dispatch = useDispatch();
+  const addTitle = useSelector((state) => state.advices.addTitle);
+  const addContent = useSelector((state) => state.advices.addContent);
+
+  const [categories, setCategories] = useState(
+    useSelector((state) => state.common.categories),
+  );
+
+  /* If there is no categories in the state, we set the default categories */
+  if (categories.length === 0) {
+    setCategories(config.defaultNavLinks);
+  }
+
+  const changeField = (value, identifier) => {
+    dispatch(OnInputChange(value, identifier));
+  };
+
+  const onSelectChange = (e) => {
+    dispatch(OnInputChange(e.target.value, 'addCategory'));
+  };
+
+  const OnRichTextEditorChange = (e) => {
+    dispatch(OnInputChange(e, 'addContent'));
+  };
+
   return (
     <Page>
       <div className="add-advice">
         <div className="title">Ajouter un conseil</div>
         <form>
           <div className="row">
-            <select name="category" id="category" className="advice-select">
-              <option value="" hidden>
-                Catégories
-              </option>
-              <option value="1">Mobilité</option>
-              <option value="2">Maison</option>
-              <option value="3">Santé</option>
-              <option value="4">Énergie</option>
+            <select
+              name="addCategory"
+              id="category"
+              className="advice-select"
+              onChange={onSelectChange}
+            >
+              <option hidden>Catégories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
             </select>
             <Input
               type="text"
-              name="title"
-              color="primary"
+              name="addTitle"
               placeholder="Titre"
-              value=""
+              onChange={changeField}
+              value={addTitle}
+              color="primary"
             />
           </div>
-          <RichTextEditor />
+          {/* Search in the Rich Text Editor documentation */}
+          {/* how to link the component with a Redux store */}
+          <div className="text-editor">
+            <RichTextEditor
+              name="addContent"
+              value={addContent}
+              onChange={OnRichTextEditorChange}
+            />
+          </div>
           <div className="button-wrapper">
             <Button color="primary">Publier</Button>
             <Button>Sauvegarder</Button>
