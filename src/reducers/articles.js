@@ -6,7 +6,7 @@ import {
 
 export const initialState = {
   data: [],
-  lastArticleData: {},
+  lastArticleData: [{}],
   lastArticleDataIsLoaded: false,
   isLoaded: false,
   lastFourArticles: [],
