@@ -25,7 +25,7 @@ export const fetchArticlesFromApi = (data) => ({
 
 /**
  * @name loadingLastArticleData
- * @description Action creator for loading last article data by category
+ * @description Action creator for loading last article data
  * @returns {object}
  */
 export const LOADING_LAST_ARTICLE_DATA = 'LOADING_LAST_ARTICLE_DATA';
@@ -37,7 +37,7 @@ export const loadingLastArticleData = (id) => ({
 
 /**
  * @name fetchLastArticleFromApi
- * @description Action creator to get the data of the last article by category
+ * @description Action creator to get the data of the last article
  * @param {object} data
  * @returns {object}
  */
