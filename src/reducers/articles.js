@@ -5,6 +5,8 @@ import {
 
 export const initialState = {
   data: [],
+  lastArticleData: {},
+  lastArticleDataIsLoaded: false,
   isLoaded: false,
 };
 
@@ -20,8 +22,8 @@ const reducer = (state = initialState, action = {}) => {
     case FETCH_LAST_ARTICLE_FROM_API:
       return {
         ...state,
-        data: action.lastArticleData,
-        isLoaded: true,
+        lastArticleData: action.data,
+        lastArticleDataIsLoaded: true,
       };
 
     default:
