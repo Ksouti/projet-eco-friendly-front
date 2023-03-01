@@ -1,3 +1,5 @@
+/* eslint-disable brace-style */
+import axios from 'axios';
 import {
   LOADING_ARTICLES_DATA,
   fetchArticlesFromApi,
@@ -7,6 +9,8 @@ import {
   fetchLastFourArticlesFromApi,
 } from '../actions/articles';
 
+import config from '../config';
+
 import articles from '../data/articles'; // dev only
 import article from '../data/lastArticle'; // dev only
 import lastFourArticles from '../data/lastFourArticles'; // dev only
@@ -14,17 +18,24 @@ import lastFourArticles from '../data/lastFourArticles'; // dev only
 const articlesMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOADING_ARTICLES_DATA:
-      console.log('Middleware: loading articles data'); // dev only
-      store.dispatch(fetchArticlesFromApi(articles)); // dev only
+      if (config.env === 'dev') {
+        store.dispatch(fetchArticlesFromApi(articles));
+      } else {
+        store.dispatch(fetchArticlesFromApi(articles)); // dev only
+        axios
+          .get(`${config.apiBaseUrl}/articles`)
+          .then((response) => {
+            store.dispatch(fetchArticlesFromApi(response.data));
+          })
+          .catch((error) => `Error: ${error.message}`);
+      }
       break;
 
     case LOADING_LAST_ARTICLE_DATA:
-      console.log('Middleware: loading last article data'); // dev only
       store.dispatch(fetchLastArticleFromApi(article)); // dev only
       break;
 
     case LOADING_LAST_FOUR_ARTICLES:
-      console.log('Middleware: loading last four articles data'); // dev only
       store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
       break;
     default:
