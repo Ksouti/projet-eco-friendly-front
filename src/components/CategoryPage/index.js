@@ -3,6 +3,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { findItemsByCategory } from '../../utils';
 import { loadingLastArticleData } from '../../actions/articles';
@@ -10,6 +11,8 @@ import { loadingLastArticleData } from '../../actions/articles';
 import Page from '../Page';
 import Card from '../Card';
 import Loader from '../Loader';
+
+import config from '../../config';
 
 import config from '../../config';
 
@@ -46,9 +49,15 @@ function CategoryPage() {
     findItemsByCategory(state.articles.data, name),
   );
 
-  const lastArticleArray = useSelector(
-    (state) => state.articles.lastArticleData,
-  );
+  const lastArticle = useSelector((state) => state.articles.lastArticleData);
+
+  /* If there is no categories in the state, we set the default categories */
+  if (categories.length === 0) {
+    setCategories(config.defaultNavLinks);
+  }
+
+  /* Find the category in the categories array */
+  const category = categories.find((item) => item.slug === name);
 
   return (
     <Page>
@@ -72,16 +81,13 @@ function CategoryPage() {
             </div>
             <div className="articles">
               <div className="articles-top">
-                {lastArticleArray.map((lastArticle) => (
-                  <Card
-                    key={lastArticle.id}
-                    picture={lastArticle.picture}
-                    title={lastArticle.title}
-                    category={lastArticle.category}
-                    content={lastArticle.content}
-                    format="horizontal"
-                  />
-                ))}
+                <Card
+                  picture={lastArticle.picture}
+                  title={lastArticle.title}
+                  category={lastArticle.category}
+                  content={lastArticle.content}
+                  format="horizontal"
+                />
               </div>
               <div className="articles-list">
                 {articles.map((article) => (
