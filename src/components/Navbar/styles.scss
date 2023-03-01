@@ -38,7 +38,7 @@
     display: none;
   }
 
-  // RESPONSIVE lg + 1024px =======================================================
+  // RESPONSIVE lg + 1024px ===================================================
   @include screen(md) {
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@
       }
 
       .navbar-logo {
-        width: 30vh;
+        width: 16vw;
         margin: 1rem;
       }
 

@@ -93,13 +93,30 @@
     }
   }
 
-  &-link-primary {
-    color: vars.$textColorPrimary;
-    background-color: vars.$whiteColor;
+  &-link-primary,
+  &-link-secondary {
+    background-color: transparent;
     border-color: transparent;
 
     &:hover {
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
+
+  &-link-primary {
+    color: vars.$textColorPrimary;
+
+    &:hover {
       color: vars.$primaryColorHover;
+    }
+  }
+
+  &-link-secondary {
+    color: vars.$textColorSecondary;
+
+    &:hover {
+      color: vars.$secondaryColorHover;
     }
   }
   /* end style attribute */
