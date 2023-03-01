@@ -7,6 +7,7 @@
 
 import Page from '../Page';
 import Card from '../Card';
+import AdvicesCardsList from '../AdvicesCardsList';
 
 import './styles.scss';
 
@@ -50,7 +51,9 @@ function ArticlePage() {
           <Button />
         </div>
 
-        <div className="advices">
+        <AdvicesCardsList />
+        {/* without composant AdvicesCardsList :  */}
+        {/* <div className="advices">
           <h2 className="advices-sentence">Suivez vos conseils</h2>
           <div className="advices-list">
             {advices.map((advice) => (
@@ -63,7 +66,7 @@ function ArticlePage() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </Page>
   );
