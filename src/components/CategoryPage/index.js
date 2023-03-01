@@ -16,15 +16,23 @@ import config from '../../config';
 import './styles.scss';
 
 function CategoryPage() {
+  const dispatch = useDispatch();
   const { name } = useParams();
   const [categories, setCategories] = useState(
     useSelector((state) => state.common.categories),
   );
-  const dispatch = useDispatch();
+
+  /* Find the category in the categories array */
+  const category = categories.find((item) => item.slug === name);
+
+  /* If there is no categories in the state, we set the default categories */
+  if (categories.length === 0) {
+    setCategories(config.defaultNavLinks);
+  }
 
   useEffect(() => {
-    dispatch(loadingLastArticleData());
-  }, []);
+    dispatch(loadingLastArticleData(category.id));
+  }, [category]);
 
   const articleIsLoaded = useSelector(
     (state) => state.articles.lastArticleDataIsLoaded,
@@ -38,19 +46,13 @@ function CategoryPage() {
     findItemsByCategory(state.articles.data, name),
   );
 
-  const lastArticle = useSelector((state) => state.articles.lastArticleData);
-
-  /* If there is no categories in the state, we set the default categories */
-  if (categories.length === 0) {
-    setCategories(config.defaultNavLinks);
-  }
-
-  /* Find the category in the categories array */
-  const category = categories.find((item) => item.slug === name);
+  const lastArticleArray = useSelector(
+    (state) => state.articles.lastArticleData,
+  );
 
   return (
     <Page>
-      {articleIsLoaded ? (
+      {advices && articles && articleIsLoaded ? (
         <div className="category-page">
           <h1 className="category-sentence">{category.tagline}</h1>
           <div className="category-elements">
@@ -70,13 +72,16 @@ function CategoryPage() {
             </div>
             <div className="articles">
               <div className="articles-top">
-                <Card
-                  picture={lastArticle.picture}
-                  title={lastArticle.title}
-                  category={lastArticle.category}
-                  content={lastArticle.content}
-                  format="horizontal"
-                />
+                {lastArticleArray.map((lastArticle) => (
+                  <Card
+                    key={lastArticle.id}
+                    picture={lastArticle.picture}
+                    title={lastArticle.title}
+                    category={lastArticle.category}
+                    content={lastArticle.content}
+                    format="horizontal"
+                  />
+                ))}
               </div>
               <div className="articles-list">
                 {articles.map((article) => (
