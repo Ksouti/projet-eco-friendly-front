@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export default {
+  env: 'dev', // dev or prod
   baseUrl: 'http://vps-79770841.vps.ovh.net',
   apiBaseUrl: 'http://vps-79770841.vps.ovh.net/api',
   socialMedia: [
@@ -21,24 +22,28 @@ export default {
   ],
   defaultNavLinks: [
     {
-      name: 'Accueil',
-      url: '/',
-    },
-    {
+      id: 1,
       name: 'Mobilité',
-      url: 'categories/mobilite',
+      tagline: 'Nisi repudiandae explicabo velit culpa.',
+      slug: 'mobilite',
     },
     {
+      id: 2,
       name: 'Maison',
-      url: 'categories/maison',
+      tagline: 'Quas placeat autem et dolores quos.',
+      slug: 'maison',
     },
     {
+      id: 3,
       name: 'Santé',
-      url: 'categories/sante',
+      tagline: 'Veritatis aut saepe quia error quia maiores sed.',
+      slug: 'sante',
     },
     {
+      id: 4,
       name: 'Energie',
-      url: 'categories/energie',
+      tagline: 'Consequatur ipsam porro porro temporibus.',
+      slug: 'energie',
     },
   ],
 };
