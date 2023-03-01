@@ -49,15 +49,9 @@ function CategoryPage() {
     findItemsByCategory(state.articles.data, name),
   );
 
-  const lastArticle = useSelector((state) => state.articles.lastArticleData);
-
-  /* If there is no categories in the state, we set the default categories */
-  if (categories.length === 0) {
-    setCategories(config.defaultNavLinks);
-  }
-
-  /* Find the category in the categories array */
-  const category = categories.find((item) => item.slug === name);
+  const lastArticleArray = useSelector(
+    (state) => state.articles.lastArticleData,
+  );
 
   return (
     <Page>
@@ -81,13 +75,16 @@ function CategoryPage() {
             </div>
             <div className="articles">
               <div className="articles-top">
-                <Card
-                  picture={lastArticle.picture}
-                  title={lastArticle.title}
-                  category={lastArticle.category}
-                  content={lastArticle.content}
-                  format="horizontal"
-                />
+                {lastArticleArray.map((lastArticle) => (
+                  <Card
+                    key={lastArticle.id}
+                    picture={lastArticle.picture}
+                    title={lastArticle.title}
+                    category={lastArticle.category}
+                    content={lastArticle.content}
+                    format="horizontal"
+                  />
+                ))}
               </div>
               <div className="articles-list">
                 {articles.map((article) => (
