@@ -1,19 +1,26 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 import { findItemsByCategory } from '../../utils';
+import { fetchLastArticleFromApi } from '../../actions/articles';
 
 import Page from '../Page';
 import Card from '../Card';
 
 import './styles.scss';
 
-import article from 'src/data/lastArticle';
+// import article from 'src/data/lastArticle';
 // import articles from 'src/data/articles';
 // import advices from 'src/data/advices';
 
 function CategoryPage() {
   const { name } = useParams();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchLastArticleFromApi());
+  });
 
   const advices = useSelector((state) =>
     findItemsByCategory(state.advices.data, name),
@@ -22,6 +29,7 @@ function CategoryPage() {
   const articles = useSelector((state) =>
     findItemsByCategory(state.articles.data, name),
   );
+
   console.log(articles);
 
   return (
