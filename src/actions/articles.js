@@ -11,8 +11,8 @@ export const loadingArticlesData = () => ({
 });
 
 /**
- * @name loadingLastFourArticles
- * @description Action creator for loading last four articles data
+ * @name fetchArticlesFromApi
+ * @description Action creator to get a list of the articles data
  * @param {array} data
  * @returns {object}
  */
@@ -24,7 +24,8 @@ export const fetchArticlesFromApi = (data) => ({
 });
 
 /**
- * Loading last article data
+ * @name loadingLastArticleData
+ * @description Action creator for loading last article data
  * @returns {object}
  */
 export const LOADING_LAST_ARTICLE_DATA = 'LOADING_LAST_ARTICLE_DATA';
@@ -34,7 +35,8 @@ export const loadingLastArticleData = () => ({
 });
 
 /**
- * Fetch last article data from API
+ * @name fetchLastArticleFromApi
+ * @description Action creator to get the data of the last article
  * @param {object} data
  * @returns {object}
  */
@@ -58,7 +60,7 @@ export const loadingLastFourArticles = () => ({
 
 /**
  * @name fetchLastFourArticlesFromApi
- * @description Action creator for loading last four articles data
+ * @description Action creator to get a list of the last four articles data
  * @param {array} data
  * @returns {object}
  * */
