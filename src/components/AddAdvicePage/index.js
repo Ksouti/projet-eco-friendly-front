@@ -67,8 +67,6 @@ function AddAdvicePage() {
               color="primary"
             />
           </div>
-          {/* Search in the Rich Text Editor documentation */}
-          {/* how to link the component with a Redux store */}
           <div className="text-editor">
             <RichTextEditor
               name="addContent"
