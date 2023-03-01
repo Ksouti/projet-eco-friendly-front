@@ -17,21 +17,21 @@
         display: table-cell;
       }
     }
+  }
 
-    /* md: 768px */
-    @include screen(md) {
-      .account {
-        &-inner {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 2rem;
-        }
+  /* md: 768px */
+  @include screen(md) {
+    .account {
+      &-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
 
-        &-user,
-        &-controllers {
-          align-self: end;
-          justify-self: center;
-        }
+      &-user,
+      &-controllers {
+        align-self: end;
+        justify-self: center;
       }
     }
   }
