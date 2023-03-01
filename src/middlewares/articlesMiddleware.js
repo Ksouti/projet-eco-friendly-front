@@ -21,7 +21,6 @@ const articlesMiddleware = (store) => (next) => (action) => {
       if (config.env === 'dev') {
         store.dispatch(fetchArticlesFromApi(articles));
       } else {
-        store.dispatch(fetchArticlesFromApi(articles)); // dev only
         axios
           .get(`${config.apiBaseUrl}/articles`)
           .then((response) => {
@@ -32,7 +31,18 @@ const articlesMiddleware = (store) => (next) => (action) => {
       break;
 
     case LOADING_LAST_ARTICLE_DATA:
-      store.dispatch(fetchLastArticleFromApi(article)); // dev only
+      if (config.env === 'dev') {
+        store.dispatch(fetchLastArticleFromApi(article)); // dev only
+      } else {
+        axios
+          .get(
+            `${config.apiBaseUrl}/articles?category=${action.id}&limit=1&sorttype=created_at&order=DESC`,
+          )
+          .then((response) => {
+            store.dispatch(fetchLastArticleFromApi(response.data));
+          })
+          .catch((error) => `Error: ${error.message}`);
+      }
       break;
 
     case LOADING_LAST_FOUR_ARTICLES:
