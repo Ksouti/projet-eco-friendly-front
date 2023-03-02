@@ -1,7 +1,5 @@
 import './styles.scss';
-import RichTextEditor from '../RichTextEditor';
 import Page from '../Page';
-import Input from '../Field/Input';
 import Button from '../Button';
 
 const NotFoundPage = () => (
