@@ -29,7 +29,6 @@ const articlesMiddleware = (store) => (next) => (action) => {
           .catch((error) => `Error: ${error.message}`);
       }
       break;
-
     case LOADING_LAST_ARTICLE_DATA:
       if (config.env === 'dev') {
         store.dispatch(fetchLastArticleFromApi(article)); // dev only
@@ -44,11 +43,6 @@ const articlesMiddleware = (store) => (next) => (action) => {
           .catch((error) => `Error: ${error.message}`);
       }
       break;
-
-    case LOADING_LAST_FOUR_ARTICLES:
-      store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
-      break;
-
     case LOADING_LAST_FOUR_ARTICLES:
       store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
       break;
