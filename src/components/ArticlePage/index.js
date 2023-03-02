@@ -2,6 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Page from '../Page';
 import Card from '../Card';
@@ -56,11 +57,13 @@ function ArticlePage() {
           <div className="advices-list">
             {advices.map((advice) => (
               <div key={advice.id} className="advice-card">
-                <Card
-                  title={advice.title}
-                  category={advice.category}
-                  content={advice.content}
-                />
+                <Link to={`/conseils/${advice.slug}`}>
+                  <Card
+                    title={advice.title}
+                    category={advice.category}
+                    content={advice.content}
+                  />
+                </Link>
               </div>
             ))}
           </div>
