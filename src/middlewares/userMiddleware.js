@@ -6,6 +6,8 @@ import {
   USER_REGISTER,
   userRegisterSuccess,
   userAuthenticationError,
+  USER_ADVICES,
+  getUserAdvices,
 } from '../actions/user';
 
 import config from '../config';
@@ -16,6 +18,7 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case USER_LOGIN:
       if (config.env === 'dev') {
+        console.log(user);
         store.dispatch(userAuthenticationSuccess(user));
       } else {
         axios
@@ -58,6 +61,24 @@ const userMiddleware = (store) => (next) => (action) => {
           })
           .then((response) => {
             store.dispatch(userRegisterSuccess(response.data));
+          })
+          .catch((error) => {
+            store.dispacth(userAuthenticationError(error));
+          });
+      }
+      break;
+    case USER_ADVICES:
+      if (config.env === 'dev') {
+        store.dispatch(getUserAdvices(user.advices));
+      } else {
+        axios
+          .get(`${config.apiBaseUrl}/advices/${store.getState().user.id}`, {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          })
+          .then((response) => {
+            store.dispatch(getUserAdvices(response.data));
           })
           .catch((error) => {
             store.dispacth(userAuthenticationError(error));
