@@ -3,7 +3,7 @@
 /* eslint-disable no-confusing-arrow */
 
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { openModal } from '../../actions/common';
@@ -97,11 +97,9 @@ function UserLogged({ nickname, avatar }) {
   return (
     <div className="login">
       <p className="login-message">{`Salut ${nickname} !`}</p>
-      <img
-        src={avatar}
-        alt={`avatar de ${nickname}`}
-        className="login-avatar"
-      />
+      <Link to={`/utilisateurs/${nickname}`} className="login-avatar">
+        <img src={avatar} alt={`avatar de ${nickname}`} />
+      </Link>
     </div>
   );
 }
