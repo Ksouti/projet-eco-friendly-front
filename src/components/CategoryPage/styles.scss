@@ -88,6 +88,13 @@
         }
       }
     }
+
+    // Element 2 : Advices
+    .advices {
+      &-list {
+        overflow: hidden;
+      }
+    }
   }
 
   // RESPONSIVE LG +1024 =======================================================
