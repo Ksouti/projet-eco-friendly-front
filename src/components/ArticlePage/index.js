@@ -1,16 +1,14 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 import { useParams } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
 
 import Page from '../Page';
+// import Button from '../Button';
 import AdvicesCardsList from '../AdvicesCardsList';
-
-import './styles.scss';
 
 import articles from '../../data/articles';
 
-// import Button from '../Button';
+import './styles.scss';
 
 function ArticlePage() {
   const { slug } = useParams();
