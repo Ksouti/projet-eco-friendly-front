@@ -13,7 +13,6 @@ import Hamburger from './Hamburger';
 import Button from '../Button';
 
 import navBarLogo from '../../assets/logos/logo-typo-l.png';
-import navBarAvatar from '../../assets/avatar/avatar-2.png';
 
 import './styles.scss';
 
@@ -21,6 +20,7 @@ function Navbar({ categories }) {
   const activeClassName = 'button active';
 
   const isLogged = useSelector((state) => state.user.isLogged);
+  const user = useSelector((state) => state.user.data);
 
   return (
     <div className="navbar">
@@ -28,7 +28,11 @@ function Navbar({ categories }) {
         <Hamburger />
         <span className="empty"> empty </span>
         <img src={navBarLogo} alt="logo" className="navbar-logo" />
-        {isLogged ? <UserLogged /> : <UserNotLogged />}
+        {isLogged ? (
+          <UserLogged nickname={user.nickname} avatar={user.avatar} />
+        ) : (
+          <UserNotLogged />
+        )}
       </div>
 
       <nav className="navigation">
@@ -89,11 +93,20 @@ function UserNotLogged() {
   );
 }
 
-function UserLogged() {
+function UserLogged({ nickname, avatar }) {
   return (
     <div className="login">
-      <p className="login-message">Salut Johnny !</p>
-      <img src={navBarAvatar} alt="avatar" className="login-avatar" />
+      <p className="login-message">{`Salut ${nickname} !`}</p>
+      <img
+        src={avatar}
+        alt={`avatar de ${nickname}`}
+        className="login-avatar"
+      />
     </div>
   );
 }
+
+UserLogged.propTypes = {
+  nickname: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
