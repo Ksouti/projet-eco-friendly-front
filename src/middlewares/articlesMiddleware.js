@@ -29,7 +29,6 @@ const articlesMiddleware = (store) => (next) => (action) => {
           .catch((error) => `Error: ${error.message}`);
       }
       break;
-
     case LOADING_LAST_ARTICLE_DATA:
       if (config.env === 'dev') {
         store.dispatch(fetchLastArticleFromApi(article)); // dev only
