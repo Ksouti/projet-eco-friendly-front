@@ -19,8 +19,8 @@ const userMiddleware = (store) => (next) => (action) => {
         store.dispatch(userAuthenticationSuccess(user));
       } else {
         axios
-          .post(config.apiBaseUrl, {
-            email: store.getState().user.email,
+          .post(`${config.apiBaseUrl}/login_check`, {
+            username: store.getState().user.email,
             password: store.getState().user.password,
           })
           .then((response) => {
@@ -44,7 +44,7 @@ const userMiddleware = (store) => (next) => (action) => {
         );
       } else {
         axios
-          .post(config.apiBaseUrl, {
+          .post(`${config.apiBaseUrl}/register`, {
             email: store.getState().user.email,
             password: store.getState().user.password,
             nickname: store.getState().user.nickname,
