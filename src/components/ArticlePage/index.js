@@ -1,27 +1,27 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
-// import { useParams } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-
-// import { findItem, findItemsByCategory } from '../../utils';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Page from '../Page';
 import Card from '../Card';
-import AdvicesCardsList from '../AdvicesCardsList';
+// import AdvicesCardsList from '../AdvicesCardsList';
 
 import './styles.scss';
 
-import advices from '../../data/advices';
-import Button from '../Button';
+// import advices from '../../data/advices';
+import articles from '../../data/articles';
+
+// import Button from '../Button';
 
 function ArticlePage() {
-  // const { slug } = useParams();
+  const { slug } = useParams();
 
-  // const article = useSelector((state) => findItem(state.articles.data, slug));
+  // Find the article in all articles
+  const article = articles.find((item) => item.slug === slug);
 
-  // const advices = useSelector((state) =>
-  //   findItemsByCategory(state.advices.data, name),
-  // );
+  // Find last four advices
+  const advices = useSelector((state) => state.advices.lastFourAdvices);
 
   return (
     <Page>
@@ -29,24 +29,18 @@ function ArticlePage() {
         <div className="article">
           <div className="article-elements">
             <img
-              src="https://picsum.photos/id/2/300/450.jpg"
+              src="https://picsum.photos/id/144/300/450.jpg"
               alt="titre"
               className="article-elements-img"
             />
             <div className="article-elements-top">
-              <h2 className="article-title">Titre de l'article</h2>
-              <span className="article-author">Jean Guy</span>
+              <h2 className="article-title">{article.title}</h2>
+              <span className="article-author">{article.author.nickname}</span>
               <time className="article-date" dateTime="2023-03-13">
-                13 mars 2023
+                {article.created_at}
               </time>
             </div>
-            <p className="article-elements-text">
-              Aliquid ut qui consequatur nobis perferendis. Vero eaque et
-              ducimus ut incidunt quo consequatur. Eos laboriosam laborum quo
-              aliquid qui non. Dignissimos atque quidem nemo occaecati dolorem
-              est dolores. Vitae et similique nulla voluptate itaque sit
-              excepturi.
-            </p>
+            <p className="article-elements-text">{article.content}</p>
           </div>
           {/* <Button
             type="button"
