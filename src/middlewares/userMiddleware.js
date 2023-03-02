@@ -24,7 +24,12 @@ const userMiddleware = (store) => (next) => (action) => {
             password: store.getState().user.password,
           })
           .then((response) => {
-            store.dispatch(userAuthenticationSuccess(response.data));
+            store.dispatch(
+              userAuthenticationSuccess(
+                response.data.token,
+                response.data.user,
+              ),
+            );
           })
           .catch((error) => {
             store.dispacth(userAuthenticationError(error));
