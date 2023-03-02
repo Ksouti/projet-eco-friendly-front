@@ -1,8 +1,8 @@
-/* eslint-disable operator-linebreak */
+/* eslint-disable indent */
 /* eslint-disable operator-linebreak */
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
   loadingArticlesData,
@@ -28,13 +28,18 @@ import LegalNoticePage from '../LegalNoticePage';
 import Loader from '../Loader';
 import Modal from '../Modal';
 
+import config from '../../config';
+
 import './styles.scss';
 
 function App() {
   const dispatch = useDispatch();
+  const [categories, setCategories] = useState(
+    useSelector((state) => state.common.categories),
+  );
+
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
-  const categories = useSelector((state) => state.common.categories);
 
   const lastFourArticlesIsLoaded = useSelector(
     (state) => state.articles.isLoaded,
@@ -43,24 +48,27 @@ function App() {
     (state) => state.advices.isLoaded,
   );
 
-  const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
-  const modalContent = useSelector((state) => state.common.modalContent);
-
   useEffect(() => {
     dispatch(loadingCategoriesData());
-
     dispatch(loadingLastFourArticles());
     dispatch(loadingLastFourAdvices());
-
     dispatch(loadingArticlesData());
     dispatch(loadingAdvicesData());
   }, []);
+
+  const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
+  const modalContent = useSelector((state) => state.common.modalContent);
+
+  /* If there is no categories in the state, we set the default categories */
+  if (categories.length === 0) {
+    setCategories(config.defaultNavLinks);
+  }
 
   return (
     <div className="app">
       {modalIsOpen && <Modal>{modalContent}</Modal>}
       <header className="header">
-        {categories && <Navbar categories={categories} />}
+        <Navbar categories={categories} />
       </header>
       {articlesIsLoaded &&
       advicesIsLoaded &&
