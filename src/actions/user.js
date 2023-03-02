@@ -97,3 +97,28 @@ export const userRegisterError = (error) => ({
   type: USER_REGISTER_ERROR,
   error,
 });
+
+/**
+ * @name UserAdvices
+ * @description Action creator for loading user advices
+ * @returns {object}
+ */
+
+export const USER_ADVICES = 'USER_ADVICES';
+
+export const loadingUserAdvices = () => ({
+  type: USER_ADVICES,
+});
+
+/** @name getUserAdvices
+ * @description Action creator for getting user advices
+ * @param {array} data
+ * @returns {object}
+ */
+
+export const GET_USER_ADVICES = 'GET_USER_ADVICES';
+
+export const getUserAdvices = (data) => ({
+  type: GET_USER_ADVICES,
+  data,
+});
