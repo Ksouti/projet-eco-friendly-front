@@ -21,6 +21,7 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case USER_LOGIN:
       if (config.env === 'dev') {
+        console.log(user);
         store.dispatch(userAuthenticationSuccess(user));
       } else {
         axios
