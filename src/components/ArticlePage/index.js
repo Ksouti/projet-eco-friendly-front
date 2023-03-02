@@ -1,15 +1,13 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
-import { useParams, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
 
 import Page from '../Page';
-import Card from '../Card';
-// import AdvicesCardsList from '../AdvicesCardsList';
+import AdvicesCardsList from '../AdvicesCardsList';
 
 import './styles.scss';
 
-// import advices from '../../data/advices';
 import articles from '../../data/articles';
 
 // import Button from '../Button';
@@ -19,9 +17,6 @@ function ArticlePage() {
 
   // Find the article in all articles
   const article = articles.find((item) => item.slug === slug);
-
-  // Find last four advices
-  const advices = useSelector((state) => state.advices.lastFourAdvices);
 
   return (
     <Page>
@@ -42,6 +37,7 @@ function ArticlePage() {
             </div>
             <p className="article-elements-text">{article.content}</p>
           </div>
+
           {/* <Button
             type="button"
             className="article-button-return"
@@ -49,26 +45,7 @@ function ArticlePage() {
           /> */}
         </div>
 
-        {/* <AdvicesCardsList /> */}
-        {/* without composant AdvicesCardsList :  */}
-        <div className="advices">
-          <h2 className="advices-sentence">Suivez vos conseils</h2>
-          <div className="advices-list">
-            {advices.map((advice) => (
-              <Link
-                to={`/conseils/${advice.slug}`}
-                key={advice.id}
-                className="advice-card"
-              >
-                <Card
-                  title={advice.title}
-                  category={advice.category}
-                  content={advice.content}
-                />
-              </Link>
-            ))}
-          </div>
-        </div>
+        <AdvicesCardsList />
       </div>
     </Page>
   );

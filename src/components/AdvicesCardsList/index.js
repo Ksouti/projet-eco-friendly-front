@@ -1,23 +1,15 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
-
-// !!! problems : les cards ne s'affichent pas
-
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-import { findItemsByCategory } from '../../utils';
 
 import Card from '../Card';
 
 import './styles.scss';
 
 function AdvicesCardsList() {
-  const { name } = useParams();
-
-  const advices = useSelector((state) =>
-    findItemsByCategory(state.advices.data, name),
-  );
+  // Find last four advices
+  const advices = useSelector((state) => state.advices.lastFourAdvices);
 
   return (
     <div className="advices">
