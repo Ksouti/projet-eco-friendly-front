@@ -2,6 +2,8 @@ import {
   FETCH_ARTICLES_FROM_API,
   FETCH_LAST_ARTICLE_FROM_API,
   FETCH_LAST_FOUR_ARTICLES_FROM_API,
+  /* SELECTED ARTICLE IN PROGRESS */
+  // FETCH_SELECTED_ARTICLE,
 } from '../actions/articles';
 
 export const initialState = {
@@ -10,6 +12,8 @@ export const initialState = {
   lastArticleDataIsLoaded: false,
   isLoaded: false,
   lastFourArticles: [],
+  /* SELECTED ARTICLE IN PROGRESS */
+  // selectedArticle: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -34,6 +38,14 @@ const reducer = (state = initialState, action = {}) => {
         lastFourArticles: action.data,
         isLoaded: true,
       };
+
+    /* SELECTED ARTICLE IN PROGRESS */
+    // case FETCH_SELECTED_ARTICLE:
+    //   return {
+    //     ...state,
+    //     selectedArticle: action.data,
+    //     isLoaded: true,
+    //   };
     default:
       return state;
   }

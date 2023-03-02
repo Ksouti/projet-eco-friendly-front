@@ -7,6 +7,10 @@ import {
   fetchLastArticleFromApi,
   LOADING_LAST_FOUR_ARTICLES,
   fetchLastFourArticlesFromApi,
+
+  /* SELECTED ARTICLE IN PROGRESS */
+  // LOADING_SELECTED_ARTICLE,
+  // fetchSelectedArticleFromApi,
 } from '../actions/articles';
 
 import config from '../config';
@@ -49,9 +53,10 @@ const articlesMiddleware = (store) => (next) => (action) => {
       store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
       break;
 
-    case LOADING_LAST_FOUR_ARTICLES:
-      store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
-      break;
+    /* SELECTED ARTICLE IN PROGRESS */
+    // case LOADING_SELECTED_ARTICLE:
+    //   store.dispatch(fetchSelectedArticleFromApi(selectedArticle)); // dev only
+    //   break;
     default:
   }
   next(action);
