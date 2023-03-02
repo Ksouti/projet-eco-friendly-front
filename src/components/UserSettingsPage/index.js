@@ -1,32 +1,36 @@
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Page from '../Page';
 import Advices from './Advices';
 import Account from './Account';
-import Loader from '../Loader';
+
+import { loadingUserAdvices } from '../../actions/user';
 
 import './styles.scss';
 
 export default function UserSettingsPage() {
-  const isLoaded = useSelector((state) => state.user.isLoaded);
-  const isLogged = useSelector((state) => state.user.isLogged);
-  const user = useSelector((state) => state.user.data);
+  const dispatch = useDispatch();
 
-  // If the user is not logged, redirect to the home page
-  if (!isLogged) {
-    return <Navigate to="/" replace />;
-  }
+  /* get state informations */
+  const user = useSelector((state) => state.user.data);
+  const isLoadedAdvices = useSelector((state) => state.user.isLoadedAdvices);
+  /* end get state informations */
+
+  /* Loading all user's advices */
+  const advices = useSelector((state) => state.user.advices);
+
+  useEffect(() => {
+    dispatch(loadingUserAdvices());
+  }, []);
 
   return (
     <Page>
-      {isLoaded ? (
+      {isLoadedAdvices && (
         <div className="settings">
           <Account user={user} />
-          <Advices items={user.advices} />
+          <Advices items={advices} />
         </div>
-      ) : (
-        <Loader />
       )}
     </Page>
   );
