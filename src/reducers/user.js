@@ -7,13 +7,13 @@ import {
 import { ON_INPUT_CHANGE } from '../actions/common';
 
 export const initialState = {
+  token: '',
   email: '',
   password: '',
   confirmPassword: '',
   nickname: '',
   firstname: '',
   lastname: '',
-  token: '',
   isLogged: false,
   data: {},
   isLoaded: false,
@@ -25,8 +25,8 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: true,
+        token: action.token,
         data: action.data,
-        token: action.data.token,
         isLoaded: true,
         email: '',
         password: '',
