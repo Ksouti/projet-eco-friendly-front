@@ -1,5 +1,8 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
+
+// !!! problems : les cards ne s'affichent pas
+
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
