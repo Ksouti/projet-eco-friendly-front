@@ -1,20 +1,11 @@
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
-// import { useParams } from 'react-router-dom';
-// import { useSelector } from 'react-redux';
-
-// import { findItem, findItemsByCategory } from '../../utils';
-
-import Page from '../Page';
-import Card from '../Card';
-import AdvicesCardsList from '../AdvicesCardsList';
+// IN PROGRESS
 
 import './styles.scss';
 
 import advices from '../../data/advices';
 import Button from '../Button';
 
-function ArticlePage() {
+function DisplayAdviceArticle() {
   // const { slug } = useParams();
 
   // const article = useSelector((state) => findItem(state.articles.data, slug));
@@ -24,7 +15,6 @@ function ArticlePage() {
   // );
 
   return (
-    <Page>
       <div className="article-page">
         <div className="article">
           <div className="article-elements">
@@ -54,26 +44,7 @@ function ArticlePage() {
             // onClick="" aller à la page catégorie précédente
           /> */}
         </div>
-
-        {/* <AdvicesCardsList /> */}
-        {/* without composant AdvicesCardsList :  */}
-        <div className="advices">
-          <h2 className="advices-sentence">Suivez vos conseils</h2>
-          <div className="advices-list">
-            {advices.map((advice) => (
-              <div key={advice.id} className="advice-card">
-                <Card
-                  title={advice.title}
-                  category={advice.category}
-                  content={advice.content}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </Page>
-  );
-}
+        );
+        }
 
 export default ArticlePage;
