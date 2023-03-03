@@ -16,6 +16,7 @@ export const initialState = {
   newAdviceContent: '',
   newAdviceData: {},
   newAdviceErrors: [],
+  editAdviceId: '',
   editAdviceTitle: '',
   editAdviceCategory: '',
   editAdviceContent: '',
@@ -50,6 +51,7 @@ const reducer = (state = initialState, action = {}) => {
     case EDIT_ADVICE_DATA:
       return {
         ...state,
+        editAdviceId: action.data.id,
         editAdviceTitle: action.data.title,
         editAdviceCategory: action.data.category,
         editAdviceContent: action.data.content,
