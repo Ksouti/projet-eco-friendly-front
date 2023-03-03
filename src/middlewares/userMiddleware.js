@@ -8,6 +8,9 @@ import {
   userAuthenticationError,
   USER_ADVICES,
   getUserAdvices,
+  USER_PUBLISH_NEW_ADVICE,
+  userPublishNewAdviceSuccess,
+  userPublishNewAdviceFailed,
 } from '../actions/user';
 
 import config from '../config';
@@ -18,7 +21,6 @@ const userMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case USER_LOGIN:
       if (config.env === 'dev') {
-        console.log(user);
         store.dispatch(userAuthenticationSuccess(user));
       } else {
         axios
@@ -84,6 +86,30 @@ const userMiddleware = (store) => (next) => (action) => {
             store.dispacth(userAuthenticationError(error));
           });
       }
+      break;
+    case USER_PUBLISH_NEW_ADVICE:
+      axios
+        .post(
+          `${config.apiBaseUrl}/advices`,
+          {
+            title: store.getState().advices.newAdviceTitle,
+            category: store.getState().advices.newAdviceCategory,
+            content: store.getState().advices.newAdviceContent,
+            status: 1,
+            contributor: store.getState().user.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          store.dispatch(userPublishNewAdviceSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispacth(userPublishNewAdviceFailed(error));
+        });
       break;
     default:
   }
