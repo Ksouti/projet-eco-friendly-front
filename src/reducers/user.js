@@ -66,7 +66,7 @@ const reducer = (state = initialState, action = {}) => {
     case GET_USER_ADVICES:
       return {
         ...state,
-        advices: action.advices,
+        advices: action.data.advices,
         isLoadedAdvices: true,
       };
     default:
