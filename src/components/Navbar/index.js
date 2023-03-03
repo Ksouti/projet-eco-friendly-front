@@ -19,7 +19,8 @@ import './styles.scss';
 function Navbar({ categories }) {
   const activeClassName = 'button active';
 
-  const isLogged = useSelector((state) => state.user.isLogged);
+  const userIsLoaded = useSelector((state) => state.user.isLoaded);
+  const userIsLogged = useSelector((state) => state.user.isLogged);
   const user = useSelector((state) => state.user.data);
 
   return (
@@ -28,7 +29,7 @@ function Navbar({ categories }) {
         <Hamburger />
         <span className="empty"> empty </span>
         <img src={navBarLogo} alt="logo" className="navbar-logo" />
-        {isLogged ? (
+        {userIsLoaded && userIsLogged ? (
           <UserLogged nickname={user.nickname} avatar={user.avatar} />
         ) : (
           <UserNotLogged />
