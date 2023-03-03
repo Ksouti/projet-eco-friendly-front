@@ -23,9 +23,9 @@ function HomePage() {
 
   return (
     <Page>
-      {/* {homePageDataIsLoaded ? (
+      {homePageDataIsLoaded ? (
         <div className="homepage">
-          <section className="advices">
+          {/* <section className="advices">
             <h2 className="advices-title">Suivez vos conseils</h2>
             <div className="card-wrapper">
               <div className="card-inner">
@@ -43,11 +43,11 @@ function HomePage() {
           </section>
           <section className="articles">
             <Slider slides={articles} />
-          </section>
+          </section> */}
         </div>
       ) : (
         <Loader />
-      )} */}
+      )}
     </Page>
   );
 }
