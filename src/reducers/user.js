@@ -7,8 +7,6 @@ import {
 
 import { ON_INPUT_CHANGE } from '../actions/common';
 
-import config from '../config';
-
 export const initialState = {
   isLoaded: false,
   isLoadedAdvices: false,
