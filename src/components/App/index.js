@@ -4,14 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-import {
-  loadingArticlesData,
-  loadingLastFourArticles,
-} from '../../actions/articles';
-import {
-  loadingAdvicesData,
-  loadingLastFourAdvices,
-} from '../../actions/advices';
+import { loadingArticlesData } from '../../actions/articles';
+import { loadingAdvicesData } from '../../actions/advices';
 
 import { loadingCategoriesData } from '../../actions/common';
 
@@ -41,19 +35,11 @@ function App() {
   /* get state informations */
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
-  const lastFourArticlesIsLoaded = useSelector(
-    (state) => state.articles.isLoaded,
-  );
-  const lastFourAdvicesIsLoaded = useSelector(
-    (state) => state.advices.isLoaded,
-  );
   /* end get state informations */
 
   /* dispatch actions to get data */
   useEffect(() => {
     dispatch(loadingCategoriesData());
-    dispatch(loadingLastFourArticles());
-    dispatch(loadingLastFourAdvices());
     dispatch(loadingArticlesData());
     dispatch(loadingAdvicesData());
   }, []);
@@ -72,10 +58,7 @@ function App() {
       <header className="header">
         <Navbar categories={categories} />
       </header>
-      {articlesIsLoaded &&
-      advicesIsLoaded &&
-      lastFourArticlesIsLoaded &&
-      lastFourAdvicesIsLoaded ? (
+      {articlesIsLoaded && advicesIsLoaded ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/categories/:name" element={<CategoryPage />} />
