@@ -160,3 +160,39 @@ export const userPublishNewAdviceFailed = (errors) => ({
   type: USER_PUBLISH_NEW_ADVICE_FAILED,
   errors,
 });
+
+/** @name userPublishEditAdvice
+ * @description Action creator for publishing edited advice
+ * @returns {object}
+ */
+export const USER_PUBLISH_EDIT_ADVICE = 'USER_PUBLISH_EDIT_ADVICE';
+
+export const userPublishEditAdvice = () => ({
+  type: USER_PUBLISH_EDIT_ADVICE,
+});
+
+/** @name userPublishEditAdviceSuccess
+ * @description Action creator for publishing edited advice success
+ * @param {object} data
+ * @returns {object}
+ */
+export const USER_PUBLISH_EDIT_ADVICE_SUCCESS =
+  'USER_PUBLISH_EDIT_ADVICE_SUCCESS';
+
+export const userPublishEditAdviceSuccess = (data) => ({
+  type: USER_PUBLISH_EDIT_ADVICE_SUCCESS,
+  data,
+});
+
+/** @name userPublishEditAdviceFailed
+ * @description Action creator for publishing edited advice failed
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_PUBLISH_EDIT_ADVICE_FAILED =
+  'USER_PUBLISH_EDIT_ADVICE_FAILED';
+
+export const userPublishEditAdviceFailed = (errors) => ({
+  type: USER_PUBLISH_EDIT_ADVICE_FAILED,
+  errors,
+});
