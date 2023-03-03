@@ -40,11 +40,11 @@ function AddAdvicePage() {
     setCategories(config.defaultNavLinks);
   }
 
-  // /* control input fields */
+  /* control input fields */
   const title = useSelector((state) => state.advices.newAdviceTitle);
   const category = useSelector((state) => state.advices.newAdviceCategory);
   const content = useSelector((state) => state.advices.newAdviceContent);
-  // /* end control input fields */
+  /* end control input fields */
 
   /* change field value */
   const changeField = (value) => {
@@ -118,8 +118,12 @@ function AddAdvicePage() {
             <Button type="submit" onclick={() => setButtonName('save')}>
               Sauvegarder
             </Button>
-            <Button outline color="primary">
-              Supprimer
+            <Button
+              outline
+              color="primary"
+              onclick={() => navigate(`/utilisateurs/${userNickname}`)}
+            >
+              Annuler
             </Button>
           </div>
         </form>
