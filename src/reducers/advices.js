@@ -1,7 +1,9 @@
+import { FETCH_ADVICES_FROM_API } from '../actions/advices';
+
 import {
-  FETCH_ADVICES_FROM_API,
-  FETCH_LAST_FOUR_ADVICES_FROM_API,
-} from '../actions/advices';
+  USER_PUBLISH_NEW_ADVICE_SUCCESS,
+  USER_PUBLISH_NEW_ADVICE_FAILED,
+} from '../actions/user';
 
 import { ON_INPUT_CHANGE } from '../actions/common';
 
@@ -9,9 +11,11 @@ export const initialState = {
   data: [],
   isLoaded: false,
   lastFourAdvices: [],
-  addTitle: '',
-  addCategory: '',
-  addContent: '',
+  newAdviceTitle: '',
+  newAdviceCategory: '',
+  newAdviceContent: '',
+  newAdviceData: {},
+  newAdviceErrors: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -27,11 +31,18 @@ const reducer = (state = initialState, action = {}) => {
         data: action.data,
         isLoaded: true,
       };
-    case FETCH_LAST_FOUR_ADVICES_FROM_API:
+    case USER_PUBLISH_NEW_ADVICE_SUCCESS:
       return {
         ...state,
-        lastFourAdvices: action.data,
-        isLoaded: true,
+        newAdviceData: action.data,
+        newAdviceTitle: '',
+        newAdviceCategory: '',
+        newAdviceContent: '',
+      };
+    case USER_PUBLISH_NEW_ADVICE_FAILED:
+      return {
+        ...state,
+        newAdviceErrors: action.errors,
       };
     default:
       return state;
