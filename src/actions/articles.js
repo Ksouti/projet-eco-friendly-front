@@ -74,27 +74,27 @@ export const fetchLastFourArticlesFromApi = (data) => ({
 });
 
 /* SELECTED ARTICLE IN PROGRESS */
-// /**
-//  * @name loadingSelectedArticle
-//  * @description Action creator for loading selected article data
-//  * @returns {object}
-//  */
-// export const LOADING_SELECTED_ARTICLE = 'LOADING_SELECTED_ARTICLE';
+/**
+ * @name loadingSelectedArticle
+ * @description Action creator for loading selected article data
+ * @returns {object}
+ */
+export const LOADING_SELECTED_ARTICLE = 'LOADING_SELECTED_ARTICLE';
 
-// export const loadingSelectedArticle = () => ({
-//   type: LOADING_SELECTED_ARTICLE,
-// });
+export const loadingSelectedArticle = () => ({
+  type: LOADING_SELECTED_ARTICLE,
+});
 
-// /**
-//  * @name fetchSelectedArticleFromApi
-//  * @description Action creator to get selected article data
-//  * @param {array} data
-//  * @returns {object}
-//  * */
-// export const FETCH_SELECTED_ARTICLE_FROM_API =
-//   'FETCH_SELECTED_ARTICLE_FROM_API';
+/**
+ * @name fetchSelectedArticleFromApi
+ * @description Action creator to get selected article data
+ * @param {array} data
+ * @returns {object}
+ * */
+export const FETCH_SELECTED_ARTICLE_FROM_API =
+  'FETCH_SELECTED_ARTICLE_FROM_API';
 
-// export const fetchSelectedArticleFromApi = (data) => ({
-//   type: FETCH_SELECTED_ARTICLE_FROM_API,
-//   data,
-// });
+export const fetchSelectedArticleFromApi = (data) => ({
+  type: FETCH_SELECTED_ARTICLE_FROM_API,
+  data,
+});

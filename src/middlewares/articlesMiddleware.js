@@ -9,8 +9,8 @@ import {
   fetchLastFourArticlesFromApi,
 
   /* SELECTED ARTICLE IN PROGRESS */
-  // LOADING_SELECTED_ARTICLE,
-  // fetchSelectedArticleFromApi,
+  LOADING_SELECTED_ARTICLE,
+  fetchSelectedArticleFromApi,
 } from '../actions/articles';
 
 import config from '../config';
@@ -54,9 +54,20 @@ const articlesMiddleware = (store) => (next) => (action) => {
       break;
 
     /* SELECTED ARTICLE IN PROGRESS */
-    // case LOADING_SELECTED_ARTICLE:
-    //   store.dispatch(fetchSelectedArticleFromApi(selectedArticle)); // dev only
-    //   break;
+    case LOADING_SELECTED_ARTICLE:
+      if (config.env === 'dev') {
+        store.dispatch(fetchSelectedArticleFromApi(article));
+      } else {
+        axios
+          .get(
+            `${config.apiBaseUrl}/articles?articles=${action.id}&limit=1&sorttype=created_at&order=DESC`,
+          )
+          .then((response) => {
+            store.dispatch(fetchSelectedArticleFromApi(response.data));
+          })
+          .catch((error) => `Error: ${error.message}`);
+      }
+      break;
     default:
   }
   next(action);
