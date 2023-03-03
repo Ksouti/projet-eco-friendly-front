@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /**
  * @name loadingUserData
  * @description Action creator for loading user data
@@ -103,22 +104,59 @@ export const userRegisterError = (error) => ({
  * @description Action creator for loading user advices
  * @returns {object}
  */
-
 export const USER_ADVICES = 'USER_ADVICES';
 
 export const loadingUserAdvices = () => ({
   type: USER_ADVICES,
 });
 
-/** @name getUserAdvices
+/**
+ * @name getUserAdvices
  * @description Action creator for getting user advices
  * @param {array} data
  * @returns {object}
  */
-
 export const GET_USER_ADVICES = 'GET_USER_ADVICES';
 
 export const getUserAdvices = (data) => ({
   type: GET_USER_ADVICES,
   data,
+});
+
+/**
+ * @name UserPublishNewAdvice
+ * @description Action creator for publishing new advice
+ * @returns {object}
+ */
+export const USER_PUBLISH_NEW_ADVICE = 'USER_PUBLISH_NEW_ADVICE';
+
+export const userPublishNewAdvice = () => ({
+  type: USER_PUBLISH_NEW_ADVICE,
+});
+
+/**
+ * @name userPublishNewAdviceSuccess
+ * @description Action creator for publishing new advice success
+ * @param {object} data
+ * @returns {object}
+ */
+export const USER_PUBLISH_NEW_ADVICE_SUCCESS =
+  'USER_PUBLISH_NEW_ADVICE_SUCCESS';
+
+export const userPublishNewAdviceSuccess = (data) => ({
+  type: USER_PUBLISH_NEW_ADVICE_SUCCESS,
+  data,
+});
+
+/**
+ * @name userPublishNewAdviceFailed
+ * @description Action creator for publishing new advice failed
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_PUBLISH_NEW_ADVICE_FAILED = 'USER_PUBLISH_NEW_ADVICE_FAILED';
+
+export const userPublishNewAdviceFailed = (errors) => ({
+  type: USER_PUBLISH_NEW_ADVICE_FAILED,
+  errors,
 });
