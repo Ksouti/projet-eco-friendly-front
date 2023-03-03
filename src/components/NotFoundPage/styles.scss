@@ -1,4 +1,5 @@
 @import 'src/styles/_vars.scss';
+@import '../../styles/mixins.scss';
 
 .not-found-container {
   display: flex;
@@ -6,12 +7,9 @@
   align-items: center;
   justify-content: center;
   height: 50vh;
-
-  h1 {
-    font-size: 10rem;
-    font-weight: bold;
-    color: $primaryColor;
-    margin-bottom: 2rem;
+  
+  img {
+    width: 23rem;
   }
 
   p {
@@ -20,3 +18,15 @@
     margin-bottom: 4rem;
   }
 }
+
+  /* md: 768px */
+  @include screen(md) {
+    .not-found-container { 
+      img {
+        width: 50rem;
+      }
+      p {
+        font-size: 3rem;
+      }
+    }
+  }
