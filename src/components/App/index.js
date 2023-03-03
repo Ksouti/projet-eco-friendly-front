@@ -15,6 +15,7 @@ import HomePage from '../HomePage';
 import UserSettingsPage from '../UserSettingsPage/index';
 import NotFoundPage from '../NotFoundPage';
 import AddAdvicePage from '../AddAdvicePage';
+import EditAdvicePage from '../EditAdvicePage';
 import CategoryPage from '../CategoryPage';
 import ArticlePage from '../ArticlePage';
 import AdvicePage from '../AdvicePage';
@@ -69,7 +70,7 @@ function App() {
             element={<UserSettingsPage />}
           />
           <Route path="/conseils/ajouter" element={<AddAdvicePage />} />
-          <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} />
+          <Route path="/conseils/:slug/editer" element={<EditAdvicePage />} />
           <Route path="/mentions-legales" element={<LegalNoticePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
