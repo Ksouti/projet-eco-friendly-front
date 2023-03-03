@@ -20,4 +20,14 @@ function findItem(items, searchedSlug) {
   return items.find((item) => item.slug === searchedSlug);
 }
 
+// /**
+//  *  find an item in an item list
+//  * @param {Array} items - all items
+//  * @param {string} searchedSlug - searched item's slug
+//  * @return {Object} - finded item
+//  */
+// function findItemById(items, searchedSlug) {
+//   return items.find((item) => item.id === searchedSlug);
+// }
+
 export { findItemsByCategory, findItem };

@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import Page from '../Page';
 import AdvicesCardsList from '../AdvicesCardsList';
 import Loader from '../Loader';
+import { findItem } from '../../utils';
+
 // import Button from '../Button';
 
 // import articles from '../../data/articles';
@@ -18,12 +20,13 @@ function ArticlePage() {
   const { slug } = useParams();
 
   // je recupere tous mes articles dans le state
-  const articles = useSelector((state) => state.articles.data);
-  console.log(articles);
+  // const articles = useSelector((state) => state.articles.data);
+  // console.log(articles);
 
   // avec find, je cherche dans ma list d'articles, et je récupere l'id
   // de celui qui correspond à mon slug
-  const article = articles.find((item) => item.id === slug);
+  // const article = articles.find((item) => item.id === slug);
+  const article = useSelector((state) => findItem(state.advices.data, slug));
   console.log(article);
 
   // const articleIsLoaded = useSelector(
