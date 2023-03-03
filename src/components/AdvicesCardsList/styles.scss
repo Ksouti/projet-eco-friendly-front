@@ -31,40 +31,40 @@
       display: none;
     }
   }
+}
 
-  // RESPONSIVE LG +1024 =======================================================
-  @include screen(md) {
-    .advices {
-      display: flex;
-      flex-direction: column;
-      width: 25%;
-      border: 0.1rem solid vars.$secondaryBorderColor;
-      padding: 0 1rem;
+// RESPONSIVE LG +1024 =======================================================
+@include screen(md) {
+  .advices {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    border: 0.1rem solid vars.$secondaryBorderColor;
+    padding: 0 1rem;
 
-      &-sentence {
-        text-align: center;
-        font-size: large;
-        padding: 0.7rem;
-      }
-
-      &-list {
-        display: flex;
-        flex-direction: column;
-      }
+    &-sentence {
+      text-align: center;
+      font-size: large;
+      padding: 0.7rem;
     }
 
-    .advice-card {
+    &-list {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+    }
+  }
 
-      .card {
-        width: 17rem;
-        height: 9rem;
-        margin: 1rem 1rem 2rem;
+  .advice-card {
+    display: flex;
+    justify-content: center;
 
-        .summary {
-          display: block;
-        }
+    .card {
+      width: 17rem;
+      height: 9rem;
+      margin: 1rem 1rem 2rem;
+
+      .summary {
+        display: block;
       }
     }
   }

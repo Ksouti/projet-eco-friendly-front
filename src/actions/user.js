@@ -1,4 +1,5 @@
 /* eslint-disable operator-linebreak */
+/* eslint-disable operator-linebreak */
 /**
  * @name loadingUserData
  * @description Action creator for loading user data

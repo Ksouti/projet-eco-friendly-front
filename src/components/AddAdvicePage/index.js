@@ -49,8 +49,18 @@ function AddAdvicePage() {
   /* change field value */
   const changeField = (value) => {
     dispatch(OnInputChange(value, 'newAdviceTitle'));
+  // /* control input fields */
+  const title = useSelector((state) => state.advices.newAdviceTitle);
+  const category = useSelector((state) => state.advices.newAdviceCategory);
+  const content = useSelector((state) => state.advices.newAdviceContent);
+  // /* end control input fields */
+
+  /* change field value */
+  const changeField = (value) => {
+    dispatch(OnInputChange(value, 'newAdviceTitle'));
   };
   const onSelectChange = (e) => {
+    dispatch(OnInputChange(e.target.value, 'newAdviceCategory'));
     dispatch(OnInputChange(e.target.value, 'newAdviceCategory'));
   };
   const OnRichTextEditorChange = (e) => {
