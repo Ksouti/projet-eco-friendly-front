@@ -1,15 +1,14 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Card from '../Card';
 
 import './styles.scss';
 
-function AdvicesCardsList() {
+function AdvicesCardsList({ advices }) {
   // Find last four advices
-  const advices = useSelector((state) => state.advices.lastFourAdvices);
 
   return (
     <div className="advices">
@@ -32,5 +31,17 @@ function AdvicesCardsList() {
     </div>
   );
 }
+
+AdvicesCardsList.propTypes = {
+  advices: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      slug: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
 
 export default AdvicesCardsList;
