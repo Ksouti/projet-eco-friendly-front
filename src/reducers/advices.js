@@ -1,4 +1,4 @@
-import { FETCH_ADVICES_FROM_API } from '../actions/advices';
+import { FETCH_ADVICES_FROM_API, EDIT_ADVICE_DATA } from '../actions/advices';
 
 import {
   USER_PUBLISH_NEW_ADVICE_SUCCESS,
@@ -16,6 +16,9 @@ export const initialState = {
   newAdviceContent: '',
   newAdviceData: {},
   newAdviceErrors: [],
+  editAdviceTitle: '',
+  editAdviceCategory: '',
+  editAdviceContent: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -43,6 +46,13 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         newAdviceErrors: action.errors,
+      };
+    case EDIT_ADVICE_DATA:
+      return {
+        ...state,
+        editAdviceTitle: action.data.title,
+        editAdviceCategory: action.data.category,
+        editAdviceContent: action.data.content,
       };
     default:
       return state;

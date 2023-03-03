@@ -22,3 +22,16 @@ export const fetchAdvicesFromApi = (data) => ({
   type: FETCH_ADVICES_FROM_API,
   data,
 });
+
+/**
+ * @name EditAdviceData
+ * @description Action creator for editing advice data
+ * @param {object} data
+ * @returns {object}
+ */
+export const EDIT_ADVICE_DATA = 'EDIT_ADVICE_DATA';
+
+export const editAdviceData = (data) => ({
+  type: EDIT_ADVICE_DATA,
+  data,
+});
