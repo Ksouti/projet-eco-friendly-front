@@ -30,7 +30,10 @@ function Navbar({ categories }) {
         <span className="empty"> empty </span>
         <img src={navBarLogo} alt="logo" className="navbar-logo" />
         {userIsLoaded && userIsLogged ? (
-          <UserLogged nickname={user.nickname} avatar={user.avatar} />
+          <>
+            <UserLogged nickname={user.nickname} avatar={user.avatar} />
+            <NavLink to="/conseils/ajouter">Ajouter un conseil</NavLink>
+          </>
         ) : (
           <UserNotLogged />
         )}
