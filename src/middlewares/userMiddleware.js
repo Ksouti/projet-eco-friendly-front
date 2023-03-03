@@ -11,6 +11,9 @@ import {
   USER_PUBLISH_NEW_ADVICE,
   userPublishNewAdviceSuccess,
   userPublishNewAdviceFailed,
+  USER_PUBLISH_EDIT_ADVICE,
+  userPublishEditAdviceSuccess,
+  userPublishEditAdviceFailed,
 } from '../actions/user';
 
 import config from '../config';
@@ -109,6 +112,32 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispacth(userPublishNewAdviceFailed(error));
+        });
+      break;
+    case USER_PUBLISH_EDIT_ADVICE:
+      axios
+        .put(
+          `${config.apiBaseUrl}/advices/${
+            store.getState().advices.editAdviceId
+          }`,
+          {
+            title: store.getState().advices.editAdviceTitle,
+            category: store.getState().advices.editAdviceCategory,
+            content: store.getState().advices.editAdviceContent,
+            status: 1,
+            contributor: store.getState().user.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          store.dispatch(userPublishEditAdviceSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispacth(userPublishEditAdviceFailed(error));
         });
       break;
     default:
