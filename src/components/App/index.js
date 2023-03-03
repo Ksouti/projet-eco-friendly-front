@@ -47,7 +47,6 @@ function App() {
   const lastFourAdvicesIsLoaded = useSelector(
     (state) => state.advices.isLoaded,
   );
-  const UserLogged = useSelector((state) => state.user.isLogged);
   /* end get state informations */
 
   /* dispatch actions to get data */
@@ -82,12 +81,10 @@ function App() {
           <Route path="/categories/:name" element={<CategoryPage />} />
           <Route path="/articles/:slug" element={<ArticlePage />} />
           <Route path="/conseils/:slug" element={<AdvicePage />} />
-          {UserLogged && (
-            <Route
-              path="/utilisateurs/:nickname"
-              element={<UserSettingsPage />}
-            />
-          )}
+          <Route
+            path="/utilisateurs/:nickname"
+            element={<UserSettingsPage />}
+          />
           <Route path="/conseils/ajouter" element={<AddAdvicePage />} />
           <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} />
           <Route path="/mentions-legales" element={<LegalNoticePage />} />
