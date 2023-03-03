@@ -2,12 +2,15 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   FETCH_CATEGORIES_FROM_API,
+  FETCH_HOME_PAGE_DATA_FROM_API,
 } from '../actions/common';
 
 export const initialState = {
   modalIsOpen: false,
   modalContent: null,
   categories: [],
+  homePageData: {},
+  homePageDataIsLoaded: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -28,6 +31,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         modalIsOpen: !state.modalIsOpen,
         modalContent: null,
+      };
+    case FETCH_HOME_PAGE_DATA_FROM_API:
+      return {
+        ...state,
+        homePageData: action.data,
+        homePageDataIsLoaded: true,
       };
     default:
       return state;
