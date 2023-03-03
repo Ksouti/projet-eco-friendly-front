@@ -13,23 +13,27 @@ import './styles.scss';
 function HomePage() {
   const dispatch = useDispatch();
 
+  /* dispatch actions to get data */
   useEffect(() => {
     dispatch(loadingHomePageData());
   }, []);
 
+  /* get state informations */
   const homePageDataIsLoaded = useSelector(
     (state) => state.common.homePageDataIsLoaded,
   );
+  const homePageData = useSelector((state) => state.common.homePageData);
+  /* end get state informations */
 
   return (
     <Page>
       {homePageDataIsLoaded ? (
         <div className="homepage">
-          {/* <section className="advices">
+          <section className="advices">
             <h2 className="advices-title">Suivez vos conseils</h2>
             <div className="card-wrapper">
               <div className="card-inner">
-                {advices.map((advice) => (
+                {homePageData.advices.map((advice) => (
                   <Card
                     key={advice.id}
                     title={advice.title}
@@ -42,8 +46,8 @@ function HomePage() {
             </div>
           </section>
           <section className="articles">
-            <Slider slides={articles} />
-          </section> */}
+            <Slider slides={homePageData.articles} />
+          </section>
         </div>
       ) : (
         <Loader />
