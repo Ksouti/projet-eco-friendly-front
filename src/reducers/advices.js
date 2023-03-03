@@ -3,6 +3,8 @@ import { FETCH_ADVICES_FROM_API, EDIT_ADVICE_DATA } from '../actions/advices';
 import {
   USER_PUBLISH_NEW_ADVICE_SUCCESS,
   USER_PUBLISH_NEW_ADVICE_FAILED,
+  USER_PUBLISH_EDIT_ADVICE_SUCCESS,
+  USER_PUBLISH_EDIT_ADVICE_FAILED,
 } from '../actions/user';
 
 import { ON_INPUT_CHANGE } from '../actions/common';
@@ -20,6 +22,8 @@ export const initialState = {
   editAdviceTitle: '',
   editAdviceCategory: '',
   editAdviceContent: '',
+  editAdviceData: {},
+  editAdviceErrors: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -55,6 +59,20 @@ const reducer = (state = initialState, action = {}) => {
         editAdviceTitle: action.data.title,
         editAdviceCategory: action.data.category,
         editAdviceContent: action.data.content,
+      };
+    case USER_PUBLISH_EDIT_ADVICE_SUCCESS:
+      return {
+        ...state,
+        editAdviceData: action.data,
+        editAdviceId: '',
+        editAdviceTitle: '',
+        editAdviceCategory: '',
+        editAdviceContent: '',
+      };
+    case USER_PUBLISH_EDIT_ADVICE_FAILED:
+      return {
+        ...state,
+        editAdviceErrors: action.errors,
       };
     default:
       return state;
