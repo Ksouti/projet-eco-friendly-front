@@ -16,31 +16,21 @@ import { findItem } from '../../utils';
 import './styles.scss';
 
 function ArticlePage() {
-  // Je récupere mon slug
   const { slug } = useParams();
 
-  // je recupere tous mes articles dans le state
-  // const articles = useSelector((state) => state.articles.data);
-  // console.log(articles);
-
-  // avec find, je cherche dans ma list d'articles, et je récupere l'id
-  // de celui qui correspond à mon slug
-  // const article = articles.find((item) => item.id === slug);
-  const article = useSelector((state) => findItem(state.advices.data, slug));
+  const article = useSelector((state) => findItem(state.articles.data, slug));
   console.log(article);
 
-  // const articleIsLoaded = useSelector(
-  //   (state) => state.articles.selectedArticleDataIsLoaded,
-  // );
+  const advices = useSelector((state) => state.advices.lastFourAdvices);
 
   return (
     <Page>
-      <div className="article-page">
-        {article ? (
+      {article ? (
+        <div className="article-page">
           <div className="article">
             <div className="article-elements">
               <img
-                src="https://picsum.photos/id/144/300/450.jpg"
+                src={article.picture}
                 alt="titre"
                 className="article-elements-img"
               />
@@ -62,12 +52,12 @@ function ArticlePage() {
             // onClick="" aller à la page catégorie précédente
           /> */}
           </div>
-        ) : (
-          <Loader />
-        )}
 
-        <AdvicesCardsList />
-      </div>
+          <AdvicesCardsList advices={advices} />
+        </div>
+      ) : (
+        <Loader />
+      )}
     </Page>
   );
 }
