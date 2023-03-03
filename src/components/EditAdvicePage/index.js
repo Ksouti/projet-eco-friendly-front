@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
-import { userPublishNewAdvice } from '../../actions/user';
+import { userPublishEditAdvice } from '../../actions/user';
 import { editAdviceData } from '../../actions/advices';
 
 import Page from '../Page';
@@ -77,7 +77,7 @@ function EditAdvicePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (buttonName === 'publish') {
-      dispatch(userPublishNewAdvice());
+      dispatch(userPublishEditAdvice());
     }
     if (buttonName === 'save') {
       // dispatch(userSaveNewAdvice());
