@@ -72,7 +72,7 @@ const userMiddleware = (store) => (next) => (action) => {
         store.dispatch(getUserAdvices(user.advices));
       } else {
         axios
-          .get(`${config.apiBaseUrl}/advices/${store.getState().user.id}`, {
+          .get(`${config.apiBaseUrl}/users/${store.getState().user.id}`, {
             headers: {
               Authorization: `Bearer ${store.getState().user.token}`,
             },
