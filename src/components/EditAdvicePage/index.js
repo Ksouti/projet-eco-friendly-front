@@ -5,8 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
-import { userPublishEditAdvice, userSaveEditAdvice } from '../../actions/user';
-import { editAdviceData } from '../../actions/advices';
+import {
+  userPublishEditAdvice,
+  userSaveEditAdvice,
+  editAdviceData,
+} from '../../actions/advices';
 
 import Page from '../Page';
 import Input from '../Field/Input';
@@ -24,11 +27,14 @@ function EditAdvicePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { slug } = useParams();
+
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
   /* end check if user is logged */
 
-  const advice = useSelector((state) => findItem(state.user.advices, slug));
+  const advice = useSelector((state) =>
+    findItem(state.advices.userAdvices, slug),
+  );
 
   useEffect(() => {
     /* if there is no advice, we redirect to the 404 page */

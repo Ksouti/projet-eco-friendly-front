@@ -1,22 +1,40 @@
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { getUserAdvices } from '../../actions/advices';
 
 import Page from '../Page';
 import Advices from './Advices';
 import Account from './Account';
-import Loader from '../Loader';
+
+import { userLogout } from '../../actions/user';
 
 import './styles.scss';
 
 export default function UserSettingsPage() {
-  const isLoaded = useSelector((state) => state.user.isLoaded);
-  const isLogged = useSelector((state) => state.user.isLogged);
-  const user = useSelector((state) => state.user.data);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { nickname } = useParams();
 
-  // If the user is not logged, redirect to the home page
-  if (!isLogged) {
-    return <Navigate to="/" replace />;
+  /* get state informations */
+  const user = useSelector((state) => state.user.data);
+  const isLoadedAdvices = useSelector((state) => state.advices.isLoadedAdvices);
+  /* end get state informations */
+
+  /* check if the nickname is the same as the user's nickname */
+  if (nickname !== user.nickname) {
+    dispatch(userLogout());
+    navigate('/', { replace: true });
   }
+
+  useEffect(() => {
+    dispatch(getUserAdvices());
+  }, []);
+
+  /* Loading all user's advices */
+  const advices = useSelector((state) => state.advices.userAdvices);
+  /* end Loading all user's advices */
 
   return (
     <Page>

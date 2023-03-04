@@ -1,7 +1,8 @@
 import {
   FETCH_ADVICES_FROM_API,
-  FETCH_LAST_FOUR_ADVICES_FROM_API,
-} from '../actions/advices';
+  EDIT_ADVICE_DATA,
+  GET_USER_ADVICES_SUCCESS,
+  GET_USER_ADVICES_FAILED,
   USER_PUBLISH_NEW_ADVICE_SUCCESS,
   USER_PUBLISH_NEW_ADVICE_FAILED,
   USER_SAVE_NEW_ADVICE_SUCCESS,
@@ -10,17 +11,25 @@ import {
   USER_PUBLISH_EDIT_ADVICE_FAILED,
   USER_SAVE_EDIT_ADVICE_SUCCESS,
   USER_SAVE_EDIT_ADVICE_FAILED,
-} from '../actions/user';
+} from '../actions/advices';
 
 import { ON_INPUT_CHANGE } from '../actions/common';
 
 export const initialState = {
   data: [],
   isLoaded: false,
-  lastFourAdvices: [],
-  addTitle: '',
-  addCategory: '',
-  addContent: '',
+  isLoadedAdvices: false,
+  userAdvices: [],
+  newAdviceTitle: '',
+  newAdviceCategory: '',
+  newAdviceContent: '',
+  newAdviceData: {},
+  editAdviceId: '',
+  editAdviceTitle: '',
+  editAdviceCategory: '',
+  editAdviceContent: '',
+  editAdviceData: {},
+  errorsMessage: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -36,7 +45,27 @@ const reducer = (state = initialState, action = {}) => {
         data: action.data,
         isLoaded: true,
       };
-    case FETCH_LAST_FOUR_ADVICES_FROM_API:
+    case EDIT_ADVICE_DATA:
+      return {
+        ...state,
+        editAdviceId: action.data.id,
+        editAdviceTitle: action.data.title,
+        editAdviceCategory: action.data.category.id,
+        editAdviceContent: action.data.content,
+      };
+    case GET_USER_ADVICES_SUCCESS:
+      return {
+        ...state,
+        userAdvices: action.data.advices,
+        isLoadedAdvices: true,
+      };
+    case GET_USER_ADVICES_FAILED:
+      return {
+        ...state,
+        errorsMessage: action.errors,
+        isLoadedAdvices: false,
+      };
+    case USER_PUBLISH_NEW_ADVICE_SUCCESS:
       return {
         ...state,
         newAdviceData: action.data,
@@ -47,7 +76,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_PUBLISH_NEW_ADVICE_FAILED:
       return {
         ...state,
-        newAdviceErrors: action.errors,
+        errorsMessage: action.errors,
       };
     case USER_SAVE_NEW_ADVICE_SUCCESS:
       return {
@@ -60,15 +89,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SAVE_NEW_ADVICE_FAILED:
       return {
         ...state,
-        newAdviceErrors: action.errors,
-      };
-    case EDIT_ADVICE_DATA:
-      return {
-        ...state,
-        editAdviceId: action.data.id,
-        editAdviceTitle: action.data.title,
-        editAdviceCategory: action.data.category.id,
-        editAdviceContent: action.data.content,
+        errorsMessage: action.errors,
       };
     case USER_PUBLISH_EDIT_ADVICE_SUCCESS:
       return {
@@ -82,7 +103,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_PUBLISH_EDIT_ADVICE_FAILED:
       return {
         ...state,
-        editAdviceErrors: action.errors,
+        errorsMessage: action.errors,
       };
     case USER_SAVE_EDIT_ADVICE_SUCCESS:
       return {
@@ -96,7 +117,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SAVE_EDIT_ADVICE_FAILED:
       return {
         ...state,
-        editAdviceErrors: action.errors,
+        errorsMessage: action.errors,
       };
     default:
       return state;

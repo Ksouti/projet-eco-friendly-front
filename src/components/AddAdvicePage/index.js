@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
-import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/user';
+import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/advices';
 
 import Page from '../Page';
 import Input from '../Field/Input';
@@ -42,7 +42,7 @@ function AddAdvicePage() {
   };
 
   const onSelectChange = (e) => {
-    dispatch(OnInputChange(e.target.value, 'addCategory'));
+    dispatch(OnInputChange(e.target.value, 'newAdviceCategory'));
   };
 
   const OnRichTextEditorChange = (e) => {
@@ -61,6 +61,11 @@ function AddAdvicePage() {
     }
     if (buttonName === 'save') {
       dispatch(userSaveNewAdvice());
+    }
+    if (buttonName === 'cancel') {
+      dispatch(OnInputChange('', 'newAdviceTitle'));
+      dispatch(OnInputChange('', 'newAdviceCategory'));
+      dispatch(OnInputChange('', 'newAdviceContent'));
     }
     navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
@@ -112,9 +117,10 @@ function AddAdvicePage() {
               Sauvegarder
             </Button>
             <Button
+              type="submit"
               outline
               color="primary"
-              onclick={() => navigate(`/utilisateurs/${userNickname}`)}
+              onclick={() => setButtonName('cancel')}
             >
               Annuler
             </Button>
