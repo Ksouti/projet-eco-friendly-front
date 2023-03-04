@@ -28,6 +28,7 @@ function EditAdvicePage() {
   const navigate = useNavigate();
   const navigate = useNavigate();
   const { slug } = useParams();
+
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
   /* end check if user is logged */
