@@ -8,6 +8,8 @@ import {
   USER_SAVE_NEW_ADVICE_FAILED,
   USER_PUBLISH_EDIT_ADVICE_SUCCESS,
   USER_PUBLISH_EDIT_ADVICE_FAILED,
+  USER_SAVE_EDIT_ADVICE_SUCCESS,
+  USER_SAVE_EDIT_ADVICE_FAILED,
 } from '../actions/user';
 
 import { ON_INPUT_CHANGE } from '../actions/common';
@@ -65,7 +67,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         editAdviceId: action.data.id,
         editAdviceTitle: action.data.title,
-        editAdviceCategory: action.data.category,
+        editAdviceCategory: action.data.category.id,
         editAdviceContent: action.data.content,
       };
     case USER_PUBLISH_EDIT_ADVICE_SUCCESS:
@@ -78,6 +80,20 @@ const reducer = (state = initialState, action = {}) => {
         editAdviceContent: '',
       };
     case USER_PUBLISH_EDIT_ADVICE_FAILED:
+      return {
+        ...state,
+        editAdviceErrors: action.errors,
+      };
+    case USER_SAVE_EDIT_ADVICE_SUCCESS:
+      return {
+        ...state,
+        editAdviceData: action.data,
+        editAdviceId: '',
+        editAdviceTitle: '',
+        editAdviceCategory: '',
+        editAdviceContent: '',
+      };
+    case USER_SAVE_EDIT_ADVICE_FAILED:
       return {
         ...state,
         editAdviceErrors: action.errors,
