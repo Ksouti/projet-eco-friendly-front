@@ -5,11 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
-import {
-  userPublishEditAdvice,
-  userSaveEditAdvice,
-  editAdviceData,
-} from '../../actions/advices';
+import { userPublishEditAdvice } from '../../actions/user';
+import { editAdviceData } from '../../actions/advices';
 
 import Page from '../Page';
 import Input from '../Field/Input';
@@ -26,8 +23,8 @@ import './styles.scss';
 function EditAdvicePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const navigate = useNavigate();
   const { slug } = useParams();
-
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
   /* end check if user is logged */
@@ -47,7 +44,19 @@ function EditAdvicePage() {
       navigate('/404', { replace: true });
     }
 
-    dispatch(editAdviceData(advice));
+    useEffect(() => {
+      /* if there is no advice, we redirect to the 404 page */
+      if (!userIslogged) {
+        navigate('/', { replace: true });
+      }
+
+      /* if there is no advice, we redirect to the 404 page */
+      if (!advice) {
+        navigate('/404', { replace: true });
+      }
+
+      dispatch(editAdviceData(advice));
+    }, [advice, userIslogged]);
   }, [advice, userIslogged]);
 
   /* control input fields */
@@ -91,7 +100,9 @@ function EditAdvicePage() {
     }
     if (buttonName === 'save') {
       dispatch(userSaveEditAdvice());
+      dispatch(userSaveEditAdvice());
     }
+    return navigate(`/utilisateurs/${userNickname}`, { replace: true });
     return navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
 
@@ -146,7 +157,7 @@ function EditAdvicePage() {
               <Button
                 outline
                 color="primary"
-                onclick={() => redirect(`/utilisateurs/${userNickname}`)}
+                onclick={() => navigate(`/utilisateurs/${userNickname}`)}
               >
                 Annuler
               </Button>
