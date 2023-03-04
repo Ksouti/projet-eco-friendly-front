@@ -2,7 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { redirect, useParams } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
 import { userPublishEditAdvice } from '../../actions/user';
@@ -23,7 +23,6 @@ import './styles.scss';
 function EditAdvicePage() {
   const dispatch = useDispatch();
   const { slug } = useParams();
-  const navigate = useNavigate();
 
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
@@ -31,7 +30,7 @@ function EditAdvicePage() {
 
   /* if there is no advice, we redirect to the 404 page */
   if (!userIslogged) {
-    return <Navigate to="/" replace />;
+    return redirect('/');
   }
 
   const advice = useSelector((state) => findItem(state.user.advices, slug));
@@ -82,7 +81,7 @@ function EditAdvicePage() {
     if (buttonName === 'save') {
       // dispatch(userSaveNewAdvice());
     }
-    navigate(`/utilisateurs/${userNickname}`);
+    return redirect(`/utilisateurs/${userNickname}`);
   };
 
   return (
@@ -136,7 +135,7 @@ function EditAdvicePage() {
               <Button
                 outline
                 color="primary"
-                onclick={() => navigate(`/utilisateurs/${userNickname}`)}
+                onclick={() => redirect(`/utilisateurs/${userNickname}`)}
               >
                 Annuler
               </Button>

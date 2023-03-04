@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { redirect } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
+import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/user';
 
 import Page from '../Page';
 import Input from '../Field/Input';
@@ -15,8 +17,15 @@ import './styles.scss';
 
 function AddAdvicePage() {
   const dispatch = useDispatch();
-  const addTitle = useSelector((state) => state.advices.addTitle);
-  const addContent = useSelector((state) => state.advices.addContent);
+
+  /* check if user is logged */
+  const userIslogged = useSelector((state) => state.user.isLogged);
+  /* end check if user is logged */
+
+  /* if there is no advice, we redirect to the 404 page */
+  if (!userIslogged) {
+    return redirect('/');
+  }
 
   const [categories, setCategories] = useState(
     useSelector((state) => state.common.categories),
@@ -36,7 +45,23 @@ function AddAdvicePage() {
   };
 
   const OnRichTextEditorChange = (e) => {
-    dispatch(OnInputChange(e, 'addContent'));
+    dispatch(OnInputChange(e, 'newAdviceContent'));
+  };
+  /* change field value */
+
+  /* Get the button name clicked */
+  const [buttonName, setButtonName] = useState(null);
+
+  /* submit form */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (buttonName === 'publish') {
+      dispatch(userPublishNewAdvice());
+    }
+    if (buttonName === 'save') {
+      dispatch(userSaveNewAdvice());
+    }
+    return redirect(`/utilisateurs/${userNickname}`);
   };
 
   return (
@@ -75,10 +100,22 @@ function AddAdvicePage() {
             />
           </div>
           <div className="button-wrapper">
-            <Button color="primary">Publier</Button>
-            <Button>Sauvegarder</Button>
-            <Button outline color="primary">
-              Supprimer
+            <Button
+              type="submit"
+              color="primary"
+              onclick={() => setButtonName('publish')}
+            >
+              Publier
+            </Button>
+            <Button type="submit" onclick={() => setButtonName('save')}>
+              Sauvegarder
+            </Button>
+            <Button
+              outline
+              color="primary"
+              onclick={() => redirect(`/utilisateurs/${userNickname}`)}
+            >
+              Annuler
             </Button>
           </div>
         </form>
