@@ -2,6 +2,13 @@ import {
   FETCH_ADVICES_FROM_API,
   FETCH_LAST_FOUR_ADVICES_FROM_API,
 } from '../actions/advices';
+  USER_PUBLISH_NEW_ADVICE_SUCCESS,
+  USER_PUBLISH_NEW_ADVICE_FAILED,
+  USER_SAVE_NEW_ADVICE_SUCCESS,
+  USER_SAVE_NEW_ADVICE_FAILED,
+  USER_PUBLISH_EDIT_ADVICE_SUCCESS,
+  USER_PUBLISH_EDIT_ADVICE_FAILED,
+} from '../actions/user';
 
 import { ON_INPUT_CHANGE } from '../actions/common';
 
@@ -30,8 +37,50 @@ const reducer = (state = initialState, action = {}) => {
     case FETCH_LAST_FOUR_ADVICES_FROM_API:
       return {
         ...state,
-        lastFourAdvices: action.data,
-        isLoaded: true,
+        newAdviceData: action.data,
+        newAdviceTitle: '',
+        newAdviceCategory: '',
+        newAdviceContent: '',
+      };
+    case USER_PUBLISH_NEW_ADVICE_FAILED:
+      return {
+        ...state,
+        newAdviceErrors: action.errors,
+      };
+    case USER_SAVE_NEW_ADVICE_SUCCESS:
+      return {
+        ...state,
+        newAdviceData: action.data,
+        newAdviceTitle: '',
+        newAdviceCategory: '',
+        newAdviceContent: '',
+      };
+    case USER_SAVE_NEW_ADVICE_FAILED:
+      return {
+        ...state,
+        newAdviceErrors: action.errors,
+      };
+    case EDIT_ADVICE_DATA:
+      return {
+        ...state,
+        editAdviceId: action.data.id,
+        editAdviceTitle: action.data.title,
+        editAdviceCategory: action.data.category,
+        editAdviceContent: action.data.content,
+      };
+    case USER_PUBLISH_EDIT_ADVICE_SUCCESS:
+      return {
+        ...state,
+        editAdviceData: action.data,
+        editAdviceId: '',
+        editAdviceTitle: '',
+        editAdviceCategory: '',
+        editAdviceContent: '',
+      };
+    case USER_PUBLISH_EDIT_ADVICE_FAILED:
+      return {
+        ...state,
+        editAdviceErrors: action.errors,
       };
     default:
       return state;
