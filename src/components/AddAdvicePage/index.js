@@ -17,7 +17,6 @@ import './styles.scss';
 
 function AddAdvicePage() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);

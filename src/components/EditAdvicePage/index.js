@@ -150,7 +150,7 @@ function EditAdvicePage() {
               <Button
                 outline
                 color="primary"
-                onclick={() => navigate(`/utilisateurs/${userNickname}`)}
+                onclick={() => redirect(`/utilisateurs/${userNickname}`)}
               >
                 Annuler
               </Button>
