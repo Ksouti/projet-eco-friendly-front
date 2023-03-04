@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
 import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/user';
@@ -17,6 +17,7 @@ import './styles.scss';
 
 function AddAdvicePage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
@@ -24,7 +25,7 @@ function AddAdvicePage() {
 
   /* if there is no advice, we redirect to the 404 page */
   if (!userIslogged) {
-    return redirect('/');
+    return navigate('/', { replace: true });
   }
 
   const [categories, setCategories] = useState(
@@ -61,7 +62,7 @@ function AddAdvicePage() {
     if (buttonName === 'save') {
       dispatch(userSaveNewAdvice());
     }
-    return redirect(`/utilisateurs/${userNickname}`);
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
 
   return (
@@ -113,7 +114,7 @@ function AddAdvicePage() {
             <Button
               outline
               color="primary"
-              onclick={() => redirect(`/utilisateurs/${userNickname}`)}
+              onclick={() => navigate(`/utilisateurs/${userNickname}`)}
             >
               Annuler
             </Button>

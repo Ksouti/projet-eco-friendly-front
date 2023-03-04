@@ -2,10 +2,10 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { redirect, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { OnInputChange } from '../../actions/common';
-import { userPublishEditAdvice } from '../../actions/user';
+import { userPublishEditAdvice, userSaveEditAdvice } from '../../actions/user';
 import { editAdviceData } from '../../actions/advices';
 
 import Page from '../Page';
@@ -22,22 +22,27 @@ import './styles.scss';
 
 function EditAdvicePage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { slug } = useParams();
-
   /* check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
   /* end check if user is logged */
 
-  /* if there is no advice, we redirect to the 404 page */
-  if (!userIslogged) {
-    return redirect('/');
-  }
-
   const advice = useSelector((state) => findItem(state.user.advices, slug));
 
   useEffect(() => {
+    /* if there is no advice, we redirect to the 404 page */
+    if (!userIslogged) {
+      navigate('/', { replace: true });
+    }
+
+    /* if there is no advice, we redirect to the 404 page */
+    if (!advice) {
+      navigate('/404', { replace: true });
+    }
+
     dispatch(editAdviceData(advice));
-  }, []);
+  }, [advice, userIslogged]);
 
   /* control input fields */
   const title = useSelector((state) => state.advices.editAdviceTitle);
@@ -79,9 +84,9 @@ function EditAdvicePage() {
       dispatch(userPublishEditAdvice());
     }
     if (buttonName === 'save') {
-      // dispatch(userSaveNewAdvice());
+      dispatch(userSaveEditAdvice());
     }
-    return redirect(`/utilisateurs/${userNickname}`);
+    return navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
 
   return (
@@ -135,7 +140,7 @@ function EditAdvicePage() {
               <Button
                 outline
                 color="primary"
-                onclick={() => redirect(`/utilisateurs/${userNickname}`)}
+                onclick={() => navigate(`/utilisateurs/${userNickname}`)}
               >
                 Annuler
               </Button>
