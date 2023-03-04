@@ -81,7 +81,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_PUBLISH_NEW_ADVICE_FAILED:
       return {
         ...state,
-        newAdviceErrors: action.errors,
+        errorsMessage: action.errors,
       };
     case USER_SAVE_NEW_ADVICE_SUCCESS:
       return {
