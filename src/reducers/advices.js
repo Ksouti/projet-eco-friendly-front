@@ -138,6 +138,48 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         errorsMessage: action.errors,
       };
+    case USER_SAVE_EDIT_ADVICE_SUCCESS:
+      return {
+        ...state,
+        editAdviceData: action.data,
+        editAdviceId: '',
+        editAdviceTitle: '',
+        editAdviceCategory: '',
+        editAdviceContent: '',
+      };
+    case USER_SAVE_EDIT_ADVICE_FAILED:
+      return {
+        ...state,
+        errorsMessage: action.errors,
+      };
+    case USER_SAVE_EDIT_ADVICE_SUCCESS:
+      return {
+        ...state,
+        editAdviceData: action.data,
+        editAdviceId: '',
+        editAdviceTitle: '',
+        editAdviceCategory: '',
+        editAdviceContent: '',
+      };
+    case USER_SAVE_EDIT_ADVICE_FAILED:
+      return {
+        ...state,
+        errorsMessage: action.errors,
+      };
+    case USER_DELETE_ADVICE_SUCCESS:
+      console.log('action.data.id', action.data.id);
+      return {
+        ...state,
+        // TODO: Actually API doesn't return anything, so we use the id of the deleted advice
+        userAdvices: state.userAdvices.filter(
+          (advice) => advice.id !== action.data.id,
+        ),
+      };
+    case USER_DELETE_ADVICE_FAILED:
+      return {
+        ...state,
+        errorsMessage: action.errors,
+      };
     default:
       return state;
   }
