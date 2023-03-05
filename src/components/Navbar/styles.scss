@@ -7,6 +7,7 @@
   --navbar-padding-x: 0;
   --navbar-padding-y: 0.5rem;
   --navbar-color: #fff;
+  --navbar-height: 76px;
   --brand-font-size: 1rem;
   --nav-link-padding-x: 0.5rem;
   --toogler-size: 1.5em;
@@ -25,6 +26,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  z-index: 900; /* important */
 
   &-container {
     --gutter-x: 1rem;
@@ -42,8 +44,13 @@
     color: var(--brand-color);
     text-decoration: none;
     white-space: nowrap;
+    line-height: var(--navbar-height);
 
     a {
+      vertical-align: middle;
+      display: inline-block;
+      height: var(--logo-size);
+
       img {
         margin-right: 0.325rem;
         width: var(--logo-size);
@@ -69,11 +76,31 @@
       height: var(--toogler-size);
       vertical-align: middle;
     }
+
+    &-user-icon {
+      display: inline-block;
+      width: var(--logo-size);
+      height: var(--logo-size);
+      vertical-align: middle;
+      border-radius: 50%;
+    }
   }
 
   .menu {
     position: relative;
     /* TODO: adding horizontal menu here */
+    &-collapse {
+      display: none;
+      flex-basis: 100%;
+      flex-grow: 1;
+      border-top: 1px solid rgba(255, 255, 255, 0.325);
+      margin: 1rem 0 0;
+      padding: 1rem 0 0;
+
+      &.show {
+        display: block;
+      }
+    }
 
     &-items {
       display: flex;
@@ -143,19 +170,6 @@
           transition: var(--transition);
           color: color.scale(#fff, $lightness: -20%);
         }
-      }
-    }
-
-    &-collapse {
-      display: none;
-      flex-basis: 100%;
-      flex-grow: 1;
-      border-top: 1px solid rgba(255, 255, 255, 0.325);
-      margin: 1rem 0 0;
-      padding: 1rem 0 0;
-
-      &.show {
-        display: block;
       }
     }
   }

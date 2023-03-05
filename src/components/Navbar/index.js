@@ -13,6 +13,8 @@ import burger from './assets/toggler-icon.svg';
 import './styles.scss';
 
 function Navbar() {
+  const dispatch = useDispatch();
+
   const [toggleBurger, setToggleBurger] = useState(false);
 
   const handleClickBurger = () => {
@@ -23,9 +25,15 @@ function Navbar() {
     ? 'menu menu-collapse show'
     : 'menu menu-collapse';
 
+  const handleClickModal = () => {
+    dispatch(openModal(<AuthForm />));
+  };
+
+  const userIsLoaded = useSelector((state) => state.user.isLoaded);
+
   const categories = useSelector((state) => state.common.categories);
   const user = useSelector((state) => state.user.data);
-  const { nickname, isVerified, isActive, roles, avatar } = user;
+  const { avatar } = user;
 
   return (
     <nav className="navbar">
@@ -39,19 +47,21 @@ function Navbar() {
             <span>Eco-friendly</span>
           </Link>
         </div>
-        {user ? (
-          <Burger icon={burger} handleClickBurger={handleClickBurger} />
+        {userIsLoaded && user ? (
+          <Burger
+            avatar={avatar}
+            user={user}
+            handleClickBurger={handleClickBurger}
+          />
         ) : (
-          <Burger icon={avatar} handleClickBurger={handleClickBurger} />
+          <Burger handleClickBurger={handleClickBurger} />
         )}
         {categories && (
           <div className={showMenu}>
             <Menu
               categories={categories}
-              nickname={nickname}
-              isVerified={isVerified}
-              isActive={isActive}
-              roles={roles}
+              user={user}
+              handleClickModal={handleClickModal}
             />
           </div>
         )}
@@ -62,29 +72,31 @@ function Navbar() {
 
 export default Navbar;
 
-function Burger({ icon, handleClickBurger }) {
+function Burger({ avatar, handleClickBurger }) {
+  const icon = avatar || burger;
+  const className = avatar ? 'navbar-toggler-user-icon' : 'navbar-toggler-icon';
+
   return (
     <button
       type="button"
       className="navbar-toggler"
       onClick={handleClickBurger}
     >
-      <img src={icon} alt="toggle icon" className="navbar-toggler-icon" />
+      <img src={icon} alt="toggle icon" className={className} />
     </button>
   );
 }
 
 Burger.propTypes = {
-  icon: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
   handleClickBurger: PropTypes.func.isRequired,
 };
 
-function Menu({ categories, nickname, isVerified, isActive, roles }) {
-  const dispatch = useDispatch();
-
-  const handleClickModal = () => {
-    dispatch(openModal(<AuthForm />));
-  };
+Burger.defaultProps = {
+  avatar: null,
+};
+function Menu({ categories, user, handleClickModal }) {
+  const { nickname, isVerified, isActive, roles } = user;
 
   return (
     <ul className="menu-items">
@@ -126,17 +138,22 @@ Menu.propTypes = {
       slug: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  nickname: PropTypes.string,
-  isVerified: PropTypes.bool,
-  isActive: PropTypes.bool,
-  roles: PropTypes.arrayOf(PropTypes.string),
+  user: PropTypes.shape({
+    nickname: PropTypes.string,
+    isVerified: PropTypes.bool,
+    isActive: PropTypes.bool,
+    roles: PropTypes.arrayOf(PropTypes.string),
+  }),
+  handleClickModal: PropTypes.func.isRequired,
 };
 
 Menu.defaultProps = {
-  nickname: '',
-  isVerified: false,
-  isActive: false,
-  roles: [],
+  user: {
+    nickname: null,
+    isVerified: null,
+    isActive: null,
+    roles: [],
+  },
 };
 
 function UserMenu({ nickname, roles }) {
