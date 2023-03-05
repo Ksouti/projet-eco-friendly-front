@@ -88,6 +88,9 @@
 
   .icon-inner {
     display: block;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 
     &:hover .icon-pencil {
       border: 1px solid vars.$primaryColorHover;

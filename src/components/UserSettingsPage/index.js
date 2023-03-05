@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getUserAdvices } from '../../actions/advices';
+import { getUserAdvices, userDeleteAdvice } from '../../actions/advices';
 
 import Page from '../Page';
 import Advices from './Advices';
@@ -20,6 +20,7 @@ export default function UserSettingsPage() {
   /* get state informations */
   const user = useSelector((state) => state.user.data);
   const isLoadedAdvices = useSelector((state) => state.advices.isLoadedAdvices);
+  const advices = useSelector((state) => state.advices.userAdvices);
   /* end get state informations */
 
   /* check if the nickname is the same as the user's nickname */
@@ -32,16 +33,16 @@ export default function UserSettingsPage() {
     dispatch(getUserAdvices());
   }, []);
 
-  /* Loading all user's advices */
-  const advices = useSelector((state) => state.advices.userAdvices);
-  /* end Loading all user's advices */
+  const onDelete = (id) => {
+    dispatch(userDeleteAdvice(id));
+  };
 
   return (
     <Page>
       {isLoaded ? (
         <div className="settings">
           <Account user={user} />
-          <Advices items={user.advices} />
+          <Advices items={advices} onDelete={onDelete} />
         </div>
       ) : (
         <Loader />
