@@ -92,6 +92,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
             category: store.getState().advices.editAdviceCategory,
             content: store.getState().advices.editAdviceContent,
             status: 1,
+            contributor: store.getState().user.id,
           },
           {
             headers: {
@@ -141,6 +142,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
             category: store.getState().advices.editAdviceCategory,
             content: store.getState().advices.editAdviceContent,
             status: 0,
+            contributor: store.getState().user.id,
           },
           {
             headers: {
