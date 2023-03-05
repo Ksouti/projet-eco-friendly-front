@@ -335,7 +335,8 @@ export const userSaveNewAdviceFailed = (errors) => ({
   errors,
 });
 
-/** @name userPublishEditAdvice
+/**
+ * @name userPublishEditAdvice
  * @description Action creator for publishing edited advice
  * @returns {object}
  */
@@ -345,7 +346,8 @@ export const userPublishEditAdvice = () => ({
   type: USER_PUBLISH_EDIT_ADVICE,
 });
 
-/** @name userPublishEditAdviceSuccess
+/**
+ * @name userPublishEditAdviceSuccess
  * @description Action creator for publishing edited advice success
  * @param {object} data
  * @returns {object}
@@ -358,7 +360,8 @@ export const userPublishEditAdviceSuccess = (data) => ({
   data,
 });
 
-/** @name userPublishEditAdviceFailed
+/**
+ * @name userPublishEditAdviceFailed
  * @description Action creator for publishing edited advice failed
  * @param {array} errors
  * @returns {object}
@@ -371,7 +374,8 @@ export const userPublishEditAdviceFailed = (errors) => ({
   errors,
 });
 
-/** @name userSaveEditAdvice
+/**
+ * @name userSaveEditAdvice
  * @description Action creator for saving edited advice
  * @returns {object}
  */
@@ -381,7 +385,8 @@ export const userSaveEditAdvice = () => ({
   type: USER_SAVE_EDIT_ADVICE,
 });
 
-/** @name userSaveEditAdviceSuccess
+/**
+ * name userSaveEditAdviceSuccess
  * @description Action creator for saving edited advice success
  * @param {object} data
  * @returns {object}
@@ -393,7 +398,8 @@ export const userSaveEditAdviceSuccess = (data) => ({
   data,
 });
 
-/** @name userSaveEditAdviceFailed
+/**
+ * @name userSaveEditAdviceFailed
  * @description Action creator for saving edited advice failed
  * @param {array} errors
  * @returns {object}
@@ -405,7 +411,8 @@ export const userSaveEditAdviceFailed = (errors) => ({
   errors,
 });
 
-/** @name userDeleteAdvice
+/**
+ * @name userDeleteAdvice
  * @description Action creator for deleting advice
  * @returns {object}
  */
@@ -415,18 +422,23 @@ export const userDeleteAdvice = () => ({
   type: USER_DELETE_ADVICE,
 });
 
-/** @name userDeleteAdviceSuccess
+/**
+ * @name userDeleteAdviceSuccess
  * @description Action creator for deleting advice success
- * @param {object} data
+ * @todo Actually, API doesn't return deleted advice id
+ * @todo So, we use the id of the advice that we want to delete
+ * @param {string} id
  * @returns {object}
  */
 export const USER_DELETE_ADVICE_SUCCESS = 'USER_DELETE_ADVICE_SUCCESS';
 
-export const userDeleteAdviceSuccess = () => ({
+export const userDeleteAdviceSuccess = (id) => ({
   type: USER_DELETE_ADVICE_SUCCESS,
+  id,
 });
 
-/** @name userDeleteAdviceFailed
+/**
+ * @name userDeleteAdviceFailed
  * @description Action creator for deleting advice failed
  * @param {array} errors
  * @returns {object}
