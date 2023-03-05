@@ -121,6 +121,7 @@ const reducer = (state = initialState, action = {}) => {
         errorsMessage: action.errors,
       };
     case USER_DELETE_ADVICE_SUCCESS:
+      console.log('action.data.id', action.data.id);
       return {
         ...state,
         // TODO: Actually API doesn't return anything, so we use the id of the deleted advice
