@@ -173,7 +173,10 @@ const advicesMiddleware = (store) => (next) => (action) => {
           },
         )
         .then(() => {
-          store.dispatch(userDeleteAdviceSuccess()); // API doesn't return anything
+          store.dispatch(
+            // Actually API doesn't return anything, so we use the id of the deleted advice
+            userDeleteAdviceSuccess(store.getState().advices.editAdviceId),
+          );
         })
         .catch((error) => {
           store.dispacth(userDeleteAdviceFailed(error));
