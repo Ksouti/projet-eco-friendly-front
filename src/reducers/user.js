@@ -7,18 +7,22 @@ import {
 import { ON_INPUT_CHANGE } from '../actions/common';
 
 export const initialState = {
-  isLoaded: false,
-  isLoadedAdvices: false,
-  isLogged: false,
   token: '',
-  data: {},
+  isLoaded: false,
+  isLogged: false,
   advices: [],
+  data: {},
   id: '',
-  nickname: '',
+  email: '',
+  roles: [],
   firstname: '',
   lastname: '',
-  email: '',
+  nickname: '',
+  avatar: '',
+  isActive: false,
+  isVerified: false,
   password: '',
+  isLoadedAdvices: false,
   confirmPassword: '',
 };
 
@@ -32,33 +36,43 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_SUCCESS:
       return {
         ...state,
+        token: action.token,
         isLoaded: true,
         isLogged: true,
-        token: action.token,
         data: action.data,
         id: action.data.id,
-        nickname: action.data.nickname,
+        roles: action.data.roles,
         firstname: action.data.firstname,
         lastname: action.data.lastname,
+        nickname: action.data.nickname,
+        avatar: action.data.avatar,
+        isActive: action.data.isActive,
+        isVerified: action.data.isVerified,
         email: '',
         password: '',
       };
     case USER_LOGOUT:
       return {
         ...state,
-        isLogged: false,
-        data: {},
         token: '',
+        isLogged: false,
+        isLoaded: false,
+        data: {},
+        id: '',
+        roles: [],
+        firstname: '',
+        lastname: '',
+        nickname: '',
+        avatar: '',
+        isActive: false,
+        isVerified: false,
       };
     case USER_REGISTER_SUCCESS:
       return {
         ...state,
-        isLogged: true,
-        data: action.data,
-        token: '',
-        isLoaded: true,
         email: '',
         password: '',
+        confirmPassword: '',
       };
     default:
       return state;
