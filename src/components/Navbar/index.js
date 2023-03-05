@@ -1,11 +1,12 @@
 /* eslint-disable object-curly-newline */
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 import { openModal } from '../../actions/common';
+import { userLogout } from '../../actions/user';
 import AuthForm from '../Form/AuthForm';
 
 import burger from './assets/toggler-icon.svg';
@@ -31,6 +32,7 @@ function Navbar() {
     : 'menu menu-collapse';
 
   const handleClickModal = () => {
+    setToggleBurger(!toggleBurger);
     dispatch(openModal(<AuthForm />));
   };
 
@@ -67,6 +69,7 @@ function Navbar() {
               categories={categories}
               handleClickModal={handleClickModal}
               handleClickUserMenu={handleClickUserMenu}
+              toggleMenu={handleClickBurger}
               toggleUserMenu={toggleUserMenu}
               userIsLoaded={userIsLoaded}
               user={user}
@@ -107,6 +110,7 @@ function Menu({
   categories,
   handleClickModal,
   handleClickUserMenu,
+  toggleMenu,
   toggleUserMenu,
   userIsLoaded,
   user,
@@ -125,6 +129,7 @@ function Menu({
           nickname={user.nickname}
           roles={user.roles}
           toggleUserMenu={toggleUserMenu}
+          toggleMenu={toggleMenu}
         />
       )}
     </>
@@ -141,6 +146,7 @@ Menu.propTypes = {
   ).isRequired,
   handleClickModal: PropTypes.func.isRequired,
   handleClickUserMenu: PropTypes.func.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
   toggleUserMenu: PropTypes.bool.isRequired,
   userIsLoaded: PropTypes.bool,
   user: PropTypes.object,
@@ -232,27 +238,47 @@ AccountButton.defaultProps = {
   user: null,
 };
 
-function UserMenu({ nickname, roles, toggleUserMenu }) {
+function UserMenu({ nickname, roles, toggleMenu, toggleUserMenu }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isAdmin = roles.includes('ROLE_ADMIN');
   const isAuthor = roles.includes('ROLE_AUTHOR');
+  const isUser = roles.includes('ROLE_USER'); // dev only
 
   const className = toggleUserMenu ? 'dropdown-menu show' : 'dropdown-menu';
+
+  const handleClick = () => {
+    dispatch(userLogout());
+    toggleMenu();
+    navigate('/', { replace: true });
+  };
 
   return (
     <ul className={className}>
       <li className="menu-item">
-        <Link to={`/utilisateurs/${nickname}`}>Gérer mon compte</Link>
+        <Link to={`/utilisateurs/${nickname}`} onClick={toggleMenu}>
+          Gérer mon compte
+        </Link>
       </li>
       <li className="menu-item">
-        <Link to="/">Ajouter un conseil</Link>
+        <Link to="/conseils/ajouter" onClick={toggleMenu}>
+          Ajouter un conseil
+        </Link>
       </li>
-      {(isAdmin || isAuthor) && (
+      {(isAdmin || isAuthor || isUser) && (
         <li className="menu-item">
-          <a to="/">Accès réservé</a>
+          <a
+            href="http://vps-79770841.vps.ovh.net/back_office/connexion"
+            target="_blank"
+            rel="noreferrer"
+            onClick={toggleMenu}
+          >
+            Accès réservé
+          </a>
         </li>
       )}
-      <li className="menu-item">
-        <button type="button" to="/">
+      <li className="menu-item text-secondary">
+        <button type="button" onClick={handleClick}>
           Déconnexion
         </button>
       </li>
@@ -263,5 +289,6 @@ function UserMenu({ nickname, roles, toggleUserMenu }) {
 UserMenu.propTypes = {
   nickname: PropTypes.string.isRequired,
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toggleMenu: PropTypes.func.isRequired,
   toggleUserMenu: PropTypes.func.isRequired,
 };
