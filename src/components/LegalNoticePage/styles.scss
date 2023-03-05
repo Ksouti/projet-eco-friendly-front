@@ -3,7 +3,6 @@
 
 .legal {
   --font-size: 1rem;
-  --gutter-y: 1rem;
 
   margin: 2rem var(--gutter-y);
   color: inherit;
@@ -29,26 +28,21 @@
 
   @include screen('sm') {
     --font-size: 1.125rem;
-    --gutter-y: 5rem;
   }
 
   @include screen('md') {
     --font-size: 1.125rem;
-    --gutter-y: 8rem;
   }
 
   @include screen('lg') {
     --font-size: 1.125rem;
-    --gutter-y: 14rem;
   }
 
   @include screen('xl') {
     --font-size: 1.125rem;
-    --gutter-y: 20rem;
   }
 
   @include screen('2xl') {
     --font-size: 1.25rem;
-    --gutter-y: 26rem;
   }
 }
