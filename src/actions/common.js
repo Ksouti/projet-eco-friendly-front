@@ -11,7 +11,7 @@ export const loadingCategoriesData = () => ({
 
 /**
  * @name fetchCategoriesFromApi
- * @description Action creator for loading categories data
+ * @description Action creator to get categories data
  * @param {object} data : the data to fetch
  * @returns {object} : the action
  */
@@ -19,6 +19,30 @@ export const FETCH_CATEGORIES_FROM_API = 'FETCH_CATEGORIES_FROM_API';
 
 export const fetchCategoriesFromApi = (data) => ({
   type: FETCH_CATEGORIES_FROM_API,
+  data,
+});
+
+/**
+ * @name lodaingHomePageData
+ * @description Action creator for loading home page data
+ * @returns {object} : the action
+ */
+export const LOADING_HOME_PAGE_DATA = 'LOADING_HOME_PAGE_DATA';
+
+export const loadingHomePageData = () => ({
+  type: LOADING_HOME_PAGE_DATA,
+});
+
+/**
+ * @name fetchHomePageDataFromApi
+ * @description Action creator to get home page data
+ * @param {object} data : the data to fetch
+ * @returns {object} : the action
+ */
+export const FETCH_HOME_PAGE_DATA_FROM_API = 'FETCH_HOME_PAGE_DATA_FROM_API';
+
+export const fetchHomePageDataFromApi = (data) => ({
+  type: FETCH_HOME_PAGE_DATA_FROM_API,
   data,
 });
 

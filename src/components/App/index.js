@@ -4,14 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
-import {
-  loadingArticlesData,
-  loadingLastFourArticles,
-} from '../../actions/articles';
-import {
-  loadingAdvicesData,
-  loadingLastFourAdvices,
-} from '../../actions/advices';
+import { loadingArticlesData } from '../../actions/articles';
+import { loadingAdvicesData } from '../../actions/advices';
 
 import { loadingCategoriesData } from '../../actions/common';
 
@@ -21,6 +15,7 @@ import HomePage from '../HomePage';
 import UserSettingsPage from '../UserSettingsPage/index';
 import NotFoundPage from '../NotFoundPage';
 import AddAdvicePage from '../AddAdvicePage';
+import EditAdvicePage from '../EditAdvicePage';
 import CategoryPage from '../CategoryPage';
 import ArticlePage from '../ArticlePage';
 import AdvicePage from '../AdvicePage';
@@ -38,20 +33,14 @@ function App() {
     useSelector((state) => state.common.categories),
   );
 
+  /* get state informations */
   const articlesIsLoaded = useSelector((state) => state.articles.isLoaded);
   const advicesIsLoaded = useSelector((state) => state.advices.isLoaded);
+  /* end get state informations */
 
-  const lastFourArticlesIsLoaded = useSelector(
-    (state) => state.articles.isLoaded,
-  );
-  const lastFourAdvicesIsLoaded = useSelector(
-    (state) => state.advices.isLoaded,
-  );
-
+  /* dispatch actions to get data */
   useEffect(() => {
     dispatch(loadingCategoriesData());
-    dispatch(loadingLastFourArticles());
-    dispatch(loadingLastFourAdvices());
     dispatch(loadingArticlesData());
     dispatch(loadingAdvicesData());
   }, []);
@@ -70,10 +59,7 @@ function App() {
       <header className="header">
         <Navbar categories={categories} />
       </header>
-      {articlesIsLoaded &&
-      advicesIsLoaded &&
-      lastFourArticlesIsLoaded &&
-      lastFourAdvicesIsLoaded ? (
+      {articlesIsLoaded && advicesIsLoaded ? (
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/categories/:name" element={<CategoryPage />} />
@@ -84,7 +70,7 @@ function App() {
             element={<UserSettingsPage />}
           />
           <Route path="/conseils/ajouter" element={<AddAdvicePage />} />
-          <Route path="/conseils/:slug/editer" element={<AddAdvicePage />} />
+          <Route path="/conseils/:slug/editer" element={<EditAdvicePage />} />
           <Route path="/mentions-legales" element={<LegalNoticePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

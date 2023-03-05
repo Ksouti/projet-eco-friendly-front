@@ -5,15 +5,12 @@ import {
   fetchArticlesFromApi,
   LOADING_LAST_ARTICLE_DATA,
   fetchLastArticleFromApi,
-  LOADING_LAST_FOUR_ARTICLES,
-  fetchLastFourArticlesFromApi,
 } from '../actions/articles';
 
 import config from '../config';
 
 import articles from '../data/articles'; // dev only
 import article from '../data/lastArticle'; // dev only
-import lastFourArticles from '../data/lastFourArticles'; // dev only
 
 const articlesMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -29,7 +26,6 @@ const articlesMiddleware = (store) => (next) => (action) => {
           .catch((error) => `Error: ${error.message}`);
       }
       break;
-
     case LOADING_LAST_ARTICLE_DATA:
       if (config.env === 'dev') {
         store.dispatch(fetchLastArticleFromApi(article)); // dev only
@@ -43,14 +39,6 @@ const articlesMiddleware = (store) => (next) => (action) => {
           })
           .catch((error) => `Error: ${error.message}`);
       }
-      break;
-
-    case LOADING_LAST_FOUR_ARTICLES:
-      store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
-      break;
-
-    case LOADING_LAST_FOUR_ARTICLES:
-      store.dispatch(fetchLastFourArticlesFromApi(lastFourArticles)); // dev only
       break;
     default:
   }

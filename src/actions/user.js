@@ -1,3 +1,5 @@
+/* eslint-disable operator-linebreak */
+/* eslint-disable operator-linebreak */
 /**
  * @name loadingUserData
  * @description Action creator for loading user data
@@ -41,10 +43,10 @@ export const userLogout = () => ({
 
 export const USER_AUTHENTICATION_SUCCESS = 'USER_AUTHENTICATION_SUCCESS';
 
-export const userAuthenticationSuccess = (data, token) => ({
+export const userAuthenticationSuccess = (token, data) => ({
   type: USER_AUTHENTICATION_SUCCESS,
-  data,
   token,
+  data,
 });
 
 /**

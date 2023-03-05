@@ -28,23 +28,31 @@ function AddAdvicePage() {
     return navigate('/', { replace: true });
   }
 
+  /* get state informations */
   const [categories, setCategories] = useState(
     useSelector((state) => state.common.categories),
   );
+  const userNickname = useSelector((state) => state.user.nickname);
+  /* end get state informations */
 
   /* If there is no categories in the state, we set the default categories */
   if (categories.length === 0) {
     setCategories(config.defaultNavLinks);
   }
 
-  const changeField = (value, identifier) => {
-    dispatch(OnInputChange(value, identifier));
-  };
+  /* control input fields */
+  const title = useSelector((state) => state.advices.newAdviceTitle);
+  const category = useSelector((state) => state.advices.newAdviceCategory);
+  const content = useSelector((state) => state.advices.newAdviceContent);
+  /* end control input fields */
 
+  /* change field value */
+  const changeField = (value) => {
+    dispatch(OnInputChange(value, 'newAdviceTitle'));
+  };
   const onSelectChange = (e) => {
     dispatch(OnInputChange(e.target.value, 'newAdviceCategory'));
   };
-
   const OnRichTextEditorChange = (e) => {
     dispatch(OnInputChange(e, 'newAdviceContent'));
   };
@@ -74,18 +82,17 @@ function AddAdvicePage() {
     <Page>
       <div className="add-advice">
         <div className="title">Ajouter un conseil</div>
-        <form>
+        <form autoComplete="off" onSubmit={handleSubmit} method="POST">
           <div className="row">
             <select
-              name="addCategory"
-              id="category"
-              className="advice-select"
               onChange={onSelectChange}
+              value={category}
+              className="advice-select"
             >
               <option hidden>Catégories</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
+              {categories.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -94,14 +101,14 @@ function AddAdvicePage() {
               name="addTitle"
               placeholder="Titre"
               onChange={changeField}
-              value={addTitle}
+              value={title}
               color="primary"
             />
           </div>
           <div className="text-editor">
             <RichTextEditor
               name="addContent"
-              value={addContent}
+              value={content}
               onChange={OnRichTextEditorChange}
             />
           </div>

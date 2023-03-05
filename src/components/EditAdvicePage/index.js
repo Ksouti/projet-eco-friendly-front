@@ -26,7 +26,6 @@ import './styles.scss';
 function EditAdvicePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const navigate = useNavigate();
   const { slug } = useParams();
 
   /* check if user is logged */
@@ -37,19 +36,18 @@ function EditAdvicePage() {
     findItem(state.advices.userAdvices, slug),
   );
 
-    useEffect(() => {
-      /* if there is no advice, we redirect to the 404 page */
-      if (!userIslogged) {
-        navigate('/', { replace: true });
-      }
+  useEffect(() => {
+    /* if there is no advice, we redirect to the 404 page */
+    if (!userIslogged) {
+      navigate('/', { replace: true });
+    }
 
-      /* if there is no advice, we redirect to the 404 page */
-      if (!advice) {
-        navigate('/404', { replace: true });
-      }
+    /* if there is no advice, we redirect to the 404 page */
+    if (!advice) {
+      navigate('/404', { replace: true });
+    }
 
-      dispatch(editAdviceData(advice));
-    }, [advice, userIslogged]);
+    dispatch(editAdviceData(advice));
   }, [advice, userIslogged]);
 
   /* control input fields */
@@ -93,9 +91,7 @@ function EditAdvicePage() {
     }
     if (buttonName === 'save') {
       dispatch(userSaveEditAdvice());
-      dispatch(userSaveEditAdvice());
     }
-    return navigate(`/utilisateurs/${userNickname}`, { replace: true });
     return navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
 

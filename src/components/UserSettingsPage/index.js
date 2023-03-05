@@ -39,13 +39,11 @@ export default function UserSettingsPage() {
 
   return (
     <Page>
-      {isLoaded ? (
+      {isLoadedAdvices && (
         <div className="settings">
           <Account user={user} />
           <Advices items={advices} onDelete={onDelete} />
         </div>
-      ) : (
-        <Loader />
       )}
     </Page>
   );
