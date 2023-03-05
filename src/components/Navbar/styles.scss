@@ -3,9 +3,9 @@
 @import '../../styles/mixins.scss';
 
 .navbar {
-  --logo-size: 48px;
-  --navbar-padding-x: 0;
-  --navbar-padding-y: 0.5rem;
+  --logo-size: 52px;
+  --navbar-padding-x: 1rem;
+  --navbar-padding-y: 0.325rem;
   --navbar-color: #fff;
   --navbar-height: 76px;
   --brand-font-size: 1rem;
@@ -16,7 +16,7 @@
   --toggler-font-size: 1.25rem;
   --toggler-border-radius: 0.375rem;
   --toggler-focus-width: 0.25rem;
-  --toggler-transition: box-shadow 0.15s ease-in-out;
+  --transition: 0.15s ease-in-out;
 
   position: relative;
   padding: var(--navbar-padding-y) var(--navbar-padding-x);
@@ -45,6 +45,7 @@
     text-decoration: none;
     white-space: nowrap;
     line-height: var(--navbar-height);
+    flex-grow: 1;
 
     a {
       vertical-align: middle;
@@ -56,6 +57,13 @@
         width: var(--logo-size);
         height: var(--logo-size);
         object-fit: cover;
+        padding-bottom: 10px;
+      }
+      span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.325);
       }
     }
   }
@@ -88,14 +96,11 @@
 
   .menu {
     position: relative;
-    /* TODO: adding horizontal menu here */
+
     &-collapse {
       display: none;
       flex-basis: 100%;
       flex-grow: 1;
-      border-top: 1px solid rgba(255, 255, 255, 0.325);
-      margin: 1rem 0 0;
-      padding: 1rem 0 0;
 
       &.show {
         display: block;
@@ -104,10 +109,12 @@
 
     &-items {
       display: flex;
+      margin: 1rem 0 0;
+      padding: 1rem 0 0;
       flex-direction: column;
       align-items: center;
       list-style: none;
-      padding: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.325);
     }
 
     &-item {
@@ -168,9 +175,161 @@
     .dropdown-menu {
       display: none;
 
+      img {
+        display: none;
+      }
+
       &.show {
         display: block;
       }
     }
+  }
+
+  /* sm: 640px */
+  @include screen(sm) {
+    --logo-size: 72px;
+
+    .navbar-brand {
+      flex-grow: 0;
+
+      span {
+        display: none;
+      }
+    }
+    .navbar-toggler {
+      display: none;
+    }
+    .menu {
+      flex-basis: auto;
+      &-collapse {
+        display: block;
+      }
+
+      &-items {
+        margin: 0;
+        padding: 0;
+        flex-direction: row;
+        justify-content: flex-end;
+        border-top: none;
+        flex-grow: 1;
+      }
+
+      &-item {
+        padding-bottom: 0;
+        display: inline-block;
+        margin-left: 0.5rem;
+        text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.325);
+
+        button {
+          padding: 0.35rem 0.625rem;
+          border-radius: 0.325rem;
+          border: 1px solid #fff;
+        }
+
+        &.dropdown {
+          position: relative;
+
+          &:after {
+            display: none;
+          }
+        }
+      }
+
+      .dropdown-menu.show {
+        position: absolute;
+        right: 0;
+        padding: 1rem 0;
+        margin: 0.5rem 0 0;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 0.325rem;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 900; /* important */
+
+        img {
+          display: inline-block;
+          width: var(--logo-size);
+          height: var(--logo-size);
+          margin-bottom: 1rem;
+          border-radius: 500%;
+          object-fit: cover;
+        }
+
+        .menu-item {
+          width: 100%;
+          padding: 0.5rem 1.5rem;
+          color: #212529;
+          font-weight: bold;
+          text-align: left;
+          text-shadow: none;
+          background-color: transparent;
+          text-decoration: none;
+
+          button {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            color: vars.$secondaryColor;
+            font-weight: bold;
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+
+  /* md: 768px */
+  @include screen(md) {
+    --logo-size: 72px;
+    .menu-item {
+      margin-left: 1.5rem;
+    }
+  }
+
+  /* unused breakpoints md: 1024px */
+  @include screen(lg) {
+    --logo-size: 96px;
+
+    &-container {
+      flex-direction: column;
+    }
+
+    .menu {
+      position: relative;
+
+      &-collapse {
+        display: flex;
+        width: 100%;
+
+        .menu-items {
+          justify-content: center;
+          margin-bottom: 0.5rem;
+
+          .menu-item:last-child {
+            margin-left: auto;
+          }
+
+          .menu-item:first-child {
+            margin-left: auto;
+          }
+        }
+      }
+    }
+  }
+
+  /* md: 1280px */
+  @include screen(xl) {
+    --logo-size: 124px;
+    .menu-item,
+    .menu-item button {
+      font-size: 1.4rem;
+    }
+  }
+
+  /* unused breakpoints md: 1536px */
+  @include screen(2xl) {
   }
 }

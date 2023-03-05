@@ -51,8 +51,8 @@ function Navbar() {
               src="http://vps-79770841.vps.ovh.net/assets/img/logos/logo-eco-friendly-V3-maxcropcenterh.png"
               alt="logo"
             />
-            <span>Eco-friendly</span>
           </Link>
+          <span>Eco-friendly</span>
         </div>
         {userIsLoaded && user ? (
           <Burger
@@ -130,6 +130,7 @@ function Menu({
           roles={user.roles}
           toggleUserMenu={toggleUserMenu}
           toggleMenu={toggleMenu}
+          avatar={user.avatar}
         />
       )}
     </>
@@ -166,6 +167,7 @@ function AppMenu({
 }) {
   return (
     <ul className="menu-items">
+      {/* <li className="menu-item" /> */}
       <li className="menu-item">
         <NavLink to="/">Accueil</NavLink>
       </li>
@@ -221,7 +223,7 @@ function AccountButton({ handleClickModal, handleClickUserMenu, user }) {
         </button>
       ) : (
         <button type="button" onClick={handleClickModal}>
-          Connexion/inscription
+          Connexion / Inscription
         </button>
       )}
     </li>
@@ -238,7 +240,7 @@ AccountButton.defaultProps = {
   user: null,
 };
 
-function UserMenu({ nickname, roles, toggleMenu, toggleUserMenu }) {
+function UserMenu({ nickname, roles, toggleMenu, toggleUserMenu, avatar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAdmin = roles.includes('ROLE_ADMIN');
@@ -255,6 +257,7 @@ function UserMenu({ nickname, roles, toggleMenu, toggleUserMenu }) {
 
   return (
     <ul className={className}>
+      <img src={avatar} alt={`Avater de ${nickname}`} />
       <li className="menu-item">
         <Link to={`/utilisateurs/${nickname}`} onClick={toggleMenu}>
           Gérer mon compte
@@ -291,4 +294,5 @@ UserMenu.propTypes = {
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
   toggleMenu: PropTypes.func.isRequired,
   toggleUserMenu: PropTypes.func.isRequired,
+  avatar: PropTypes.string.isRequired,
 };
