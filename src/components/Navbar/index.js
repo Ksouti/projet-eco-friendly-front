@@ -60,8 +60,9 @@ function Navbar() {
           <div className={showMenu}>
             <Menu
               categories={categories}
-              user={user}
               handleClickModal={handleClickModal}
+              userIsLoaded={userIsLoaded}
+              user={user}
             />
           </div>
         )}
@@ -95,9 +96,7 @@ Burger.propTypes = {
 Burger.defaultProps = {
   avatar: null,
 };
-function Menu({ categories, user, handleClickModal }) {
-  const { nickname, isVerified, isActive, roles } = user;
-
+function Menu({ categories, handleClickModal, userIsLoaded, user }) {
   return (
     <ul className="menu-items">
       <li className="menu-item">
@@ -108,23 +107,10 @@ function Menu({ categories, user, handleClickModal }) {
           <NavLink to={`/categories/${category.slug}`}>{category.name}</NavLink>
         </li>
       ))}
-      {!nickname && !isVerified && !isActive && (
-        <li className="menu-item ">
-          <button type="button" onClick={handleClickModal}>
-            Connexion/inscription
-          </button>
-        </li>
-      )}
-      {nickname && isVerified && isActive && (
-        <>
-          <li className="menu-item dropdown">
-            <button type="button" className="dropdown-toggle">
-              Mon Compte
-            </button>
-          </li>
-          {/* on click props "show" */}
-          <UserMenu nickname={nickname} roles={roles} />
-        </>
+      {userIsLoaded && user ? (
+        <AccountButton handleClickModal={handleClickModal} user={user} />
+      ) : (
+        <AccountButton handleClickModal={handleClickModal} />
       )}
     </ul>
   );
@@ -138,22 +124,41 @@ Menu.propTypes = {
       slug: PropTypes.string.isRequired,
     }),
   ).isRequired,
-  user: PropTypes.shape({
-    nickname: PropTypes.string,
-    isVerified: PropTypes.bool,
-    isActive: PropTypes.bool,
-    roles: PropTypes.arrayOf(PropTypes.string),
-  }),
   handleClickModal: PropTypes.func.isRequired,
+  userIsLoaded: PropTypes.bool,
+  user: PropTypes.object,
 };
 
 Menu.defaultProps = {
-  user: {
-    nickname: null,
-    isVerified: null,
-    isActive: null,
-    roles: [],
-  },
+  userIsLoaded: false,
+  user: null,
+};
+
+function AccountButton({ handleClickModal, user }) {
+  const className = user ? 'menu-item dropdown' : 'menu-item';
+
+  return (
+    <li className={className}>
+      {user ? (
+        <button type="button" className="dropdown-toggle">
+          Mon Compte
+        </button>
+      ) : (
+        <button type="button" onClick={handleClickModal}>
+          Connexion/inscription
+        </button>
+      )}
+    </li>
+  );
+}
+
+AccountButton.propTypes = {
+  handleClickModal: PropTypes.func.isRequired,
+  user: PropTypes.object,
+};
+
+AccountButton.defaultProps = {
+  user: null,
 };
 
 function UserMenu({ nickname, roles }) {
