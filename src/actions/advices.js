@@ -229,3 +229,36 @@ export const userSaveEditAdviceFailed = (errors) => ({
   type: USER_SAVE_EDIT_ADVICE_FAILED,
   errors,
 });
+
+/** @name userDeleteAdvice
+ * @description Action creator for deleting advice
+ * @returns {object}
+ */
+export const USER_DELETE_ADVICE = 'USER_DELETE_ADVICE';
+
+export const userDeleteAdvice = () => ({
+  type: USER_DELETE_ADVICE,
+});
+
+/** @name userDeleteAdviceSuccess
+ * @description Action creator for deleting advice success
+ * @param {object} data
+ * @returns {object}
+ */
+export const USER_DELETE_ADVICE_SUCCESS = 'USER_DELETE_ADVICE_SUCCESS';
+
+export const userDeleteAdviceSuccess = () => ({
+  type: USER_DELETE_ADVICE_SUCCESS,
+});
+
+/** @name userDeleteAdviceFailed
+ * @description Action creator for deleting advice failed
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_DELETE_ADVICE_FAILED = 'USER_DELETE_ADVICE_FAILED';
+
+export const userDeleteAdviceFailed = (errors) => ({
+  type: USER_DELETE_ADVICE_FAILED,
+  errors,
+});
