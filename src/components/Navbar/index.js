@@ -16,9 +16,14 @@ function Navbar() {
   const dispatch = useDispatch();
 
   const [toggleBurger, setToggleBurger] = useState(false);
+  const [toggleUserMenu, setToggleUserMenu] = useState(false);
 
   const handleClickBurger = () => {
     setToggleBurger(!toggleBurger);
+  };
+
+  const handleClickUserMenu = () => {
+    setToggleUserMenu(!toggleUserMenu);
   };
 
   const showMenu = toggleBurger
@@ -61,6 +66,8 @@ function Navbar() {
             <Menu
               categories={categories}
               handleClickModal={handleClickModal}
+              handleClickUserMenu={handleClickUserMenu}
+              toggleUserMenu={toggleUserMenu}
               userIsLoaded={userIsLoaded}
               user={user}
             />
@@ -96,23 +103,31 @@ Burger.propTypes = {
 Burger.defaultProps = {
   avatar: null,
 };
-function Menu({ categories, handleClickModal, userIsLoaded, user }) {
+function Menu({
+  categories,
+  handleClickModal,
+  handleClickUserMenu,
+  toggleUserMenu,
+  userIsLoaded,
+  user,
+}) {
   return (
-    <ul className="menu-items">
-      <li className="menu-item">
-        <NavLink to="/">Accueil</NavLink>
-      </li>
-      {categories.map((category) => (
-        <li key={category.id} className="menu-item">
-          <NavLink to={`/categories/${category.slug}`}>{category.name}</NavLink>
-        </li>
-      ))}
-      {userIsLoaded && user ? (
-        <AccountButton handleClickModal={handleClickModal} user={user} />
-      ) : (
-        <AccountButton handleClickModal={handleClickModal} />
+    <>
+      <AppMenu
+        categories={categories}
+        handleClickModal={handleClickModal}
+        handleClickUserMenu={handleClickUserMenu}
+        userIsLoaded={userIsLoaded}
+        user={user}
+      />
+      {userIsLoaded && user && (
+        <UserMenu
+          nickname={user.nickname}
+          roles={user.roles}
+          toggleUserMenu={toggleUserMenu}
+        />
       )}
-    </ul>
+    </>
   );
 }
 
@@ -125,6 +140,8 @@ Menu.propTypes = {
     }),
   ).isRequired,
   handleClickModal: PropTypes.func.isRequired,
+  handleClickUserMenu: PropTypes.func.isRequired,
+  toggleUserMenu: PropTypes.bool.isRequired,
   userIsLoaded: PropTypes.bool,
   user: PropTypes.object,
 };
@@ -134,13 +151,66 @@ Menu.defaultProps = {
   user: null,
 };
 
-function AccountButton({ handleClickModal, user }) {
+function AppMenu({
+  categories,
+  handleClickModal,
+  handleClickUserMenu,
+  userIsLoaded,
+  user,
+}) {
+  return (
+    <ul className="menu-items">
+      <li className="menu-item">
+        <NavLink to="/">Accueil</NavLink>
+      </li>
+      {categories.map((category) => (
+        <li key={category.id} className="menu-item">
+          <NavLink to={`/categories/${category.slug}`}>{category.name}</NavLink>
+        </li>
+      ))}
+      {userIsLoaded && user ? (
+        <AccountButton
+          handleClickModal={handleClickModal}
+          user={user}
+          handleClickUserMenu={handleClickUserMenu}
+        />
+      ) : (
+        <AccountButton handleClickModal={handleClickModal} />
+      )}
+    </ul>
+  );
+}
+
+AppMenu.propTypes = {
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  handleClickModal: PropTypes.func.isRequired,
+  handleClickUserMenu: PropTypes.func.isRequired,
+  userIsLoaded: PropTypes.bool,
+  user: PropTypes.object,
+};
+
+AppMenu.defaultProps = {
+  userIsLoaded: false,
+  user: null,
+};
+
+function AccountButton({ handleClickModal, handleClickUserMenu, user }) {
   const className = user ? 'menu-item dropdown' : 'menu-item';
 
   return (
     <li className={className}>
       {user ? (
-        <button type="button" className="dropdown-toggle">
+        <button
+          type="button"
+          className="dropdown-toggle"
+          onClick={handleClickUserMenu}
+        >
           Mon Compte
         </button>
       ) : (
@@ -154,6 +224,7 @@ function AccountButton({ handleClickModal, user }) {
 
 AccountButton.propTypes = {
   handleClickModal: PropTypes.func.isRequired,
+  handleClickUserMenu: PropTypes.func.isRequired,
   user: PropTypes.object,
 };
 
@@ -161,13 +232,14 @@ AccountButton.defaultProps = {
   user: null,
 };
 
-function UserMenu({ nickname, roles }) {
+function UserMenu({ nickname, roles, toggleUserMenu }) {
   const isAdmin = roles.includes('ROLE_ADMIN');
   const isAuthor = roles.includes('ROLE_AUTHOR');
 
+  const className = toggleUserMenu ? 'dropdown-menu show' : 'dropdown-menu';
+
   return (
-    // on click className "show"
-    <ul className="dropdown-menu">
+    <ul className={className}>
       <li className="menu-item">
         <Link to={`/utilisateurs/${nickname}`}>Gérer mon compte</Link>
       </li>
@@ -191,4 +263,5 @@ function UserMenu({ nickname, roles }) {
 UserMenu.propTypes = {
   nickname: PropTypes.string.isRequired,
   roles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  toggleUserMenu: PropTypes.func.isRequired,
 };
