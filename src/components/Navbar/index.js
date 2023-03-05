@@ -1,6 +1,8 @@
 /* eslint-disable object-curly-newline */
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 import burger from './assets/toggler-icon.svg';
@@ -8,6 +10,16 @@ import burger from './assets/toggler-icon.svg';
 import './styles.scss';
 
 function Navbar() {
+  const [toggleBurger, setToggleBurger] = useState(false);
+
+  const handleClickBurger = () => {
+    setToggleBurger(!toggleBurger);
+  };
+
+  const showMenu = toggleBurger
+    ? 'menu menu-collapse show'
+    : 'menu menu-collapse';
+
   const categories = useSelector((state) => state.common.categories);
   const user = useSelector((state) => state.user.data);
   const { nickname, isVerified, isActive, roles, avatar } = user;
@@ -24,10 +36,14 @@ function Navbar() {
             <span>Eco-friendly</span>
           </Link>
         </div>
-        {user ? <Toggler icon={burger} /> : <Toggler icon={avatar} />}
+        {user ? (
+          <Burger icon={burger} handleClickBurger={handleClickBurger} />
+        ) : (
+          <Burger icon={avatar} handleClickBurger={handleClickBurger} />
+        )}
         {categories && (
           // on click className "show"
-          <div className="menu menu-collapse">
+          <div className={showMenu}>
             <Menu
               categories={categories}
               nickname={nickname}
@@ -44,16 +60,21 @@ function Navbar() {
 
 export default Navbar;
 
-function Toggler({ icon }) {
+function Burger({ icon, handleClickBurger }) {
   return (
-    <button type="button" className="navbar-toggler">
+    <button
+      type="button"
+      className="navbar-toggler"
+      onClick={handleClickBurger}
+    >
       <img src={icon} alt="toggle icon" className="navbar-toggler-icon" />
     </button>
   );
 }
 
-Toggler.propTypes = {
+Burger.propTypes = {
   icon: PropTypes.string.isRequired,
+  handleClickBurger: PropTypes.func.isRequired,
 };
 
 function Menu({ categories, nickname, isVerified, isActive, roles }) {

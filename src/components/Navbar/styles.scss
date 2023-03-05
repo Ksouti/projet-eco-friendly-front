@@ -75,19 +75,6 @@
     position: relative;
     /* TODO: adding horizontal menu here */
 
-    &.menu-collapse {
-      display: none;
-      flex-basis: 100%;
-      flex-grow: 1;
-      border-top: 1px solid #fff;
-      margin: 1rem 0 0;
-      padding: 1rem 0 0;
-
-      &.show {
-        display: block;
-      }
-    }
-
     &-items {
       display: flex;
       flex-direction: column;
@@ -156,6 +143,19 @@
           transition: var(--transition);
           color: color.scale(#fff, $lightness: -20%);
         }
+      }
+    }
+
+    &-collapse {
+      display: none;
+      flex-basis: 100%;
+      flex-grow: 1;
+      border-top: 1px solid rgba(255, 255, 255, 0.325);
+      margin: 1rem 0 0;
+      padding: 1rem 0 0;
+
+      &.show {
+        display: block;
       }
     }
   }
