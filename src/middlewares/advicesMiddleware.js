@@ -162,21 +162,13 @@ const advicesMiddleware = (store) => (next) => (action) => {
       break;
     case USER_DELETE_ADVICE:
       axios
-        .delete(
-          `${config.apiBaseUrl}/advices/${
-            store.getState().advices.editAdviceId
-          }`,
-          {
-            headers: {
-              Authorization: `Bearer ${store.getState().user.token}`,
-            },
+        .delete(`${config.apiBaseUrl}/advices/${action.id}`, {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
           },
-        )
+        })
         .then(() => {
-          store.dispatch(
-            // Actually API doesn't return anything, so we use the id of the deleted advice
-            userDeleteAdviceSuccess(store.getState().advices.editAdviceId),
-          );
+          store.dispatch(userDeleteAdviceSuccess(action.id));
         })
         .catch((error) => {
           store.dispacth(userDeleteAdviceFailed(error));
