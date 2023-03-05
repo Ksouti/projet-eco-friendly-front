@@ -18,6 +18,9 @@ import {
   USER_SAVE_EDIT_ADVICE,
   userSaveEditAdviceSuccess,
   userSaveEditAdviceFailed,
+  USER_DELETE_ADVICE,
+  userDeleteAdviceSuccess,
+  userDeleteAdviceFailed,
 } from '../actions/advices';
 
 import config from '../config';
@@ -155,6 +158,25 @@ const advicesMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispacth(userSaveEditAdviceFailed(error));
+        });
+      break;
+    case USER_DELETE_ADVICE:
+      axios
+        .delete(
+          `${config.apiBaseUrl}/advices/${
+            store.getState().advices.editAdviceId
+          }`,
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then(() => {
+          store.dispatch(userDeleteAdviceSuccess()); // API doesn't return anything
+        })
+        .catch((error) => {
+          store.dispacth(userDeleteAdviceFailed(error));
         });
       break;
     default:
