@@ -414,12 +414,14 @@ export const userSaveEditAdviceFailed = (errors) => ({
 /**
  * @name userDeleteAdvice
  * @description Action creator for deleting advice
+ * @param {string} id
  * @returns {object}
  */
 export const USER_DELETE_ADVICE = 'USER_DELETE_ADVICE';
 
-export const userDeleteAdvice = () => ({
+export const userDeleteAdvice = (id) => ({
   type: USER_DELETE_ADVICE,
+  id,
 });
 
 /**
