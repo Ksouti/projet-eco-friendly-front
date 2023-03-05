@@ -1,9 +1,12 @@
 /* eslint-disable object-curly-newline */
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
+
+import { openModal } from '../../actions/common';
+import AuthForm from '../Form/AuthForm';
 
 import burger from './assets/toggler-icon.svg';
 
@@ -42,7 +45,6 @@ function Navbar() {
           <Burger icon={avatar} handleClickBurger={handleClickBurger} />
         )}
         {categories && (
-          // on click className "show"
           <div className={showMenu}>
             <Menu
               categories={categories}
@@ -78,6 +80,12 @@ Burger.propTypes = {
 };
 
 function Menu({ categories, nickname, isVerified, isActive, roles }) {
+  const dispatch = useDispatch();
+
+  const handleClickModal = () => {
+    dispatch(openModal(<AuthForm />));
+  };
+
   return (
     <ul className="menu-items">
       <li className="menu-item">
@@ -90,8 +98,9 @@ function Menu({ categories, nickname, isVerified, isActive, roles }) {
       ))}
       {!nickname && !isVerified && !isActive && (
         <li className="menu-item ">
-          {/* onclick toggle modal */}
-          <button type="button">Connexion/inscription</button>
+          <button type="button" onClick={handleClickModal}>
+            Connexion/inscription
+          </button>
         </li>
       )}
       {nickname && isVerified && isActive && (
