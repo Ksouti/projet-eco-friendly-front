@@ -84,3 +84,25 @@ export const OnInputChange = (value, identifier) => ({
   value,
   identifier,
 });
+
+/**
+ * @name handleClickBurger
+ * @description Action creator for changing the value of the burger
+ * @returns {object} : the action
+ */
+export const HANDLE_CLICK_BURGER = 'HANDLE_CLICK_BURGER';
+
+export const handleClickBurger = () => ({
+  type: HANDLE_CLICK_BURGER,
+});
+
+/**
+ * @name handleClickUserMenu
+ * @description Action creator for changing the value of the user menu
+ * @returns {object} : the action
+ */
+export const HANDLE_CLICK_USER_MENU = 'HANDLE_CLICK_USER_MENU';
+
+export const handleClickUserMenu = () => ({
+  type: HANDLE_CLICK_USER_MENU,
+});
