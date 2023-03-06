@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 
 import { findItemsByCategory } from '../../utils';
 import { loadingLastArticleData } from '../../actions/articles';
+import AdvicesCardsList from '../AdvicesCardsList';
 
 import Page from '../Page';
 import Card from '../Card';
@@ -56,20 +57,7 @@ function CategoryPage() {
         <div className="category-page">
           <h1 className="category-sentence">{category.tagline}</h1>
           <div className="category-elements">
-            <div className="advices">
-              <h2 className="advices-sentence">Suivez vos conseils</h2>
-              <div className="advices-list">
-                {advices.map((advice) => (
-                  <div key={advice.id} className="advice-card">
-                    <Card
-                      title={advice.title}
-                      category={advice.category}
-                      content={advice.content}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            <AdvicesCardsList advices={advices} />
             <div className="articles">
               <div className="articles-top">
                 {lastArticleArray.map((lastArticle) => (
