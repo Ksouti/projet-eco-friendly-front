@@ -70,7 +70,8 @@ const reducer = (state = initialState, action = {}) => {
     case USER_REGISTER_SUCCESS:
       return {
         ...state,
-        email: '',
+        nickname: action.data.nickname,
+        email: action.data.email,
         password: '',
         confirmPassword: '',
       };
