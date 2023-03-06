@@ -20,6 +20,7 @@ import CategoryPage from '../CategoryPage';
 import ArticlePage from '../ArticlePage';
 import AdvicePage from '../AdvicePage';
 import RegistrationPage from '../RegistrationPage';
+import ValidationPage from '../ValidationPage';
 import LegalNoticePage from '../LegalNoticePage';
 import Loader from '../Loader';
 import Modal from '../Modal';
@@ -74,6 +75,7 @@ function App() {
           <Route path="/conseils/:slug/editer" element={<EditAdvicePage />} />
           <Route path="/mentions-legales" element={<LegalNoticePage />} />
           <Route path="/enregistrement" element={<RegistrationPage />} />
+          <Route path="/validation" element={<ValidationPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       ) : (
