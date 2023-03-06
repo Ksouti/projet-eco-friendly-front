@@ -32,41 +32,8 @@
   .article-card {
     .card {
       margin-top: 3rem;
-      width: 12rem;
-      height: 17rem;
-    }
-  }
-
-  // Element 2 : Advices
-  .advices {
-    border-top: 0.1rem solid vars.$secondaryBorderColor;
-    border-bottom: 0.1rem solid vars.$secondaryBorderColor;
-
-    &-sentence {
-      font-size: large;
-      font-weight: 800;
-      color: vars.$darkColor;
-      margin-top: 1rem;
-    }
-
-    &-list {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      overflow-x: scroll;
-    }
-  }
-
-  .advice-card {
-    width: 100%;
-    .card {
-      margin: 1rem 1rem 2rem 0rem;
-      width: 10rem;
-      height: 6rem;
-
-      .summary {
-        display: none;
-      }
+      width: 13rem;
+      height: 18rem;
     }
   }
 
@@ -81,12 +48,6 @@
         justify-content: flex-start;
         align-items: center;
       }
-
-      .article-card {
-        .card {
-          margin: 3rem 10.5rem;
-        }
-      }
     }
 
     // Element 2 : Advices
@@ -97,7 +58,7 @@
     }
   }
 
-  // RESPONSIVE LG +1024 =======================================================
+  // RESPONSIVE md +768px =======================================================
   @include screen(md) {
     .category-sentence {
       font-size: x-large;
@@ -116,6 +77,12 @@
       .articles {
         &-top {
           display: contents;
+          .card {
+            height: 12rem;
+          }
+        }
+
+        &-list {
         }
       }
 
