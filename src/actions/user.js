@@ -52,14 +52,14 @@ export const userAuthenticationSuccess = (token, data) => ({
 /**
  * @name userAuthenticationError
  * @description Action creator for user authentication error
- * @param {string} error
+ * @param {array} errors
  * @returns {object}
  */
 export const USER_AUTHENTICATION_ERROR = 'USER_AUTHENTICATION_ERROR';
 
-export const userAuthenticationError = (error) => ({
+export const userAuthenticationError = (errors) => ({
   type: USER_AUTHENTICATION_ERROR,
-  error,
+  errors,
 });
 
 /**
@@ -69,9 +69,8 @@ export const userAuthenticationError = (error) => ({
  */
 export const USER_REGISTER = 'USER_REGISTER';
 
-export const userRegister = (data) => ({
+export const userRegister = () => ({
   type: USER_REGISTER,
-  data,
 });
 
 /**
@@ -90,12 +89,12 @@ export const userRegisterSuccess = (data) => ({
 /**
  * @name userRegisterError
  * @description Action creator for user register error
- * @param {string} error
+ * @param {array} errors
  * @returns {object}
  */
 export const USER_REGISTER_ERROR = 'USER_REGISTER_ERROR';
 
-export const userRegisterError = (error) => ({
+export const userRegisterError = (errors) => ({
   type: USER_REGISTER_ERROR,
-  error,
+  errors,
 });
