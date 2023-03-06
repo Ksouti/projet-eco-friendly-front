@@ -1,8 +1,8 @@
 import {
   OPEN_MODAL,
   CLOSE_MODAL,
-  HANDLE_CLICK_BURGER,
-  HANDLE_CLICK_USER_MENU,
+  TOGGLE_BURGER,
+  TOGGLE_USER_MENU,
   FETCH_CATEGORIES_FROM_API,
   FETCH_HOME_PAGE_DATA_FROM_API,
 } from '../actions/common';
@@ -31,12 +31,12 @@ const reducer = (state = initialState, action = {}) => {
         modalIsOpen: !state.modalIsOpen,
         modalContent: null,
       };
-    case HANDLE_CLICK_BURGER:
+    case TOGGLE_BURGER:
       return {
         ...state,
         burgerIsOpen: !state.burgerIsOpen,
       };
-    case HANDLE_CLICK_USER_MENU:
+    case TOGGLE_USER_MENU:
       return {
         ...state,
         userMenuIsOpen: !state.userMenuIsOpen,

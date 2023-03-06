@@ -86,23 +86,23 @@ export const OnInputChange = (value, identifier) => ({
 });
 
 /**
- * @name handleClickBurger
- * @description Action creator for changing the value of the burger
+ * @name toggleBurger
+ * @description Action creator for toggling the burger
  * @returns {object} : the action
  */
-export const HANDLE_CLICK_BURGER = 'HANDLE_CLICK_BURGER';
+export const TOGGLE_BURGER = 'TOGGLE_BURGER';
 
-export const handleClickBurger = () => ({
-  type: HANDLE_CLICK_BURGER,
+export const toggleBurger = () => ({
+  type: TOGGLE_BURGER,
 });
 
 /**
- * @name handleClickUserMenu
- * @description Action creator for changing the value of the user menu
+ * @name toggleUserMenu
+ * @description Action creator for toggling the user menu
  * @returns {object} : the action
  */
-export const HANDLE_CLICK_USER_MENU = 'HANDLE_CLICK_USER_MENU';
+export const TOGGLE_USER_MENU = 'TOGGLE_USER_MENU';
 
-export const handleClickUserMenu = () => ({
-  type: HANDLE_CLICK_USER_MENU,
+export const toggleUserMenu = () => ({
+  type: TOGGLE_USER_MENU,
 });
