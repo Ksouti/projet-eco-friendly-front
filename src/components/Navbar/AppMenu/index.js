@@ -1,17 +1,41 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import PropTypes from 'prop-types';
+import {
+  openModal,
+  toggleBurger,
+  toggleUserMenu,
+} from '../../../actions/common';
+import AuthForm from '../../Form/AuthForm';
 
 import './styles.scss';
 
-export default function AppMenu({
-  categories,
-  handleClickModal,
-  handleClickUserMenu,
-  userIsLoaded,
-  user,
-}) {
-  const className = user ? 'menu-item dropdown' : 'menu-item';
+export default function AppMenu() {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState('menu-item');
+
+  const categories = useSelector((state) => state.common.categories);
+
+  const userIsLogged = useSelector((state) => state.user.isLogged);
+
+  const toggleMenus = () => {
+    dispatch(toggleUserMenu());
+  };
+
+  const closeMenus = () => {
+    dispatch(toggleBurger());
+    dispatch(toggleUserMenu());
+  };
+
+  useEffect(() => {
+    const className = userIsLogged ? 'menu-item dropdown' : 'menu-item';
+    setIsOpen(className);
+  }, [userIsLogged]);
+
+  const toggleModal = () => {
+    dispatch(openModal(<AuthForm />));
+  };
 
   return (
     <ul className="menu-items">
@@ -20,22 +44,24 @@ export default function AppMenu({
       </li>
       {categories.map((category) => (
         <li key={category.id} className="menu-item">
-          <NavLink to={`/categories/${category.slug}`}>{category.name}</NavLink>
+          <NavLink to={`/categories/${category.slug}`} onClick={closeMenus}>
+            {category.name}
+          </NavLink>
         </li>
       ))}
-      {userIsLoaded && user ? (
-        <li className={className}>
+      {userIsLogged ? (
+        <li className={isOpen}>
           <button
             type="button"
             className="dropdown-toggle"
-            onClick={handleClickUserMenu}
+            onClick={toggleMenus}
           >
             Mon Compte
           </button>
         </li>
       ) : (
         <li className="menu-item">
-          <button type="button" onClick={handleClickModal}>
+          <button type="button" onClick={toggleModal}>
             Connexion / Inscription
           </button>
         </li>
@@ -43,22 +69,3 @@ export default function AppMenu({
     </ul>
   );
 }
-
-AppMenu.propTypes = {
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  handleClickModal: PropTypes.func.isRequired,
-  handleClickUserMenu: PropTypes.func.isRequired,
-  userIsLoaded: PropTypes.bool,
-  user: PropTypes.object,
-};
-
-AppMenu.defaultProps = {
-  userIsLoaded: false,
-  user: null,
-};

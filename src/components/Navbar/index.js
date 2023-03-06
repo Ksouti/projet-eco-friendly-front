@@ -1,10 +1,7 @@
 /* eslint-disable object-curly-newline */
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-import { openModal } from '../../actions/common';
-import AuthForm from '../Form/AuthForm';
 
 import Burger from './Burger';
 import Menu from './Menu';
@@ -12,33 +9,21 @@ import Menu from './Menu';
 import './styles.scss';
 
 function Navbar() {
-  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState('menu menu-collapse');
 
-  const [toggleBurger, setToggleBurger] = useState(false);
-  const [toggleUserMenu, setToggleUserMenu] = useState(false);
-
-  const handleClickBurger = () => {
-    setToggleBurger(!toggleBurger);
-  };
-
-  const handleClickUserMenu = () => {
-    setToggleUserMenu(!toggleUserMenu);
-  };
-
-  const showMenu = toggleBurger
-    ? 'menu menu-collapse show'
-    : 'menu menu-collapse';
-
-  const handleClickModal = () => {
-    setToggleBurger(!toggleBurger);
-    dispatch(openModal(<AuthForm />));
-  };
-
-  const userIsLoaded = useSelector((state) => state.user.isLoaded);
-
-  const categories = useSelector((state) => state.common.categories);
   const user = useSelector((state) => state.user.data);
   const { avatar } = user;
+
+  /* menu burger */
+  const burgerIsOpen = useSelector((state) => state.common.burgerIsOpen);
+
+  useEffect(() => {
+    const className = burgerIsOpen
+      ? 'menu menu-collapse show'
+      : 'menu menu-collapse';
+    setIsOpen(className);
+  }, [burgerIsOpen]);
+  /* end menu burger */
 
   return (
     <nav className="navbar">
@@ -52,28 +37,10 @@ function Navbar() {
           </Link>
           <span>Eco-friendly</span>
         </div>
-        {userIsLoaded && user ? (
-          <Burger
-            avatar={avatar}
-            user={user}
-            handleClickBurger={handleClickBurger}
-          />
-        ) : (
-          <Burger handleClickBurger={handleClickBurger} />
-        )}
-        {categories && (
-          <div className={showMenu}>
-            <Menu
-              categories={categories}
-              handleClickModal={handleClickModal}
-              handleClickUserMenu={handleClickUserMenu}
-              toggleMenu={handleClickBurger}
-              toggleUserMenu={toggleUserMenu}
-              userIsLoaded={userIsLoaded}
-              user={user}
-            />
-          </div>
-        )}
+        <Burger avatar={avatar} />
+        <div className={isOpen}>
+          <Menu />
+        </div>
       </div>
     </nav>
   );

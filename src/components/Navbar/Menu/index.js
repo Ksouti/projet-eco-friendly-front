@@ -1,58 +1,17 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-import AppMenu from '../AppMenu';
 import UserMenu from '../UserMenu';
+import AppMenu from '../AppMenu';
 
 import './styles.scss';
 
-export default function Menu({
-  categories,
-  handleClickModal,
-  handleClickUserMenu,
-  toggleMenu,
-  toggleUserMenu,
-  userIsLoaded,
-  user,
-}) {
+export default function Menu() {
+  const userIsLogged = useSelector((state) => state.user.isLogged);
+
   return (
     <>
-      <AppMenu
-        categories={categories}
-        handleClickModal={handleClickModal}
-        handleClickUserMenu={handleClickUserMenu}
-        userIsLoaded={userIsLoaded}
-        user={user}
-      />
-      {userIsLoaded && user && (
-        <UserMenu
-          nickname={user.nickname}
-          roles={user.roles}
-          toggleUserMenu={toggleUserMenu}
-          toggleMenu={toggleMenu}
-          avatar={user.avatar}
-        />
-      )}
+      <AppMenu />
+      {userIsLogged && <UserMenu />}
     </>
   );
 }
-
-Menu.propTypes = {
-  categories: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  handleClickModal: PropTypes.func.isRequired,
-  handleClickUserMenu: PropTypes.func.isRequired,
-  toggleMenu: PropTypes.func.isRequired,
-  toggleUserMenu: PropTypes.bool.isRequired,
-  userIsLoaded: PropTypes.bool,
-  user: PropTypes.object,
-};
-
-Menu.defaultProps = {
-  userIsLoaded: false,
-  user: null,
-};

@@ -1,70 +1,77 @@
-import PropTypes from 'prop-types';
+/* eslint-disable operator-linebreak */
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
+import { toggleBurger, toggleUserMenu } from '../../../actions/common';
 import { userLogout } from '../../../actions/user';
 
 import './styles.scss';
 
-export default function UserMenu({
-  nickname,
-  roles,
-  toggleMenu,
-  toggleUserMenu,
-  avatar,
-}) {
+export default function UserMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAdmin = roles.includes('ROLE_ADMIN');
-  const isAuthor = roles.includes('ROLE_AUTHOR');
-  const isUser = roles.includes('ROLE_USER'); // dev only
+  const [isOpen, setIsOpen] = useState('dropdown-menu');
 
-  const className = toggleUserMenu ? 'dropdown-menu show' : 'dropdown-menu';
+  const user = useSelector((state) => state.user.data);
 
-  const handleClick = () => {
+  const { avatar, roles, nickname } = user;
+
+  const isAuthorized =
+    roles.includes('ROLE_ADMIN') || roles.includes('ROLE_AUTHOR');
+
+  /* user menu */
+  const userMenuIsOpen = useSelector((state) => state.common.userMenuIsOpen);
+
+  useEffect(() => {
+    const className = userMenuIsOpen ? 'dropdown-menu show' : 'dropdown-menu';
+    setIsOpen(className);
+  }, [userMenuIsOpen]);
+
+  const toggleMenus = () => {
+    dispatch(toggleBurger());
+    dispatch(toggleUserMenu());
+  };
+  /* end user menu */
+
+  /* logout */
+  const handleClickDelete = () => {
     dispatch(userLogout());
-    toggleMenu();
+    toggleMenus();
     navigate('/', { replace: true });
   };
+  /* end logout */
 
   return (
-    <ul className={className}>
+    <ul className={isOpen}>
       <img src={avatar} alt={`Avater de ${nickname}`} />
       <li className="menu-item">
-        <Link to={`/utilisateurs/${nickname}`} onClick={toggleMenu}>
+        <Link to={`/utilisateurs/${nickname}`} onClick={toggleMenus}>
           Gérer mon compte
         </Link>
       </li>
       <li className="menu-item">
-        <Link to="/conseils/ajouter" onClick={toggleMenu}>
+        <Link to="/conseils/ajouter" onClick={toggleMenus}>
           Ajouter un conseil
         </Link>
       </li>
-      {(isAdmin || isAuthor || isUser) && (
+      {isAuthorized && (
         <li className="menu-item">
           <a
             href="http://vps-79770841.vps.ovh.net/back_office/connexion"
             target="_blank"
             rel="noreferrer"
-            onClick={toggleMenu}
+            onClick={toggleMenus}
           >
             Accès réservé
           </a>
         </li>
       )}
       <li className="menu-item text-secondary">
-        <button type="button" onClick={handleClick}>
+        <button type="button" onClick={handleClickDelete}>
           Déconnexion
         </button>
       </li>
     </ul>
   );
 }
-
-UserMenu.propTypes = {
-  nickname: PropTypes.string.isRequired,
-  roles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  toggleMenu: PropTypes.func.isRequired,
-  toggleUserMenu: PropTypes.func.isRequired,
-  avatar: PropTypes.string.isRequired,
-};
