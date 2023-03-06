@@ -1,6 +1,6 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 
@@ -73,26 +73,35 @@ function CategoryPage() {
             <div className="articles">
               <div className="articles-top">
                 {lastArticleArray.map((lastArticle) => (
-                  <Card
+                  <Link
+                    to={`/articles/${lastArticle.slug}`}
                     key={lastArticle.id}
-                    picture={lastArticle.picture}
-                    title={lastArticle.title}
-                    category={lastArticle.category}
-                    content={lastArticle.content}
-                    format="horizontal"
-                  />
+                  >
+                    <Card
+                      key={lastArticle.id}
+                      picture={lastArticle.picture}
+                      title={lastArticle.title}
+                      category={lastArticle.category}
+                      content={lastArticle.content}
+                      format="horizontal"
+                    />
+                  </Link>
                 ))}
               </div>
               <div className="articles-list">
                 {articles.map((article) => (
-                  <div key={article.id} className="article-card">
+                  <Link
+                    to={`/articles/${article.slug}`}
+                    key={article.id}
+                    className="article-card"
+                  >
                     <Card
                       picture={article.picture}
                       title={article.title}
                       category={article.category}
                       content={article.content}
                     />
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
