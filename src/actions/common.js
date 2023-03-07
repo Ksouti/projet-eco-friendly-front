@@ -119,6 +119,17 @@ export const toggleIsSaved = () => ({
 });
 
 /**
+ * @name toggleIsDeleted
+ * @description Action creator for toggling the isDeleted state
+ * @returns {object} : the action
+ */
+export const TOGGLE_IS_DELETED = 'TOGGLE_IS_DELETED';
+
+export const toggleIsDeleted = () => ({
+  type: TOGGLE_IS_DELETED,
+});
+
+/**
  * @name toggleBurger
  * @description Action creator for toggling the burger
  * @returns {object} : the action

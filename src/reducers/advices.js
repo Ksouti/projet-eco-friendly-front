@@ -20,6 +20,7 @@ import {
   REMOVE_ERROR_MESSAGES,
   TOGGLE_IS_PUBLISHED,
   TOGGLE_IS_SAVED,
+  TOGGLE_IS_DELETED,
 } from '../actions/common';
 
 export const initialState = {
@@ -31,6 +32,7 @@ export const initialState = {
   isLoadedAdvices: false,
   isPublished: false,
   isSaved: false,
+  isDeleted: false,
   userAdvices: [],
   newAdviceTitle: '',
   newAdviceCategory: '',
@@ -65,6 +67,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isSaved: false,
+      };
+    case TOGGLE_IS_DELETED:
+      return {
+        ...state,
+        isDeleted: false,
       };
     case FETCH_ADVICES_FROM_API:
       return {
@@ -153,9 +160,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_DELETE_ADVICE_SUCCESS:
       return {
         ...state,
-        userAdvices: state.userAdvices.filter(
-          (advice) => advice.id !== action.data.id,
-        ),
+        isDeleted: true,
       };
     case USER_DELETE_ADVICE_FAILED:
       return {
