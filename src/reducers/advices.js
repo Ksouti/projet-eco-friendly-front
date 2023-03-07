@@ -15,7 +15,7 @@ import {
   USER_DELETE_ADVICE_FAILED,
 } from '../actions/advices';
 
-import { ON_INPUT_CHANGE } from '../actions/common';
+import { ON_INPUT_CHANGE, REMOVE_ERROR_MESSAGES } from '../actions/common';
 
 export const initialState = {
   data: [],
@@ -24,6 +24,7 @@ export const initialState = {
   /* It's possible to dispatch actions in the middlewares */
   /* to toggle isLoaded false */
   isLoadedAdvices: false,
+  isPublished: false,
   userAdvices: [],
   newAdviceTitle: '',
   newAdviceCategory: '',
@@ -34,7 +35,7 @@ export const initialState = {
   editAdviceCategory: '',
   editAdviceContent: '',
   editAdviceData: {},
-  errorsMessage: [],
+  errorMessages: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -43,6 +44,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.identifier]: action.value, // [action.identifier] is a computed property name
+      };
+    case REMOVE_ERROR_MESSAGES:
+      return {
+        ...state,
+        errorMessages: [],
       };
     case FETCH_ADVICES_FROM_API:
       return {
@@ -67,13 +73,14 @@ const reducer = (state = initialState, action = {}) => {
     case GET_USER_ADVICES_FAILED:
       return {
         ...state,
-        errorsMessage: action.errors,
+        errorMessages: action.errors,
         isLoadedAdvices: false,
       };
     case USER_PUBLISH_NEW_ADVICE_SUCCESS:
       return {
         ...state,
         newAdviceData: action.data,
+        isPublished: true,
         newAdviceTitle: '',
         newAdviceCategory: '',
         newAdviceContent: '',
@@ -81,7 +88,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_PUBLISH_NEW_ADVICE_FAILED:
       return {
         ...state,
-        errorsMessage: action.errors,
+        errorMessages: action.errors.advice,
       };
     case USER_SAVE_NEW_ADVICE_SUCCESS:
       return {
@@ -94,7 +101,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SAVE_NEW_ADVICE_FAILED:
       return {
         ...state,
-        errorsMessage: action.errors,
+        errorMessages: action.errors,
       };
     case USER_PUBLISH_EDIT_ADVICE_SUCCESS:
       return {
@@ -108,7 +115,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_PUBLISH_EDIT_ADVICE_FAILED:
       return {
         ...state,
-        errorsMessage: action.errors,
+        errorMessages: action.errors,
       };
     case USER_SAVE_EDIT_ADVICE_SUCCESS:
       return {
@@ -122,7 +129,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SAVE_EDIT_ADVICE_FAILED:
       return {
         ...state,
-        errorsMessage: action.errors,
+        errorMessages: action.errors,
       };
     case USER_DELETE_ADVICE_SUCCESS:
       console.log('action.data.id', action.data.id);
@@ -136,7 +143,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_DELETE_ADVICE_FAILED:
       return {
         ...state,
-        errorsMessage: action.errors,
+        errorMessages: action.errors,
       };
     default:
       return state;

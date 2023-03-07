@@ -86,6 +86,17 @@ export const OnInputChange = (value, identifier) => ({
 });
 
 /**
+ * @name removeErrorMessages
+ * @description Action creator for removing error messages
+ * @returns {object} : the action
+ */
+export const REMOVE_ERROR_MESSAGES = 'REMOVE_ERROR_MESSAGES';
+
+export const removeErrorMessages = () => ({
+  type: REMOVE_ERROR_MESSAGES,
+});
+
+/**
  * @name toggleBurger
  * @description Action creator for toggling the burger
  * @returns {object} : the action
