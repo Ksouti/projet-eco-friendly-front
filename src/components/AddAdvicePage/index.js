@@ -6,6 +6,7 @@ import {
   OnInputChange,
   removeErrorMessages,
   toggleIsPublished,
+  toggleIsSaved,
 } from '../../actions/common';
 import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/advices';
 
@@ -79,6 +80,14 @@ function AddAdvicePage() {
 
   if (isPublished) {
     dispatch(toggleIsPublished());
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
+  }
+
+  /* Check if advice is saved (USER_SAVE_NEW_ADVICE_SUCCES) */
+  const isSaved = useSelector((state) => state.advices.isSaved);
+
+  if (isSaved) {
+    dispatch(toggleIsSaved());
     navigate(`/utilisateurs/${userNickname}`, { replace: true });
   }
 
