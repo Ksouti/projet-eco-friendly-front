@@ -172,7 +172,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           },
         })
         .then(() => {
-          store.dispatch(userDeleteAdviceSuccess(action.id));
+          store.dispatch(userDeleteAdviceSuccess());
         })
         .catch((error) => {
           store.dispatch(userDeleteAdviceFailed(error.response.data.errors));
