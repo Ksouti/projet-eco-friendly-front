@@ -84,3 +84,25 @@ export const OnInputChange = (value, identifier) => ({
   value,
   identifier,
 });
+
+/**
+ * @name toggleBurger
+ * @description Action creator for toggling the burger
+ * @returns {object} : the action
+ */
+export const TOGGLE_BURGER = 'TOGGLE_BURGER';
+
+export const toggleBurger = () => ({
+  type: TOGGLE_BURGER,
+});
+
+/**
+ * @name toggleUserMenu
+ * @description Action creator for toggling the user menu
+ * @returns {object} : the action
+ */
+export const TOGGLE_USER_MENU = 'TOGGLE_USER_MENU';
+
+export const toggleUserMenu = () => ({
+  type: TOGGLE_USER_MENU,
+});
