@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { OnInputChange, removeErrorMessages } from '../../actions/common';
+import {
+  OnInputChange,
+  removeErrorMessages,
+  toggleIsPublished,
+} from '../../actions/common';
 import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/advices';
 
 import Page from '../Page';
@@ -74,18 +78,27 @@ function AddAdvicePage() {
   const isPublished = useSelector((state) => state.advices.isPublished);
 
   if (isPublished) {
+    dispatch(toggleIsPublished());
     navigate(`/utilisateurs/${userNickname}`, { replace: true });
   }
 
-  /* Keep the error messages */
+  /* Check for messages */
+  const [haveMessages, setHaveMessages] = useState(false);
+
   const errorMessages = useSelector((state) => state.advices.errorMessages);
+
+  useEffect(() => {
+    if (errorMessages.length > 0) {
+      setHaveMessages(true);
+    }
+  }, [errorMessages]);
 
   return (
     <Page>
       <div className="add-advice">
         <div className="title">Ajouter un conseil</div>
-        {errorMessages && (
-          <div className="error-messages">
+        {haveMessages && (
+          <div className="messages error-messages">
             <ul>
               {errorMessages.map((item) => (
                 <li key={item}>{item}</li>
