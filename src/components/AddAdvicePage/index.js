@@ -72,6 +72,7 @@ function AddAdvicePage() {
       dispatch(OnInputChange('', 'newAdviceTitle'));
       dispatch(OnInputChange('', 'newAdviceCategory'));
       dispatch(OnInputChange('', 'newAdviceContent'));
+      navigate(`/utilisateurs/${userNickname}`, { replace: true });
     }
   };
 
