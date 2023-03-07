@@ -15,7 +15,11 @@ import {
   USER_DELETE_ADVICE_FAILED,
 } from '../actions/advices';
 
-import { ON_INPUT_CHANGE, REMOVE_ERROR_MESSAGES } from '../actions/common';
+import {
+  ON_INPUT_CHANGE,
+  REMOVE_ERROR_MESSAGES,
+  TOGGLE_IS_PUBLISHED,
+} from '../actions/common';
 
 export const initialState = {
   data: [],
@@ -49,6 +53,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         errorMessages: [],
+      };
+    case TOGGLE_IS_PUBLISHED:
+      return {
+        ...state,
+        isPublished: false,
       };
     case FETCH_ADVICES_FROM_API:
       return {

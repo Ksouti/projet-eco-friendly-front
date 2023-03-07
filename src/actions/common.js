@@ -97,6 +97,17 @@ export const removeErrorMessages = () => ({
 });
 
 /**
+ * @name toggleIsPublished
+ * @description Action creator for toggling the isPublished state
+ * @returns {object} : the action
+ */
+export const TOGGLE_IS_PUBLISHED = 'TOGGLE_IS_PUBLISHED';
+
+export const toggleIsPublished = () => ({
+  type: TOGGLE_IS_PUBLISHED,
+});
+
+/**
  * @name toggleBurger
  * @description Action creator for toggling the burger
  * @returns {object} : the action
