@@ -17,10 +17,10 @@ import {
 
 import {
   ON_INPUT_CHANGE,
-  REMOVE_ERROR_MESSAGES,
   TOGGLE_IS_PUBLISHED,
   TOGGLE_IS_SAVED,
   TOGGLE_IS_DELETED,
+  REMOVE_ERROR_MESSAGES,
 } from '../actions/common';
 
 export const initialState = {
@@ -32,7 +32,6 @@ export const initialState = {
   isLoadedAdvices: false,
   isPublished: false,
   isSaved: false,
-  isDeleted: false,
   userAdvices: [],
   newAdviceTitle: '',
   newAdviceCategory: '',
@@ -53,11 +52,6 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.identifier]: action.value, // [action.identifier] is a computed property name
       };
-    case REMOVE_ERROR_MESSAGES:
-      return {
-        ...state,
-        errorMessages: [],
-      };
     case TOGGLE_IS_PUBLISHED:
       return {
         ...state,
@@ -72,6 +66,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isDeleted: false,
+      };
+    case REMOVE_ERROR_MESSAGES:
+      return {
+        ...state,
+        errorMessages: [],
       };
     case FETCH_ADVICES_FROM_API:
       return {
@@ -160,7 +159,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_DELETE_ADVICE_SUCCESS:
       return {
         ...state,
-        isDeleted: true,
+        isLoadedAdvices: false,
       };
     case USER_DELETE_ADVICE_FAILED:
       return {
