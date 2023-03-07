@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { OnInputChange } from '../../actions/common';
+import { OnInputChange, removeErrorMessages } from '../../actions/common';
 import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/advices';
 
 import Page from '../Page';
@@ -28,7 +28,7 @@ function AddAdvicePage() {
   /* End check if user is logged */
 
   /* get categories */
-  const categories = useSelector((state) => state.categories.categories);
+  const categories = useSelector((state) => state.common.categories);
 
   /* Control input fields */
   const title = useSelector((state) => state.advices.newAdviceTitle);
@@ -55,6 +55,8 @@ function AddAdvicePage() {
   /* Submit form */
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(removeErrorMessages());
+
     if (buttonName === 'publish') {
       dispatch(userPublishNewAdvice());
     }
@@ -66,13 +68,31 @@ function AddAdvicePage() {
       dispatch(OnInputChange('', 'newAdviceCategory'));
       dispatch(OnInputChange('', 'newAdviceContent'));
     }
-    navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
+
+  /* Check if advice is published (USER_PUBLISH_NEW_ADVICE_SUCCES) */
+  const isPublished = useSelector((state) => state.advices.isPublished);
+
+  if (isPublished) {
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
+  }
+
+  /* Keep the error messages */
+  const errorMessages = useSelector((state) => state.advices.errorMessages);
 
   return (
     <Page>
       <div className="add-advice">
         <div className="title">Ajouter un conseil</div>
+        {errorMessages && (
+          <div className="error-messages">
+            <ul>
+              {errorMessages.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <form autoComplete="off" onSubmit={handleSubmit} method="POST">
           <div className="row">
             <select
