@@ -35,11 +35,11 @@
   }
 
   &-control-prev {
-    left: 0;
+    left: -2rem;
   }
 
   &-control-next {
-    right: 0;
+    right: -2rem;
   }
 
   &-control-prev,
@@ -113,6 +113,7 @@
       width: calc(200% / 3); // 66.666666%
 
       padding: 1rem;
+      padding-right: 3rem;
       color: inherit;
       display: flex;
       flex-direction: column;
