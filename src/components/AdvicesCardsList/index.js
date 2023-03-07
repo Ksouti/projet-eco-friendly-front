@@ -8,8 +8,6 @@ import Card from '../Card';
 import './styles.scss';
 
 function AdvicesCardsList({ advices }) {
-  // Find last four advices
-
   return (
     <div className="advices">
       <h2 className="advices-sentence">Suivez vos conseils</h2>
@@ -38,7 +36,7 @@ AdvicesCardsList.propTypes = {
       id: PropTypes.number.isRequired,
       slug: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
+      category: PropTypes.object.isRequired,
       content: PropTypes.string.isRequired,
     }),
   ).isRequired,
