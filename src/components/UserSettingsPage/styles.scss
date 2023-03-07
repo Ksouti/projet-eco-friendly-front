@@ -93,8 +93,13 @@
 
     .icon-inner {
       display: block;
-      border: none;
+      width: 1rem;
+      height: 1rem;
+      margin: 0 0.375rem;
+      font-size: inherit;
+      color: transparent;
       background-color: transparent;
+      border: none;
       cursor: pointer;
 
       &:hover .icon-pencil {
@@ -107,30 +112,43 @@
       }
     }
 
-    img {
-      width: var(--icon-size);
-      height: var(--icon-size);
-      margin: 0 0.5rem;
-      padding: calc(var(--icon-size) / 10);
+    .icon-inner.pencil,
+    .icon-inner.trash {
+      background-repeat: no-repeat;
+      background-position: center center;
     }
 
-    .icon-pencil,
-    .icon-trash {
-      transition: background-color 0.15s ease-in-out,
-        border-color 0.15s ease-in-out;
+    .pencil {
+      background-image: url(./UserAdvices/pencil-outline.svg);
+    }
+    .trash {
+      background-image: url(./UserAdvices/trash-outline.svg);
     }
 
-    .icon-pencil {
-      border: 1px solid vars.$primaryColor;
-      border-radius: 50%;
-      background-color: vars.$primaryColor;
-    }
+    // img {
+    //   width: var(--icon-size);
+    //   height: var(--icon-size);
+    //   margin: 0 0.5rem;
+    //   padding: calc(var(--icon-size) / 10);
+    // }
 
-    .icon-trash {
-      border: 1px solid vars.$secondaryColor;
-      border-radius: 50%;
-      background-color: transparent;
-    }
+    // .icon-pencil,
+    // .icon-trash {
+    //   transition: background-color 0.15s ease-in-out,
+    //     border-color 0.15s ease-in-out;
+    // }
+
+    // .icon-pencil {
+    //   border: 1px solid vars.$primaryColor;
+    //   border-radius: 50%;
+    //   background-color: vars.$primaryColor;
+    // }
+
+    // .icon-trash {
+    //   border: 1px solid vars.$secondaryColor;
+    //   border-radius: 50%;
+    //   background-color: transparent;
+    // }
 
     .hidden {
       display: none;
