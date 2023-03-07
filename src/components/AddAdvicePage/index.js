@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,42 +11,30 @@ import Button from '../Button';
 
 import RichTextEditor from '../RichTextEditor';
 
-import config from '../../config';
-
 import './styles.scss';
 
 function AddAdvicePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /* check if user is logged */
+  /* Check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
-  /* end check if user is logged */
+  /* If there is no advice, we redirect to the 404 page */
+  useEffect(() => {
+    if (!userIslogged) {
+      navigate('/', { replace: true });
+    }
+  }, [userIslogged]);
+  /* End check if user is logged */
 
-  /* if there is no advice, we redirect to the 404 page */
-  if (!userIslogged) {
-    return navigate('/', { replace: true });
-  }
+  /* get categories */
+  const categories = useSelector((state) => state.categories.categories);
 
-  /* get state informations */
-  const [categories, setCategories] = useState(
-    useSelector((state) => state.common.categories),
-  );
-  const userNickname = useSelector((state) => state.user.nickname);
-  /* end get state informations */
-
-  /* If there is no categories in the state, we set the default categories */
-  if (categories.length === 0) {
-    setCategories(config.defaultNavLinks);
-  }
-
-  /* control input fields */
+  /* Control input fields */
   const title = useSelector((state) => state.advices.newAdviceTitle);
   const category = useSelector((state) => state.advices.newAdviceCategory);
   const content = useSelector((state) => state.advices.newAdviceContent);
-  /* end control input fields */
 
-  /* change field value */
   const changeField = (value) => {
     dispatch(OnInputChange(value, 'newAdviceTitle'));
   };
@@ -56,12 +44,15 @@ function AddAdvicePage() {
   const OnRichTextEditorChange = (e) => {
     dispatch(OnInputChange(e, 'newAdviceContent'));
   };
-  /* change field value */
+  /* End control input fields */
 
   /* Get the button name clicked */
   const [buttonName, setButtonName] = useState(null);
 
-  /* submit form */
+  /* Get user nickname */
+  const userNickname = useSelector((state) => state.user.nickname);
+
+  /* Submit form */
   const handleSubmit = (e) => {
     e.preventDefault();
     if (buttonName === 'publish') {
