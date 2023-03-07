@@ -19,7 +19,6 @@ import {
   ON_INPUT_CHANGE,
   TOGGLE_IS_PUBLISHED,
   TOGGLE_IS_SAVED,
-  TOGGLE_IS_DELETED,
   REMOVE_ERROR_MESSAGES,
 } from '../actions/common';
 
@@ -61,11 +60,6 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isSaved: false,
-      };
-    case TOGGLE_IS_DELETED:
-      return {
-        ...state,
-        isDeleted: false,
       };
     case REMOVE_ERROR_MESSAGES:
       return {
