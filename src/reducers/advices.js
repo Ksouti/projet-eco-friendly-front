@@ -100,6 +100,7 @@ const reducer = (state = initialState, action = {}) => {
         newAdviceTitle: '',
         newAdviceCategory: '',
         newAdviceContent: '',
+        isLoadedAdvices: false,
       };
     case USER_PUBLISH_NEW_ADVICE_FAILED:
       return {
@@ -114,6 +115,7 @@ const reducer = (state = initialState, action = {}) => {
         newAdviceTitle: '',
         newAdviceCategory: '',
         newAdviceContent: '',
+        isLoadedAdvices: false,
       };
     case USER_SAVE_NEW_ADVICE_FAILED:
       return {
@@ -129,6 +131,7 @@ const reducer = (state = initialState, action = {}) => {
         editAdviceTitle: '',
         editAdviceCategory: '',
         editAdviceContent: '',
+        isLoadedAdvices: false,
       };
     case USER_PUBLISH_EDIT_ADVICE_FAILED:
       return {
@@ -144,6 +147,7 @@ const reducer = (state = initialState, action = {}) => {
         editAdviceTitle: '',
         editAdviceCategory: '',
         editAdviceContent: '',
+        isLoadedAdvices: false,
       };
     case USER_SAVE_EDIT_ADVICE_FAILED:
       return {
