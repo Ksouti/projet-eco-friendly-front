@@ -19,6 +19,7 @@ import {
   ON_INPUT_CHANGE,
   REMOVE_ERROR_MESSAGES,
   TOGGLE_IS_PUBLISHED,
+  TOGGLE_IS_SAVED,
 } from '../actions/common';
 
 export const initialState = {
@@ -29,6 +30,7 @@ export const initialState = {
   /* to toggle isLoaded false */
   isLoadedAdvices: false,
   isPublished: false,
+  isSaved: false,
   userAdvices: [],
   newAdviceTitle: '',
   newAdviceCategory: '',
@@ -58,6 +60,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isPublished: false,
+      };
+    case TOGGLE_IS_SAVED:
+      return {
+        ...state,
+        isSaved: false,
       };
     case FETCH_ADVICES_FROM_API:
       return {
@@ -103,6 +110,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         newAdviceData: action.data,
+        isSaved: true,
         newAdviceTitle: '',
         newAdviceCategory: '',
         newAdviceContent: '',
@@ -110,7 +118,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SAVE_NEW_ADVICE_FAILED:
       return {
         ...state,
-        errorMessages: action.errors,
+        errorMessages: action.errors.advice,
       };
     case USER_PUBLISH_EDIT_ADVICE_SUCCESS:
       return {
