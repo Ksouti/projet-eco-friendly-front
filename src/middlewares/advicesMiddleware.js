@@ -56,7 +56,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
             store.dispatch(getUserAdvicesSuccess(response.data));
           })
           .catch((error) => {
-            store.dispatch(getUserAdvicesFailed(error));
+            store.dispatch(getUserAdvicesFailed(error.response.data.errors));
           });
       }
       break;
@@ -86,6 +86,30 @@ const advicesMiddleware = (store) => (next) => (action) => {
           );
         });
       break;
+    case USER_SAVE_NEW_ADVICE:
+      axios
+        .post(
+          `${config.apiBaseUrl}/advices`,
+          {
+            title: store.getState().advices.newAdviceTitle,
+            category: store.getState().advices.newAdviceCategory,
+            content: store.getState().advices.newAdviceContent,
+            status: 0,
+            contributor: store.getState().user.id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          store.dispatch(userSaveNewAdviceSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(userSaveNewAdviceFailed(error.response.data.errors));
+        });
+      break;
     case USER_PUBLISH_EDIT_ADVICE:
       axios
         .put(
@@ -109,31 +133,9 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userPublishEditAdviceSuccess(response.data));
         })
         .catch((error) => {
-          store.dispatch(userPublishEditAdviceFailed(error));
-        });
-      break;
-    case USER_SAVE_NEW_ADVICE:
-      axios
-        .post(
-          `${config.apiBaseUrl}/advices`,
-          {
-            title: store.getState().advices.newAdviceTitle,
-            category: store.getState().advices.newAdviceCategory,
-            content: store.getState().advices.newAdviceContent,
-            status: 0,
-            contributor: store.getState().user.id,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${store.getState().user.token}`,
-            },
-          },
-        )
-        .then((response) => {
-          store.dispatch(userSaveNewAdviceSuccess(response.data));
-        })
-        .catch((error) => {
-          store.dispatch(userSaveNewAdviceFailed(error));
+          store.dispatch(
+            userPublishEditAdviceFailed(error.response.data.errors),
+          );
         });
       break;
     case USER_SAVE_EDIT_ADVICE:
@@ -159,7 +161,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userSaveEditAdviceSuccess(response.data));
         })
         .catch((error) => {
-          store.dispatch(userSaveEditAdviceFailed(error));
+          store.dispatch(userSaveEditAdviceFailed(error.response.data.errors));
         });
       break;
     case USER_DELETE_ADVICE:
@@ -173,7 +175,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userDeleteAdviceSuccess(action.id));
         })
         .catch((error) => {
-          store.dispatch(userDeleteAdviceFailed(error));
+          store.dispatch(userDeleteAdviceFailed(error.response.data.errors));
         });
       break;
     default:

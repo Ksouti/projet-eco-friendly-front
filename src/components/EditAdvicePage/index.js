@@ -4,20 +4,23 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { OnInputChange } from '../../actions/common';
 import {
+  OnInputChange,
+  removeErrorMessages,
+  toggleIsPublished,
+  toggleIsSaved,
+} from '../../actions/common';
+import {
+  editAdviceData,
   userPublishEditAdvice,
   userSaveEditAdvice,
-  editAdviceData,
 } from '../../actions/advices';
 
 import Page from '../Page';
 import Input from '../Field/Input';
 import Button from '../Button';
-import Loader from '../Loader';
 import RichTextEditor from '../RichTextEditor';
-
-import config from '../../config';
+import Loader from '../Loader';
 
 import { findItem } from '../../utils';
 
@@ -28,48 +31,37 @@ function EditAdvicePage() {
   const navigate = useNavigate();
   const { slug } = useParams();
 
-  /* check if user is logged */
+  /* Check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
-  /* end check if user is logged */
-
-  const advice = useSelector((state) =>
-    findItem(state.advices.userAdvices, slug),
-  );
-
+  /* If there is no advice, we redirect to the 404 page */
   useEffect(() => {
-    /* if there is no advice, we redirect to the 404 page */
     if (!userIslogged) {
       navigate('/', { replace: true });
     }
+  }, [userIslogged]);
+  /* End check if user is logged */
 
-    /* if there is no advice, we redirect to the 404 page */
+  /* Check the advice in the user advices list */
+  const advice = useSelector((state) =>
+    findItem(state.advices.userAdvices, slug),
+  );
+  /* if there is no advice, we redirect to the 404 page */
+  useEffect(() => {
     if (!advice) {
       navigate('/404', { replace: true });
     }
-
     dispatch(editAdviceData(advice));
-  }, [advice, userIslogged]);
+  }, [advice]);
+
+  /* get categories */
+  const categories = useSelector((state) => state.common.categories);
 
   /* control input fields */
   const title = useSelector((state) => state.advices.editAdviceTitle);
   const category = useSelector((state) => state.advices.editAdviceCategory);
   const content = useSelector((state) => state.advices.editAdviceContent);
-  /* end control input fields */
 
-  /* get state informations */
-  const [categories, setCategories] = useState(
-    useSelector((state) => state.common.categories),
-  );
-  const userNickname = useSelector((state) => state.user.nickname);
-  /* end get state informations */
-
-  /* If there is no categories in the state, we set the default categories */
-  if (categories.length === 0) {
-    setCategories(config.defaultNavLinks);
-  }
-
-  /* change field value */
-  const OnTitleChange = (value) => {
+  const changeField = (value) => {
     dispatch(OnInputChange(value, 'editAdviceTitle'));
   };
   const onSelectChange = (e) => {
@@ -78,36 +70,80 @@ function EditAdvicePage() {
   const OnRichTextEditorChange = (e) => {
     dispatch(OnInputChange(e, 'editAdviceContent'));
   };
-  /* end change field value */
+  /* End control input fields */
 
   /* Get the button name clicked */
   const [buttonName, setButtonName] = useState(null);
 
+  /* Get user nickname */
+  const userNickname = useSelector((state) => state.user.nickname);
+
   /* submit form */
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(removeErrorMessages());
+
     if (buttonName === 'publish') {
       dispatch(userPublishEditAdvice());
     }
     if (buttonName === 'save') {
       dispatch(userSaveEditAdvice());
     }
-    return navigate(`/utilisateurs/${userNickname}`, { replace: true });
+    if (buttonName === 'cancel') {
+      dispatch(OnInputChange('', 'editAdviceTitle'));
+      dispatch(OnInputChange('', 'editAdviceCategory'));
+      dispatch(OnInputChange('', 'editAdviceContent'));
+      navigate(`/utilisateurs/${userNickname}`, { replace: true });
+    }
   };
+
+  /* Check if advice is published (USER_PUBLISH_NEW_ADVICE_SUCCES) */
+  const isPublished = useSelector((state) => state.advices.isPublished);
+
+  if (isPublished) {
+    dispatch(toggleIsPublished());
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
+  }
+
+  /* Check if advice is saved (USER_SAVE_NEW_ADVICE_SUCCES) */
+  const isSaved = useSelector((state) => state.advices.isSaved);
+
+  if (isSaved) {
+    dispatch(toggleIsSaved());
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
+  }
+
+  /* Check for messages */
+  const [haveMessages, setHaveMessages] = useState(false);
+
+  const errorMessages = useSelector((state) => state.advices.errorMessages);
+
+  useEffect(() => {
+    if (errorMessages.length > 0) {
+      setHaveMessages(true);
+    }
+  }, [errorMessages]);
 
   return (
     <Page>
       {advice ? (
         <div className="add-advice">
           <div className="title">Editer un conseil</div>
+          {haveMessages && (
+            <div className="messages error-messages">
+              <ul>
+                {errorMessages.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           <form autoComplete="off" onSubmit={handleSubmit} method="POST">
             <div className="row">
               <select
-                name="addCategory"
-                id="category"
-                className="advice-select"
                 onChange={onSelectChange}
-                value={category.id}
+                value={category}
+                className="advice-select"
               >
                 <option hidden>Catégories</option>
                 {categories.map((item) => (
@@ -118,9 +154,9 @@ function EditAdvicePage() {
               </select>
               <Input
                 type="text"
-                name="title"
+                name="addTitle"
                 placeholder="Titre"
-                onChange={OnTitleChange}
+                onChange={changeField}
                 value={title}
                 color="primary"
               />
@@ -144,9 +180,10 @@ function EditAdvicePage() {
                 Sauvegarder
               </Button>
               <Button
+                type="submit"
                 outline
                 color="primary"
-                onclick={() => navigate(`/utilisateurs/${userNickname}`)}
+                onclick={() => setButtonName('cancel')}
               >
                 Annuler
               </Button>

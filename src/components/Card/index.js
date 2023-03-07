@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import PropTypes from 'prop-types';
 
 import './styles.scss';
@@ -27,13 +28,14 @@ Card.propTypes = {
   format: PropTypes.string,
   picture: PropTypes.string,
   title: PropTypes.string.isRequired,
-  category: PropTypes.object,
+  category: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
   content: PropTypes.string.isRequired,
 };
 Card.defaultProps = {
   format: '',
   picture: '',
-  category: {},
 };
 
 export default Card;

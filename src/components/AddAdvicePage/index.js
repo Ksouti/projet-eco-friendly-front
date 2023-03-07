@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { OnInputChange } from '../../actions/common';
+import {
+  OnInputChange,
+  removeErrorMessages,
+  toggleIsPublished,
+  toggleIsSaved,
+} from '../../actions/common';
 import { userPublishNewAdvice, userSaveNewAdvice } from '../../actions/advices';
 
 import Page from '../Page';
@@ -11,42 +16,30 @@ import Button from '../Button';
 
 import RichTextEditor from '../RichTextEditor';
 
-import config from '../../config';
-
 import './styles.scss';
 
 function AddAdvicePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /* check if user is logged */
+  /* Check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
-  /* end check if user is logged */
+  /* If there is no advice, we redirect to the 404 page */
+  useEffect(() => {
+    if (!userIslogged) {
+      navigate('/', { replace: true });
+    }
+  }, [userIslogged]);
+  /* End check if user is logged */
 
-  /* if there is no advice, we redirect to the 404 page */
-  if (!userIslogged) {
-    return navigate('/', { replace: true });
-  }
+  /* get categories */
+  const categories = useSelector((state) => state.common.categories);
 
-  /* get state informations */
-  const [categories, setCategories] = useState(
-    useSelector((state) => state.common.categories),
-  );
-  const userNickname = useSelector((state) => state.user.nickname);
-  /* end get state informations */
-
-  /* If there is no categories in the state, we set the default categories */
-  if (categories.length === 0) {
-    setCategories(config.defaultNavLinks);
-  }
-
-  /* control input fields */
+  /* Control input fields */
   const title = useSelector((state) => state.advices.newAdviceTitle);
   const category = useSelector((state) => state.advices.newAdviceCategory);
   const content = useSelector((state) => state.advices.newAdviceContent);
-  /* end control input fields */
 
-  /* change field value */
   const changeField = (value) => {
     dispatch(OnInputChange(value, 'newAdviceTitle'));
   };
@@ -56,14 +49,19 @@ function AddAdvicePage() {
   const OnRichTextEditorChange = (e) => {
     dispatch(OnInputChange(e, 'newAdviceContent'));
   };
-  /* change field value */
+  /* End control input fields */
 
   /* Get the button name clicked */
   const [buttonName, setButtonName] = useState(null);
 
-  /* submit form */
+  /* Get user nickname */
+  const userNickname = useSelector((state) => state.user.nickname);
+
+  /* Submit form */
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(removeErrorMessages());
+
     if (buttonName === 'publish') {
       dispatch(userPublishNewAdvice());
     }
@@ -74,14 +72,50 @@ function AddAdvicePage() {
       dispatch(OnInputChange('', 'newAdviceTitle'));
       dispatch(OnInputChange('', 'newAdviceCategory'));
       dispatch(OnInputChange('', 'newAdviceContent'));
+      navigate(`/utilisateurs/${userNickname}`, { replace: true });
     }
-    navigate(`/utilisateurs/${userNickname}`, { replace: true });
   };
+
+  /* Check if advice is published (USER_PUBLISH_NEW_ADVICE_SUCCES) */
+  const isPublished = useSelector((state) => state.advices.isPublished);
+
+  if (isPublished) {
+    dispatch(toggleIsPublished());
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
+  }
+
+  /* Check if advice is saved (USER_SAVE_NEW_ADVICE_SUCCES) */
+  const isSaved = useSelector((state) => state.advices.isSaved);
+
+  if (isSaved) {
+    dispatch(toggleIsSaved());
+    navigate(`/utilisateurs/${userNickname}`, { replace: true });
+  }
+
+  /* Check for messages */
+  const [haveMessages, setHaveMessages] = useState(false);
+
+  const errorMessages = useSelector((state) => state.advices.errorMessages);
+
+  useEffect(() => {
+    if (errorMessages.length > 0) {
+      setHaveMessages(true);
+    }
+  }, [errorMessages]);
 
   return (
     <Page>
       <div className="add-advice">
         <div className="title">Ajouter un conseil</div>
+        {haveMessages && (
+          <div className="messages error-messages">
+            <ul>
+              {errorMessages.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <form autoComplete="off" onSubmit={handleSubmit} method="POST">
           <div className="row">
             <select

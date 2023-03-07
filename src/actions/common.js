@@ -84,3 +84,58 @@ export const OnInputChange = (value, identifier) => ({
   value,
   identifier,
 });
+
+/**
+ * @name removeErrorMessages
+ * @description Action creator for removing error messages
+ * @returns {object} : the action
+ */
+export const REMOVE_ERROR_MESSAGES = 'REMOVE_ERROR_MESSAGES';
+
+export const removeErrorMessages = () => ({
+  type: REMOVE_ERROR_MESSAGES,
+});
+
+/**
+ * @name toggleIsPublished
+ * @description Action creator for toggling the isPublished state
+ * @returns {object} : the action
+ */
+export const TOGGLE_IS_PUBLISHED = 'TOGGLE_IS_PUBLISHED';
+
+export const toggleIsPublished = () => ({
+  type: TOGGLE_IS_PUBLISHED,
+});
+
+/**
+ * @name toggleIsSaved
+ * @description Action creator for toggling the isSaved state
+ * @returns {object} : the action
+ */
+export const TOGGLE_IS_SAVED = 'TOGGLE_IS_SAVED';
+
+export const toggleIsSaved = () => ({
+  type: TOGGLE_IS_SAVED,
+});
+
+/**
+ * @name toggleBurger
+ * @description Action creator for toggling the burger
+ * @returns {object} : the action
+ */
+export const TOGGLE_BURGER = 'TOGGLE_BURGER';
+
+export const toggleBurger = () => ({
+  type: TOGGLE_BURGER,
+});
+
+/**
+ * @name toggleUserMenu
+ * @description Action creator for toggling the user menu
+ * @returns {object} : the action
+ */
+export const TOGGLE_USER_MENU = 'TOGGLE_USER_MENU';
+
+export const toggleUserMenu = () => ({
+  type: TOGGLE_USER_MENU,
+});
