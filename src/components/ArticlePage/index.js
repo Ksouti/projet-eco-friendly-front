@@ -16,7 +16,6 @@ function ArticlePage() {
   const { slug } = useParams();
 
   const article = useSelector((state) => findItem(state.articles.data, slug));
-  console.log(article);
 
   const advices = useSelector((state) => state.advices.data);
 
