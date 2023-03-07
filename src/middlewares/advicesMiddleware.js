@@ -56,7 +56,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
             store.dispatch(getUserAdvicesSuccess(response.data));
           })
           .catch((error) => {
-            store.dispacth(getUserAdvicesFailed(error));
+            store.dispatch(getUserAdvicesFailed(error));
           });
       }
       break;
@@ -81,7 +81,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userPublishNewAdviceSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userPublishNewAdviceFailed(error));
+          store.dispatch(userPublishNewAdviceFailed(error));
         });
       break;
     case USER_PUBLISH_EDIT_ADVICE:
@@ -107,7 +107,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userPublishEditAdviceSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userPublishEditAdviceFailed(error));
+          store.dispatch(userPublishEditAdviceFailed(error));
         });
       break;
     case USER_SAVE_NEW_ADVICE:
@@ -131,7 +131,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userSaveNewAdviceSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userSaveNewAdviceFailed(error));
+          store.dispatch(userSaveNewAdviceFailed(error));
         });
       break;
     case USER_SAVE_EDIT_ADVICE:
@@ -157,7 +157,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userSaveEditAdviceSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userSaveEditAdviceFailed(error));
+          store.dispatch(userSaveEditAdviceFailed(error));
         });
       break;
     case USER_DELETE_ADVICE:
@@ -171,7 +171,7 @@ const advicesMiddleware = (store) => (next) => (action) => {
           store.dispatch(userDeleteAdviceSuccess(action.id));
         })
         .catch((error) => {
-          store.dispacth(userDeleteAdviceFailed(error));
+          store.dispatch(userDeleteAdviceFailed(error));
         });
       break;
     default:
