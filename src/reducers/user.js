@@ -82,20 +82,21 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_ERROR:
       return {
         ...state,
-        errorMessages: action.errorMessages,
+        errorMessages: action.errors,
       };
     case USER_REGISTER_SUCCESS:
       return {
         ...state,
         nickname: action.data.nickname,
         email: action.data.email,
+        isRegitring: true,
         password: '',
         confirmPassword: '',
       };
     case USER_REGISTER_ERROR:
       return {
         ...state,
-        errorMessages: action.errorMessages,
+        errorMessages: action.errors,
       };
     case USER_LOGOUT:
       return {
