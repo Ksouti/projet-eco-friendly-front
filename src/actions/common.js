@@ -108,6 +108,17 @@ export const toggleIsPublished = () => ({
 });
 
 /**
+ * @name toggleIsSaved
+ * @description Action creator for toggling the isSaved state
+ * @returns {object} : the action
+ */
+export const TOGGLE_IS_SAVED = 'TOGGLE_IS_SAVED';
+
+export const toggleIsSaved = () => ({
+  type: TOGGLE_IS_SAVED,
+});
+
+/**
  * @name toggleBurger
  * @description Action creator for toggling the burger
  * @returns {object} : the action
