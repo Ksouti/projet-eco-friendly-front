@@ -41,7 +41,7 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(userRegisterSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userAuthenticationError(error.response.data.errors));
+          store.dispacth(userAuthenticationError(error.response.data));
         });
       break;
     default:
