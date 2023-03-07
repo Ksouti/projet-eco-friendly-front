@@ -25,7 +25,7 @@ const userMiddleware = (store) => (next) => (action) => {
           );
         })
         .catch((error) => {
-          store.dispacth(userAuthenticationError(error));
+          store.dispacth(userAuthenticationError(error.response.data.errors));
         });
       break;
     case USER_REGISTER:
@@ -41,7 +41,7 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(userRegisterSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userAuthenticationError(error));
+          store.dispacth(userAuthenticationError(error.response.data.errors));
         });
       break;
     default:
