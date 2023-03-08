@@ -240,16 +240,12 @@ export const userDeleteAdvice = (id) => ({
 /**
  * @name userDeleteAdviceSuccess
  * @description Action creator for deleting advice success
- * @todo Actually, API doesn't return deleted advice id
- * @todo So, we use the id of the advice that we want to delete
- * @param {string} id
  * @returns {object}
  */
 export const USER_DELETE_ADVICE_SUCCESS = 'USER_DELETE_ADVICE_SUCCESS';
 
-export const userDeleteAdviceSuccess = (id) => ({
+export const userDeleteAdviceSuccess = () => ({
   type: USER_DELETE_ADVICE_SUCCESS,
-  id,
 });
 
 /**

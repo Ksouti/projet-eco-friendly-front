@@ -1,5 +1,6 @@
-import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+/* eslint-disable object-curly-newline */
+import { useDispatch, useSelector } from 'react-redux';
+
 import { openModal } from '../../../actions/common';
 
 import Button from '../../Button';
@@ -11,27 +12,26 @@ import FormDeleteAccount from '../../Form/UserSettingsForm/FormDeleteAccount';
 import FormDeleteAdvice from '../../Form/UserSettingsForm/FormDeleteAdvice';
 import FormAvatar from '../../Form/UserSettingsForm/FormAvatar';
 
-import './styles.scss';
-
-export default function Account({ user }) {
+export default function UserAccount() {
   const dispatch = useDispatch();
+
+  const { nickname, email, lastname, firstname, avatar } = useSelector(
+    (state) => state.user.data,
+  );
 
   /**
    * Retunrs the content of the modal window
-   *
    * @param {String} contentName
    * @returns
    */
   const modalContent = (contentName) => {
     switch (contentName) {
       case 'nickname':
-        return <FormNickname nickname={user.nickname} />;
+        return <FormNickname nickname={nickname} />;
       case 'email':
-        return <FormEmail email={user.email} />;
+        return <FormEmail email={email} />;
       case 'fullname':
-        return (
-          <FormFullname lastname={user.lastname} firstname={user.firstname} />
-        );
+        return <FormFullname lastname={lastname} firstname={firstname} />;
       case 'password':
         return <FormPassword />;
       case 'delete-account':
@@ -54,7 +54,7 @@ export default function Account({ user }) {
     <section className="account">
       <div className="account-inner">
         <div className="account-avatar">
-          <img src={user.avatar} alt="Avatar par defaut" className="avatar" />
+          <img src={avatar} alt="Avatar par defaut" className="avatar" />
           <Button
             type="button"
             color="link-primary"
@@ -68,7 +68,7 @@ export default function Account({ user }) {
           <div className="account-row">
             <div className="account-body">
               <h5 className="account-title">Pseudo</h5>
-              <p className="account-text nickname">{user.nickname}</p>
+              <p className="account-text nickname">{nickname}</p>
             </div>
             <Button
               type="button"
@@ -82,7 +82,7 @@ export default function Account({ user }) {
           <div className="account-row">
             <div className="account-body">
               <h5 className="account-title">Email</h5>
-              <p className="account-text email">{user.email}</p>
+              <p className="account-text email">{email}</p>
             </div>
             <Button
               type="button"
@@ -96,7 +96,7 @@ export default function Account({ user }) {
           <div className="account-row">
             <div className="account-body">
               <h5 className="account-title">Nom et Prénom</h5>
-              <p className="account-text fullname">{`${user.lastname} ${user.firstname}`}</p>
+              <p className="account-text fullname">{`${lastname} ${firstname}`}</p>
             </div>
             <Button
               type="button"
@@ -135,20 +135,3 @@ export default function Account({ user }) {
     </section>
   );
 }
-
-Account.propTypes = {
-  user: PropTypes.shape({
-    avatar: PropTypes.string.isRequired,
-    nickname: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    lastname: PropTypes.string,
-    firstname: PropTypes.string,
-  }),
-};
-
-Account.defaultProps = {
-  user: PropTypes.shape({
-    lastname: '',
-    firstname: '',
-  }),
-};

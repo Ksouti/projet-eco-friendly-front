@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { getUserAdvices, userDeleteAdvice } from '../../actions/advices';
-
-import Page from '../Page';
-import Advices from './Advices';
-import Account from './Account';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { userLogout } from '../../actions/user';
+import { getUserAdvices } from '../../actions/advices';
+
+import Page from '../Page';
+import UserAccount from './UserAccount/index';
+import UserAdvices from './UserAdvices/index';
+import Loader from '../Loader';
 
 import './styles.scss';
 
@@ -17,33 +17,41 @@ export default function UserSettingsPage() {
   const navigate = useNavigate();
   const { nickname } = useParams();
 
-  /* get state informations */
-  const user = useSelector((state) => state.user.data);
-  const isLoadedAdvices = useSelector((state) => state.advices.isLoadedAdvices);
-  const advices = useSelector((state) => state.advices.userAdvices);
-  /* end get state informations */
-
-  /* check if the nickname is the same as the user's nickname */
-  if (nickname !== user.nickname) {
-    dispatch(userLogout());
-    navigate('/', { replace: true });
-  }
-
+  /* Check if user is logged */
+  const userIslogged = useSelector((state) => state.user.isLogged);
   useEffect(() => {
-    dispatch(getUserAdvices());
-  }, []);
+    if (!userIslogged) {
+      navigate('/', { replace: true });
+    }
+  }, [userIslogged]);
+  /* End check if user is logged */
 
-  const onDelete = (id) => {
-    dispatch(userDeleteAdvice(id));
-  };
+  /* Check if slug nickname is the same that the user nickname */
+  const userNickname = useSelector((state) => state.user.data.nickname);
+  useEffect(() => {
+    if (nickname !== userNickname) {
+      dispatch(userLogout());
+      navigate('/', { replace: true });
+    }
+  }, [userNickname]);
+
+  const isLoadedAdvices = useSelector((state) => state.advices.isLoadedAdvices);
+  /* Load user advices from API */
+  useEffect(() => {
+    if (!isLoadedAdvices) {
+      dispatch(getUserAdvices());
+    }
+  }, [isLoadedAdvices]);
 
   return (
     <Page>
-      {isLoadedAdvices && (
+      {isLoadedAdvices ? (
         <div className="settings">
-          <Account user={user} />
-          <Advices items={advices} onDelete={onDelete} />
+          <UserAccount />
+          <UserAdvices />
         </div>
+      ) : (
+        <Loader />
       )}
     </Page>
   );
