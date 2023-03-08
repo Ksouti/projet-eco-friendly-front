@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { loadingHomePageData } from '../../actions/common';
+import { findItem } from '../../utils';
 
 import Page from '../Page';
 import Slider from '../Slider';
@@ -11,6 +13,8 @@ import Loader from '../Loader';
 import './styles.scss';
 
 function HomePage() {
+  const { slug } = useParams();
+
   const dispatch = useDispatch();
 
   /* dispatch actions to get data */
@@ -34,13 +38,15 @@ function HomePage() {
             <div className="card-wrapper">
               <div className="card-inner">
                 {homePageData.advices.map((advice) => (
-                  <Card
-                    key={advice.id}
-                    title={advice.title}
-                    content={advice.content}
-                    picture={advice.picture}
-                    category={advice.category}
-                  />
+                  <Link to={`/advices/${advice.slug}`} key={advice.id}>
+                    <Card
+                      key={advice.id}
+                      title={advice.title}
+                      content={advice.content}
+                      picture={advice.picture}
+                      category={advice.category}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>
@@ -53,14 +59,16 @@ function HomePage() {
                 <h2 className="category-title">{article.category.name}</h2>
                 <div className="card-wrapper">
                   <div className="card-inner">
-                    <Card
-                      key={article.id}
-                      title={article.title}
-                      content={article.content}
-                      picture={article.picture}
-                      category={article.category.name}
-                      format="horizontal"
-                    />
+                    <Link to={`/articles/${article.slug}`} key={article.id}>
+                      <Card
+                        key={article.id}
+                        title={article.title}
+                        content={article.content}
+                        picture={article.picture}
+                        category={article.category.name}
+                        format="horizontal"
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -70,13 +78,15 @@ function HomePage() {
                 <h2 className="category-title">{article.category.name}</h2>
                 <div className="card-wrapper">
                   <div className="card-inner">
-                    <Card
-                      key={article.id}
-                      title={article.title}
-                      content={article.content}
-                      picture={article.picture}
-                      category={article.category.name}
-                    />
+                    <Link to={`/articles/${article.slug}`} key={article.id}>
+                      <Card
+                        key={article.id}
+                        title={article.title}
+                        content={article.content}
+                        picture={article.picture}
+                        category={article.category.name}
+                      />
+                    </Link>
                   </div>
                 </div>
               </div>
