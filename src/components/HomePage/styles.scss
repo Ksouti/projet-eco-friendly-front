@@ -159,7 +159,7 @@
         .card-inner {
           .card {
             margin: 2rem 0;
-            height: 10rem;
+            height: 12rem;
           }
         }
         .button-wrapper {
@@ -197,6 +197,8 @@
       border: 0.1rem solid #e1b902;
 
       .card-wrapper {
+        overflow-x: hidden;
+
         .card {
           width: 90%;
           height: calc(var(--card-height) * 1.5);

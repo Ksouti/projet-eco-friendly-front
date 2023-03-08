@@ -10,7 +10,7 @@
 
   &-wrapper {
     position: relative;
-    // margin-right: 2rem;
+    margin-right: 2rem;
     padding: 0 10%; // faire ca en 1204px breakpoint et ne pas le mettre en 1024
     width: 100%;
     grid-column-start: 1;
@@ -145,6 +145,9 @@
         color: vars.$primaryColorHover;
         border-color: vars.$primaryColorHover;
       }
+    }
+    &:hover {
+      border: 1px solid vars.$primaryColor;
     }
   }
 
