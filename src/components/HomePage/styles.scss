@@ -10,7 +10,12 @@
   flex-direction: column;
 
   .catch-line {
-    display: none;
+    order: -2;
+    text-align: center;
+    font-size: large;
+    font-style: italic;
+    color: vars.$successColor;
+    margin: 1rem 0 3rem;
   }
 
   .advices {
@@ -44,13 +49,13 @@
           display: none;
         }
 
-        &:first-child {
-          margin-left: 0;
-        }
+        // &:first-child {
+        //   margin-left: 0;
+        // }
 
-        &:last-child {
-          margin-right: 0;
-        }
+        // &:last-child {
+        //   margin-right: 0;
+        // }
       }
     }
   }
@@ -58,19 +63,31 @@
   .articles {
     position: relative;
 
-    .articles-list-horizontal {
+    &-title {
+      color: #000;
+      font-size: 1.4rem;
+      font-weight: bold;
+      padding: 1rem 0;
+      margin: 1.5rem 0 0.7rem;
+    }
+
+    &-list-horizontal {
       display: none;
     }
-    .articles-list-vertical {
-      .category-title {
-        background-color: vars.$primaryColorDark;
-        border-radius: 0% 0% 10% 10%;
+    &-list-vertical {
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      // border: 0.3rem solid vars.$primaryColorDark;
+      background-color: vars.$primaryColorDark;
+      border-radius: 6px;
+      padding: 1rem;
 
-        margin-top: 1rem;
+      .category-title {
+        // color: vars.$primaryColor;
         color: white;
-        font-size: 1.3rem;
+        font-size: 1.7rem;
         font-weight: 600;
-        padding: 1rem 1rem;
       }
 
       .card-wrapper {
@@ -79,9 +96,18 @@
         align-items: center;
       }
       .card {
-        margin: 1rem;
+        margin: 2rem;
         width: 13rem;
         height: 18rem;
+      }
+    }
+
+    .articles-list-vertical:hover {
+      background-color: white;
+      border: 0.3rem solid vars.$primaryColorDark;
+      padding: 0.7rem;
+      .category-title {
+        color: vars.$primaryColorDark;
       }
     }
 
@@ -117,16 +143,30 @@
 
       .articles-list-horizontal {
         display: contents;
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        background-color: vars.$primaryColorDark;
+        border-radius: 6px;
+        padding: 1rem;
 
         .category-title {
-          background-color: vars.$primaryColorDark;
-          border-radius: 0% 0% 10% 10%;
-
-          margin-top: 1rem;
           color: white;
-          font-size: 1.3rem;
+          font-size: 1.7rem;
           font-weight: 600;
-          padding: 1rem 1rem;
+        }
+
+        .card {
+          margin: 2rem 0;
+          height: 10rem;
+        }
+      }
+      .articles-list-horizontal:hover {
+        background-color: white;
+        border: 0.3rem solid vars.$primaryColorDark;
+        padding: 0.7rem;
+        .category-title {
+          color: vars.$primaryColorDark;
         }
       }
     }
@@ -143,9 +183,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-
-      .articles-list {
-      }
+      align-items: center;
     }
   }
 
@@ -154,11 +192,12 @@
     flex-direction: column-reverse;
 
     .catch-line {
-      display: contents;
-      text-align: center;
-      font-size: large;
-      font-style: italic;
-      color: vars.$successColor;
+      order: 0;
+      // display: contents;
+      // text-align: center;
+      // font-size: large;
+      // font-style: italic;
+      // color: vars.$successColor;
     }
 
     .advices {
