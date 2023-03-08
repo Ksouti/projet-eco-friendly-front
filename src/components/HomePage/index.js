@@ -72,9 +72,14 @@ function HomePage() {
                   </div>
                 </div>
                 <div className="button-wrapper">
-                  <Button type="button" color="secondary" name="category">
-                    Plus d'articles {article.category.name}
-                  </Button>
+                  <Link
+                    to={`/categories/${article.categories.slug}`}
+                    key={article.categories.id}
+                  >
+                    <Button type="button" color="secondary" name="category">
+                      Plus d'articles {article.category.name}
+                    </Button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -95,9 +100,14 @@ function HomePage() {
                   </div>
                 </div>
                 <div className="button-wrapper">
-                  <Button type="button" color="secondary" name="category">
-                    Plus d'articles {article.category.name}
-                  </Button>
+                  <Link
+                    to={`/categories/${article.categories.slug}`}
+                    key={article.categories.id}
+                  >
+                    <Button type="button" color="secondary" name="category">
+                      Plus d'articles {article.category.name}
+                    </Button>
+                  </Link>
                 </div>
               </div>
             ))}
