@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { OnInputChange, closeModal } from '../../../actions/common';
-import { userLogin } from '../../../actions/user';
+import { closeModal } from '../../../actions/common';
+import { userOnInputChange, userLogin } from '../../../actions/user';
 
 import Input from '../../Field/Input';
 import Button from '../../Button';
@@ -20,7 +20,7 @@ export default function FormConnexion({ toggleForm }) {
   const password = useSelector((state) => state.user.password);
 
   const changeField = (value, identifier) => {
-    dispatch(OnInputChange(value, identifier));
+    dispatch(userOnInputChange(value, identifier));
   };
 
   const handleSubmit = (e) => {

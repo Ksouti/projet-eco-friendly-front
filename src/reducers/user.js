@@ -1,4 +1,5 @@
 import {
+  USER_ON_INPUT_CHANGE,
   USER_AUTHENTICATION_SUCCESS,
   USER_AUTHENTICATION_ERROR,
   USER_REGISTER_SUCCESS,
@@ -6,7 +7,7 @@ import {
   USER_LOGOUT,
 } from '../actions/user';
 
-import { ON_INPUT_CHANGE, REMOVE_ERROR_MESSAGES } from '../actions/common';
+import { REMOVE_ERROR_MESSAGES } from '../actions/common';
 
 export const initialState = {
   token: sessionStorage.getItem('user')
@@ -54,7 +55,7 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case ON_INPUT_CHANGE:
+    case USER_ON_INPUT_CHANGE:
       return {
         ...state,
         [action.identifier]: action.value,

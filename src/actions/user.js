@@ -1,5 +1,21 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable operator-linebreak */
+
+/**
+ * @name userOnInputChange
+ * @description Action creator for user on input change
+ * @param {string} value
+ * @param {string} identifier
+ * @returns {object}
+ */
+export const USER_ON_INPUT_CHANGE = 'USER_ON_INPUT_CHANGE';
+
+export const userOnInputChange = (value, identifier) => ({
+  type: USER_ON_INPUT_CHANGE,
+  value,
+  identifier,
+});
+
 /**
  * @name loadingUserData
  * @description Action creator for loading user data
