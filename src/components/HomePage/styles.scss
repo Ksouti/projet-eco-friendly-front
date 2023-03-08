@@ -158,7 +158,6 @@
         }
 
         .card-inner {
-          // padding: 0 4rem;
           .card {
             margin: 2rem 0;
             height: 10rem;
@@ -169,14 +168,6 @@
           justify-content: flex-end;
         }
       }
-      // .articles-list-horizontal:hover {
-      //   background-color: white;
-      //   border: 0.3rem solid vars.$primaryColorDark;
-      //   padding: 0.7rem;
-      //   .category-title {
-      //     color: vars.$primaryColorDark;
-      //   }
-      // }
     }
   }
   /* md: 768px */
@@ -201,11 +192,6 @@
 
     .catch-line {
       order: 0;
-      // display: contents;
-      // text-align: center;
-      // font-size: large;
-      // font-style: italic;
-      // color: vars.$successColor;
     }
 
     .advices {
@@ -328,7 +314,4 @@
 
 /* unused breakpoints xl: 1280px */
 
-/* 2xl: 1536px*/
-@include screen(2xl) {
-  // flex-direction: column-reverse;
-}
+/* unused breakpoints 2xl: 1536px */
