@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
