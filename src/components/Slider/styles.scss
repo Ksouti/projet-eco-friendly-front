@@ -6,10 +6,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
+  // max-width: 70%;
 
   &-wrapper {
     position: relative;
-    margin-right: 2rem;
+    // margin-right: 2rem;
+    padding: 0 10%; // faire ca en 1204px breakpoint et ne pas le mettre en 1024
     width: 100%;
     grid-column-start: 1;
     grid-column-end: 3;
