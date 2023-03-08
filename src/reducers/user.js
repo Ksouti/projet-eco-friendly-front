@@ -7,22 +7,46 @@ import {
 import { ON_INPUT_CHANGE } from '../actions/common';
 
 export const initialState = {
-  token: '',
-  isLoaded: false,
-  isLogged: false,
-  advices: [],
-  data: {},
-  id: '',
-  email: '',
-  roles: [],
-  firstname: '',
-  lastname: '',
-  nickname: '',
-  avatar: '',
-  isActive: false,
-  isVerified: false,
+  token: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).token
+    : '',
+  isLoaded: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).isLoaded
+    : false,
+  isLogged: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).isLogged
+    : false,
+  data: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).data
+    : {},
+  id: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).id
+    : '',
+  roles: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).roles
+    : [],
+  firstname: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).firstname
+    : '',
+  lastname: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).lastname
+    : '',
+  nickname: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).nickname
+    : '',
+  avatar: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).avatar
+    : '',
+  isActive: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).isActive
+    : false,
+  isVerified: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).isVerified
+    : false,
+  email: sessionStorage.getItem('user')
+    ? JSON.parse(sessionStorage.getItem('user')).email
+    : '',
   password: '',
-  isLoadedAdvices: false,
   confirmPassword: '',
 };
 
@@ -39,7 +63,6 @@ const reducer = (state = initialState, action = {}) => {
         token: action.token,
         isLoaded: true,
         isLogged: true,
-        data: action.data,
         id: action.data.id,
         roles: action.data.roles,
         firstname: action.data.firstname,

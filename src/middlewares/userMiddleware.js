@@ -20,7 +20,9 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .then((response) => {
           sessionStorage.setItem('user', JSON.stringify(response.data.user));
-          store.dispatch(userAuthenticationSuccess(response.data.user));
+          store.dispatch(
+            userAuthenticationSuccess(response.data.token, response.data.user),
+          );
         })
         .catch((error) => {
           store.dispacth(userAuthenticationError(error));
