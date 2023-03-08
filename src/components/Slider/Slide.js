@@ -14,7 +14,7 @@ export default function Slide({ title, content, slug, picture, tag }) {
           <h5 className="slide-title">{title}</h5>
           <span className="slide-tag">{tag}</span>
           <p className="slide-text">{content}</p>
-          <Link to={`/${slug}`} className="slide-link">
+          <Link to={`/articles/${slug}`} className="slide-link">
             En savoir plus
           </Link>
         </div>
