@@ -16,9 +16,6 @@ export const initialState = {
   isLogged: sessionStorage.getItem('user')
     ? JSON.parse(sessionStorage.getItem('user')).isLogged
     : false,
-  data: sessionStorage.getItem('user')
-    ? JSON.parse(sessionStorage.getItem('user')).data
-    : {},
   id: sessionStorage.getItem('user')
     ? JSON.parse(sessionStorage.getItem('user')).id
     : '',
@@ -78,9 +75,8 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         token: '',
-        isLogged: false,
         isLoaded: false,
-        data: {},
+        isLogged: false,
         id: '',
         roles: [],
         firstname: '',
@@ -89,6 +85,8 @@ const reducer = (state = initialState, action = {}) => {
         avatar: '',
         isActive: false,
         isVerified: false,
+        email: '',
+        password: '',
       };
     case USER_REGISTER_SUCCESS:
       return {
