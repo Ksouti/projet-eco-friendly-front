@@ -138,10 +138,11 @@
       border: 1px solid vars.$primaryColor;
       border-radius: 0.5rem;
       transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
-    }
 
-    &:hover {
-      border: 1px solid vars.$primaryColor;
+      &:hover {
+        color: vars.$primaryColorHover;
+        border-color: vars.$primaryColorHover;
+      }
     }
   }
 
