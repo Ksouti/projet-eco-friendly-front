@@ -13,9 +13,9 @@ export default function UserMenu() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState('dropdown-menu');
 
-  const user = useSelector((state) => state.user.data);
-
-  const { avatar, roles, nickname } = user;
+  const avatar = useSelector((state) => state.user.avatar);
+  const roles = useSelector((state) => state.user.roles);
+  const nickname = useSelector((state) => state.user.nickname);
 
   const isAuthorized =
     roles.includes('ROLE_ADMIN') || roles.includes('ROLE_AUTHOR');
