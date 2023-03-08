@@ -1,13 +1,19 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { findItem } from '../../utils';
+
 import Page from '../Page';
-import Card from '../Card';
+import AdvicesCardsList from '../AdvicesCardsList';
+import Loader from '../Loader';
+
 import './styles.scss';
-import advices from '../../data/advices';
-import navBarAvatar from '../../assets/avatar/avatar-2.png';
 
 function AdvicePage() {
+  const { slug } = useParams();
+  const advices = useSelector((state) => findItem(state.advices.data, slug));
   return (
     <Page>
       <div className="advice-page">
@@ -15,40 +21,22 @@ function AdvicePage() {
           <div className="advice-elements">
             <div className="advice-elements-top">
               <div className="advice-container">
-                <h2 className="advice-title">Titre du conseil</h2>
+                <h2 className="advice-title">{advices.title}</h2>
                 <div className="advice-user">
-                  <img src={navBarAvatar} alt="avatar" className="user-avatar" />
-                  <div className="advice-author">Jean Guy,</div>
-                  <time className="advice-date" dateTime="2023-03-13">
-                    13 mars 2023
-                  </time>
+                  <img src={advices.contributor.avatar} alt="avatar" className="user-avatar" />
+                  <div className="advice-author">{advices.contributor.nickname},</div>
+                  <time className="advice-date" dateTime="2023-03-13">{advices.created_at}</time>
                 </div>
-                <p className="advice-elements-text">
-                  Aliquid ut qui consequatur nobis perferendis. Vero eaque et
-                  ducimus ut incidunt quo consequatur. Eos laboriosam laborum quo
-                  aliquid qui non. Dignissimos atque quidem nemo occaecati dolorem
-                  est dolores. Vitae et similique nulla voluptate itaque sit
-                  excepturi.
-                </p>
+                <p className="advice-elements-text">{advices.content}</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="advices">
-          <h2 className="advices-sentence">Suivez vos conseils</h2>
-          <div className="advices-list">
-            {advices.map((advice) => (
-              <div key={advice.id} className="advice-card">
-                <Card
-                  title={advice.title}
-                  category={advice.category}
-                  content={advice.content}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <AdvicesCardsList advices={advices} />
       </div>
+      ) : (
+      <Loader />
+      )
     </Page>
   );
 }
