@@ -111,15 +111,6 @@
       }
     }
 
-    // .articles-list-vertical:hover {
-    //   background-color: white;
-    //   border: 0.3rem solid vars.$primaryColorDark;
-    //   padding: 0.7rem;
-    //   .category-title {
-    //     color: vars.$primaryColorDark;
-    //   }
-    // }
-
     .carousel {
       display: flex;
       margin: 0;
@@ -167,21 +158,25 @@
         }
 
         .card-inner {
-          padding: 0 4rem;
+          // padding: 0 4rem;
           .card {
             margin: 2rem 0;
             height: 10rem;
           }
         }
-      }
-      .articles-list-horizontal:hover {
-        background-color: white;
-        border: 0.3rem solid vars.$primaryColorDark;
-        padding: 0.7rem;
-        .category-title {
-          color: vars.$primaryColorDark;
+        .button-wrapper {
+          display: flex;
+          justify-content: flex-end;
         }
       }
+      // .articles-list-horizontal:hover {
+      //   background-color: white;
+      //   border: 0.3rem solid vars.$primaryColorDark;
+      //   padding: 0.7rem;
+      //   .category-title {
+      //     color: vars.$primaryColorDark;
+      //   }
+      // }
     }
   }
   /* md: 768px */
@@ -214,15 +209,21 @@
     }
 
     .advices {
-      &-title {
-        text-align: center;
-      }
+      border: 0.1rem solid #e1b902;
 
       .card-wrapper {
-        justify-content: center;
-        overflow-x: hidden;
+        .card {
+          width: 90%;
+          height: calc(var(--card-height) * 1.5);
+          overflow: hidden;
+
+          .summary {
+            display: block;
+          }
+        }
       }
     }
+
     .articles {
       display: flex;
       flex-direction: column;
@@ -234,8 +235,6 @@
         font-size: 1.4rem;
         font-weight: bold;
         margin: 2rem;
-        // padding: 1rem 0;
-        // margin: 1.5rem 0 0.7rem;
       }
 
       .section-title {
@@ -283,60 +282,46 @@
             }
           }
         }
-
-        // .controllers {
-        //   display: flex;
-        //   height: calc(100% - var(--carrousel-wrapper-heigth));
-
-        //   .controller {
-        //     width: 100%;
-        //     margin: 1rem 0.8rem 2rem;
-        //     padding: 0.7rem 0.8rem 0.2rem;
-        //     box-shadow: 0 0 10px 5px rgb(66 121 104 / 19%);
-        //     color: vars.$primaryColorDark;
-
-        //     &-body {
-        //       margin: 0;
-        //       padding: 0;
-        //     }
-
-        //     &-header {
-        //       flex-direction: column;
-        //       align-items: flex-start;
-        //       font-size: 1rem;
-        //       font-weight: bold;
-        //     }
-
-        //     &-tag {
-        //       padding: 0.3rem 0.5rem;
-        //       font-size: 0.6rem;
-        //       background-color: vars.$primaryColor;
-        //     }
-
-        //     &-text {
-        //       color: vars.$darkGrayColor;
-        //       font-size: small;
-        //       line-height: 1rem;
-        //       max-height: 2rem;
-        //       margin-bottom: 1rem;
-        //     }
-        //   }
-        // }
       }
-    }
 
-    .advices {
-      .card-wrapper {
-        .card {
-          width: 100%;
-          height: calc(var(--card-height) * 1.5);
-          overflow: hidden;
+      // .controllers {
+      //   display: flex;
+      //   height: calc(100% - var(--carrousel-wrapper-heigth));
 
-          .summary {
-            display: block;
-          }
-        }
-      }
+      //   .controller {
+      //     width: 100%;
+      //     margin: 1rem 0.8rem 2rem;
+      //     padding: 0.7rem 0.8rem 0.2rem;
+      //     box-shadow: 0 0 10px 5px rgb(66 121 104 / 19%);
+      //     color: vars.$primaryColorDark;
+
+      //     &-body {
+      //       margin: 0;
+      //       padding: 0;
+      //     }
+
+      //     &-header {
+      //       flex-direction: column;
+      //       align-items: flex-start;
+      //       font-size: 1rem;
+      //       font-weight: bold;
+      //     }
+
+      //     &-tag {
+      //       padding: 0.3rem 0.5rem;
+      //       font-size: 0.6rem;
+      //       background-color: vars.$primaryColor;
+      //     }
+
+      //     &-text {
+      //       color: vars.$darkGrayColor;
+      //       font-size: small;
+      //       line-height: 1rem;
+      //       max-height: 2rem;
+      //       margin-bottom: 1rem;
+      //     }
+      //   }
+      // }
     }
   }
 }
