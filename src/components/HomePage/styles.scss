@@ -58,7 +58,31 @@
   .articles {
     position: relative;
 
-    .articles-list {
+    .articles-list-horizontal {
+      display: none;
+    }
+    .articles-list-vertical {
+      .category-title {
+        background-color: vars.$primaryColorDark;
+        border-radius: 0% 0% 10% 10%;
+
+        margin-top: 1rem;
+        color: white;
+        font-size: 1.3rem;
+        font-weight: 600;
+        padding: 1rem 1rem;
+      }
+
+      .card-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .card {
+        margin: 1rem;
+        width: 13rem;
+        height: 18rem;
+      }
     }
 
     .carousel {
@@ -85,7 +109,28 @@
   }
 
   /* unused breakpoints sm: 640px */
+  @include screen(sm) {
+    .articles {
+      .articles-list-vertical {
+        display: none;
+      }
 
+      .articles-list-horizontal {
+        display: contents;
+
+        .category-title {
+          background-color: vars.$primaryColorDark;
+          border-radius: 0% 0% 10% 10%;
+
+          margin-top: 1rem;
+          color: white;
+          font-size: 1.3rem;
+          font-weight: 600;
+          padding: 1rem 1rem;
+        }
+      }
+    }
+  }
   /* md: 768px */
   @include screen(md) {
     .advices {
@@ -96,6 +141,7 @@
 
     .articles {
       display: flex;
+      flex-direction: column;
       justify-content: center;
 
       .articles-list {
@@ -131,10 +177,6 @@
 
       .section-title {
         display: contents;
-      }
-
-      .articles-list {
-        display: none;
       }
 
       .carousel {

@@ -49,8 +49,8 @@ function HomePage() {
           <section className="articles">
             <Slider slides={homePageData.articles} />
             {homePageData.articles.map((article) => (
-              <div className="articles-title">
-                <h2 className="advices-title">{article.category.name}</h2>
+              <div className="articles-list-horizontal">
+                <h2 className="category-title">{article.category.name}</h2>
                 <div className="card-wrapper">
                   <div className="card-inner">
                     <Card
@@ -60,6 +60,22 @@ function HomePage() {
                       picture={article.picture}
                       category={article.category.name}
                       format="horizontal"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+            {homePageData.articles.map((article) => (
+              <div className="articles-list-vertical">
+                <h2 className="category-title">{article.category.name}</h2>
+                <div className="card-wrapper">
+                  <div className="card-inner">
+                    <Card
+                      key={article.id}
+                      title={article.title}
+                      content={article.content}
+                      picture={article.picture}
+                      category={article.category.name}
                     />
                   </div>
                 </div>
