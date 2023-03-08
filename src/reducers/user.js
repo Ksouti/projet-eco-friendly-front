@@ -47,7 +47,9 @@ export const initialState = {
     : '',
   password: '',
   confirmPassword: '',
-  errorMessages: [],
+  emailErrorMessages: [],
+  passwordErrorMessages: [],
+  nicknameErrorMessages: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -60,7 +62,9 @@ const reducer = (state = initialState, action = {}) => {
     case REMOVE_ERROR_MESSAGES:
       return {
         ...state,
-        errorMessages: [],
+        emailErrorMessages: [],
+        passwordErrorMessages: [],
+        nicknameErrorMessages: [],
       };
     case USER_AUTHENTICATION_SUCCESS:
       return {
@@ -82,7 +86,9 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_ERROR:
       return {
         ...state,
-        errorMessages: action.errors,
+        emailErrorMessages: action.errors.email,
+        passwordErrorMessages: action.errors.password,
+        nicknameErrorMessages: action.errors.nickname,
       };
     case USER_REGISTER_SUCCESS:
       return {
@@ -96,7 +102,9 @@ const reducer = (state = initialState, action = {}) => {
     case USER_REGISTER_ERROR:
       return {
         ...state,
-        errorMessages: action.errors,
+        emailErrorMessages: action.errors.email,
+        passwordErrorMessages: action.errors.password,
+        nicknameErrorMessages: action.errors.nickname,
       };
     case USER_LOGOUT:
       return {

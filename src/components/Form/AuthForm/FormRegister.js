@@ -1,4 +1,7 @@
+/* eslint-disable brace-style */
+/* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -32,21 +35,43 @@ export default function FormRegister({ toggleForm }) {
     dispatch(OnInputChange(value, identifier));
   };
 
+  /* Control password confirmation */
+  const [confirmPasswordErrorMessages, setConfirmPasswordErrorMessages] =
+    useState([]);
+
   /* Submit form */
   const handleSubmit = (e) => {
     e.preventDefault();
-
     dispatch(removeErrorMessages());
-    dispatch(userRegister());
+
+    if (password !== confirmPassword) {
+      setConfirmPasswordErrorMessages([
+        'Les mots de passe ne correspondent pas',
+      ]);
+    } else {
+      setConfirmPasswordErrorMessages([]);
+      dispatch(userRegister());
+    }
   };
 
-  /* Check if user is registring  */
+  /* Redirect user if is registring  */
   const isRegitring = useSelector((state) => state.user.isRegitring);
 
   if (isRegitring) {
     dispatch(closeModal());
     navigate('/enregistrement', { replace: true });
   }
+
+  /* Control error messages */
+  const emailErrorMessages = useSelector(
+    (state) => state.user.emailErrorMessages,
+  );
+  const passwordErrorMessages = useSelector(
+    (state) => state.user.passwordErrorMessages,
+  );
+  const nicknameErrorMessages = useSelector(
+    (state) => state.user.nicknameErrorMessages,
+  );
 
   return (
     <div className="inscription">
@@ -60,6 +85,15 @@ export default function FormRegister({ toggleForm }) {
           value={email}
           color="primary"
         />
+        {emailErrorMessages && emailErrorMessages.length > 0 && (
+          <div className="messages error-messages">
+            <ul>
+              {emailErrorMessages.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <Input
           type="password"
           name="password"
@@ -68,6 +102,15 @@ export default function FormRegister({ toggleForm }) {
           value={password}
           color="primary"
         />
+        {passwordErrorMessages && passwordErrorMessages.length > 0 && (
+          <div className="messages error-messages">
+            <ul>
+              {passwordErrorMessages.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <Input
           type="password"
           name="confirmPassword"
@@ -76,6 +119,15 @@ export default function FormRegister({ toggleForm }) {
           value={confirmPassword}
           color="primary"
         />
+        {confirmPasswordErrorMessages.length > 0 && (
+          <div className="messages error-messages">
+            <ul>
+              {confirmPasswordErrorMessages.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <Input
           type="text"
           name="nickname"
@@ -84,6 +136,15 @@ export default function FormRegister({ toggleForm }) {
           value={nickname}
           color="primary"
         />
+        {nicknameErrorMessages && nicknameErrorMessages.length > 0 && (
+          <div className="messages error-messages">
+            <ul>
+              {nicknameErrorMessages.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <hr />
         <Input
           type="text"

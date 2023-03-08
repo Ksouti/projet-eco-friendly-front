@@ -13,11 +13,12 @@
     position: absolute;
     left: 50%;
     top: 50%;
+    max-height: fit-content;
     transform: translate(-50%, -50%);
     width: var(--content-size);
     background-color: #fff;
     padding: 2rem;
-    margin: 0 auto;
+    overflow-y: auto;
   }
 
   &-header {
@@ -55,5 +56,13 @@
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
     opacity: 0.25;
+  }
+}
+
+.app:has(.modal:not(.modal-hidden)) {
+  .header,
+  .main,
+  .footer {
+    filter: blur(2px);
   }
 }
