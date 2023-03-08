@@ -33,7 +33,7 @@ export default function UserSettingsPage() {
       dispatch(userLogout());
       navigate('/', { replace: true });
     }
-  }, [userNickname]);
+  }, []);
 
   const isLoadedAdvices = useSelector((state) => state.advices.isLoadedAdvices);
   /* Load user advices from API */
