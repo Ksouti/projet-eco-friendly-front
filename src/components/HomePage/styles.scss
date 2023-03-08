@@ -64,6 +64,10 @@
     position: relative;
 
     &-title {
+      display: none;
+    }
+
+    &-categories-title {
       color: #000;
       font-size: 1.4rem;
       font-weight: bold;
@@ -78,38 +82,43 @@
       margin-bottom: 3rem;
       display: flex;
       flex-direction: column;
-      // border: 0.3rem solid vars.$primaryColorDark;
-      background-color: vars.$primaryColorDark;
-      border-radius: 6px;
-      padding: 1rem;
+      padding-bottom: 1.5rem;
 
       .category-title {
-        // color: vars.$primaryColor;
         color: white;
+        background-color: vars.$primaryColorDark;
+        border-radius: 10px;
         font-size: 1.7rem;
         font-weight: 600;
+        padding: 1rem;
       }
 
       .card-wrapper {
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .card {
+          margin: 2.5rem;
+          width: 13rem;
+          height: 18rem;
+        }
       }
-      .card {
-        margin: 2rem;
-        width: 13rem;
-        height: 18rem;
+
+      .button-wrapper {
+        display: flex;
+        justify-content: center;
       }
     }
 
-    .articles-list-vertical:hover {
-      background-color: white;
-      border: 0.3rem solid vars.$primaryColorDark;
-      padding: 0.7rem;
-      .category-title {
-        color: vars.$primaryColorDark;
-      }
-    }
+    // .articles-list-vertical:hover {
+    //   background-color: white;
+    //   border: 0.3rem solid vars.$primaryColorDark;
+    //   padding: 0.7rem;
+    //   .category-title {
+    //     color: vars.$primaryColorDark;
+    //   }
+    // }
 
     .carousel {
       display: flex;
@@ -146,19 +155,23 @@
         margin-bottom: 3rem;
         display: flex;
         flex-direction: column;
-        background-color: vars.$primaryColorDark;
-        border-radius: 6px;
-        padding: 1rem;
+        padding-bottom: 1.5rem;
 
         .category-title {
           color: white;
+          background-color: vars.$primaryColorDark;
+          border-radius: 10px;
           font-size: 1.7rem;
           font-weight: 600;
+          padding: 1rem;
         }
 
-        .card {
-          margin: 2rem 0;
-          height: 10rem;
+        .card-inner {
+          padding: 0 4rem;
+          .card {
+            margin: 2rem 0;
+            height: 10rem;
+          }
         }
       }
       .articles-list-horizontal:hover {
@@ -213,6 +226,17 @@
     .articles {
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
+
+      &-title {
+        display: contents;
+        color: #000;
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin: 2rem;
+        // padding: 1rem 0;
+        // margin: 1.5rem 0 0.7rem;
+      }
 
       .section-title {
         display: contents;
@@ -260,44 +284,44 @@
           }
         }
 
-        .controllers {
-          display: flex;
-          height: calc(100% - var(--carrousel-wrapper-heigth));
+        // .controllers {
+        //   display: flex;
+        //   height: calc(100% - var(--carrousel-wrapper-heigth));
 
-          .controller {
-            width: 100%;
-            margin: 1rem 0.8rem 2rem;
-            padding: 0.7rem 0.8rem 0.2rem;
-            box-shadow: 0 0 10px 5px rgb(66 121 104 / 19%);
-            color: vars.$primaryColorDark;
+        //   .controller {
+        //     width: 100%;
+        //     margin: 1rem 0.8rem 2rem;
+        //     padding: 0.7rem 0.8rem 0.2rem;
+        //     box-shadow: 0 0 10px 5px rgb(66 121 104 / 19%);
+        //     color: vars.$primaryColorDark;
 
-            &-body {
-              margin: 0;
-              padding: 0;
-            }
+        //     &-body {
+        //       margin: 0;
+        //       padding: 0;
+        //     }
 
-            &-header {
-              flex-direction: column;
-              align-items: flex-start;
-              font-size: 1rem;
-              font-weight: bold;
-            }
+        //     &-header {
+        //       flex-direction: column;
+        //       align-items: flex-start;
+        //       font-size: 1rem;
+        //       font-weight: bold;
+        //     }
 
-            &-tag {
-              padding: 0.3rem 0.5rem;
-              font-size: 0.6rem;
-              background-color: vars.$primaryColor;
-            }
+        //     &-tag {
+        //       padding: 0.3rem 0.5rem;
+        //       font-size: 0.6rem;
+        //       background-color: vars.$primaryColor;
+        //     }
 
-            &-text {
-              color: vars.$darkGrayColor;
-              font-size: small;
-              line-height: 1rem;
-              max-height: 2rem;
-              margin-bottom: 1rem;
-            }
-          }
-        }
+        //     &-text {
+        //       color: vars.$darkGrayColor;
+        //       font-size: small;
+        //       line-height: 1rem;
+        //       max-height: 2rem;
+        //       margin-bottom: 1rem;
+        //     }
+        //   }
+        // }
       }
     }
 

@@ -51,8 +51,9 @@ function HomePage() {
           </section>
 
           <section className="articles">
-            <h2 className="articles-title">Nos categories</h2>
+            <h2 className="articles-title">Les articles a la une</h2>
             <Slider slides={homePageData.articles} />
+            <h2 className="articles-categories-title">Nos categories</h2>
             {homePageData.articles.map((article) => (
               <div className="articles-list-horizontal">
                 <h2 className="category-title">{article.category.name}</h2>
@@ -70,9 +71,11 @@ function HomePage() {
                     </Link>
                   </div>
                 </div>
-                <Button type="button" color="secondary" name="category">
-                  Plus d'articles {article.category.name}
-                </Button>
+                <div className="button-wrapper">
+                  <Button type="button" color="secondary" name="category">
+                    Plus d'articles {article.category.name}
+                  </Button>
+                </div>
               </div>
             ))}
             {homePageData.articles.map((article) => (
@@ -91,9 +94,11 @@ function HomePage() {
                     </Link>
                   </div>
                 </div>
-                <Button type="button" color="secondary" name="category">
-                  Plus d'articles {article.category.name}
-                </Button>
+                <div className="button-wrapper">
+                  <Button type="button" color="secondary" name="category">
+                    Plus d'articles {article.category.name}
+                  </Button>
+                </div>
               </div>
             ))}
           </section>
