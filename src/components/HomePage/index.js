@@ -51,7 +51,7 @@ function HomePage() {
           </section>
 
           <section className="articles">
-            <h2 className="articles-title">Nos articles à la une</h2>
+            <h2 className="articles-title">Nos categories</h2>
             <Slider slides={homePageData.articles} />
             {homePageData.articles.map((article) => (
               <div className="articles-list-horizontal">
@@ -70,6 +70,9 @@ function HomePage() {
                     </Link>
                   </div>
                 </div>
+                <Button type="button" color="secondary" name="category">
+                  Plus d'articles {article.category.name}
+                </Button>
               </div>
             ))}
             {homePageData.articles.map((article) => (
@@ -88,7 +91,7 @@ function HomePage() {
                     </Link>
                   </div>
                 </div>
-                <Button type="button" color="primary" name="password">
+                <Button type="button" color="secondary" name="category">
                   Plus d'articles {article.category.name}
                 </Button>
               </div>
