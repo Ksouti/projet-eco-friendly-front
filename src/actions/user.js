@@ -43,9 +43,8 @@ export const userLogout = () => ({
 
 export const USER_AUTHENTICATION_SUCCESS = 'USER_AUTHENTICATION_SUCCESS';
 
-export const userAuthenticationSuccess = (token, data) => ({
+export const userAuthenticationSuccess = (data) => ({
   type: USER_AUTHENTICATION_SUCCESS,
-  token,
   data,
 });
 
