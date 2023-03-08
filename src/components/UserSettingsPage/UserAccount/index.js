@@ -15,9 +15,11 @@ import FormAvatar from '../../Form/UserSettingsForm/FormAvatar';
 export default function UserAccount() {
   const dispatch = useDispatch();
 
-  const { nickname, email, lastname, firstname, avatar } = useSelector(
-    (state) => state.user.data,
-  );
+  const nickname = useSelector((state) => state.user.nickname);
+  const email = useSelector((state) => state.user.email);
+  const lastname = useSelector((state) => state.user.lastname);
+  const firstname = useSelector((state) => state.user.firstname);
+  const avatar = useSelector((state) => state.user.avatar);
 
   /**
    * Retunrs the content of the modal window
