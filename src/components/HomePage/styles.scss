@@ -58,6 +58,9 @@
   .articles {
     position: relative;
 
+    .articles-list {
+    }
+
     .carousel {
       display: flex;
       margin: 0;
@@ -94,6 +97,9 @@
     .articles {
       display: flex;
       justify-content: center;
+
+      .articles-list {
+      }
     }
   }
 
@@ -120,8 +126,15 @@
       }
     }
     .articles {
+      display: flex;
+      flex-direction: column;
+
       .section-title {
         display: contents;
+      }
+
+      .articles-list {
+        display: none;
       }
 
       .carousel {
