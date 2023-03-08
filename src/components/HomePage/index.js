@@ -73,8 +73,8 @@ function HomePage() {
                 </div>
                 <div className="button-wrapper">
                   <Link
-                    to={`/categories/${article.categories.slug}`}
-                    key={article.categories.id}
+                    to={`/categories/${article.category.slug}`}
+                    key={article.category.id}
                   >
                     <Button type="button" color="secondary" name="category">
                       Plus d'articles {article.category.name}
@@ -101,8 +101,8 @@ function HomePage() {
                 </div>
                 <div className="button-wrapper">
                   <Link
-                    to={`/categories/${article.categories.slug}`}
-                    key={article.categories.id}
+                    to={`/categories/${article.category.slug}`}
+                    key={article.category.id}
                   >
                     <Button type="button" color="secondary" name="category">
                       Plus d'articles {article.category.name}
