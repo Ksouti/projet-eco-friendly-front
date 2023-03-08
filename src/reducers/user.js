@@ -4,6 +4,9 @@ import {
   USER_AUTHENTICATION_ERROR,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_ERROR,
+  USER_SETTINGS_UPDATE_SUCCESS,
+  USER_SETTINGS_UPDATE_ERROR,
+  USER_REMOVE_ERROR_MESSAGES,
   USER_LOGOUT,
 } from '../actions/user';
 
@@ -48,14 +51,22 @@ export const initialState = {
     : '',
   password: '',
   confirmPassword: '',
+  firstnameErrorMessages: [],
+  lastnameErrorMessages: [],
+  nicknameErrorMessages: [],
+  avatarErrorMessages: [],
   emailErrorMessages: [],
   passwordErrorMessages: [],
-  nicknameErrorMessages: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case USER_ON_INPUT_CHANGE:
+      /* Save identifier and actual value with new key in sessionStorage */
+      sessionStorage.setItem(
+        action.identifier,
+        JSON.stringify(initialState[action.identifier]),
+      );
       return {
         ...state,
         [action.identifier]: action.value,
@@ -81,7 +92,7 @@ const reducer = (state = initialState, action = {}) => {
         avatar: action.data.avatar,
         isActive: action.data.isActive,
         isVerified: action.data.isVerified,
-        email: '',
+        email: action.data.email,
         password: '',
       };
     case USER_AUTHENTICATION_ERROR:
@@ -106,6 +117,40 @@ const reducer = (state = initialState, action = {}) => {
         emailErrorMessages: action.errors.email,
         passwordErrorMessages: action.errors.password,
         nicknameErrorMessages: action.errors.nickname,
+      };
+    case USER_SETTINGS_UPDATE_SUCCESS:
+      return {
+        ...state,
+        roles: action.data.roles,
+        firstname: action.data.firstname,
+        lastname: action.data.lastname,
+        nickname: action.data.nickname,
+        avatar: action.data.avatar,
+        isActive: action.data.isActive,
+        isVerified: action.data.isVerified,
+        email: action.data.email,
+        password: '',
+        confirmPassword: '',
+      };
+    case USER_SETTINGS_UPDATE_ERROR:
+      return {
+        ...state,
+        firstnameErrorMessages: action.errors.firstname,
+        lastnameErrorMessages: action.errors.lastname,
+        nicknameErrorMessages: action.errors.nickname,
+        avatarErrorMessages: action.errors.avatar,
+        emailErrorMessages: action.errors.email,
+        passwordErrorMessages: action.errors.password,
+      };
+    case USER_REMOVE_ERROR_MESSAGES:
+      return {
+        ...state,
+        firstnameErrorMessages: [],
+        lastnameErrorMessages: [],
+        nicknameErrorMessages: [],
+        avatarErrorMessages: [],
+        emailErrorMessages: [],
+        passwordErrorMessages: [],
       };
     case USER_LOGOUT:
       return {

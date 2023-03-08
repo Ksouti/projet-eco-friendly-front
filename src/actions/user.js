@@ -114,3 +114,52 @@ export const userRegisterError = (errors) => ({
   type: USER_REGISTER_ERROR,
   errors,
 });
+
+/**
+ * @name userSettingsUpdate
+ * @description Action creator for user settings update
+ * @returns {object}
+ */
+export const USER_SETTINGS_UPDATE = 'USER_SETTINGS_UPDATE';
+
+export const userSettingsUpdate = () => ({
+  type: USER_SETTINGS_UPDATE,
+});
+
+/**
+ * @name userSettingsUpdateSuccess
+ * @description Action creator for user settings update success
+ * @param {Object} data
+ * @returns {object}
+ */
+export const USER_SETTINGS_UPDATE_SUCCESS = 'USER_SETTINGS_UPDATE_SUCCESS';
+
+export const userSettingsUpdateSuccess = (data) => ({
+  type: USER_SETTINGS_UPDATE_SUCCESS,
+  data,
+});
+
+/**
+ * @name userSettingsUpdateError
+ * @description Action creator for user settings update error
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_SETTINGS_UPDATE_ERROR = 'USER_SETTINGS_UPDATE_ERROR';
+
+export const userSettingsUpdateError = (errors) => ({
+  type: USER_SETTINGS_UPDATE_ERROR,
+  errors,
+});
+
+/**
+ * @name userRemoveErrorMessages
+ * @description Action creator for user remove error messages
+ * @returns {object}
+ */
+
+export const USER_REMOVE_ERROR_MESSAGES = 'USER_REMOVE_ERROR_MESSAGES';
+
+export const userRemoveErrorMessages = () => ({
+  type: USER_REMOVE_ERROR_MESSAGES,
+});

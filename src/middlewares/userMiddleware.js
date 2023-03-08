@@ -6,6 +6,9 @@ import {
   USER_REGISTER,
   userRegisterSuccess,
   userAuthenticationError,
+  USER_SETTINGS_UPDATE,
+  userSettingsUpdateSuccess,
+  userSettingsUpdateError,
 } from '../actions/user';
 
 import config from '../config';
@@ -42,6 +45,32 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(userAuthenticationError(error.response.data.errors));
+        });
+      break;
+    case USER_SETTINGS_UPDATE:
+      axios
+        .put(
+          `${config.apiBaseUrl}/users/${store.getState().user.id}`,
+          {
+            password: store.getState().user.password,
+            email: store.getState().user.email,
+            nickname: store.getState().user.nickname,
+            firstname: store.getState().user.firstname,
+            lastname: store.getState().user.lastname,
+            avatar: store.getState().user.avatar,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          sessionStorage.setItem('user', JSON.stringify(response.data)); // update user in sessionStorage
+          store.dispatch(userSettingsUpdateSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(userSettingsUpdateError(error.response.data.errors));
         });
       break;
     default:
