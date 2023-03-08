@@ -1,8 +1,8 @@
 /* eslint-disable operator-linebreak */
 /* eslint-disable brace-style */
-
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
 
 import { OnInputChange, closeModal } from '../../../actions/common';
@@ -15,7 +15,7 @@ import './styles.scss';
 
 export default function FormConnexion({ toggleForm }) {
   const dispatch = useDispatch();
-  const [errorsMessage, setErrorsMessage] = useState(null);
+
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
 
@@ -23,41 +23,23 @@ export default function FormConnexion({ toggleForm }) {
     dispatch(OnInputChange(value, identifier));
   };
 
-  const validate = () => {
-    if (!email) {
-      setErrorsMessage('Veuillez renseigner un email');
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setErrorsMessage('Email invalide');
-      return false;
-    }
-    if (!password) {
-      setErrorsMessage('Veuillez renseigner un mot de passe');
-      return false;
-    }
-    return true;
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) {
-      return;
-    }
     dispatch(userLogin());
-    dispatch(closeModal());
   };
 
   /* If the user is logged, close the modal */
   const isLogged = useSelector((state) => state.user.isLogged);
-  if (isLogged) {
-    dispatch(closeModal());
-  }
+
+  useEffect(() => {
+    if (isLogged) {
+      dispatch(closeModal());
+    }
+  }, [isLogged]);
 
   return (
     <div className="connexion">
       <h5 className="title text-primary">Se connecter</h5>
-      {errorsMessage && <p className="error-message">{errorsMessage}</p>}
       <form autoComplete="off" onSubmit={handleSubmit}>
         <Input
           type="email"
