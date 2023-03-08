@@ -76,6 +76,12 @@
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 100% 100%;
+
+    &:hover {
+      background-color: vars.$secondaryColor;
+      padding: 1.3rem; // Here it's like transformation: scale
+      border-radius: 250px;
+    }
   }
 
   .slide {
@@ -132,11 +138,10 @@
       border: 1px solid vars.$primaryColor;
       border-radius: 0.5rem;
       transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    }
 
-      &:hover {
-        color: vars.$primaryColorHover;
-        border-color: vars.$primaryColorHover;
-      }
+    &:hover {
+      border: 1px solid vars.$primaryColor;
     }
   }
 
