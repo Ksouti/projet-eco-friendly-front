@@ -1,20 +1,18 @@
 import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { loadingHomePageData } from '../../actions/common';
-import { findItem } from '../../utils';
 
 import Page from '../Page';
 import Slider from '../Slider';
 import Card from '../Card';
 import Loader from '../Loader';
+import Button from '../Button';
 
 import './styles.scss';
 
 function HomePage() {
-  const { slug } = useParams();
-
   const dispatch = useDispatch();
 
   /* dispatch actions to get data */
@@ -53,6 +51,7 @@ function HomePage() {
           </section>
 
           <section className="articles">
+            <h2 className="articles-title">Nos articles à la une</h2>
             <Slider slides={homePageData.articles} />
             {homePageData.articles.map((article) => (
               <div className="articles-list-horizontal">
@@ -89,6 +88,9 @@ function HomePage() {
                     </Link>
                   </div>
                 </div>
+                <Button type="button" color="primary" name="password">
+                  Plus d'articles {article.category.name}
+                </Button>
               </div>
             ))}
           </section>
