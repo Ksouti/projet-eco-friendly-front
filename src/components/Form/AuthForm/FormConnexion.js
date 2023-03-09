@@ -2,11 +2,16 @@
 /* eslint-disable brace-style */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
 import { closeModal } from '../../../actions/common';
-import { userOnInputChange, userLogin } from '../../../actions/user';
+import {
+  userOnInputChange,
+  userLogin,
+  userLogout,
+} from '../../../actions/user';
 
 import Input from '../../Field/Input';
 import Button from '../../Button';
@@ -15,6 +20,7 @@ import './styles.scss';
 
 export default function FormConnexion({ toggleForm }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
@@ -30,12 +36,20 @@ export default function FormConnexion({ toggleForm }) {
 
   /* If the user is logged, close the modal */
   const isLogged = useSelector((state) => state.user.isLogged);
+  const isVerified = useSelector((state) => state.user.isVerified);
+  const isActive = useSelector((state) => state.user.isActive);
 
   useEffect(() => {
-    if (isLogged) {
+    if (isLogged && isVerified && isActive) {
+      dispatch(closeModal());
+    } else if (isLogged && !isVerified) {
+      dispatch(closeModal());
+      navigate('/enregistrement', { replace: true });
+    } else if (isLogged && !isActive) {
+      dispatch(userLogout);
       dispatch(closeModal());
     }
-  }, [isLogged]);
+  }, [isLogged, isVerified, isActive]);
 
   /* Error message */
   const authErrorMessages = useSelector(
