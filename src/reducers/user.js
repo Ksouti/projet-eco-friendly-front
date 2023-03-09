@@ -1,10 +1,12 @@
 import {
   USER_AUTHENTICATION_SUCCESS,
-  USER_LOGOUT,
+  USER_AUTHENTICATION_ERROR,
   USER_REGISTER_SUCCESS,
+  USER_REGISTER_ERROR,
+  USER_LOGOUT,
 } from '../actions/user';
 
-import { ON_INPUT_CHANGE } from '../actions/common';
+import { ON_INPUT_CHANGE, REMOVE_ERROR_MESSAGES } from '../actions/common';
 
 export const initialState = {
   token: sessionStorage.getItem('user')
@@ -45,6 +47,9 @@ export const initialState = {
     : '',
   password: '',
   confirmPassword: '',
+  emailErrorMessages: [],
+  passwordErrorMessages: [],
+  nicknameErrorMessages: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -52,7 +57,14 @@ const reducer = (state = initialState, action = {}) => {
     case ON_INPUT_CHANGE:
       return {
         ...state,
-        [action.identifier]: action.value, // [action.identifier] is a computed property name
+        [action.identifier]: action.value,
+      };
+    case REMOVE_ERROR_MESSAGES:
+      return {
+        ...state,
+        emailErrorMessages: [],
+        passwordErrorMessages: [],
+        nicknameErrorMessages: [],
       };
     case USER_AUTHENTICATION_SUCCESS:
       return {
@@ -71,6 +83,29 @@ const reducer = (state = initialState, action = {}) => {
         email: '',
         password: '',
       };
+    case USER_AUTHENTICATION_ERROR:
+      return {
+        ...state,
+        emailErrorMessages: action.errors.email,
+        passwordErrorMessages: action.errors.password,
+        nicknameErrorMessages: action.errors.nickname,
+      };
+    case USER_REGISTER_SUCCESS:
+      return {
+        ...state,
+        nickname: action.data.nickname,
+        email: action.data.email,
+        isRegitring: true,
+        password: '',
+        confirmPassword: '',
+      };
+    case USER_REGISTER_ERROR:
+      return {
+        ...state,
+        emailErrorMessages: action.errors.email,
+        passwordErrorMessages: action.errors.password,
+        nicknameErrorMessages: action.errors.nickname,
+      };
     case USER_LOGOUT:
       return {
         ...state,
@@ -87,14 +122,6 @@ const reducer = (state = initialState, action = {}) => {
         isVerified: false,
         email: '',
         password: '',
-      };
-    case USER_REGISTER_SUCCESS:
-      return {
-        ...state,
-        nickname: action.data.nickname,
-        email: action.data.email,
-        password: '',
-        confirmPassword: '',
       };
     default:
       return state;

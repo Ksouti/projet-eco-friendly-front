@@ -7,13 +7,12 @@ import './styles.scss';
 export default function Modal({ children }) {
   const dispatch = useDispatch();
 
-  const toggleModal = (e) => {
+  const toggleModal = () => {
     dispatch(closeModal());
-    e.stopPropagation();
   };
 
   return (
-    <div className="modal" onClick={toggleModal}>
+    <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
           <button
@@ -25,9 +24,7 @@ export default function Modal({ children }) {
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div className="modal-body" onClick={(e) => e.stopPropagation()}>
-          {children}
-        </div>
+        <div className="modal-body">{children}</div>
       </div>
     </div>
   );
