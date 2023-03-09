@@ -23,7 +23,7 @@
       flex-direction: column;
       align-items: center;
       list-style: none;
-      border-top: 1px solid rgba(255, 255, 255, 0.325);
+      border-top: 2px solid rgba(255, 255, 255, 0.325);
     }
 
     &-item {
@@ -32,15 +32,20 @@
       padding-bottom: 1rem;
       display: list-item;
 
+      // &:hover {
+      //   background-color: white;
+      //   border-radius: 20px;
+      // }
+
       a {
         display: block;
         padding: var(--nav-link-padding-y) var(--nav-link-padding-x);
-        color: inherit;
+        color: vars.$primaryColorDark;
         text-decoration: none;
       }
 
       button {
-        color: inherit;
+        color: vars.$primaryColorDark;
         font-size: 1rem;
         background: none;
         border: none;
@@ -53,8 +58,8 @@
         &:hover,
         &:active,
         &:focus {
-          transition: var(--navbar-transition);
-          color: color.scale(#fff, $lightness: -20%);
+          transform: scale(1.2);
+          transition: all 0.15s;
         }
       }
 
