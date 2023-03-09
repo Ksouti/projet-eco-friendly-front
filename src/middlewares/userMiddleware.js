@@ -12,6 +12,9 @@ import {
   USER_EMAIL_UPDATE,
   userEmailUpdateSuccess,
   userEmailUpdateError,
+  USER_PASSWORD_UPDATE,
+  userPasswordUpdateSuccess,
+  userPasswordUpdateError,
 } from '../actions/user';
 
 import config from '../config';
@@ -93,6 +96,30 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(userEmailUpdateError(error.response.data.errors));
+        });
+      break;
+    case USER_PASSWORD_UPDATE:
+      /* remove double quote from token */
+      action.token = action.token.replace(/"/g, '');
+
+      axios
+        .post(
+          `${config.apiBaseUrl}/reset-password/reset/${action.token}`,
+          {
+            password: store.getState().user.password,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          console.log(response.data);
+          store.dispatch(userPasswordUpdateSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(userPasswordUpdateError(error.response.data.errors));
         });
       break;
     default:

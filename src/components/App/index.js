@@ -22,6 +22,7 @@ import AdvicePage from '../AdvicePage';
 import RegistrationPage from '../RegistrationPage';
 import ValidationPage from '../ValidationPage';
 import LegalNoticePage from '../LegalNoticePage';
+import PasswordResetPage from '../PasswordResetPage/index';
 import Loader from '../Loader';
 import Modal from '../Modal';
 
@@ -76,6 +77,10 @@ function App() {
           <Route path="/mentions-legales" element={<LegalNoticePage />} />
           <Route path="/enregistrement" element={<RegistrationPage />} />
           <Route path="/validation" element={<ValidationPage />} />
+          <Route
+            path="/password/reset/:token"
+            element={<PasswordResetPage />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       ) : (
