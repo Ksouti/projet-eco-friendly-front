@@ -39,7 +39,10 @@ function ArticlePage() {
                   {article.created_at}
                 </time>
               </div>
-              <p className="article-elements-text">{article.content}</p>
+              <div
+                dangerouslySetInnerHTML={{ __html: article.content }}
+                className="article-elements-text inner-html"
+              />
             </div>
 
             {/* <Button

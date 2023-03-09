@@ -18,7 +18,10 @@ function Card({ format, picture, title, category, content }) {
       <div className="informations">
         <h3 className="title">{title}</h3>
         {category && <span className="category">{category.name}</span>}
-        <p className="summary">{content}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: content }}
+          className="summary inner-html"
+        />
       </div>
     </div>
   );

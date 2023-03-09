@@ -13,7 +13,10 @@ export default function Slide({ title, content, slug, picture, tag }) {
         <div className="slide-body">
           <h5 className="slide-title">{title}</h5>
           <span className="slide-tag">{tag}</span>
-          <p className="slide-text">{content}</p>
+          <div
+            dangerouslySetInnerHTML={{ __html: content }}
+            className="slide-text inner-html"
+          />
           <Link to={`/articles/${slug}`} className="slide-link">
             En savoir plus
           </Link>
