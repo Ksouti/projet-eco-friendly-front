@@ -37,6 +37,31 @@ export default function UserAccount() {
           'nickname',
         ),
       );
+      sessionStorage.removeItem('nickname');
+    }
+    if (!modalIsOpen && sessionStorage.getItem('firstname')) {
+      dispatch(
+        userOnInputChange(
+          JSON.parse(sessionStorage.getItem('firstname')),
+          'firstname',
+        ),
+      );
+      sessionStorage.removeItem('firstname');
+    }
+    if (!modalIsOpen && sessionStorage.getItem('lastname')) {
+      dispatch(
+        userOnInputChange(
+          JSON.parse(sessionStorage.getItem('lastname')),
+          'lastname',
+        ),
+      );
+      sessionStorage.removeItem('lastname');
+    }
+    if (!modalIsOpen && sessionStorage.getItem('email')) {
+      dispatch(
+        userOnInputChange(JSON.parse(sessionStorage.getItem('email')), 'email'),
+      );
+      sessionStorage.removeItem('email');
     }
   }, [modalIsOpen]);
 
@@ -50,7 +75,7 @@ export default function UserAccount() {
       case 'nickname':
         return <FormNickname />;
       case 'email':
-        return <FormEmail email={email} />;
+        return <FormEmail />;
       case 'fullname':
         return <FormFullname />;
       case 'password':
