@@ -151,34 +151,47 @@
           object-fit: cover;
         }
 
+        .menu-item.account {
+          margin: 0;
+          a {
+            color: vars.$whiteColor;
+            text-align: center;
+            border-radius: 5px;
+            background: vars.$primaryColor;
+            border: 0.2rem solid vars.$primaryColor;
+            margin: 0;
+            padding: 1rem;
+
+            &:hover {
+              background-color: vars.$whiteColor;
+              color: vars.$primaryColorDark;
+            }
+          }
+        }
+
         .menu-item {
           width: 100%;
-          padding: 0.5rem 1.5rem;
+          padding: 0.5rem 1rem;
           color: #212529;
           font-weight: bold;
-          text-align: left;
+          text-align: center;
           text-shadow: none;
           background-color: transparent;
           text-decoration: none;
+          margin: 0;
 
           button {
-            width: 100%;
-            margin: 0;
-            padding: 0;
             color: vars.$secondaryColor;
+            margin: 0;
             font-weight: bold;
-            text-align: left;
+            text-align: center;
+
+            &:hover {
+              color: vars.$secondaryColorDark;
+            }
           }
         }
       }
-    }
-  }
-
-  /* lg: 1024 */
-  @include screen(lg) {
-    --logo-size: 72px;
-    .menu-item {
-      margin-left: 1.5rem;
     }
   }
 
@@ -210,16 +223,33 @@
           }
         }
       }
+
+      .menu-item {
+        margin-left: 2rem;
+      }
+
+      .dropdown-menu.show {
+        top: 6rem;
+      }
     }
   }
 
   /* md: 1280px */
   @include screen(xl) {
     --logo-size: 124px;
-    .menu-item,
-    .menu-item button {
-      font-size: 1.4rem;
-      max-width: 12.5rem;
+    .menu {
+      .menu-item,
+      .menu-item button {
+        font-size: 1.4rem;
+        max-width: 12.5rem;
+      }
+
+      .dropdown-menu.show {
+        padding: 1.5rem;
+        .menu-item.account {
+          padding: 0.5rem 0;
+        }
+      }
     }
   }
 
@@ -228,14 +258,10 @@
     --logo-size: 150px;
     .menu-item,
     .menu-item {
-      a {
-        // padding: 0.5rem 6rem 0.4rem;
-      }
-
       button {
         font-size: 1.4rem;
-        margin-left: 5rem;
-        max-width: 16rem;
+        margin-left: 2.5rem;
+        max-width: 13rem;
       }
     }
   }

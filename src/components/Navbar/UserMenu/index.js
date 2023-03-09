@@ -45,12 +45,12 @@ export default function UserMenu() {
   return (
     <ul className={isOpen}>
       <img src={avatar} alt={`Avater de ${nickname}`} />
-      <li className="menu-item">
+      <li className="menu-item account">
         <Link to={`/utilisateurs/${nickname}`} onClick={toggleMenus}>
           Gérer mon compte
         </Link>
       </li>
-      <li className="menu-item">
+      <li className="menu-item account">
         <Link to="/conseils/ajouter" onClick={toggleMenus}>
           Ajouter un conseil
         </Link>
