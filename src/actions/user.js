@@ -68,14 +68,14 @@ export const userAuthenticationSuccess = (token, data) => ({
 /**
  * @name userAuthenticationError
  * @description Action creator for user authentication error
- * @param {array} errors
+ * @param {string} error
  * @returns {object}
  */
 export const USER_AUTHENTICATION_ERROR = 'USER_AUTHENTICATION_ERROR';
 
-export const userAuthenticationError = (errors) => ({
+export const userAuthenticationError = (error) => ({
   type: USER_AUTHENTICATION_ERROR,
-  errors,
+  error,
 });
 
 /**
@@ -149,6 +149,43 @@ export const USER_SETTINGS_UPDATE_ERROR = 'USER_SETTINGS_UPDATE_ERROR';
 
 export const userSettingsUpdateError = (errors) => ({
   type: USER_SETTINGS_UPDATE_ERROR,
+  errors,
+});
+
+/**
+ * @name userEmailUpdate
+ * @description Action creator for user email update
+ * @returns {object}
+ */
+export const USER_EMAIL_UPDATE = 'USER_EMAIL_UPDATE';
+
+export const userEmailUpdate = () => ({
+  type: USER_EMAIL_UPDATE,
+});
+
+/**
+ * @name userEmailUpdateSuccess
+ * @description Action creator for user email update success
+ * @param {Object} data
+ * @returns {object}
+ */
+export const USER_EMAIL_UPDATE_SUCCESS = 'USER_EMAIL_UPDATE_SUCCESS';
+
+export const userEmailUpdateSuccess = (data) => ({
+  type: USER_EMAIL_UPDATE_SUCCESS,
+  data,
+});
+
+/**
+ * @name userEmailUpdateError
+ * @description Action creator for user email update error
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_EMAIL_UPDATE_ERROR = 'USER_EMAIL_UPDATE_ERROR';
+
+export const userEmailUpdateError = (errors) => ({
+  type: USER_EMAIL_UPDATE_ERROR,
   errors,
 });
 
