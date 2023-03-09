@@ -114,9 +114,9 @@ function HomePage() {
           </section>
 
           <section className="catch-line">
-            <h1 className="sentence">
-              Retrouvez toutes les infos utiles pour un quotidien plus
-              écologique
+            <h1 className="project-title">Eco-friendly</h1>
+            <h1 className="project-sentence">
+              " Un partage d'idées, et un quotidien plus vert. "
             </h1>
           </section>
         </div>
