@@ -18,7 +18,10 @@ function Card({ format, picture, title, category, content }) {
       <div className="informations">
         <h3 className="title">{title}</h3>
         {category && <span className="category">{category.name}</span>}
-        <p className="summary">{content}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: content }}
+          className="summary inner-html"
+        />
       </div>
     </div>
   );
@@ -27,15 +30,18 @@ function Card({ format, picture, title, category, content }) {
 Card.propTypes = {
   format: PropTypes.string,
   picture: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   category: PropTypes.shape({
     name: PropTypes.string.isRequired,
-  }).isRequired,
-  content: PropTypes.string.isRequired,
+  }),
+  content: PropTypes.string,
 };
 Card.defaultProps = {
   format: '',
   picture: '',
+  title: '',
+  category: '',
+  content: '',
 };
 
 export default Card;

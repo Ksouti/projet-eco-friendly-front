@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
@@ -12,8 +13,11 @@ export default function Slide({ title, content, slug, picture, tag }) {
         <div className="slide-body">
           <h5 className="slide-title">{title}</h5>
           <span className="slide-tag">{tag}</span>
-          <p className="slide-text">{content}</p>
-          <Link to={`/${slug}`} className="slide-link">
+          <div
+            dangerouslySetInnerHTML={{ __html: content }}
+            className="slide-text inner-html"
+          />
+          <Link to={`/articles/${slug}`} className="slide-link">
             En savoir plus
           </Link>
         </div>
@@ -23,9 +27,16 @@ export default function Slide({ title, content, slug, picture, tag }) {
 }
 
 Slide.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  tag: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  slug: PropTypes.string,
+  picture: PropTypes.string,
+  tag: PropTypes.string,
+};
+Slide.defaultProps = {
+  title: '',
+  content: '',
+  slug: '',
+  picture: '',
+  tag: '',
 };

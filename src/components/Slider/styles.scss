@@ -6,10 +6,12 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
+  // max-width: 70%;
 
   &-wrapper {
     position: relative;
     margin-right: 2rem;
+    padding: 0 10%; // faire ca en 1204px breakpoint et ne pas le mettre en 1024
     width: 100%;
     grid-column-start: 1;
     grid-column-end: 3;
@@ -35,11 +37,11 @@
   }
 
   &-control-prev {
-    left: 0;
+    left: -2rem;
   }
 
   &-control-next {
-    right: 0;
+    right: -2rem;
   }
 
   &-control-prev,
@@ -76,6 +78,12 @@
     background-repeat: no-repeat;
     background-position: 50%;
     background-size: 100% 100%;
+
+    &:hover {
+      background-color: vars.$secondaryColor;
+      padding: 1.3rem; // Here it's like transformation: scale
+      border-radius: 250px;
+    }
   }
 
   .slide {
@@ -91,12 +99,11 @@
     &-inner {
       display: flex;
       flex-wrap: wrap;
-      height: 100%;
+      height: 45vh;
     }
 
     &-image {
-      max-width: 100%;
-      height: 100%;
+      max-height: 100%;
       flex: 0 0 auto;
       width: calc(100% / 3); // 33.333333%
 
@@ -111,8 +118,10 @@
       width: 100%;
       flex: 0 0 auto;
       width: calc(200% / 3); // 66.666666%
+      max-height: 100%;
 
       padding: 1rem;
+      padding-right: 3rem;
       color: inherit;
       display: flex;
       flex-direction: column;
@@ -120,7 +129,7 @@
     }
 
     &-text {
-      max-height: 50%;
+      max-height: 23%;
     }
 
     &-link {
@@ -136,6 +145,10 @@
         color: vars.$primaryColorHover;
         border-color: vars.$primaryColorHover;
       }
+    }
+    &:hover {
+      border: 1px solid vars.$primaryColor;
+      background-color: #cef2e756;
     }
   }
 
