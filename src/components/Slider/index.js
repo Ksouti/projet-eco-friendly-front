@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
 import Slide from './Slide';
-import Controller from './Controller';
+// import Controller from './Controller';
 
 import './styles.scss';
 
@@ -69,7 +69,7 @@ export default function Slider({ slides, delay, automatic }) {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="controllers">
+      {/* <div className="controllers">
         {slides.map((slide, index) => (
           <Controller
             key={slide.id}
@@ -80,7 +80,7 @@ export default function Slider({ slides, delay, automatic }) {
             active={index === current}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }

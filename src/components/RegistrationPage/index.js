@@ -11,15 +11,15 @@ import './styles.scss';
 
 function RegistrationPage() {
   const navigate = useNavigate();
-  const isRegistered = useSelector((state) => state.user.isRegistered);
+  const isRegitring = useSelector((state) => state.user.isRegitring);
   const nickname = useSelector((state) => state.user.nickname);
   const email = useSelector((state) => state.user.email);
 
   useEffect(() => {
-    if (!isRegistered) {
+    if (!isRegitring) {
       navigate('/');
     }
-  }, [isRegistered, navigate]);
+  }, [isRegitring]);
 
   return (
     <Page>

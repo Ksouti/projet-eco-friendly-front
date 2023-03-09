@@ -11,9 +11,6 @@ import './styles.scss';
 function Navbar() {
   const [isOpen, setIsOpen] = useState('menu menu-collapse');
 
-  const user = useSelector((state) => state.user.data);
-  const { avatar } = user;
-
   /* menu burger */
   const burgerIsOpen = useSelector((state) => state.common.burgerIsOpen);
 
@@ -37,7 +34,7 @@ function Navbar() {
           </Link>
           <span>Eco-friendly</span>
         </div>
-        <Burger avatar={avatar} />
+        <Burger />
         <div className={isOpen}>
           <Menu />
         </div>

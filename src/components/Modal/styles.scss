@@ -8,16 +8,16 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
+  overflow-y: auto;
 
   &-content {
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 25%;
+    transform: translateX(-50%);
     width: var(--content-size);
     background-color: #fff;
     padding: 2rem;
-    margin: 0 auto;
   }
 
   &-header {
@@ -56,4 +56,13 @@
     box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.25);
     opacity: 0.25;
   }
+}
+
+body:has(.modal:not(.modal-hidden)) {
+  .header,
+  .main,
+  .footer {
+    filter: blur(2px);
+  }
+  overflow: hidden;
 }

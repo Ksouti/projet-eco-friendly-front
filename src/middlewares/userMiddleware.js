@@ -19,12 +19,13 @@ const userMiddleware = (store) => (next) => (action) => {
           password: store.getState().user.password,
         })
         .then((response) => {
+          sessionStorage.setItem('user', JSON.stringify(response.data.user));
           store.dispatch(
             userAuthenticationSuccess(response.data.token, response.data.user),
           );
         })
         .catch((error) => {
-          store.dispacth(userAuthenticationError(error));
+          store.dispatch(userAuthenticationError(error.response.data.errors));
         });
       break;
     case USER_REGISTER:
@@ -40,7 +41,7 @@ const userMiddleware = (store) => (next) => (action) => {
           store.dispatch(userRegisterSuccess(response.data));
         })
         .catch((error) => {
-          store.dispacth(userAuthenticationError(error));
+          store.dispatch(userAuthenticationError(error.response.data.errors));
         });
       break;
     default:

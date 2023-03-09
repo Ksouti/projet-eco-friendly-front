@@ -27,7 +27,7 @@ export default function UserSettingsPage() {
   /* End check if user is logged */
 
   /* Check if slug nickname is the same that the user nickname */
-  const userNickname = useSelector((state) => state.user.data.nickname);
+  const userNickname = useSelector((state) => state.user.nickname);
   useEffect(() => {
     if (nickname !== userNickname) {
       dispatch(userLogout());
