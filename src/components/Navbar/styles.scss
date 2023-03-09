@@ -59,15 +59,19 @@
     }
 
     span {
-      padding-left: 0.4rem;
-      font-size: 1.4rem;
+      padding-left: 1.8rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: vars.$darkColor;
-      // text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.325);
+      color: vars.$primaryColorDark;
     }
   }
 
-  /* unused breakpoints sm: 640px */
+  /* sm: 640 */
+  @include screen(sm) {
+    span {
+      padding-left: 0.7rem;
+    }
+  }
 
   /* md: 768 */
   @include screen(md) {
