@@ -43,7 +43,7 @@ export default function AppMenu() {
 
   return (
     <ul className="menu-items">
-      <div className="menu-item empty">empty</div>
+      <div className="menu-item empty">empty</div> {/* only for css tricks  */}
       <li className="menu-item">
         <NavLink to="/">Accueil</NavLink>
       </li>
