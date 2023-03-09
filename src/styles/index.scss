@@ -41,3 +41,17 @@ body {
     background-color: vars.$successColorAlt;
   }
 }
+
+.inner-html {
+  strong {
+    font-weight: bolder;
+  }
+
+  p {
+    padding: 1rem 0;
+  }
+
+  em {
+    font-style: italic;
+  }
+}
