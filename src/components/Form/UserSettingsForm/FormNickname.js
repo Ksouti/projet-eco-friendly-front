@@ -20,13 +20,6 @@ export default function FormNickname() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /* control input fields */
-  const nickname = useSelector((state) => state.user.nickname);
-
-  const changeField = (value, identifier) => {
-    dispatch(userOnInputChange(value, identifier));
-  };
-
   /* Save nickname value with new key in sessionStorage */
   useEffect(() => {
     if (sessionStorage.getItem('user')) {
@@ -34,6 +27,20 @@ export default function FormNickname() {
       sessionStorage.setItem('nickname', JSON.stringify(user.nickname));
     }
   }, []);
+
+  /* control input fields */
+  const nickname = useSelector((state) => state.user.nickname);
+
+  const changeField = (value, identifier) => {
+    dispatch(userOnInputChange(value, identifier));
+  };
+
+  /* submit form */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(userRemoveErrorMessages());
+    dispatch(userSettingsUpdate());
+  };
 
   /* Save sessionStorage nickname value in state nickname key if user cancels */
   const handleCancel = () => {
@@ -53,16 +60,9 @@ export default function FormNickname() {
     (state) => state.user.nicknameErrorMessages,
   );
 
-  /* submit form */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(userRemoveErrorMessages());
-    dispatch(userSettingsUpdate());
-  };
-
+  /* Check if is updated */
   const isUpdated = useSelector((state) => state.user.isUpdated);
 
-  /* Check if is updated */
   useEffect(() => {
     if (isUpdated) {
       sessionStorage.removeItem('nickname');
@@ -104,10 +104,3 @@ export default function FormNickname() {
     </div>
   );
 }
-
-// /* CLear identifier sessionStorage value */
-// if (sessionStorage.getItem('user')) {
-//   const user = JSON.parse(sessionStorage.getItem('user'));
-//   user[identifier] = '';
-//   sessionStorage.setItem('user', JSON.stringify(user));
-// }

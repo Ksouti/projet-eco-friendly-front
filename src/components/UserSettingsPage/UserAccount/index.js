@@ -1,7 +1,6 @@
 /* eslint-disable object-curly-newline */
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { openModal } from '../../../actions/common';
 
@@ -18,9 +17,9 @@ import FormAvatar from '../../Form/UserSettingsForm/FormAvatar';
 
 export default function UserAccount() {
   const dispatch = useDispatch();
-  const { nickname } = useParams();
 
   /* control input fields */
+  const nickname = useSelector((state) => state.user.nickname);
   const firstname = useSelector((state) => state.user.firstname);
   const lastname = useSelector((state) => state.user.lastname);
   const avatar = useSelector((state) => state.user.avatar);
@@ -53,7 +52,7 @@ export default function UserAccount() {
       case 'email':
         return <FormEmail email={email} />;
       case 'fullname':
-        return <FormFullname lastname={lastname} firstname={firstname} />;
+        return <FormFullname />;
       case 'password':
         return <FormPassword />;
       case 'delete-account':
