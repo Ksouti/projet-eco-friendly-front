@@ -55,17 +55,17 @@ function HomePage() {
             <Slider slides={homePageData.articles} />
             <h2 className="articles-categories-title">Nos categories</h2>
             {homePageData.articles.map((article) => (
-              <div className="articles-list-horizontal">
+              <div className="articles-list-horizontal" key={article.id}>
                 <h2 className="category-title">{article.category.name}</h2>
                 <div className="card-wrapper">
                   <div className="card-inner">
-                    <Link to={`/articles/${article.slug}`} key={article.id}>
+                    <Link to={`/articles/${article.slug}`}>
                       <Card
                         key={article.id}
                         title={article.title}
                         content={article.content}
                         picture={article.picture}
-                        category={article.category.name}
+                        category={article.category}
                         format="horizontal"
                       />
                     </Link>
@@ -84,17 +84,17 @@ function HomePage() {
               </div>
             ))}
             {homePageData.articles.map((article) => (
-              <div className="articles-list-vertical">
+              <div className="articles-list-vertical" key={article.id}>
                 <h2 className="category-title">{article.category.name}</h2>
                 <div className="card-wrapper">
                   <div className="card-inner">
-                    <Link to={`/articles/${article.slug}`} key={article.id}>
+                    <Link to={`/articles/${article.slug}`}>
                       <Card
                         key={article.id}
                         title={article.title}
                         content={article.content}
                         picture={article.picture}
-                        category={article.category.name}
+                        category={article.category}
                       />
                     </Link>
                   </div>
