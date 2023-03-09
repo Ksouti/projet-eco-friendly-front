@@ -98,7 +98,7 @@ function AddAdvicePage() {
   const errorMessages = useSelector((state) => state.advices.errorMessages);
 
   useEffect(() => {
-    if (errorMessages.length > 0) {
+    if (errorMessages && errorMessages.length > 0) {
       setHaveMessages(true);
     }
   }, [errorMessages]);
