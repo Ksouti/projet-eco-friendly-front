@@ -27,9 +27,16 @@ export default function Slide({ title, content, slug, picture, tag }) {
 }
 
 Slide.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-  tag: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  content: PropTypes.string,
+  slug: PropTypes.string,
+  picture: PropTypes.string,
+  tag: PropTypes.string,
+};
+Slide.defaultProps = {
+  title: '',
+  content: '',
+  slug: '',
+  picture: '',
+  tag: '',
 };
