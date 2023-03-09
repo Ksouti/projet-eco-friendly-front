@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { userLogout } from '../../actions/user';
 import { getUserAdvices } from '../../actions/advices';
 
 import Page from '../Page';
@@ -15,7 +14,6 @@ import './styles.scss';
 export default function UserSettingsPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { nickname } = useParams();
 
   /* Check if user is logged */
   const userIslogged = useSelector((state) => state.user.isLogged);
@@ -24,16 +22,6 @@ export default function UserSettingsPage() {
       navigate('/', { replace: true });
     }
   }, [userIslogged]);
-  /* End check if user is logged */
-
-  /* Check if slug nickname is the same that the user nickname */
-  const userNickname = useSelector((state) => state.user.nickname);
-  useEffect(() => {
-    if (nickname !== userNickname) {
-      dispatch(userLogout());
-      navigate('/', { replace: true });
-    }
-  }, [userNickname]);
 
   const isLoadedAdvices = useSelector((state) => state.advices.isLoadedAdvices);
   /* Load user advices from API */

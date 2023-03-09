@@ -1,7 +1,10 @@
 /* eslint-disable object-curly-newline */
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { openModal } from '../../../actions/common';
+
+import { userOnInputChange } from '../../../actions/user';
 
 import Button from '../../Button';
 import FormNickname from '../../Form/UserSettingsForm/FormNickname';
@@ -15,11 +18,27 @@ import FormAvatar from '../../Form/UserSettingsForm/FormAvatar';
 export default function UserAccount() {
   const dispatch = useDispatch();
 
+  /* control input fields */
   const nickname = useSelector((state) => state.user.nickname);
-  const email = useSelector((state) => state.user.email);
-  const lastname = useSelector((state) => state.user.lastname);
   const firstname = useSelector((state) => state.user.firstname);
+  const lastname = useSelector((state) => state.user.lastname);
   const avatar = useSelector((state) => state.user.avatar);
+  const email = useSelector((state) => state.user.email);
+
+  /* Watch close modal action */
+  const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
+
+  /* Save sessionStorage nickname value in state nickname key if user closes modal */
+  useEffect(() => {
+    if (!modalIsOpen && sessionStorage.getItem('nickname')) {
+      dispatch(
+        userOnInputChange(
+          JSON.parse(sessionStorage.getItem('nickname')),
+          'nickname',
+        ),
+      );
+    }
+  }, [modalIsOpen]);
 
   /**
    * Retunrs the content of the modal window
@@ -29,11 +48,11 @@ export default function UserAccount() {
   const modalContent = (contentName) => {
     switch (contentName) {
       case 'nickname':
-        return <FormNickname nickname={nickname} />;
+        return <FormNickname />;
       case 'email':
         return <FormEmail email={email} />;
       case 'fullname':
-        return <FormFullname lastname={lastname} firstname={firstname} />;
+        return <FormFullname />;
       case 'password':
         return <FormPassword />;
       case 'delete-account':
