@@ -26,6 +26,10 @@
       border-top: 2px solid vars.$whiteColor;
     }
 
+    .empty {
+      display: none;
+    }
+
     &-item {
       text-align: center;
       list-style: none;
@@ -130,6 +134,49 @@
             transform: none;
             transition: none;
           }
+        }
+      }
+    }
+  }
+
+  /* lg: 1024 */
+  @include screen(lg) {
+    .menu {
+      &-items {
+        margin-left: 2rem;
+        padding-left: 1rem;
+      }
+
+      // .empty {
+      //   display: contents;
+      //   border: 2rem solid;
+      //   background-color: rebeccapurple;
+      // }
+
+      &-item {
+        a {
+          margin: 0.1rem;
+          padding: 0.5rem 2rem 0.3rem;
+        }
+
+        button {
+          // margin: 0;
+        }
+      }
+    }
+  }
+
+  /* unused breakpoints md: 1280 */
+
+  /* unused breakpoints md: 1536 */
+  @include screen(2xl) {
+    .menu {
+      &-item {
+        a {
+          // padding: 0.5rem 5rem 0.4rem;
+        }
+        button {
+          margin-left: 5rem;
         }
       }
     }
