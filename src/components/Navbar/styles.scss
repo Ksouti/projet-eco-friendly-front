@@ -10,12 +10,12 @@
   --navbar-height: 76px;
   --brand-font-size: 1rem;
   --nav-link-padding-x: 0.5rem;
-  --navbar-transition: 0.15s ease-in-out; /* when you change this, the transition is changed in the burger component */
+  --navbar-transition: 0.4s ease-in-out; /* when you change this, the transition is changed in the burger component */
 
   position: relative;
   padding: var(--navbar-padding-y) var(--navbar-padding-x);
   color: var(--navbar-color);
-  background-color: vars.$primaryColor;
+  background: vars.$backgroundGradient;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -53,12 +53,14 @@
         object-fit: cover;
         padding-bottom: 10px;
       }
-      span {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #fff;
-        text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.325);
-      }
+    }
+
+    span {
+      padding-left: 0.4rem;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: vars.$darkColor;
+      // text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.325);
     }
   }
 
