@@ -7,12 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-import {
-  OnInputChange,
-  removeErrorMessages,
-  closeModal,
-} from '../../../actions/common';
-import { userRegister } from '../../../actions/user';
+import { removeErrorMessages, closeModal } from '../../../actions/common';
+import { userOnInputChange, userRegister } from '../../../actions/user';
 
 import Input from '../../Field/Input';
 import Button from '../../Button';
@@ -32,7 +28,7 @@ export default function FormRegister({ toggleForm }) {
   const lastname = useSelector((state) => state.user.lastname);
 
   const changeField = (value, identifier) => {
-    dispatch(OnInputChange(value, identifier));
+    dispatch(userOnInputChange(value, identifier));
   };
 
   /* Control password confirmation */
