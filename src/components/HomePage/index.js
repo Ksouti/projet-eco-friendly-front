@@ -36,7 +36,7 @@ function HomePage() {
             <div className="card-wrapper">
               <div className="card-inner">
                 {homePageData.advices.map((advice) => (
-                  <Link to={`/advices/${advice.slug}`} key={advice.id}>
+                  <Link to={`/conseils/${advice.slug}`} key={advice.id}>
                     <Card
                       key={advice.id}
                       title={advice.title}
