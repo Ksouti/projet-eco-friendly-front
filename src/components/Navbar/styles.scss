@@ -67,8 +67,10 @@
     }
   }
 
-  /* sm: 640px */
-  @include screen(sm) {
+  /* unused breakpoints sm: 640px */
+
+  /* md: 768 */
+  @include screen(md) {
     --logo-size: 72px;
 
     .navbar-brand {
@@ -89,7 +91,7 @@
       }
 
       &-items {
-        margin: 0;
+        margin: 1rem 0;
         padding: 0;
         flex-direction: row;
         justify-content: flex-end;
@@ -101,12 +103,20 @@
         padding-bottom: 0;
         display: inline-block;
         margin-left: 0.5rem;
-        text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.325);
+
+        // a {
+        //   background-color: white;
+        //   border-radius: 20px;
+        //   margin: 0.2rem;
+        //   padding: 0.5rem 1rem 0.4rem;
+        // }
 
         button {
-          padding: 0.35rem 0.625rem;
+          padding: 0.4rem 0.625rem 0.35rem;
+          max-width: 7.5rem;
           border-radius: 0.325rem;
-          border: 1px solid #fff;
+          border: 2px solid #fff;
+          background: transparent;
         }
 
         &.dropdown {
@@ -164,8 +174,8 @@
     }
   }
 
-  /* md: 768px */
-  @include screen(md) {
+  /* lg: 1024 */
+  @include screen(lg) {
     --logo-size: 72px;
     .menu-item {
       margin-left: 1.5rem;
@@ -189,7 +199,7 @@
 
         .menu-items {
           justify-content: center;
-          margin-bottom: 0.5rem;
+          margin-bottom: 1.5rem;
 
           .menu-item:last-child {
             margin-left: auto;
