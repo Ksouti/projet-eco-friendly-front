@@ -19,13 +19,17 @@ export default function AppMenu() {
 
   const userIsLogged = useSelector((state) => state.user.isLogged);
 
+  const UserMenuIsOpen = useSelector((state) => state.common.userMenuIsOpen);
+
   const toggleMenus = () => {
     dispatch(toggleUserMenu());
   };
 
   const closeMenus = () => {
     dispatch(toggleBurger());
-    dispatch(toggleUserMenu());
+    if (UserMenuIsOpen) {
+      dispatch(toggleUserMenu());
+    }
   };
 
   useEffect(() => {
