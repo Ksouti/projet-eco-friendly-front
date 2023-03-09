@@ -9,6 +9,8 @@ import {
   USER_REMOVE_ERROR_MESSAGES,
   USER_EMAIL_UPDATE_SUCCESS,
   USER_EMAIL_UPDATE_ERROR,
+  USER_PASSWORD_UPDATE_SUCCESS,
+  USER_PASSWORD_UPDATE_ERROR,
   USER_LOGOUT,
   USER_TOGGLE_IS_UPDATED,
 } from '../actions/user';
@@ -54,6 +56,7 @@ export const initialState = {
     : '',
   password: '',
   confirmPassword: '',
+  resetToken: '',
   isUpdated: false,
   firstnameErrorMessages: [],
   lastnameErrorMessages: [],
@@ -155,6 +158,19 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         emailErrorMessages: action.errors,
+      };
+    case USER_PASSWORD_UPDATE_SUCCESS:
+      return {
+        ...state,
+        isUpdated: true,
+        password: '',
+        confirmPassword: '',
+        resetToken: '',
+      };
+    case USER_PASSWORD_UPDATE_ERROR:
+      return {
+        ...state,
+        passwordErrorMessages: action.errors,
       };
     case USER_REMOVE_ERROR_MESSAGES:
       return {

@@ -190,6 +190,45 @@ export const userEmailUpdateError = (errors) => ({
 });
 
 /**
+ * @name userPasswordUpdate
+ * @description Action creator for user password update
+ * @param {string} token - token from email
+ * @returns {object}
+ */
+export const USER_PASSWORD_UPDATE = 'USER_PASSWORD_UPDATE';
+
+export const userPasswordUpdate = (token) => ({
+  type: USER_PASSWORD_UPDATE,
+  token,
+});
+
+/**
+ * @name userPasswordUpdateSuccess
+ * @description Action creator for user password update success
+ * @param {Object} data
+ * @returns {object}
+ */
+export const USER_PASSWORD_UPDATE_SUCCESS = 'USER_PASSWORD_UPDATE_SUCCESS';
+
+export const userPasswordUpdateSuccess = (data) => ({
+  type: USER_PASSWORD_UPDATE_SUCCESS,
+  data,
+});
+
+/**
+ * @name userPasswordUpdateError
+ * @description Action creator for user password update error
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_PASSWORD_UPDATE_ERROR = 'USER_PASSWORD_UPDATE_ERROR';
+
+export const userPasswordUpdateError = (errors) => ({
+  type: USER_PASSWORD_UPDATE_ERROR,
+  errors,
+});
+
+/**
  * @name userRemoveErrorMessages
  * @description Action creator for user remove error messages
  * @returns {object}
