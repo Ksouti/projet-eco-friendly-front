@@ -16,6 +16,9 @@
   padding: var(--navbar-padding-y) var(--navbar-padding-x);
   color: var(--navbar-color);
   background: vars.$backgroundGradient;
+  border-radius: 0% 0% 10% 10%;
+  box-shadow: 0px 10px 10px 3px vars.$shadowColorLight;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
