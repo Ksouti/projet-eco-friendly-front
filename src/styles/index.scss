@@ -43,15 +43,28 @@ body {
 }
 
 .inner-html {
+  text-align: justify;
+
   strong {
     font-weight: bolder;
   }
 
-  p {
-    padding: 1rem 0;
-  }
-
   em {
     font-style: italic;
+  }
+
+  h2 {
+    font-weight: bolder;
+    font-size: larger;
+    padding: 2rem 0 1rem;
+  }
+
+  h3 {
+    font-weight: bolder;
+    font-style: italic;
+  }
+
+  p {
+    padding: 1rem 0;
   }
 }
