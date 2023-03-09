@@ -1,13 +1,11 @@
 /* eslint-disable object-curly-newline */
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import { openModal } from '../../../actions/common';
 
-import {
-  userOnInputChange,
-  userSettingsUpdate,
-  userRemoveErrorMessages,
-} from '../../../actions/user';
+import { userOnInputChange } from '../../../actions/user';
 
 import Button from '../../Button';
 import FormNickname from '../../Form/UserSettingsForm/FormNickname';
@@ -20,13 +18,28 @@ import FormAvatar from '../../Form/UserSettingsForm/FormAvatar';
 
 export default function UserAccount() {
   const dispatch = useDispatch();
+  const { nickname } = useParams();
 
   /* control input fields */
   const firstname = useSelector((state) => state.user.firstname);
   const lastname = useSelector((state) => state.user.lastname);
-  const nickname = useSelector((state) => state.user.nickname);
   const avatar = useSelector((state) => state.user.avatar);
   const email = useSelector((state) => state.user.email);
+
+  /* Watch close modal action */
+  const modalIsOpen = useSelector((state) => state.common.modalIsOpen);
+
+  /* Save sessionStorage nickname value in state nickname key if user closes modal */
+  useEffect(() => {
+    if (!modalIsOpen && sessionStorage.getItem('nickname')) {
+      dispatch(
+        userOnInputChange(
+          JSON.parse(sessionStorage.getItem('nickname')),
+          'nickname',
+        ),
+      );
+    }
+  }, [modalIsOpen]);
 
   /**
    * Retunrs the content of the modal window

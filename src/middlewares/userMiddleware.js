@@ -52,7 +52,6 @@ const userMiddleware = (store) => (next) => (action) => {
         .put(
           `${config.apiBaseUrl}/users/${store.getState().user.id}`,
           {
-            password: store.getState().user.password,
             email: store.getState().user.email,
             nickname: store.getState().user.nickname,
             firstname: store.getState().user.firstname,
@@ -66,7 +65,7 @@ const userMiddleware = (store) => (next) => (action) => {
           },
         )
         .then((response) => {
-          sessionStorage.setItem('user', JSON.stringify(response.data)); // update user in sessionStorage
+          sessionStorage.setItem('user', JSON.stringify(response.data));
           store.dispatch(userSettingsUpdateSuccess(response.data));
         })
         .catch((error) => {

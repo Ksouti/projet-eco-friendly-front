@@ -8,6 +8,7 @@ import {
   USER_SETTINGS_UPDATE_ERROR,
   USER_REMOVE_ERROR_MESSAGES,
   USER_LOGOUT,
+  USER_TOGGLE_IS_UPDATED,
 } from '../actions/user';
 
 import { REMOVE_ERROR_MESSAGES } from '../actions/common';
@@ -51,6 +52,7 @@ export const initialState = {
     : '',
   password: '',
   confirmPassword: '',
+  isUpdated: false,
   firstnameErrorMessages: [],
   lastnameErrorMessages: [],
   nicknameErrorMessages: [],
@@ -62,11 +64,6 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case USER_ON_INPUT_CHANGE:
-      /* Save identifier and actual value with new key in sessionStorage */
-      sessionStorage.setItem(
-        action.identifier,
-        JSON.stringify(initialState[action.identifier]),
-      );
       return {
         ...state,
         [action.identifier]: action.value,
@@ -77,6 +74,11 @@ const reducer = (state = initialState, action = {}) => {
         emailErrorMessages: [],
         passwordErrorMessages: [],
         nicknameErrorMessages: [],
+      };
+    case USER_TOGGLE_IS_UPDATED:
+      return {
+        ...state,
+        isUpdated: !state.isUpdated,
       };
     case USER_AUTHENTICATION_SUCCESS:
       return {
@@ -121,6 +123,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SETTINGS_UPDATE_SUCCESS:
       return {
         ...state,
+        isUpdated: true,
         roles: action.data.roles,
         firstname: action.data.firstname,
         lastname: action.data.lastname,
@@ -129,8 +132,6 @@ const reducer = (state = initialState, action = {}) => {
         isActive: action.data.isActive,
         isVerified: action.data.isVerified,
         email: action.data.email,
-        password: '',
-        confirmPassword: '',
       };
     case USER_SETTINGS_UPDATE_ERROR:
       return {
@@ -140,7 +141,6 @@ const reducer = (state = initialState, action = {}) => {
         nicknameErrorMessages: action.errors.nickname,
         avatarErrorMessages: action.errors.avatar,
         emailErrorMessages: action.errors.email,
-        passwordErrorMessages: action.errors.password,
       };
     case USER_REMOVE_ERROR_MESSAGES:
       return {

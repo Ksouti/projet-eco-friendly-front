@@ -163,3 +163,14 @@ export const USER_REMOVE_ERROR_MESSAGES = 'USER_REMOVE_ERROR_MESSAGES';
 export const userRemoveErrorMessages = () => ({
   type: USER_REMOVE_ERROR_MESSAGES,
 });
+
+/**
+ * @name userToggleIsUpdated
+ * @description Action creator for user toggle is updated
+ * @returns {object}
+ */
+export const USER_TOGGLE_IS_UPDATED = 'USER_TOGGLE_IS_UPDATED';
+
+export const userToggleIsUpdated = () => ({
+  type: USER_TOGGLE_IS_UPDATED,
+});
