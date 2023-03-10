@@ -1,5 +1,4 @@
 /* eslint-disable operator-linebreak */
-/* eslint-disable operator-linebreak */
 
 /**
  * @name userOnInputChange
@@ -186,6 +185,83 @@ export const USER_EMAIL_UPDATE_ERROR = 'USER_EMAIL_UPDATE_ERROR';
 
 export const userEmailUpdateError = (errors) => ({
   type: USER_EMAIL_UPDATE_ERROR,
+  errors,
+});
+
+/**
+ * @name userSendEmailVerification
+ * @description Action creator for user send email verification
+ * @returns {object}
+ */
+export const USER_SEND_EMAIL_VERIFICATION = 'USER_SEND_EMAIL_VERIFICATION';
+
+export const userSendEmailVerification = () => ({
+  type: USER_SEND_EMAIL_VERIFICATION,
+});
+
+/**
+ * @name userSendEmailVerificationSuccess
+ * @description Action creator for user send email verification success
+ * @param {Object} data
+ * @returns {object}
+ */
+export const USER_SEND_EMAIL_VERIFICATION_SUCCESS =
+  'USER_SEND_EMAIL_VERIFICATION_SUCCESS';
+
+export const userSendEmailVerificationSuccess = (data) => ({
+  type: USER_SEND_EMAIL_VERIFICATION_SUCCESS,
+  data,
+});
+
+/**
+ * @name userSendEmailVerificationError
+ * @description Action creator for user send email verification error
+ * @param {array} errors
+ */
+export const USER_SEND_EMAIL_VERIFICATION_ERROR =
+  'USER_SEND_EMAIL_VERIFICATION_ERROR';
+
+export const userSendEmailVerificationError = (errors) => ({
+  type: USER_SEND_EMAIL_VERIFICATION_ERROR,
+  errors,
+});
+
+/**
+ * @name userPasswordUpdate
+ * @description Action creator for user password update
+ * @param {string} token - token from email
+ * @returns {object}
+ */
+export const USER_PASSWORD_UPDATE = 'USER_PASSWORD_UPDATE';
+
+export const userPasswordUpdate = (token) => ({
+  type: USER_PASSWORD_UPDATE,
+  token,
+});
+
+/**
+ * @name userPasswordUpdateSuccess
+ * @description Action creator for user password update success
+ * @param {Object} data
+ * @returns {object}
+ */
+export const USER_PASSWORD_UPDATE_SUCCESS = 'USER_PASSWORD_UPDATE_SUCCESS';
+
+export const userPasswordUpdateSuccess = (data) => ({
+  type: USER_PASSWORD_UPDATE_SUCCESS,
+  data,
+});
+
+/**
+ * @name userPasswordUpdateError
+ * @description Action creator for user password update error
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_PASSWORD_UPDATE_ERROR = 'USER_PASSWORD_UPDATE_ERROR';
+
+export const userPasswordUpdateError = (errors) => ({
+  type: USER_PASSWORD_UPDATE_ERROR,
   errors,
 });
 

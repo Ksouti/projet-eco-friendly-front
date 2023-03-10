@@ -12,6 +12,12 @@ import {
   USER_EMAIL_UPDATE,
   userEmailUpdateSuccess,
   userEmailUpdateError,
+  USER_SEND_EMAIL_VERIFICATION,
+  userSendEmailVerificationSuccess,
+  userSendEmailVerificationError,
+  USER_PASSWORD_UPDATE,
+  userPasswordUpdateSuccess,
+  userPasswordUpdateError,
 } from '../actions/user';
 
 import config from '../config';
@@ -93,6 +99,53 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(userEmailUpdateError(error.response.data.errors));
+        });
+      break;
+    case USER_SEND_EMAIL_VERIFICATION:
+      axios
+        .post(
+          `${config.apiBaseUrl}/users/${
+            store.getState().user.id
+          }//reset-password`,
+          {
+            email: store.getState().user.confirmationEmail,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          store.dispatch(userSendEmailVerificationSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(
+            userSendEmailVerificationError(error.response.data.errors),
+          );
+        });
+      break;
+    case USER_PASSWORD_UPDATE:
+      /* remove double quote from token */
+      action.token = action.token.replace(/"/g, '');
+
+      axios
+        .post(
+          `${config.apiBaseUrl}/reset-password/reset/${action.token}`,
+          {
+            password: store.getState().user.password,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          store.dispatch(userPasswordUpdateSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(userPasswordUpdateError(error.response.data.errors));
         });
       break;
     default:
