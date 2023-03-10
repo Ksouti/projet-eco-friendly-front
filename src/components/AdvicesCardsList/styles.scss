@@ -17,42 +17,44 @@
     display: flex;
     align-items: center;
     overflow-x: scroll;
-  }
-}
 
-.advice-card {
-  width: 100%;
-  .card {
-    background-color: #f1fcfb;
-    margin: 1rem 1rem 2rem 0rem;
-    width: 10rem;
-    height: 6rem;
+    .advice-card {
+      width: 100%;
+      .card {
+        background-color: #f1fcfb;
+        margin: 1rem 1rem 2rem 0rem;
+        width: 10rem;
+        height: 6rem;
 
-    .informations {
-      .title {
-        text-align: center;
-        font-size: medium;
-        line-height: calc(3.2rem / 3);
-      }
-      .category {
-        // font-size: x-small;
-        // border-radius: 15px;
-        // padding: 0.7rem 1rem;
-        display: none;
-        // top: auto;
-        // right: auto;
-        // bottom: 0.5rem;
-      }
-      .summary {
-        display: none;
+        .informations {
+          .title {
+            text-align: center;
+            font-size: medium;
+            line-height: calc(3.2rem / 3);
+          }
+          .category {
+            // font-size: x-small;
+            // border-radius: 15px;
+            // padding: 0.7rem 1rem;
+            display: none;
+            // top: auto;
+            // right: auto;
+            // bottom: 0.5rem;
+          }
+          .summary {
+            display: none;
+          }
+        }
+
+        &:hover {
+          background-color: white;
+          transition: none;
+          transform: none;
+        }
       }
     }
-    &:hover {
-      background-color: white;
-      transition: none;
-      transform: none;
-    }
   }
+
   // RESPONSIVE LG +1024 =======================================================
   @include screen(md) {
     .advices {
@@ -77,28 +79,24 @@
           justify-content: center;
 
           .card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 17rem;
             height: 9rem;
-            margin: 1rem 1rem 2rem;
+            margin: 0.8rem 0.5rem 1.8rem;
 
             .title {
-              text-align: left;
-              font-size: large;
-              // line-height: calc(3.2rem / 3);
+              text-align: center;
+              font-size: medium;
+              padding-top: 1.5rem;
             }
 
             .category {
-              // font-size: x-small;
-              // border-radius: 15px;
-              // padding: 0.7rem 1rem;
               display: none;
-              // top: auto;
-              // right: auto;
-              // bottom: 0.5rem;
-            }
-
-            .summary {
-              display: block;
+              top: auto;
+              right: auto;
+              bottom: 0.5rem;
             }
           }
         }
