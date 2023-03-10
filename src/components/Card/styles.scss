@@ -25,18 +25,9 @@
 
   .title {
     margin: 0.7rem 0.8rem 0.2rem 0.8rem;
-    font-size: medium;
+    font-size: small;
     font-weight: 700;
     color: vars.$primaryColorDark;
-  }
-
-  .summary {
-    max-height: 3rem;
-    overflow: hidden;
-    line-height: calc(3rem / 3);
-    margin: 0.9rem 1.8rem 0.8rem 0.8rem;
-    font-size: small;
-    color: vars.$darkTextColor;
   }
 
   .category {
@@ -46,6 +37,15 @@
     padding: 0.2rem 0.5rem 0.2rem 0.5rem;
     margin: 0.9rem 2rem 0.8rem 0.8rem;
     border-radius: 10px;
+  }
+
+  .summary {
+    max-height: 3rem;
+    overflow: hidden;
+    line-height: calc(3rem / 3);
+    margin: 0.9rem 1.8rem 0.8rem 0.8rem;
+    font-size: small;
+    color: vars.$darkTextColor;
   }
 
   &:hover {
