@@ -27,8 +27,23 @@
     width: 10rem;
     height: 6rem;
 
-    .summary {
-      display: none;
+    .informations {
+      .title {
+        text-align: justify;
+        margin-bottom: 0.5rem;
+      }
+      .category {
+        // position: relative;
+        padding: 0.8rem 1;
+        border-radius: 20px;
+        // display: none;
+        top: auto;
+        right: auto;
+        bottom: 0;
+      }
+      .summary {
+        display: none;
+      }
     }
   }
 
