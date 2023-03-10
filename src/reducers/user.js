@@ -13,6 +13,8 @@ import {
   USER_SEND_EMAIL_VERIFICATION_ERROR,
   USER_PASSWORD_UPDATE_SUCCESS,
   USER_PASSWORD_UPDATE_ERROR,
+  USER_DELETE_ACCOUNT_SUCCESS,
+  USER_DELETE_ACCOUNT_ERROR,
   USER_LOGOUT,
   USER_TOGGLE_IS_UPDATED,
 } from '../actions/user';
@@ -187,6 +189,14 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         passwordErrorMessages: action.errors,
+      };
+    case USER_DELETE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+      };
+    case USER_DELETE_ACCOUNT_ERROR:
+      return {
+        ...state,
       };
     case USER_REMOVE_ERROR_MESSAGES:
       return {

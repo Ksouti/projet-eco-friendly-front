@@ -1,10 +1,29 @@
-import Input from '../../Field/Input';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { userDeleteAccount } from '../../../actions/user';
+import { closeModal } from '../../../actions/common';
+
 import Button from '../../Button';
 
 import './styles.scss';
 
 export default function FormDeleteAccount() {
-  let handleSubmit, handleChange, password;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  /* submit form */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(closeModal());
+    dispatch(userDeleteAccount());
+    navigate('/', { replace: true });
+  };
+
+  const handleCancel = () => {
+    dispatch(closeModal());
+  };
+
   return (
     <div className="modal-form delete-account">
       <h5 className="title text-secondary">
@@ -14,19 +33,13 @@ export default function FormDeleteAccount() {
         Attention si vous supprimez votre compte, cette action sera irreversible
         et vous perdrez les accès aux informations que vous avez partagées !
       </p>
-      <form autoComplete="off" onSubmit="{handleSubmit}">
-        <Input
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          onChange="{handleChange}"
-          value={password}
-          color="primary"
-        />
+      <form autoComplete="off" onSubmit={handleSubmit}>
         <Button type="submit" color="secondary">
           Supprimer mon compte
         </Button>
-        <Button type="reset">Annuler</Button>
+        <Button type="reset" onclick={handleCancel}>
+          Annuler
+        </Button>
       </form>
     </div>
   );

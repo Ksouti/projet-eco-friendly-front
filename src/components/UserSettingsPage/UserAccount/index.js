@@ -167,7 +167,7 @@ export default function UserAccount() {
             <Button
               type="button"
               color="outline-secondary"
-              name="delete"
+              name="delete-account"
               onclick={toggleModal}
             >
               Supprimer mon compte
