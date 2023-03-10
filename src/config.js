@@ -1,22 +1,22 @@
 /* eslint-disable import/prefer-default-export */
 export default {
   env: 'prod', // dev or prod
-  baseUrl: 'http://vps-79770841.vps.ovh.net',
-  apiBaseUrl: 'http://vps-79770841.vps.ovh.net/api',
+  baseUrl: 'https://eco-friendly.fr',
+  apiBaseUrl: 'https://eco-friendly.fr/api',
   socialMedia: [
     {
       name: 'Instagram',
-      icon: 'http://vps-79770841.vps.ovh.net/assets/logos/instagram.png',
+      icon: 'https://eco-friendly.fr/assets/logos/instagram.png',
       url: '',
     },
     {
       name: 'Twitter',
-      icon: 'http://vps-79770841.vps.ovh.net/assets/logos/twitter.png',
+      icon: 'https://eco-friendly.fr/assets/logos/twitter.png',
       url: '',
     },
     {
       name: 'Facebook',
-      icon: 'http://vps-79770841.vps.ovh.net/assets/logos/facebook.png',
+      icon: 'https://eco-friendly.fr/assets/logos/facebook.png',
       url: '',
     },
   ],

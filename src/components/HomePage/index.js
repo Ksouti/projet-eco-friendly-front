@@ -36,7 +36,7 @@ function HomePage() {
             <div className="card-wrapper">
               <div className="card-inner">
                 {homePageData.advices.map((advice) => (
-                  <Link to={`/advices/${advice.slug}`} key={advice.id}>
+                  <Link to={`/conseils/${advice.slug}`} key={advice.id}>
                     <Card
                       key={advice.id}
                       title={advice.title}
@@ -114,9 +114,9 @@ function HomePage() {
           </section>
 
           <section className="catch-line">
-            <h1 className="sentence">
-              Retrouvez toutes les infos utiles pour un quotidien plus
-              écologique
+            <h1 className="project-title">Eco-friendly</h1>
+            <h1 className="project-sentence">
+              " Un partage d'idées, et un quotidien plus vert. "
             </h1>
           </section>
         </div>

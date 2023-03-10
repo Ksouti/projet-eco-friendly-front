@@ -19,13 +19,17 @@ export default function AppMenu() {
 
   const userIsLogged = useSelector((state) => state.user.isLogged);
 
+  const UserMenuIsOpen = useSelector((state) => state.common.userMenuIsOpen);
+
   const toggleMenus = () => {
     dispatch(toggleUserMenu());
   };
 
   const closeMenus = () => {
     dispatch(toggleBurger());
-    dispatch(toggleUserMenu());
+    if (UserMenuIsOpen) {
+      dispatch(toggleUserMenu());
+    }
   };
 
   useEffect(() => {
@@ -39,6 +43,7 @@ export default function AppMenu() {
 
   return (
     <ul className="menu-items">
+      <div className="menu-item empty">empty</div> {/* only for css tricks  */}
       <li className="menu-item">
         <NavLink to="/">Accueil</NavLink>
       </li>
