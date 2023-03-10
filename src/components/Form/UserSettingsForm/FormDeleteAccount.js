@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { userDeleteAccount } from '../../../actions/user';
+import { userDeleteAccount, userLogout } from '../../../actions/user';
 import { closeModal } from '../../../actions/common';
 
 import Button from '../../Button';
@@ -17,6 +17,7 @@ export default function FormDeleteAccount() {
     e.preventDefault();
     dispatch(closeModal());
     dispatch(userDeleteAccount());
+    dispatch(userLogout());
     navigate('/', { replace: true });
   };
 
