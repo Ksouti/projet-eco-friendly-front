@@ -7,6 +7,8 @@ import {
   USER_SETTINGS_UPDATE_SUCCESS,
   USER_SETTINGS_UPDATE_ERROR,
   USER_REMOVE_ERROR_MESSAGES,
+  USER_EMAIL_UPDATE_SUCCESS,
+  USER_EMAIL_UPDATE_ERROR,
   USER_LOGOUT,
   USER_TOGGLE_IS_UPDATED,
 } from '../actions/user';
@@ -59,6 +61,7 @@ export const initialState = {
   avatarErrorMessages: [],
   emailErrorMessages: [],
   passwordErrorMessages: [],
+  authErrorMessages: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -100,9 +103,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_AUTHENTICATION_ERROR:
       return {
         ...state,
-        emailErrorMessages: action.errors.email,
-        passwordErrorMessages: action.errors.password,
-        nicknameErrorMessages: action.errors.nickname,
+        authErrorMessages: action.error,
       };
     case USER_REGISTER_SUCCESS:
       return {
@@ -141,6 +142,19 @@ const reducer = (state = initialState, action = {}) => {
         nicknameErrorMessages: action.errors.nickname,
         avatarErrorMessages: action.errors.avatar,
         emailErrorMessages: action.errors.email,
+      };
+    case USER_EMAIL_UPDATE_SUCCESS:
+      return {
+        ...state,
+        isUpdated: true,
+        isVerified: false,
+        nickname: action.data.nickname,
+        email: action.data.email,
+      };
+    case USER_EMAIL_UPDATE_ERROR:
+      return {
+        ...state,
+        emailErrorMessages: action.errors,
       };
     case USER_REMOVE_ERROR_MESSAGES:
       return {

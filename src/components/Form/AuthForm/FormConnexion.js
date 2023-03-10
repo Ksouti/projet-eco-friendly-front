@@ -37,9 +37,21 @@ export default function FormConnexion({ toggleForm }) {
     }
   }, [isLogged]);
 
+  /* Error message */
+  const authErrorMessages = useSelector(
+    (state) => state.user.authErrorMessages,
+  );
+
   return (
     <div className="connexion">
       <h5 className="title text-primary">Se connecter</h5>
+      {authErrorMessages && (
+        <div className="messages error-messages">
+          <ul>
+            <li>{authErrorMessages}</li>
+          </ul>
+        </div>
+      )}
       <form autoComplete="off" onSubmit={handleSubmit}>
         <Input
           type="email"

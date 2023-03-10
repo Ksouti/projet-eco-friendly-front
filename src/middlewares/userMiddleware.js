@@ -9,6 +9,9 @@ import {
   USER_SETTINGS_UPDATE,
   userSettingsUpdateSuccess,
   userSettingsUpdateError,
+  USER_EMAIL_UPDATE,
+  userEmailUpdateSuccess,
+  userEmailUpdateError,
 } from '../actions/user';
 
 import config from '../config';
@@ -28,7 +31,7 @@ const userMiddleware = (store) => (next) => (action) => {
           );
         })
         .catch((error) => {
-          store.dispatch(userAuthenticationError(error.response.data.errors));
+          store.dispatch(userAuthenticationError(error.response.data.message));
         });
       break;
     case USER_REGISTER:
@@ -70,6 +73,26 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(userSettingsUpdateError(error.response.data.errors));
+        });
+      break;
+    case USER_EMAIL_UPDATE:
+      axios
+        .post(
+          `${config.apiBaseUrl}/users/${store.getState().user.id}/email-update`,
+          {
+            email: store.getState().user.email,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${store.getState().user.token}`,
+            },
+          },
+        )
+        .then((response) => {
+          store.dispatch(userEmailUpdateSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(userEmailUpdateError(error.response.data.errors));
         });
       break;
     default:
