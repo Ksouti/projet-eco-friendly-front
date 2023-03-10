@@ -15,10 +15,10 @@ import {
   USER_SEND_EMAIL_VERIFICATION,
   userSendEmailVerificationSuccess,
   userSendEmailVerificationError,
-  USER_PASSWORD_UPDATE,
   USER_DELETE_ACCOUNT,
   userDeleteAccountSuccess,
   userDeleteAccountError,
+  USER_PASSWORD_UPDATE,
   userPasswordUpdateSuccess,
   userPasswordUpdateError,
 } from '../actions/user';

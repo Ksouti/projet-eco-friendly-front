@@ -1,10 +1,11 @@
 /* eslint-disable brace-style */
-
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import {
   userOnInputChange,
+  userRemoveErrorMessages,
   userSendEmailVerification,
   userToggleIsUpdated,
 } from '../../../actions/user';
@@ -19,11 +20,22 @@ export default function FormPassword() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  /* control input fields */
+  /* Save isRegistring, email and nickname values in sessionStorage */
+  const isRegistring = useSelector((state) => state.user.isRegistring);
+  const nickname = useSelector((state) => state.user.nickname);
+  const email = useSelector((state) => state.user.email);
+
   const confirmationEmail = useSelector(
     (state) => state.user.confirmationEmail,
   );
 
+  useEffect(() => {
+    sessionStorage.setItem('isRegistring', JSON.stringify(isRegistring));
+    sessionStorage.setItem('nickname', JSON.stringify(nickname));
+    sessionStorage.setItem('email', JSON.stringify(confirmationEmail));
+  }, [isRegistring, confirmationEmail, nickname]);
+
+  /* control input fields */
   const changeField = (value, identifier) => {
     dispatch(userOnInputChange(value, identifier));
   };
@@ -33,12 +45,18 @@ export default function FormPassword() {
     (state) => state.user.emailErrorMessages,
   );
 
-  /* submit form */
-  const email = useSelector((state) => state.user.email);
+  const [confirmationMessageError, setConfirmationMessageError] = useState();
 
+  /* submit form */
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (confirmationEmail === email) {
+    dispatch(userRemoveErrorMessages());
+
+    if (email !== confirmationEmail) {
+      setConfirmationMessageError(
+        "L'adresse email saisie n'est pas la même que celle enregistrée.",
+      );
+    } else {
       dispatch(userSendEmailVerification(confirmationEmail));
     }
   };
@@ -49,14 +67,15 @@ export default function FormPassword() {
     dispatch(closeModal());
   };
 
-  /* Redirect user if is registring  */
-  const isRegitring = useSelector((state) => state.user.isRegitring);
+  /* Redirect user if is updated  */
+  const isUpdated = useSelector((state) => state.user.isUpdated);
 
-  if (isRegitring) {
-    dispatch(userToggleIsUpdated());
-    dispatch(closeModal());
-    navigate('/enregistrement', { replace: true });
-  }
+  useEffect(() => {
+    if (isUpdated) {
+      dispatch(userToggleIsUpdated());
+      navigate('/enregistrement', { replace: true });
+    }
+  }, [isUpdated]);
 
   return (
     <div className="modal-form password">
@@ -82,6 +101,11 @@ export default function FormPassword() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
+          </div>
+        )}
+        {confirmationMessageError && (
+          <div className="messages error-messages">
+            <p>{confirmationMessageError}</p>
           </div>
         )}
         <Button type="submit" color="primary">

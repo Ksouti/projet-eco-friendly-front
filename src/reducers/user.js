@@ -63,6 +63,7 @@ export const initialState = {
   confirmPassword: '',
   resetToken: '',
   isUpdated: false,
+  isRegistring: false, // User is registering or updating his password or email
   firstnameErrorMessages: [],
   lastnameErrorMessages: [],
   nicknameErrorMessages: [],
@@ -98,6 +99,7 @@ const reducer = (state = initialState, action = {}) => {
         token: action.token,
         isLoaded: true,
         isLogged: true,
+        isRegistring: false,
         id: action.data.id,
         roles: action.data.roles,
         firstname: action.data.firstname,
@@ -119,7 +121,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         nickname: action.data.nickname,
         email: action.data.email,
-        isRegitring: true,
+        isRegistring: true,
         password: '',
         confirmPassword: '',
       };
@@ -155,7 +157,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_EMAIL_UPDATE_SUCCESS:
       return {
         ...state,
-        isUpdated: true,
+        isRegistring: true,
         isVerified: false,
         nickname: action.data.nickname,
         email: action.data.email,
@@ -169,6 +171,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isUpdated: true,
+        isRegistring: true,
         emailConfirmationMessages: action.data.message,
         resetToken: action.data.resetToken.token,
       };
@@ -181,6 +184,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isUpdated: true,
+        isRegistring: false,
         password: '',
         confirmPassword: '',
         resetToken: '',
