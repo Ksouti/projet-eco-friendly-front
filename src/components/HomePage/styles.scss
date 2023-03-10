@@ -24,8 +24,8 @@
 
   .advices {
     width: 100%;
-    border-bottom: 0.1rem solid #e1b902;
-    border-top: 0.1rem solid #e1b902;
+    border-top: 0.15rem solid vars.$secondaryBorderColor;
+    border-bottom: 0.15rem solid vars.$secondaryBorderColor;
 
     &-title {
       color: #000;
@@ -45,21 +45,30 @@
       }
 
       .card {
-        width: var(--card-width);
-        height: var(--card-height);
-        margin: 1rem 0.8rem 2rem;
+        background-color: #f1fcfb;
+        margin: 1rem 1rem 2rem 0rem;
+        width: 10rem;
+        height: 6rem;
 
-        .summary {
-          display: none;
+        .informations {
+          .title {
+            text-align: center;
+            font-size: medium;
+            line-height: calc(3.2rem / 3);
+          }
+          .category {
+            display: none;
+          }
+          .summary {
+            display: none;
+          }
         }
 
-        // &:first-child {
-        //   margin-left: 0;
-        // }
-
-        // &:last-child {
-        //   margin-right: 0;
-        // }
+        &:hover {
+          background-color: white;
+          transition: none;
+          transform: none;
+        }
       }
     }
   }
@@ -202,14 +211,26 @@
 
       .card-wrapper {
         overflow-x: hidden;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
         .card {
-          width: 90%;
+          width: 10rem;
           height: calc(var(--card-height) * 1.5);
-          overflow: hidden;
+          margin: 0.8rem 0.5rem 1.8rem;
 
-          .summary {
-            display: block;
+          .title {
+            text-align: center;
+            font-size: medium;
+            padding-top: 1.5rem;
+          }
+
+          .category {
+            display: none;
+            top: auto;
+            right: auto;
+            bottom: 0.5rem;
           }
         }
       }
@@ -319,8 +340,12 @@
       // }
     }
   }
+
+  /* unused breakpoints xl: 1280px */
+
+  /* 2xl: 1536px */
+  @include screen(2xl) {
+    .advices {
+    }
+  }
 }
-
-/* unused breakpoints xl: 1280px */
-
-/* unused breakpoints 2xl: 1536px */
