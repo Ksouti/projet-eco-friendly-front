@@ -173,7 +173,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_SEND_EMAIL_VERIFICATION_ERROR:
       return {
         ...state,
-        emailErrorMessages: action.errors,
+        emailErrorMessages: [action.errors],
       };
     case USER_PASSWORD_UPDATE_SUCCESS:
       return {

@@ -104,9 +104,7 @@ const userMiddleware = (store) => (next) => (action) => {
     case USER_SEND_EMAIL_VERIFICATION:
       axios
         .post(
-          `${config.apiBaseUrl}/users/${
-            store.getState().user.id
-          }//reset-password`,
+          `${config.apiBaseUrl}/reset-password`,
           {
             email: store.getState().user.confirmationEmail,
           },
@@ -121,14 +119,13 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(
-            userSendEmailVerificationError(error.response.data.errors),
+            userSendEmailVerificationError(error.response.data.message),
           );
         });
       break;
     case USER_PASSWORD_UPDATE:
       /* remove double quote from token */
       action.token = action.token.replace(/"/g, '');
-
       axios
         .post(
           `${config.apiBaseUrl}/reset-password/reset/${action.token}`,
