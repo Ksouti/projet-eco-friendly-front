@@ -38,13 +38,14 @@
     .category {
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       font-size: x-small;
       font-weight: 600;
       background-color: vars.$primaryColor;
       color: vars.$whiteColor;
-      padding: 0.9rem 0.9rem 0.8rem 0.9rem;
-      border-radius: 0 0 35px 0;
+      padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+      // padding: 0.9rem 0.9rem 0.8rem 0.9rem;
+      border-radius: 0 0 0 35px;
     }
 
     .summary {
@@ -95,6 +96,9 @@
 
       .category {
         padding: 0.7rem 1.5rem 0.7rem 1rem;
+        left: 0;
+        right: auto;
+        border-radius: 0 0 35px 0;
       }
 
       .summary {
