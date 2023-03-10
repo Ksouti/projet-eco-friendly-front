@@ -2,8 +2,8 @@
 @import '../../styles/mixins.scss';
 
 .advices {
-  border-top: 0.1rem solid vars.$secondaryBorderColor;
-  border-bottom: 0.1rem solid vars.$secondaryBorderColor;
+  border-top: 0.15rem solid vars.$secondaryBorderColor;
+  border-bottom: 0.15rem solid vars.$secondaryBorderColor;
 
   &-sentence {
     font-size: large;
@@ -23,37 +23,43 @@
 .advice-card {
   width: 100%;
   .card {
+    background-color: #f1fcfb;
     margin: 1rem 1rem 2rem 0rem;
     width: 10rem;
     height: 6rem;
 
     .informations {
       .title {
-        text-align: justify;
-        margin-bottom: 0.5rem;
+        text-align: center;
+        font-size: medium;
+        line-height: calc(3.2rem / 3);
       }
       .category {
-        // position: relative;
-        padding: 0.8rem 1;
-        border-radius: 20px;
-        // display: none;
-        top: auto;
-        right: auto;
-        bottom: 0;
+        // font-size: x-small;
+        // border-radius: 15px;
+        // padding: 0.7rem 1rem;
+        display: none;
+        // top: auto;
+        // right: auto;
+        // bottom: 0.5rem;
       }
       .summary {
         display: none;
       }
     }
+    &:hover {
+      background-color: white;
+      transition: none;
+      transform: none;
+    }
   }
-
   // RESPONSIVE LG +1024 =======================================================
   @include screen(md) {
     .advices {
       display: flex;
       flex-direction: column;
       width: 25%;
-      border: 0.1rem solid vars.$secondaryBorderColor;
+      border: 0.5rem solid vars.$secondaryBorderColor;
       padding: 0 1rem;
 
       &-sentence {
@@ -65,20 +71,36 @@
       &-list {
         display: flex;
         flex-direction: column;
-      }
-    }
 
-    .advice-card {
-      display: flex;
-      justify-content: center;
+        .advice-card {
+          display: flex;
+          justify-content: center;
 
-      .card {
-        width: 17rem;
-        height: 9rem;
-        margin: 1rem 1rem 2rem;
+          .card {
+            width: 17rem;
+            height: 9rem;
+            margin: 1rem 1rem 2rem;
 
-        .summary {
-          display: block;
+            .title {
+              text-align: left;
+              font-size: small;
+              // line-height: calc(3.2rem / 3);
+            }
+
+            .category {
+              // font-size: x-small;
+              // border-radius: 15px;
+              // padding: 0.7rem 1rem;
+              display: none;
+              // top: auto;
+              // right: auto;
+              // bottom: 0.5rem;
+            }
+
+            .summary {
+              display: block;
+            }
+          }
         }
       }
     }
