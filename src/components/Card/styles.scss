@@ -26,8 +26,8 @@
   }
 
   .informations {
-    // position: relative;
     padding: 0.7rem 1rem 0.7rem 0.7rem;
+
     .title {
       margin-bottom: 0.5rem;
       font-size: small;
@@ -75,6 +75,7 @@
     width: 100%;
     height: 8rem;
     border-radius: 10px;
+    padding-bottom: 0;
 
     .image {
       width: 30%;
@@ -83,19 +84,32 @@
 
     .informations {
       width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 1.8rem;
+
+      .title {
+        font-size: medium;
+      }
+
+      .category {
+        padding: 0.7rem 1.5rem 0.7rem 1rem;
+      }
+
+      .summary {
+        font-size: medium;
+        color: vars.$darkTextColor;
+        max-height: 4rem;
+        overflow: hidden;
+        padding-right: 0;
+      }
     }
 
-    .summary {
-      margin: 0.8rem 0.8rem 0.8rem 0.8rem;
-      font-size: small;
-      color: vars.$darkTextColor;
-      max-height: 2.9rem;
-      overflow: hidden;
-      line-height: calc(2.9rem / 4);
-    }
-
-    .category {
-      padding: 0.2rem 0.5rem 0.3rem 0.5rem;
+    &:hover {
+      background-color: #f1fcfb;
+      transform: none;
+      transition: none;
     }
   }
 }
