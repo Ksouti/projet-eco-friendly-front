@@ -28,7 +28,7 @@ function Navbar() {
         <div className="navbar-brand">
           <Link to="/">
             <img
-              src="http://vps-79770841.vps.ovh.net/assets/img/logos/logo-eco-friendly-V3-maxcropcenterh.png"
+              src="https://eco-friendly.fr/assets/img/logos/logo-eco-friendly-V3-maxcropcenterh.png"
               alt="logo"
             />
           </Link>
