@@ -3,8 +3,10 @@
 
 // Vertical card ===========================================================
 .card {
+  position: relative;
   width: 100%;
   height: 100%;
+  padding-bottom: 1.2rem;
 
   background-color: vars.$whiteColor;
   border-radius: 15% 5% 30% 5%;
@@ -23,33 +25,48 @@
     }
   }
 
-  .title {
-    margin: 0.7rem 0.8rem 0.2rem 0.8rem;
-    font-size: small;
-    font-weight: 700;
-    color: vars.$primaryColorDark;
-  }
+  .informations {
+    // position: relative;
+    padding: 0.7rem 1rem 0.7rem 0.7rem;
+    .title {
+      margin-bottom: 0.5rem;
+      font-size: small;
+      font-weight: 700;
+      color: vars.$primaryColorDark;
+    }
 
-  .category {
-    font-size: x-small;
-    background-color: vars.$primaryColor;
-    color: vars.$whiteColor;
-    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
-    margin: 0.9rem 2rem 0.8rem 0.8rem;
-    border-radius: 10px;
-  }
+    .category {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: x-small;
+      font-weight: 600;
+      background-color: vars.$primaryColor;
+      color: vars.$whiteColor;
+      padding: 0.9rem 0.9rem 0.8rem 0.9rem;
+      border-radius: 0 0 35px 0;
+    }
 
-  .summary {
-    max-height: 3rem;
-    overflow: hidden;
-    line-height: calc(3rem / 3);
-    margin: 0.9rem 1.8rem 0.8rem 0.8rem;
-    font-size: small;
-    color: vars.$darkTextColor;
-  }
+    .summary {
+      max-height: 5rem;
+      overflow: hidden;
+      line-height: calc(3rem / 3);
+      // margin: 0.9rem 1.8rem 0.8rem 0.8rem;
+      font-size: small;
+      padding-right: 1.5rem;
+      color: vars.$darkTextColor;
+      border-top: 0.1rem solid vars.$primaryColor;
 
+      p {
+        text-align: left;
+      }
+    }
+  }
   &:hover {
-    box-shadow: 0px 0px 20px 5px vars.$secondaryColorLight;
+    background: white;
+    background-color: #f1fcfb;
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
   }
 
   // Horizontal card ===========================================================
