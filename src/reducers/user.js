@@ -9,6 +9,8 @@ import {
   USER_REMOVE_ERROR_MESSAGES,
   USER_EMAIL_UPDATE_SUCCESS,
   USER_EMAIL_UPDATE_ERROR,
+  USER_SEND_EMAIL_VERIFICATION_SUCCESS,
+  USER_SEND_EMAIL_VERIFICATION_ERROR,
   USER_PASSWORD_UPDATE_SUCCESS,
   USER_PASSWORD_UPDATE_ERROR,
   USER_LOGOUT,
@@ -54,6 +56,7 @@ export const initialState = {
   email: sessionStorage.getItem('user')
     ? JSON.parse(sessionStorage.getItem('user')).email
     : '',
+  confirmationEmail: '',
   password: '',
   confirmPassword: '',
   resetToken: '',
@@ -62,6 +65,7 @@ export const initialState = {
   lastnameErrorMessages: [],
   nicknameErrorMessages: [],
   avatarErrorMessages: [],
+  emailConfirmationMessages: '',
   emailErrorMessages: [],
   passwordErrorMessages: [],
   authErrorMessages: '',
@@ -155,6 +159,18 @@ const reducer = (state = initialState, action = {}) => {
         email: action.data.email,
       };
     case USER_EMAIL_UPDATE_ERROR:
+      return {
+        ...state,
+        emailErrorMessages: action.errors,
+      };
+    case USER_SEND_EMAIL_VERIFICATION_SUCCESS:
+      return {
+        ...state,
+        isUpdated: true,
+        emailConfirmationMessages: action.data.message,
+        resetToken: action.data.resetToken.token,
+      };
+    case USER_SEND_EMAIL_VERIFICATION_ERROR:
       return {
         ...state,
         emailErrorMessages: action.errors,
