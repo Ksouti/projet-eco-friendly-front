@@ -13,11 +13,26 @@
       &-top {
         width: 100%;
 
+        .advice-category {
+          font-size: x-large;
+          font-weight: 900;
+          color: vars.$primaryColorDark;
+          margin: 1.5rem 0 3rem;
+        }
+
         .advice-title {
           font-size: x-large;
           font-weight: 900;
           color: vars.$primaryColorDark;
           margin: 1.5rem 0 0.2rem;
+        }
+
+        .advice-title-container { 
+          border: 0.1rem solid vars.$primaryBorderColor;
+          border-radius: 3rem;
+          padding: 0.5rem 1rem;
+          margin: 0.5rem 0;
+          
         }
 
         .advice-author {
@@ -43,6 +58,12 @@
             margin-right: 0.5rem;
           }
         }
+      }
+
+      .advice-content {
+        width: 100%;
+        margin: 1rem 0;
+        padding: 1rem;
       }
 
       &-text {
