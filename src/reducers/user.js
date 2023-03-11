@@ -157,7 +157,7 @@ const reducer = (state = initialState, action = {}) => {
     case USER_EMAIL_UPDATE_SUCCESS:
       return {
         ...state,
-        isRegistring: true,
+        isUpdated: true,
         isVerified: false,
         nickname: action.data.nickname,
         email: action.data.email,

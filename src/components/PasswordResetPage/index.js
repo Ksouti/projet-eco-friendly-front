@@ -63,6 +63,9 @@ function PasswordResetPage() {
     } else {
       setConfirmPasswordError([]);
       dispatch(userPasswordUpdate(sessionStorage.getItem('resetToken')));
+      /* temporary */
+      clearInformations();
+      navigate('/', { replace: true });
     }
   };
 

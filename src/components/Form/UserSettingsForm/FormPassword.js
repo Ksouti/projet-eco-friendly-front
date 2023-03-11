@@ -29,8 +29,9 @@ export default function FormPassword() {
     (state) => state.user.confirmationEmail,
   );
 
+  /* Save email and nickname values in sessionStorage */
+  /* necessary for the redirection to the registration page */
   useEffect(() => {
-    sessionStorage.setItem('isRegistring', JSON.stringify(isRegistring));
     sessionStorage.setItem('nickname', JSON.stringify(nickname));
     sessionStorage.setItem('email', JSON.stringify(confirmationEmail));
   }, [isRegistring, confirmationEmail, nickname]);

@@ -7,7 +7,6 @@ import {
   userEmailUpdate,
   userRemoveErrorMessages,
   userToggleIsUpdated,
-  userLogout,
 } from '../../../actions/user';
 import { closeModal } from '../../../actions/common';
 
@@ -25,6 +24,7 @@ export default function FormEmail() {
     if (sessionStorage.getItem('user')) {
       const user = JSON.parse(sessionStorage.getItem('user'));
       sessionStorage.setItem('email', JSON.stringify(user.email));
+      sessionStorage.setItem('nickname', JSON.stringify(user.nickname));
     }
   }, []);
 
@@ -59,14 +59,14 @@ export default function FormEmail() {
 
   /* Check if is updated */
   const isUpdated = useSelector((state) => state.user.isUpdated);
+  const nickname = useSelector((state) => state.user.nickname);
 
   useEffect(() => {
     if (isUpdated) {
-      sessionStorage.removeItem('email');
+      sessionStorage.setItem('email', JSON.stringify(email));
+      sessionStorage.setItem('nickname', JSON.stringify(nickname));
       sessionStorage.removeItem('user');
       dispatch(userToggleIsUpdated());
-      dispatch(userLogout());
-      dispatch(closeModal());
       navigate('/enregistrement', { replace: true });
     }
   }, [isUpdated]);
