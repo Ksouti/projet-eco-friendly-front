@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { userLogout } from '../../actions/user';
+import { closeModal } from '../../actions/common';
 
 import Page from '../Page';
 import Button from '../Button';
@@ -10,22 +12,20 @@ import image from './image.png';
 import './styles.scss';
 
 function RegistrationPage() {
-  const navigate = useNavigate();
-  const isRegitring = useSelector((state) => state.user.isRegitring);
-  const nickname = useSelector((state) => state.user.nickname);
-  const email = useSelector((state) => state.user.email);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isRegitring) {
-      navigate('/');
-    }
-  }, [isRegitring]);
+    dispatch(userLogout());
+    dispatch(closeModal());
+  }, []);
 
   return (
     <Page>
       <div className="registration">
         <h1 className="registration-title">
-          Merci <span>{nickname}</span> pour votre inscription !
+          Merci{' '}
+          <span>{sessionStorage.getItem('nickname').replace(/"/g, '')}</span>{' '}
+          pour votre inscription !
         </h1>
         <p className="registration-text">
           Nous sommes très heureux de vous compter parmi nous et vous souhaitons
@@ -36,8 +36,8 @@ function RegistrationPage() {
         </div>
         <p className="registration-text">
           Un email vient de vous être envoyé sur l'adresse
-          <span> {email}</span>, vérifiez votre messagerie pour finaliser votre
-          enregistrement !
+          <span> {sessionStorage.getItem('email').replace(/"/g, '')}</span>,
+          vérifiez votre messagerie pour finaliser votre enregistrement !
         </p>
         <p className="registration-text">
           Vous n'avez pas reçu d'email ?

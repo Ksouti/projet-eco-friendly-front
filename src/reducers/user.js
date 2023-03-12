@@ -13,6 +13,8 @@ import {
   USER_SEND_EMAIL_VERIFICATION_ERROR,
   USER_PASSWORD_UPDATE_SUCCESS,
   USER_PASSWORD_UPDATE_ERROR,
+  USER_DELETE_ACCOUNT_SUCCESS,
+  USER_DELETE_ACCOUNT_ERROR,
   USER_LOGOUT,
   USER_TOGGLE_IS_UPDATED,
 } from '../actions/user';
@@ -61,6 +63,7 @@ export const initialState = {
   confirmPassword: '',
   resetToken: '',
   isUpdated: false,
+  isRegistring: false, // User is registering or updating his password or email
   firstnameErrorMessages: [],
   lastnameErrorMessages: [],
   nicknameErrorMessages: [],
@@ -96,6 +99,7 @@ const reducer = (state = initialState, action = {}) => {
         token: action.token,
         isLoaded: true,
         isLogged: true,
+        isRegistring: false,
         id: action.data.id,
         roles: action.data.roles,
         firstname: action.data.firstname,
@@ -117,7 +121,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         nickname: action.data.nickname,
         email: action.data.email,
-        isRegitring: true,
+        isRegistring: true,
         password: '',
         confirmPassword: '',
       };
@@ -167,6 +171,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isUpdated: true,
+        isRegistring: true,
         emailConfirmationMessages: action.data.message,
         resetToken: action.data.resetToken.token,
       };
@@ -179,6 +184,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         isUpdated: true,
+        isRegistring: false,
         password: '',
         confirmPassword: '',
         resetToken: '',
@@ -187,6 +193,14 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         passwordErrorMessages: action.errors,
+      };
+    case USER_DELETE_ACCOUNT_SUCCESS:
+      return {
+        ...state,
+      };
+    case USER_DELETE_ACCOUNT_ERROR:
+      return {
+        ...state,
       };
     case USER_REMOVE_ERROR_MESSAGES:
       return {

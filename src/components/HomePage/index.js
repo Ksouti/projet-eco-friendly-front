@@ -52,7 +52,7 @@ function HomePage() {
 
           <section className="articles">
             <h2 className="articles-slider-title">Les articles à la une</h2>
-            <Slider slides={homePageData.articles} />
+            <Slider slides={homePageData.articles} automatic />
             <h2 className="articles-categories-title">Nos catégories</h2>
             {homePageData.articles.map((article) => (
               <div className="articles-list-horizontal" key={article.id}>

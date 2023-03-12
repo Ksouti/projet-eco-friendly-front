@@ -1,13 +1,13 @@
 /* eslint-disable brace-style */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable operator-linebreak */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
 
-import { removeErrorMessages, closeModal } from '../../../actions/common';
+import { removeErrorMessages } from '../../../actions/common';
 import { userOnInputChange, userRegister } from '../../../actions/user';
 
 import Input from '../../Field/Input';
@@ -26,6 +26,13 @@ export default function FormRegister({ toggleForm }) {
   const nickname = useSelector((state) => state.user.nickname);
   const firstname = useSelector((state) => state.user.firstname);
   const lastname = useSelector((state) => state.user.lastname);
+
+  /* Save email and nickname values in sessionStorage */
+  /* necessary for the redirection to the registration page */
+  useEffect(() => {
+    sessionStorage.setItem('nickname', JSON.stringify(nickname));
+    sessionStorage.setItem('email', JSON.stringify(email));
+  }, [email, nickname]);
 
   const changeField = (value, identifier) => {
     dispatch(userOnInputChange(value, identifier));
@@ -51,12 +58,13 @@ export default function FormRegister({ toggleForm }) {
   };
 
   /* Redirect user if is registring  */
-  const isRegitring = useSelector((state) => state.user.isRegitring);
+  const isRegistring = useSelector((state) => state.user.isRegistring);
 
-  if (isRegitring) {
-    dispatch(closeModal());
-    navigate('/enregistrement', { replace: true });
-  }
+  useEffect(() => {
+    if (isRegistring) {
+      navigate('/enregistrement', { replace: true });
+    }
+  }, [isRegistring]);
 
   /* Control error messages */
   const emailErrorMessages = useSelector(

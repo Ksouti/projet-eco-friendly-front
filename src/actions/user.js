@@ -266,6 +266,43 @@ export const userPasswordUpdateError = (errors) => ({
 });
 
 /**
+ * @name userDeleteAccount
+ * @description Action creator for user delete account
+ * @returns {object}
+ */
+export const USER_DELETE_ACCOUNT = 'USER_DELETE_ACCOUNT';
+
+export const userDeleteAccount = () => ({
+  type: USER_DELETE_ACCOUNT,
+});
+
+/**
+ * @name userDeleteAccountSuccess
+ * @description Action creator for user delete account success
+ * @param {Object} data
+ * @returns {object}
+ */
+export const USER_DELETE_ACCOUNT_SUCCESS = 'USER_DELETE_ACCOUNT_SUCCESS';
+
+export const userDeleteAccountSuccess = (data) => ({
+  type: USER_DELETE_ACCOUNT_SUCCESS,
+  data,
+});
+
+/**
+ * @name userDeleteAccountError
+ * @description Action creator for user delete account error
+ * @param {array} errors
+ * @returns {object}
+ */
+export const USER_DELETE_ACCOUNT_ERROR = 'USER_DELETE_ACCOUNT_ERROR';
+
+export const userDeleteAccountError = (errors) => ({
+  type: USER_DELETE_ACCOUNT_ERROR,
+  errors,
+});
+
+/**
  * @name userRemoveErrorMessages
  * @description Action creator for user remove error messages
  * @returns {object}

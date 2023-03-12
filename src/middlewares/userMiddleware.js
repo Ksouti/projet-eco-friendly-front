@@ -15,6 +15,9 @@ import {
   USER_SEND_EMAIL_VERIFICATION,
   userSendEmailVerificationSuccess,
   userSendEmailVerificationError,
+  USER_DELETE_ACCOUNT,
+  userDeleteAccountSuccess,
+  userDeleteAccountError,
   USER_PASSWORD_UPDATE,
   userPasswordUpdateSuccess,
   userPasswordUpdateError,
@@ -143,6 +146,20 @@ const userMiddleware = (store) => (next) => (action) => {
         })
         .catch((error) => {
           store.dispatch(userPasswordUpdateError(error.response.data.errors));
+        });
+      break;
+    case USER_DELETE_ACCOUNT:
+      axios
+        .delete(`${config.apiBaseUrl}/users/${store.getState().user.id}`, {
+          headers: {
+            Authorization: `Bearer ${store.getState().user.token}`,
+          },
+        })
+        .then((response) => {
+          store.dispatch(userDeleteAccountSuccess(response.data));
+        })
+        .catch((error) => {
+          store.dispatch(userDeleteAccountError(error.response.data.errors));
         });
       break;
     default:
